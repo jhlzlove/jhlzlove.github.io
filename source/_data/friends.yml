@@ -1,0 +1,15 @@
+- myfriend: # 分组标题
+  description: 海内存知己，天涯若比邻 # 分组描述
+  items:
+    - title: 江湖浪子 # 名称
+      avatar: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/avatar/avatar.jpeg # 头像
+      url: https://jhlzlove.github.io # 链接
+      screenshot: # 截图
+      keywords: # 关键词
+      description: # 描述
+
+groupGitHub:
+  title: 来自 GitHub 的朋友
+  description: '以下友链通过 [GitHub Issue](https://github.com/jhlzlove/friends/issues/) 提交，按 issue 最后更新时间排序：'
+  api: https://issues-api.vercel.app
+  repo: jhlzlove/friends

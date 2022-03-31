@@ -22,10 +22,10 @@ Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘�
 <!-- code_chunk_output -->
 
 - [Linux 常用命令](#linux-常用命令)
-  - [基础命令](#基础命令)
+  - [命令](#命令)
   - [几个目录介绍](#几个目录介绍)
   - [VI 编辑器常用命令](#vi-编辑器常用命令)
-  - [权限命令](#权限命令)
+  - [权限](#权限)
   - [Shell 脚本组成命令](#shell-脚本组成命令)
   - [用户、用户组命令](#用户用户组命令)
   - [压缩包命令](#压缩包命令)
@@ -35,64 +35,20 @@ Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘�
 <!-- /code_chunk_output -->
 
 
-## 基础命令
+## 命令
 
+Linux主要就是玩的命令，所以它的命令多如牛毛，入门可以通过网上教程或者书籍了解。这里说一些我偶尔用但是容易忘的吧。
 ```bash{.line-numbers}
-    # 清屏命令，也可以使用快捷键 Ctrl+l
-    clear
-    # 查看历史记录
-    history
-    # 显示工作目录路径
-    pwd
-    # 列出目录和文件信息，-a 列出所有文件，包括隐藏文件，
-    # -l 以长格式显示文件信息，
-    # -t 根据修改时间排序
-    # -S 根据文件大小排序
-    ls [-l]
-    # 创建目录，使用 -p 选项可以创建多级(递归)目录
-    # -m 给新创建的目录授予权限
-    mkdir [-p]|[-m]
-    # 创建文件
-    touch
-    # 删除空目录，注意必须是空目录；-p 递归删除
-    rmdir
-    # 复制文件和目录
-    # -a 复制时保留链接、文件属性，并递归的复制目录
-    cp [-a]
-    # 移动文件或者更改文件名称
-    mv
-    # 删除文件或目录，-r 递归删除目录，-f 强制删除
-    rm [-rf]
-    # 创建链接文件，
-    # -s 创建软链接，相当于 win 下的快捷方式
-    ln -s
-    # 显示文本文件的内容,-n 对输出行编号
-    cat
-    # 查找文件中符合条件的字符串
-    grep
-    # 显示计算机及操作系统的所有信息
-    uname -a
-    # 查看内存信息,-g 以G为单位，-m 以MB为单位
-    free 
-    # 显示日历
-    cal
-    # 查看日期
-    date
-    # 在bash中显示文字
-    echo
-    # 查看磁盘空间,如果查看目录文件的大小，命令后跟指定目录或者文件即可
-    df -h 或者 du -h
-    # 查看所有运行的进程
-    ps -aux
-    查看进程： `ps -aux` 或者 `top`
-    # 杀死进程：
-    kill 进程
-    kill -9 强制杀死
-```
-```
 
-```bash{.line-numbers}
-        
+# 创建链接文件，
+# -s 创建软链接，相当于 win 下的快捷方式，不加 -s 选项为硬链接。
+ln -s 源文件 新的链接文件名
+# 显示计算机及操作系统的所有信息
+uname -a
+# 查看内存信息,-g 以G为单位，-m 以MB为单位
+free
+# 查看磁盘空间,如果查看目录文件的大小，命令后跟指定目录或者文件即可
+df -h 或者 du -h
 ```
 
 ## 几个目录介绍
@@ -114,32 +70,32 @@ Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘�
 ## VI 编辑器常用命令
 
 ```bash{.line-numbers}
-    `yy`    复制光标所在行；
-    `nyy`   复制光标所在行及开始的 `n` 行,n 代表数字；
-    `p`     粘贴复制的内容；
-    `dd`    删除光标所在行；
-    `ndd`   删除光标所在行开始的 `n` 行，n代表数字；
-    `/`     查找指定的字符；
-    `o` 在当前光标所在行的下一行新开一行进行编辑
-    `O` 可以在光标当前所在行的上一行新开一行插入
-    `:wq` 或者 `:x`或者`Shift+zz` 保存并退出
-    `:q!` 强制退出
-    `G` 使光标移动到文件尾(最后一行的第一个非空白字符)
-    `gg` 让光标移动到文件首(第一行的第一个非空白字符处)
-    `ggdG` 清空所有内容
-    `u` undo，取消上一步操作
-    `Ctrl + r` redo，回到 undo 之前
-    `set nu/nonu` 显示/不显示行号
+`yy`    复制光标所在行；
+`nyy`   复制光标所在行及开始的 `n` 行,n 代表数字；
+`p`     粘贴复制的内容；
+`dd`    删除光标所在行；
+`ndd`   删除光标所在行开始的 `n` 行，n代表数字；
+`/`     查找指定的字符；
+`o` 在当前光标所在行的下一行新开一行进行编辑
+`O` 可以在光标当前所在行的上一行新开一行插入
+`:wq` 或者 `:x`或者`Shift+zz` 保存并退出
+`:q!` 强制退出
+`G` 使光标移动到文件尾(最后一行的第一个非空白字符)
+`gg` 让光标移动到文件首(第一行的第一个非空白字符处)
+`ggdG` 清空所有内容
+`u` undo，取消上一步操作
+`Ctrl + r` redo，回到 undo 之前
+`set nu/nonu` 显示/不显示行号
 ```
 
-## 权限命令
+## 权限
 
-命令前加上 `sudo` 后暂时拥有超级管理员的权限，能够执行一般用户执行不了的操作。普通用户的 bash 环境中，命令前是 `$` 符号，而 root 用户是 `#` 符号，
+命令前加上 `sudo` 即以超级管理员的权限运行。普通用户的 bash 环境中，命令前是 `$` 符号，而 root 用户是 `#` 符号，
 ```bash
-    # su 想要切换的用户名称
-    su root
-    # 如果中间加入 - ，代表连用户的 shell 环境一起切换
-    su - root
+# su 想要切换的用户名称
+su root
+# 如果中间加入 - ，代表连用户的 shell 环境一起切换
+su - root
 ```
 
 |可选项|意义|
@@ -165,77 +121,78 @@ chmod 777 file.sh
 chmod u+x,g+wx file.sh
 ```
 
-更改文件和目录所有者：
+更改文件和目录所有者(二选一)：
 ```bash
 chown -R 用户.组群 文件/目录
 chown -R 用户:组群 文件/目录
 ```
-`-R` 选项是递归操作
+`-R` 选项是递归操作，把目录下的所有文件全部修改为当前的权限。
 如果只修改所属用户(即用户所有者)的话，很简单：
 `chown newGroup file`
-如果只修改所属用户组的话,也很简单：
+如果只修改所属用户组的话,也很简单(二选一)：
 ```bash
-    # 两个命令任选其一
-    chown .newGroup file
-    chown :newGroup file
+chown .newGroup file
+chown :newGroup file
 ```
-![linux权限图片](https://www.runoob.com/wp-content/uploads/2014/08/rwx-standard-unix-permission-bits.png, "linux文件权限信息图")
 
+{% gallery %}
+![linux权限图片](https://www.runoob.com/wp-content/uploads/2014/08/rwx-standard-unix-permission-bits.png, "linux文件权限信息图")
+{% endgallery %}
 
 
 
 ## Shell 脚本组成命令
 shell 文件格式：
 ```bash{.line-numbers}
-        #!/bin/bash
-        #filename:score  代表这个 shell 程序需要键盘接收
-        
-        reda SCORE
+#!/bin/bash
+#filename:score  代表这个 shell 程序需要键盘接收
+
+reda SCORE
 ```
 1. if 条件判断语句
 ```bash{.line-numbers}
-    if 条件
-    then 
-        语句块
-    else 
-        语句块
-    fi
+if 条件
+then 
+    语句块
+else 
+    语句块
+fi
 ```
 
 2. for 循环语句
    
 运算时使用 let
 ```bash{.line-numbers}
-    for 条件
-    do  
-        语句块
-    done
-    其中：
-    for ad in 1 2 3 4
-    for ab in `seq 1 4`
-    for ((ab = 1; ab < 4; ab++))
-    这三种写法的意思都是相同的，需要特别注意的是，
-    第二行那个符号不是单引号，而是 Tab 上面，Esc 下面的那个键。因为使用的时候不容易看懂，不推荐使用。
-    推荐第三种写法，注意有两个括号。
+for 条件
+do  
+    语句块
+done
+其中：
+for ad in 1 2 3 4
+for ab in `seq 1 4`
+for ((ab = 1; ab < 4; ab++))
+这三种写法的意思都是相同的，需要特别注意的是，
+第二行那个符号不是单引号，而是 Tab 上面，Esc 下面的那个键。因为使用的时候不容易看懂，不推荐使用。
+推荐第三种写法，注意有两个括号。
 ```
 
 3. while循环语句
    
 ```bash{.line-numbers}
-    while 条件
-    do 
-        语句块
-    done
+while 条件
+do 
+    语句块
+done
 ```
 
 4. until 循环语句
 
 和while循环同样，不同的是判断循环的条件，while条件为真时循环，until 条件为假时循环。
 ```bash{.line-numbers}
-    until 条件
-    do 
-        语句块
-    done
+until 条件
+do 
+    语句块
+done
 ```
 
 **注意：** 条件比较大小时，需要使用以下的内容： 
@@ -248,40 +205,40 @@ shell 文件格式：
 ## 用户、用户组命令
 
 ```bash{.line-numbers}
-    # 创建用户（如果创建用户的时候没有指定组名，默认会自动创建一个和用户名相同的组名）： 
-    useradd -d 设置用户主目录 -g 设置用户组群 username
+# 创建用户（如果创建用户的时候没有指定组名，默认会自动创建一个和用户名相同的组名）： 
+useradd -d 设置用户主目录 -g 设置用户组群 username
 
-    # 修改用户：
-    # 如果添加了 -m 选项，用户旧目录会移动到新的目录中；如果不存在，就新建
-    usermod -l 修改账户名称 -d 设置用户主目录 -m 移动主目录内容到新的位置
-    
-    # 删除用户
-    # 使用这个命令时记得做好备份，会将用户主目录和用户一并删除，所以主目录下的东西最好备份。
-    userdel -rf
-    
-    # 添加组群：
-    groupadd
+# 修改用户：
+# 如果添加了 -m 选项，用户旧目录会移动到新的目录中；如果不存在，就新建
+usermod -l 修改账户名称 -d 设置用户主目录 -m 移动主目录内容到新的位置
 
-    # 修改组群名：
-    groupmod -n newName oldName
+# 删除用户
+# 使用这个命令时记得做好备份，会将用户主目录和用户一并删除，所以主目录下的东西最好备份。
+userdel -rf
 
-    # 删除组群：
-    groupdel
+# 添加组群：
+groupadd
 
-    # 给指定的用户设置密码（如果新创建的用户没有密码，那么该用户是无法使用的，类似未激活）
-    passwd 用户名
-    
-    # 添加用户到组群
-    gpasswd -a 用户名 组群名
+# 修改组群名：
+groupmod -n newName oldName
 
-    # 删除组群的指定用户
-    gpasswd -d 用户名 组群名
+# 删除组群：
+groupdel
 
-    # 查看用户属于那些群组
-    groups 用户名
-    
-    # 让属于该群组的当前用户以指定的组群身份登录
-    newgrp 组群名 用户名
+# 给指定的用户设置密码（如果新创建的用户没有密码，那么该用户是无法使用的，类似未激活）
+passwd 用户名
+
+# 添加用户到组群
+gpasswd -a 用户名 组群名
+
+# 删除组群的指定用户
+gpasswd -d 用户名 组群名
+
+# 查看用户属于那些群组
+groups 用户名
+
+# 让属于该群组的当前用户以指定的组群身份登录
+newgrp 组群名 用户名
 ```
 
 
@@ -289,28 +246,28 @@ shell 文件格式：
 
 Linux 下使用 tar 包管理器：
 ```bash{.line-numbers}
-    # 打包
-    tar -cvf
+# 打包
+tar -cvf
 
-    # 查看包内容 
-    tar -tvf
+# 查看包内容 
+tar -tvf
 
-    # 解包内容
-    tar -xvf
+# 解包内容
+tar -xvf
 
-    # 以下格式的包只需要在选项中加入以下字母即可
-    # 例如 tar -zxvf xxx.tar.gz
-    # gzip(.tar.gz结尾的包)
-    -z
+# 以下格式的包只需要在选项中加入以下字母即可
+# 例如 tar -zxvf xxx.tar.gz
+# gzip(.tar.gz结尾的包)
+-z
 
-    # bzip2(.tar.bz2结尾的包)
-    -j
+# bzip2(.tar.bz2结尾的包)
+-j
 
-    # xz(以.tar.xz结尾的包)
-    -J
+# xz(以.tar.xz结尾的包)
+-J
 
-    # -C 可以在解压的时候指定解压路径
-    tar -C 指定路径 -zvxf 目标包文件
+# -C 可以在解压的时候指定解压路径
+tar -C 指定路径 -zvxf 目标包文件
 ```
 ## 挂载文件命令
 
@@ -340,25 +297,25 @@ crontab中的command尽量使用绝对路径，否则会经常因为路径错误
 
 **Crontab配置实例:**
 ```bash{.line-numbers}
-    #每一分钟执行一次command（因cron默认每1分钟扫描一次，因此全为*即可）
-    *    *    *    *    *  command
+#每一分钟执行一次command（因cron默认每1分钟扫描一次，因此全为*即可）
+*    *    *    *    *  command
 
-    #每小时的第3和第15分钟执行command
-    3,15   *    *    *    *  command
+#每小时的第3和第15分钟执行command
+3,15   *    *    *    *  command
 
-    # 每天上午8-11点的第3和15分钟执行command：
-    3,15  8-11  *  *  *  command
+# 每天上午8-11点的第3和15分钟执行command：
+3,15  8-11  *  *  *  command
 
-    # 每隔2天的上午8-11点的第3和15分钟执行command：
-    3,15  8-11  */2  *   *  command
+# 每隔2天的上午8-11点的第3和15分钟执行command：
+3,15  8-11  */2  *   *  command
 
-    # 每个星期一的上午8点到11点的第3和第15分钟执行command
-    3,15  8-11   *   *  1 command
+# 每个星期一的上午8点到11点的第3和第15分钟执行command
+3,15  8-11   *   *  1 command
 
-    # 每晚的21:30重启smb
-    30  21   *   *  *  /etc/init.d/smb restart
+# 每晚的21:30重启smb
+30  21   *   *  *  /etc/init.d/smb restart
 
-    # 每月1、10、22日的4 : 45重启smb
-    45  4  1,10,22  *  *  /etc/init.d/smb restart
+# 每月1、10、22日的4 : 45重启smb
+45  4  1,10,22  *  *  /etc/init.d/smb restart
 ```
 

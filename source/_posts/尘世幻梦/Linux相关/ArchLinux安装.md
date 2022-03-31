@@ -1,5 +1,5 @@
 ---
-title: 电脑安装Arch Linux
+title: 安装ArchLinux
 author: 江湖浪子
 categories:
   - Linux

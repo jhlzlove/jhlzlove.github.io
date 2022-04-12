@@ -42,3 +42,14 @@ Spring 定时任务和事务管理配置
 Spring 提供了 Convertor 接口供我们实现自定义转换器。
 
 各种Aware不在工厂启动的时候操作，而是在创建对象的第三步初始化中通过 BeanPostProcessor 完成。不要在工厂启动的时候注入，而是在对象创建的时候注入。
+
+默认情况下 ConfigurationClassPostProcessor 处理顶级注解（注册）：
+@Component（@Service @Repository @Controller）
+@Configuration
+@PropertySource
+@Import
+@ComponentScan
+
+git@github.com:jhlzlove/hexo-theme-volantis.git
+
+@Configuration 注解的类中，@Bean 注解的配置bean通过代理增加额外的scope功能。

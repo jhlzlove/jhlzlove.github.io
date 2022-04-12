@@ -108,7 +108,7 @@ theme: volantis
 deploy:
   type: git
   branch: pages
-  repo: git@lovegithub.com:jhlzlove/jhlzlove.github.io.git
+  repo: git@jhlzgithub.com:jhlzlove/jhlzlove.github.io.git
 
 
 feed:

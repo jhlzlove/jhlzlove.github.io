@@ -90,7 +90,7 @@ cover:
   # background: https://bing.ioliu.cn/v1/rand?w=1920&h=1200
   logo: 
   title: '浮萍一叶'
-  subtitle: '浮萍漂泊本无根 天涯游子君莫问'
+  subtitle: '' # '浮萍漂泊本无根 天涯游子君莫问'
   search: 少侠想找些什么呢？ # search bar placeholder
   features:
     - name: 我的博客
@@ -953,7 +953,7 @@ custom_css:
       weight: normal
       style: normal
     codefont:
-      fontfamily: 'JetBrainsMono' # 'JetBrainsMono,ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'
+      fontfamily: 'Fira Code, JetBrainsMono' # 'JetBrainsMono,ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace'
       # name: 'Monaco'
       # url: /media/fonts/Monaco/Monaco.ttf # https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/Monaco/Monaco.ttf
       # weight: normal

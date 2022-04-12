@@ -18,6 +18,7 @@ window 问题合集，更新待续
 - [快捷方式](#快捷方式)
 - [WSL](#wsl)
 - [VMWare 虚拟机配置双网卡](#vmware-虚拟机配置双网卡)
+- [Win10 的 powershell 不能运行脚本](#win10-的-powershell-不能运行脚本)
 
 <!-- /code_chunk_output -->
 
@@ -81,3 +82,13 @@ systemctl restart network
 ```
 
 {% link 其它原因请参考::https://blog.csdn.net/weistin/article/details/80676955 %}
+
+### Win10 的 powershell 不能运行脚本
+
+管理员身份运行`set-executionpolicy RemoteSigned`，然后选择 Y.
+
+powershell有四种执行策略：
+- Restricted 禁止运行任何脚本和配置文件（默认）
+- AllSigned 可以运行脚本，但要求所有脚本和配置文件由可信发布者签名，包括在本地计算机上编写的脚本
+- RemoteSigned 可运行脚本，但要求从网络上下载的脚本和配置文件由可信发布者签名；不要求对已经运行和本地计算机编写的脚本进行数字签名
+- Unrestricted 可以运行未签名的脚本

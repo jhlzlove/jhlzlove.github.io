@@ -129,6 +129,10 @@ $ git checkout 分支名 / git switch branch_name
 $ git branch -d branch_name
 # 删除远程分支
 $ git push origin --delete branch_name
+# 把本地分支推送到远程存储库，远程不存在分支
+$ git push -u origin branch_name
+# 把本地分支推送到远程存储库，远程不存在分支，自定义远程分支名
+$ git push -u origin 本地分支名:远程分支名
 
 # 查看本地所有分支
 $ git branch -a
@@ -188,10 +192,10 @@ HostName github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/github_id_rsa
 ```
-> 如果像上面一样配置了多个Github账号的SSH密钥，那么在进行 clone 或者 remote 关联时，地址需要做一些改变，否则会报错
+> 如果像上面一样配置了多个Github账号的SSH密钥，那么在进行 clone 或者 remote 关联时，地址需要做一些改变，否则会报错。
 > 克隆时 git@github.com 需要替换为对应的 `Host` 内容。例如使用 github2 的账户关联远程仓库：
 `git remote add origin git@xyzgithub.com:XXX/repository.git`
-> Window 下 IdentityFile 指定的路径示例：`IdentityFile C:\Users\用户名\.ssh\github_id_rsa`
+> Window 下 IdentityFile 指定的路径示例：`IdentityFile C:\Users\用户名\.ssh\github_id_rsa`，其实可以完全和 Linux 一样的路径。
 
 ### 4. 用ssh命令分别测试
 ```bash

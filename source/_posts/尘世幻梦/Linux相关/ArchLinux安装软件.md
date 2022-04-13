@@ -4,7 +4,7 @@ categories:
   - Linux
   - Arch
 cover: true
-headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogCover/arch.jpeg
+headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/arch.jpeg
 abbrlink: 8ecfb81b
 ---
 

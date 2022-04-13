@@ -3,7 +3,7 @@
   items:
     - title: 诗酒趁年华 # 名称
       avatar: # 头像
-      url: # 链接
+      url: # 链接 
       screenshot: # 截图
       keywords: # 关键词
       description: # 描述
@@ -12,5 +12,5 @@
   description: 来自Github的朋友
   items: 
     - title: github测试
-      avatar: 0000
-      url: 0000
+      avatar: 
+      url: 

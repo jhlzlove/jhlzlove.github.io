@@ -1,26 +1,20 @@
 ---
-title: Spring 总结
+title: Spring使用总结
 categories:
   - Java
   - Spring
 abbrlink: ece26077
 ---
 
-Spring 使用总结
+Spring使用总结
 
 <!-- more -->
 
-# Spring 总结
+# Spring使用总结
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
 <!-- code_chunk_output -->
-
-  - [Spring 的核心 API：](#spring-的核心-api)
-  - [程序开发：](#程序开发)
-  - [Set 注入的简化写法](#set-注入的简化写法)
-  - [构造注入](#构造注入)
-    - [开发步骤](#开发步骤)
-- [Spring 总结](#spring-总结)
+- [Spring使用总结](#spring使用总结)
     - [Spring 的核心 API：](#spring-的核心-api)
     - [程序开发：](#程序开发)
     - [Set 注入的简化写法](#set-注入的简化写法)

@@ -119,10 +119,7 @@ alter table 表名 drop 字段名
 数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等。如：
 1) GRANT：授权。
 
-2) ROLLBACK [WORK] TO [SAVEPOINT]：回退到某一点。
-回滚---ROLLBACK
-回滚命令使数据库状态回到上次最后提交的状态。其格式为：
-SQL>ROLLBACK;
+2) ROLLBACK：回滚命令使数据库状态回到上次最后提交的状态。
 
 3) COMMIT [WORK]：提交。
 
@@ -131,13 +128,13 @@ SQL>ROLLBACK;
 
 MySQL 可以在建表时最后可以创建表分区，通过 partition by 关键字创建。如下示例:
 ```sql{.line-numbers}
-  -- 注意，这种方式括号内必须是整数字段名或返回确定整数的函数
-  -- 如果想要定义非整型和多列范围，需要加入 columns，
-  -- 而且括号内必须是列名，不支持函数。
-  partition by range(字段名)
+-- 注意，这种方式括号内必须是整数字段名或返回确定整数的函数
+-- 如果想要定义非整型和多列范围，需要加入 columns，
+-- 而且括号内必须是列名，不支持函数。
+partition by range(字段名)
 
-  -- 这种方式支持非整型和多列
-  partition by range columns(a, b)
+-- 这种方式支持非整型和多列
+partition by range columns(a, b)
 ```
 
 也可以在建表完成后创建分区，例如：
@@ -151,7 +148,6 @@ ALTER TABLE table_name DROP PARTITION partition_name；
 ```
 
 MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
-在 MySQL5.1 之后，
 
 
 ## MySQL数据库优化
@@ -167,10 +163,10 @@ MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
 
 ### 事务的四种隔离级别：
 隔离性中包含了四种隔离级别，分别是：
-1. 读未提交内容
-2. 读已提交内容
-3. 幻读（重复读）
-4. 可串行化
+1. 读未提交内容 
+2. 读已提交内容 脏读
+3. 幻读（重复读） 读已提交
+4. 可串行化 解决幻影读
 
 
 ### 数据库索引分类：

@@ -1,21 +1,21 @@
 ---
-title: Git总结
+title: Git入门
 categories: Git
 cover: true
 headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/doc/git_command.jpg
 abbrlink: f26bc7f6
 ---
 
-Git 总结
+Git 入门
 
 <!-- more -->
 
-# Git总结
+# Git入门
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=true} -->
 
 <!-- code_chunk_output -->
 
-- [Git总结](#git总结)
+- [Git入门](#git入门)
   - [Git 配置](#git-配置)
   - [Git命令](#git命令)
     - [1. 远程代码托管平台相关（Github、Gitee、Gitlab）：](#1-远程代码托管平台相关githubgiteegitlab)

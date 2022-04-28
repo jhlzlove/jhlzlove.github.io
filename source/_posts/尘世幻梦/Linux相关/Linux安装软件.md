@@ -27,8 +27,10 @@ abbrlink: 5e42d40d
   - [Python](#python)
   - [Nginx](#nginx)
   - [MongoDB](#mongodb)
+  - [Btop++](#btop)
   - [MySQL](#mysql)
-      - [*數據庫問題*](#數據庫問題)
+    - [其它问题](#其它问题)
+      - [*可视化工具连接問題*](#可视化工具连接問題)
 
 <!-- /code_chunk_output -->
 
@@ -348,71 +350,131 @@ db.shutdownServer();
 ```
 
 
+## Btop++
+Btop++ 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和统计资料。
+
+{% link Github地址::https://github.com/aristocratos/btop %}
+
+如果下载速度较慢，可以使用Gitee同步仓库：https://gitee.com/mirrors/btop
+
+CentOS安装:
+```bash{.line-numbers}
+# 安装依赖
+yum install coreutils sed build-essential -y
+
+# 升级gcc（10及以上版本）
+yum install centos-release-scl -y
+yum install devtoolset-10 -y
+scl enable devtoolset-10 bash 
+echo "source /opt/rh/devtoolset-10/enable" >> /etc/profile
+
+# 克隆源码编译安装
+git clone https://gitee.com/mirrors/btop.git
+cd btop
+make && make install
+```
+
 ## MySQL
-1. 卸载 mariadb
-2. 添加官方的yum源 创建并编辑mysql-community.repo文件
-a) vi /etc/yum.repos.d/mysql-community.repo
-b) 粘贴以下内容到源文件中
-```bash
-[mysql56-community]
-name=MySQL 5.6 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/7/$basearch/
-enabled=1
-gpgcheck=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+{% link Ubantu系统安装MySQL::https://blog.lanluo.cn/8662 %}
+
+CentOS等常用的一键安装网络上有许多参考，这里使用通用版的压缩包方式来安装。
+{% link 参考网址::https://zhuanlan.zhihu.com/p/87069388 %}
+
+```bash{.line-numbers}
+# 检查mysql用户组和用户是否存在，如果没有，则创建
+cat /etc/group | grep mysql
+cat /etc/passwd | grep mysql
+groupadd mysql
+useradd -r -g mysql mysql
+
+# 安装所需依赖(需要安装 libaio-devel.x86_64 numactl 这两个依赖)
+yum -y install libaio-devel.x86_64 numactl
+
+# 初始化数据
+./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql
+
+# 编辑配置文件 my.cnf 修改内容：
+datadir=/usr/local/mysql/data
+port = 3306
+
+# 启动MySQL服务 启动成功会有 Starting MySQL.. SUCCESS! 提示
+cd /usr/local/mysql/support-files/
+mysql.server start
+
+# 添加软链接重启服务
+ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
+ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+service restart mysql
+# systemctl restart mysql
+
+# 添加开机自启
+# 1、将服务文件拷贝到init.d下，并重命名为mysql
+cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+# 2、赋予可执行权限
+chmod +x /etc/init.d/mysqld
+# 3、添加服务
+chkconfig --add mysqld
+# 4、显示服务列表
+chkconfig --list
+
+# 登录 MySQL，密码使用初始化成功时 root@localhost: 后的字符串
+mysql -uroot -p
+
+# 修改密码
+update user set authentication_string='' where user='root';
+ALTER user 'root'@'localhost' IDENTIFIED BY 'newpassword';
+flush privileges;
+
+
+# 开放远程连接
+use mysql;
+# 允许所有主机，都可以通过用户为root用户，密码为默认数据库登录密码，进行访问数据库
+update user set host='%' where user='root';
+
+# ① 适用于 MySQL 8.0之前的版本，可以直接授权
+grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option;
+# ② 适用于 MySQL 8.0之后的版本，需要先创建一个用户，再进行授权【推荐方式②】
+create user root@'%' identified by 'root';
+grant all privileges on *.* to root@'%' with grant option;
+# 刷新权限，这一句很重要，使修改生效，如果没有写，则还是不能进行远程连接。这句表示从mysql数据库的grant表中重新加载权限数据，因为MySQL把权限都放在了cache中，所以，做完修改后需要重新加载。
+flush privileges;
 ```
- c) 注意:如果需要安装 mysql5.7 只需要将baseurl修改即可
-`baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/`
-3. MySQL 5.7 之后有了默认密码，密码在 `/var/log/mysqld.log` 文件中，注意，需要启动后才有log文件。可以使用 `grep 'temporary password' /var/log/mysqld.log` 查找。
 
+初始化成功截图：
+![初始化成功截图](https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/Linux_MySQL初始化成功截图.png)
+记录日志最末尾位置 `root@localhost:` 后的字符串，此字符串为mysql管理员临时登录密码。
+
+如果启动失败查看err日志，根据日志定位修复问题。
+
+### 其它问题
+```bash{.line-numbers}
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES/NO) 
+```
+解决方法：
+1. 使用 kill 命令停止 mysqld 相关服务
+2. cd /usr/local/mysql/bin/,运行命令： `mysqld_safe --user=mysql --skip-grant-tables --skip-networking &`
+3. 使用密码登录数据库 mysql -u root -p 并切换到 mysql 数据库
+4. 执行命令：`update user set host='%' where user='root';`
+
+
+
+#### *可视化工具连接問題*
+
+错误提示：
 ```bash
-systemctl start mysqld
-systemctl status mysqld
-systemctl stop mysqld
+mysql> use dbname;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A 
 ```
 
-开启远程连接：
-1. 关闭防火墙
-2. `grant all privileges on *.* to 'root'@'%' identified by '数据库密码' with grant option;`
-3. flush privileges;
+出現以上原因是因爲數據庫採用了預讀處理，解决办法就是在我们进入MySQL的bash环境时，需要加入 `-A` 参数，不让其预读数据库信息，`mysql -u root -p -A`。
 
-
-#### *數據庫問題*
-> 下載navicat后連接數據庫時使用 localhost 連接失敗，顯示沒有權限。
-此時可以考慮使用 127.0.0.1 進行連接
-若出現以下問題：
-  ```bash
-  mysql> use dbname;
-  Reading table information for completion of table and column names
-  You can turn off this feature to get a quicker startup with -A 
-  ```
-出現以上原因是因爲數據庫採用了預讀處理，我们进入mysql 时，没有使用-A参数；
-即我们使用
-==mysql -hhostname -uusername -ppassword -Pport== 的方式进入数据，
-而没有使用
-==mysql -hhostname -uusername -ppassword -Pport  -A==的方式进入数据库。
-当我们打开数据库，即use   dbname时，要预读数据库信息，当使用==-A==参数时，就不预读数据库信息。 
-
-這種情況我們進入數據庫時可以加上 **`-A`** 選項，如果覺得每次輸入麻煩的話，可以在 **`my.cnf`** 文件里加上如下內容：
+如果覺得每次进入bash环境添加麻烦，也可以在 **`my.cnf`** 文件里加上如下內容：
 ```bash
     [mysql]
     no-auto-rehash
 ```
-然後重啓一下mysql，再次連接的時候就好了
-
-- [卸載重新安裝數據庫](https://blog.lanluo.cn/8662)
-<br>
-> 完全卸載：
-> sudo rm -rf /var/lib/mysql
-> sudo rm -rf /etc/mysql
-> sudo apt-get autoremove mysql* --purge
-> sudo apt-get remove apparmor
-> 安裝：
-> sudo apt-get update
-> sudo apt-get install mysql-server
-
-使用cat命令查看默認用戶名密碼：
-> sudo cat /etc/mysql/debian.cnf 
  
 
 1. Mysql登录授权：
@@ -426,22 +488,4 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY "123";
 `drop user username@’%’;`
 
 
-2. 查看所有的安装软件（包括卸载）：
-`dpkg --list;`
-找到你所想要卸载的软件，在终端输入命令：
-`sudo apt-get --purge remove 包名`
-（--purge是可选项，写上这个属性是将软件及其配置文件一并删除，如不需要删除配置文件，直接执行sudo apt-get remove 包名即可）
-执行过程中会问你是否要删除，按y即可
-参考博客：https://blog.csdn.net/luckydog612/article/details/80877179
 
-centos7问题描述：
-用的好好的虚拟机，之前内网都通，突然xshell连不上虚拟机了也连不上外网了，这时候怎么办呢？
-> 解决方法：
-1.将networkmanager服务停掉
-systemctl stop NetworkManager
-systemctl disable NetworkManager
-2.重启网卡
-systemctl restart network
-如上操作，就可以啦
-
-[原博客地址](https://blog.csdn.net/weixin_44695793/article/details/108089356)

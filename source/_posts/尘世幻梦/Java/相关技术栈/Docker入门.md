@@ -287,6 +287,10 @@ ENTRYPOINT java -jar app.jar
 
 docker-compose 学起来也是非常的简单，和 Dockerfile 差不多，写一个文件，然后使用命令去启动这个文件。
 和 docker 的不同：docker是面向容器的，而 docker-compose 是面向服务的，这也是两者指令的根本。
+
+如果时Window系统，安装 Docker for Window 后就有对应的 dcoker-compose工具了；如果是 Linux 系统，那么需要安装 docker-compose。
+{% link 官网安装 docker-compose 示例::https://docs.docker.com/compose/install/ %}
+
 **docker-compose.yml 模板：**
 ```yaml{.line-numbers}
 version: "3.8" # 4.0以下

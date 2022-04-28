@@ -56,6 +56,12 @@ npm outdated
 
 # 设置全局配置
 npm config set registry https://registry.npmmirror.com
+
+# 回退到指定版本
+npm install npm@6.14 -g
+
+# 升级到最新版本
+npm install npm -g
 ```
 
 > --save：将模块依赖关系写入到package.json文件的dependencies参数中

@@ -83,7 +83,10 @@ $ git push origin master:master # 第一个 master 是本地分支，后面的�
 $ git remote add origin https://gitee.com/用户个性地址/HelloGitee.git
 # 取消远程关联
 $ git remote remove origin
-
+# 关联上游仓库
+$ git remote add upstream 仓库地址
+# 取消关联上游仓库
+$ git remote remove upstream
 ```
 
 ### 2. 日常操作：

@@ -7,6 +7,7 @@ music:
   server: netease
   type: song
   id: 373114
+abbrlink: '32178238'
 ---
 
 JVM的一些术语介绍，简单了解一下。

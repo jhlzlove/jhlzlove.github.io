@@ -1,6 +1,5 @@
 ---
 title: 安装ArchLinux
-author: 江湖浪子
 categories:
   - Linux
   - Arch
@@ -13,7 +12,7 @@ music:
 abbrlink: 8166567f
 ---
 
-开发除了使用Mac系统外，Linux也是很棒的，重要的是价格便宜啊。浪子喜欢使用Arch Linux，当初安装也是在一位大佬的指导下安装的.
+开发除了使用Mac系统外，Linux也是很棒的，重要的是价格便宜啊。浪子喜欢使用Arch Linux，当初安装也是在一位大佬的指导下安装的。
 {% link 官方文档::https://wiki.archlinux.org/title/Installation_guide#Boot_the_live_environment::https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets@master/logo/256/safari.png %}
 
 
@@ -45,6 +44,8 @@ abbrlink: 8166567f
 <!-- /code_chunk_output -->
 
 # 安装Arch Linux
+
+如果是懒人或者小白，可以直接使用 Manjaro 系统，它是 Arch 的子项目，安装简单，Arch有的功能它基本都有，背靠 Arch，可以使用 AUR 仓库，配置简单。安装就和 Window 或者其它的 Linux 一样，只需要一个 ISO 镜像就可以，浪子推荐 Manjaro-kde 版本。如果你的硬件配置过低，又想充分利用资源的话，推荐使用 Manjaro-xfce 版本。KDE 桌面美观，占用资源多；xfce占用资源低，详情可以自行百度。
 
 ## 国内镜像列表
 ```bash{.line-numbers}

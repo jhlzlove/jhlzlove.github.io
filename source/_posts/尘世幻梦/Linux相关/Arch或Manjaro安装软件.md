@@ -1,5 +1,5 @@
 ---
-title: Arch安装软件
+title: ArchLinux/Manjaro安装一些常用软件
 categories:
   - Linux
   - Arch
@@ -28,7 +28,7 @@ Arch 安装软件可以去官网搜索，然后安装。
       - [4. 网易云音乐](#4-网易云音乐)
       - [5. 火焰截图](#5-火焰截图)
       - [6. 谷歌浏览器](#6-谷歌浏览器)
-      - [7. QQ、微信待测](#7-qq微信待测)
+      - [7. Tim、微信](#7-tim微信)
       - [8. 录屏软件](#8-录屏软件)
       - [9. 动图录制工具](#9-动图录制工具)
       - [10. 安装WPS](#10-安装wps)
@@ -60,30 +60,33 @@ yay -Ps
 ```
 
 #### 2. 中文输入法
+- KDE 桌面推荐 fcitx5
 ```bash{.line-numbers}
-yay -S fcitx5-im 
-yay -S fcitx5-chinese-addons fcitx5-rime
+yay -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt kcm-fcitx5 fcitx5-material-color fcitx5-lua
 ```
-编辑 `/etc/environment` 文件，没有的话可以手动创建，添加以下内容：
+编辑 `~/.pam_environment` 文件，没有的话可以手动创建，添加以下内容：
 ```bash{.line-numbers}
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
-export SDL_IM_MODULE=fcitx5
+GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=@im=fcitx
+INPUT_METHOD  DEFAULT=fcitx
+SDL_IM_MODULE DEFAULT=fcitx
 ```
+- Gnome 桌面推荐 ibus
+```bash{.line-numbers}
+sudo pacman -S ibus-rime
+```
+非Gnome用户使用ibus输入法，编辑 `~/.xprofile` 文件，添加以下内容：
+```bash{.line-numbers}
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -x -d
+```
+以上文件设置完成后可以使用 source 命令刷新设置，或者重启。
+{% link 输入法设置参考::https://linuxacme.cn/559 %}
 
-如果喜欢也可以安装搜狗输入法
-```bash{.line-numbers}
-sudo pacman -S fcitx-sogoupinyin
-sudo pacman -S fcitx-im
-sudo pacman -S fcitx-configtool
-```
-编辑 `/etc/environment` 文件，添加以下内容：
-```bash{.line-numbers}
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-```
+> 打字时按下ctrl + ~或者f4（笔记本可能需要+fn按键）来设置输入法，有简体和繁体的设置。
 
 #### 3. 字体
 ```bash{.line-numbers}
@@ -110,10 +113,13 @@ yay -S flameshot
 yay -S google-chrome
 ```
 
-#### 7. QQ、微信待测
+#### 7. Tim、微信
 ```bash{.line-numbers}
+# 微信 3.6.0
+yay -S deepin-wine-wechat 
+# Tim 3.3.9
+yay -S deepin-wine-tim
 ```
-QQ 微信的包有好多个，不同的机器安装不同版本会产生不同的问题，这个等我换了主力机之后实测更新。
 
 #### 8. 录屏软件
 ```bash{.line-numbers}

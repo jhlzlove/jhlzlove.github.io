@@ -128,7 +128,7 @@ $ git checkout 分支名 / git switch branch_name
 # 删除本地分支
 $ git branch -d branch_name
 # 删除远程分支
-$ git push origin --delete branch_name
+$ git push origin --delete/-d branch_name
 # 把本地分支推送到远程存储库，远程不存在分支
 $ git push -u origin branch_name
 # 把本地分支推送到远程存储库，远程不存在分支，自定义远程分支名
@@ -140,8 +140,12 @@ $ git branch -a
 $ git branch -r
 # 查看本地与远程分支的一映射关系
 $ git branch -vv
-# 创建并切换到改分支并建立映射关系
-$ git checkout -b 本地分支名x origin/远程分支名x
+# 重命名本地分支
+$ git branch -m old_name new_name
+# 删除远程分支
+$ git push origin -d :branch_name
+# 推送到远程分支
+$ git push -u origin 分支名称
 ```
 
 在新建仓库时，如果在 Gitee 平台仓库上已经存在 readme 或其他文件，在提交时可能会存在冲突，这时用户需要选择的是保留线上的文件或者舍弃线上的文件，如果您舍弃线上的文件，则在推送时选择强制推送，强制推送需要执行下面的命令(默认不推荐该行为)，如果是团队开发，那么执行此条命令可能面临生命危险：

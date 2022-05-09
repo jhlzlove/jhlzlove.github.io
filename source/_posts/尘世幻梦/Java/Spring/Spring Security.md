@@ -54,7 +54,8 @@ DaoAuthenticationProvider 通过调用 retrieveUser() 认证。
 
 AuthenticationManager 全局的父接口，只有一个 authenticate 方法。需要 ProviderManager 实现。ProviderManager 遍历下面的 AuthencationProvider 认证，只要有一个认证通过即可。
 
-##### WebSecurityConfigurerAdapter 扩展 Spring Security 所有的默认配置
+##### WebSecurityConfigurerAdapter
+WebSecurityConfigurerAdapter 是 Spring Security 为我们提供的扩展类，方便我们重写默认配置，实现定制。
 
 ##### UserDetailsService 用来修改默认认证的数据源信息
 
@@ -64,19 +65,19 @@ UserDetailsService接口下有许多的实现。同时，此接口也方便了�
 1. 继承 WebSecurityConfigurerAdapter，
    springboot 对 security 默认配置中 在工厂默认创建 AuthenticationManager。
 ```java{.line-numbres}
-    // 默认配置会自动发现创建的 UserDetailService 的 Bean
-    @Autowired
-    public void initialize(AuthenticationManagerBuilder builder) {
-        System.out.println("spring boot 默认配置");
-    }
+// 默认配置会自动发现创建的 UserDetailService 的 Bean
+@Autowired
+public void initialize(AuthenticationManagerBuilder builder) {
+    System.out.println("spring boot 默认配置");
+}
 ```
-2. 自定义全局数据源配置
+2. 自定义全局认证数据源
 ```java{.line-numbres}
-    // 自定义配置
-    @Override
-    public void configure(AuthenticationManagerBuilder builder) {
-        
-    }
+// 自定义配置
+@Override
+public void configure(AuthenticationManagerBuilder builder) {
+    
+}
 ```
 **总结：** 
 1. 默认自动配置全局 AuthenticationManager 默认找当前项目中是否存在自定义 UserDetailService 实例，自动将当前项目的 UserDetailService 实例设置为数据源。
@@ -98,4 +99,23 @@ RememberMe是一种服务端的行为，并非是把用户名密码保存在Cook
 
 具体的实现思路就是通过Cookie来记录当前用户身份，用户登录成功之后，会通过一定算法，将用户信息时间戳等进行贾母，加密完成后，通过响应头带回前端存储再Cookie中，当浏览器会话过期之后，如果再次访问网站，会自动将Cookie中的信息发送给服务器，服务器对Cookie中的信息进行校验分析，进而确定出用户的身份，Cookie中所保存的用户信息也是有失效的，例如三天、一周等。
 
-认证成功后写一段信息在Cookie中，
+认证成功后写一段信息在Cookie中
+
+## 会话管理(SessionManagementFilter)
+
+会话并发管理：简单来说，就是多个客户端使用同一账户登录。默认情况下，同一账户可以再多少设备上登录并没有限制，我们可以在 Spring Security 中进行配置。
+
+开启会话管理
+```java{.line-numbers}
+// 自定义配置
+@Override
+public void configure(HttpSecurity http) throw Exception {
+    http...
+        .sessionManagement() // 开启会话管理
+        // 最大并发会话为 1
+        .maximumSessions(1);
+}
+```
+
+Spring Security 开启会话管理默认的是挤掉另一个客户端登录；我们可以设置为禁止其它客户端登录（当前用户登录成功，其它客户端无法使用当前的账户登录，除非当前用户注销退出）。集群下的会话管理可以使用 Redis 的Session 共享。
+

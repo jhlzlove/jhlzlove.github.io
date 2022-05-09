@@ -7,7 +7,7 @@ abbrlink: 72ef477f
 ---
 
 
-先附上参考链接：[参考网址](https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN)
+{% link 参考网址::https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN %}
 
 <!-- more -->
 

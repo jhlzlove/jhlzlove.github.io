@@ -405,7 +405,7 @@ mysql.server start
 # 添加软链接重启服务
 ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
 ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
-service restart mysql
+service mysql restart
 # systemctl restart mysql
 
 # 添加开机自启
@@ -421,11 +421,11 @@ chkconfig --list
 # 登录 MySQL，密码使用初始化成功时 root@localhost: 后的字符串
 mysql -uroot -p
 
-# 修改密码
-update user set authentication_string='' where user='root';
-ALTER user 'root'@'localhost' IDENTIFIED BY 'newpassword';
+# 修改密码 不然在 bash 环境总报 ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement. 的错误
+alter user root@'localhost' identified by 'newpassword';
 flush privileges;
-
+# update user set authentication_string='' where user='root';
+# ALTER user 'root'@'localhost' IDENTIFIED BY 'newpassword';
 
 # 开放远程连接
 use mysql;
@@ -457,6 +457,17 @@ ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: Y
 3. 使用密码登录数据库 mysql -u root -p 并切换到 mysql 数据库
 4. 执行命令：`update user set host='%' where user='root';`
 
+查看MySQL的binlog命令
+/usr/bin/mysqlbinlog --no-defaults -v --base64-output=decode-rows binlog.000001 > nov3.sql
+
+
+根据binlog的内容恢复数据
+/usr/bin/mysqlbinlog binlog.000007 | mysql -uroot -p -v -f > /opt/1.txt
+然后输入密码开始恢复数据，
+-f是为了跳过执行错误，
+-v是展开执行的详细信息
+如果文件中存在不能执行的指令，可以按照时间进行执行比如：
+加上时间段参数 `--start-datetime=‘2022-01-06 14:14:37’ --stop-datetime=‘2022-01-24 13:04:44’` 恢复指定时间段的数据。
 
 
 #### *可视化工具连接問題*

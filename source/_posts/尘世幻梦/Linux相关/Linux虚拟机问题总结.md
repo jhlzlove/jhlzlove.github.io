@@ -8,10 +8,10 @@ abbrlink: 75091ad3
 ---
 
 centos7
-问题描述：之前内网都通，使用xshell等终端工具突然连不上虚拟机了也连不上外网了
+问题描述：内网相通，但使用xshell等终端工具连不上虚拟机也连不上外网
 
 解决方法：
-```bash
+```bash{.line-numbers}
 # 1.将networkmanager服务停掉并禁止其自启
 systemctl stop NetworkManager
 systemctl disable NetworkManager

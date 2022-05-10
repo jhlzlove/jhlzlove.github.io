@@ -15,31 +15,39 @@ RabbitMQ整理
 <!-- code_chunk_output -->
 
 - [RabbitMq的学习整理](#rabbitmq的学习整理)
-    - [RabbitMq 的常用命令](#rabbitmq-的常用命令)
-    - [镜像队列：（使用最多）](#镜像队列使用最多)
+  - [RabbitMq 的常用命令](#rabbitmq-的常用命令)
+  - [镜像队列：（使用最多）](#镜像队列使用最多)
 
 <!-- /code_chunk_output -->
 
-# RabbitMq的学习整理
+## RabbitMq的学习整理
+
 ### RabbitMq 的常用命令
+
 ```bash{.line-numbers}
 rabbitmqctl list_users    # 查看用户列表
 rabbitmqctl add_user admin 123456  #添加用户名和密码
 rabbitmqctl set_permissions -p /admin".*" ".*" ".*" #修改权限
 rabbitmqctl set_user_tags admin administrator  #添加用户角色
 
-rabbitmq-server -detached  #守护模式启动（后台运行）
-rabbitmqctl stop    # 停止服务
-rabbitmqctl status  # 查看状态
-```
-重启 rabbitmq 服务
-```bash{.line-numbers}
+
+#守护模式启动（后台运行）
+rabbitmq-server -detached
+# 停止服务
 rabbitmqctl stop
+# 查看状态
+rabbitmqctl status 
+# 重启 rabbitmq 服务
 rabbitmq-server restart
 ```
-> 5672 端口用于客户端使用，15672 用于可视化网页控制，使用这个功能时需要开启插件 `rabbitmq-plugins enable rabbitmq_management`。
+
+启用插件的同时并启动服务：`rabbitmq-plugins enable rabbitmq_management`，这个插件是 RabbitMQ 自带的，便于我们查看系统的状态数据，启用这个插件之后才可以使用 `http://IP地址:15672` 访问网页管理页面，查看具体信息。默认登录的初始账号密码为 `guest`。
+
+> **注意：** 在较新的版本中，默认的账号只能以本地 `localhost` 的方式访问，如果服务在远程启动，本地进行远程访问操作时登录可能会出现 `User can only log in via localhost` 的情况，解决办法就是新添加一个超级管理员账户，使用这个新添加的账户登录。
+> 5672 用于客户端使用，15672 用于网页控制。
 
 ### 镜像队列：（使用最多）
+
 ```bash
 # 策略说明
 rabbitmqctl set_policy [-p <vhost>] [--priority <priority>] [--apply-to <apply-to>] <name> <pattern> <definition>

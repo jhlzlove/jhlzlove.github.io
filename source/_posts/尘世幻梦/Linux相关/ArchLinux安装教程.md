@@ -1,5 +1,5 @@
 ---
-title: 安装ArchLinux
+title: 安装ArchLinux教程
 categories:
   - Linux
   - Arch

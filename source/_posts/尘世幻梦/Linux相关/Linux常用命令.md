@@ -28,17 +28,16 @@ Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘�
   - [权限](#权限)
   - [Shell 脚本组成命令](#shell-脚本组成命令)
   - [用户、用户组命令](#用户用户组命令)
-  - [压缩包命令](#压缩包命令)
+  - [tar 包常用命令](#tar-包常用命令)
   - [挂载文件命令](#挂载文件命令)
   - [任务计划(Crontab)命令：](#任务计划crontab命令)
-  - [CentOS和Ubantu软件相关](#centos和ubantu软件相关)
+  - [CentOS和Ubantu软件相关命令](#centos和ubantu软件相关命令)
 
 <!-- /code_chunk_output -->
 
 
 ## 命令
 
-Linux主要就是玩的命令，所以它的命令多如牛毛，入门可以通过网上教程或者书籍了解。这里说一些我偶尔用但是容易忘的吧。
 ```bash{.line-numbers}
 # 创建链接文件，
 # -s 创建软链接，相当于 win 下的快捷方式，不加 -s 选项为硬链接。
@@ -242,9 +241,8 @@ newgrp 组群名 用户名
 ```
 
 
-## 压缩包命令
+## tar 包常用命令
 
-Linux 下使用 tar 包管理器：
 ```bash{.line-numbers}
 # 打包
 tar -cvf
@@ -254,6 +252,10 @@ tar -tvf
 
 # 解包内容
 tar -xvf
+
+# 
+-v 显示详细处理信息
+-f 指定归档包文件，后面必须跟 tar 包相关文件 xxx.tar.gz
 
 # 以下格式的包只需要在选项中加入以下字母即可
 # 例如 tar -zxvf xxx.tar.gz
@@ -319,7 +321,7 @@ crontab中的command尽量使用绝对路径，否则会经常因为路径错误
 45  4  1,10,22  *  *  /etc/init.d/smb restart
 ```
 
-## CentOS和Ubantu软件相关
+## CentOS和Ubantu软件相关命令
 
 Ubantu
 ```bash{.line-numbers}

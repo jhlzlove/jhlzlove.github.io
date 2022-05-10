@@ -1,6 +1,5 @@
 ---
 title: Linux安装软件
-author: 江湖浪子
 categories:
   - Linux
   - 软件安装
@@ -9,62 +8,56 @@ headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/linux.jp
 abbrlink: 5e42d40d
 ---
 
-虽然 Ubantu 的 deb 包和 CentOS 的 rpm 包方便下载与安装配置，但是在某些开源工具时，我们可能还是需要去编译一些源码安装，比如 Redis。使用 Docker 固然方便，但是使用他的代价确是繁琐的持久化配置。说实话，个人感觉只要理解 Docker 的原理，项目中会使用就好。安装软件还是直接安装吧，反正各有各的优点不是吗？
+Linux 下基本有源码编译安装、二进制包解压缩安装（可以使用包管理器安装，方便快捷）、Appimage格式的软件等，当然，最后一个一般在服务器上也用不到。
+整理这个就是为了防止有一天浪子在没网络的时候，比较无聊，搭个环境在本地写写代码什么的。我相信大家都喜欢使用各个系统相应的包管理工具（rpm、apt-get、pacman等）直接安装，一个字，爽的不要不要的，不需要担心，缺啥装啥就行了。
 
 <!-- more -->
 
-# Linux 安装软件
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=4 orderedList=true}-->
 
 <!-- code_chunk_output -->
 
-- [Linux 安装软件](#linux-安装软件)
-  - [Redis](#redis)
-  - [Git](#git)
-  - [Docker](#docker)
-  - [Node](#node)
-  - [RabbitMQ](#rabbitmq)
-  - [Python](#python)
-  - [Nginx](#nginx)
-  - [MongoDB](#mongodb)
-  - [Btop++](#btop)
-  - [MySQL](#mysql)
-    - [其它问题](#其它问题)
-      - [*可视化工具连接問題*](#可视化工具连接問題)
+- [Linux源码安装](#linux源码安装)
+  - [1. Redis](#1-redis)
+  - [2. Git](#2-git)
+  - [3. RabbitMQ](#3-rabbitmq)
+  - [4. Python](#4-python)
+  - [5. Nginx](#5-nginx)
+  - [6. Btop++](#6-btop)
+- [Linux通用二进制文件安装](#linux通用二进制文件安装)
+  - [1. Docker](#1-docker)
+  - [2. Node](#2-node)
+  - [3. MongoDB](#3-mongodb)
+  - [4. MySQL](#4-mysql)
+    - [密码正确但是进不去 bash 环境](#密码正确但是进不去-bash-环境)
+    - [预读处理](#预读处理)
+- [Some Questions](#some-questions)
+  - [1. 关于源码编译安装失败](#1-关于源码编译安装失败)
 
 <!-- /code_chunk_output -->
 
-## Redis
+**TIPS：** 如果下面的命令不是使用超级用户执行的话，可能不能安装成功，这个时候可以添加 `sudo` 选项进行重试。
 
-{% link 官网下载源码::https://redis.io/download/ %}
+## Linux源码安装
 
-以 root 身份执行以下的命令：
+### 1. Redis
+
+{% link 官网源码下载::https://redis.io/download/ %}
+
 ```bash{.line-numbers}
 # 安装编译 redis 需要的工具
-yum -y install gcc automake autoconf libtool make
+sudo yum -y install gcc automake autoconf libtool make
 # 进入解压目录，进行编译，直到编译完成
 make MALLOC=libc
 # 安装到指定路径
 make install PREFIX=/usr/local/redis
 ```
-> 配置文件在解压的 redis 包下，编译安装后在 /usr/local/redis/bin 下是没有默认的 redis.conf 配置文件的。可以拷贝一份过去。
 
-另外如果按照上面的方法执行后，编译时如果出现错误，找不到文件或者目录；原因可能是之前编译过，但是编译失败留下的缓存，我们需要清理缓存之后再重新编译。[参考网址](https://blog.csdn.net/wcnmlgb888/article/details/82713106)
-```bash{.line-numbers}
-# 清除缓存
-make distclean
-# 编译
-make
-```
+> Redis 的默认的配置文件在源码解压后的目录中
 
-<!-- 设置开机自启：`chkconfig redis-auto on` -->
+### 2. Git
 
-配置主从数据库后使用 redis-cli 进行连接后，使用 `info replication` 命令查看当前数据库的 role，“master” 是主节点，“slave” 是从节点。默认从库是只读的，不能进行写操作。
-
-
-## Git
-
-{% link 选择版本下载源码::https://github.com/git/git/tags %}
+{% link 官网源码下载::https://github.com/git/git/tags %}
 
 ```bash{.line-numbers}
 # 安装编译 Git 源码的工具和依赖
@@ -88,144 +81,60 @@ source /etc/profile
 # 查看Git是否安装完成
 git --version
 ```
-[参考网址](https://www.cnblogs.com/wulixia/p/11016684.html)
 
+### 3. RabbitMQ
 
-## Docker
+RabbitMQ 是使用 Erlang 语言编写的中间件，联想一下 Java，我们可以猜到它需要先搭建 Erlang 环境。主要是这个环境需要编译源码，RabbitMQ 本身官网提供了二进制压缩包。
 
-```bash{.line-numbers}
-# 如果有旧版本先卸载
-yum remove docker  docker-common docker-selinux docker-engine
+{% link Erlang源码下载::https://www.erlang.org/downloads %}
 
-# 安装相关工具
-yum install -y yum-utils
-# 添加阿里云镜像
-yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-# 安装 docker 引擎
-yum install docker-ce
-
-# 设置开机自启动
-systemctl enable docker
-```
-
-
-## Node
-
-{% link 官网下载::https://nodejs.org/en/download/ %}
+一、Erlang环境搭建
 
 ```bash{.line-numbers}
-# 官网下载压缩包是 xz 结尾的，和下面的镜像站下载的略有不同
-tar -Jvxf node-v16.14.2-linux-x64.tar.xz -C /usr/local/
-cd /usr/local/
-mv node-v16.14.2-linux-x64/ nodejs
-ln -s /usr/local/nodejs/bin/node /usr/local/bin
-ln -s /usr/local/nodejs/bin/npm /usr/local/bin
-```
-
-如果下载速度慢可以到这里 https://npmmirror.com/mirrors/node/v16.13.1/ 下载 `node-v16.13.1-linux-x64.tar.gz` 文件的即可。然后解压并建立全局链接。
-```bash{.line-numbers}
-tar  zvxf node-v16.13.1-linux-x64.tar.gz -C /usr/local/
-cd /usr/local/
-mv node-v16.13.1-linux-x64/ nodejs
-ln -s /usr/local/nodejs/bin/node /usr/local/bin
-ln -s /usr/local/nodejs/bin/npm /usr/local/bin
-```
-
-直接使用命令行安装，简便快捷
-```bash{.line-numbers}
-# CentOS、RHEL
-sudo yum -y remove nodejs
-curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
-sudo yum -y install nodejs
-
-#  Ubuntu、Debian
-sudo apt -y remove nodejs
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt -y install nodejs
-```
-
-
-## RabbitMQ
-
-一、安装Erlang环境
-
-1、在安装erlang之前先安装下依赖文件(这一步不要忘掉了，不然后面./configure的时候要报错)：
-
-`yum install gcc glibc-devel make ncurses-devel openssl-devel xmlto`
-
-2、到erlang官网去下载erlang安装包
-
-{% link 官网下载::https://www.erlang.org/downloads %}
-
-接下来解压：
-```bash{.line-numbers}
+# 安装编译 Erlang 的相关依赖
+yum install gcc glibc-devel make ncurses-devel openssl-devel xmlto
+# 解压源码包
 tar -zxvf otp_src_24.1.7.tar.gz
 
 cd otp_src_24.1.7/
-
+# 指定安装目录
 ./configure --prefix=/usr/local/erlang
 # 编译安装
 make && make install
 # 测试安装是否成功：
 cd /usr/local/erlang/bin/
-
 ./erl
+
+# 安装成功后配置环境变量 vim /etc/profile
+export PATH=$PATH:/usr/local/erlang/bin
+
+# 添加完成保存退出，刷新使其生效
+source /etc/profile
 ```
 
-3、配置环境变量
+二、安装Rabbitmq
 
-编辑文件：`vim /etc/profile`
-加入内容：`export PATH=$PATH:/usr/local/erlang/bin`
-刷新环境变量：`source /etc/profile`
+通过第一步，我们就搭建好了 Erlang 环境，接下来就是安装 RabbitMQ 了，这个还是比较简单的，因为它已经编译好了，我们可以下载直接配置，无需编译。
 
-二、安装rabbitmq
+{% link 二进制文件包下载::https://www.rabbitmq.com/install-generic-unix.html %}
 
-1、到官网下载安装包：https://www.rabbitmq.com/install-generic-unix.html
-
-解压：
 ```bash{.line-numbers}
+# 解压
 tar -Jxvf rabbitmq-server-generic-unix-3.9.11.tar.xz
+# 移动
 mv rabbitmq_server-3.9.11 /usr/local/rabbitmq
+
+# 添加环境变量：vim /etc/profile
+export PATH=$PATH:/usr/local/rabbitmq/sbin
+# 刷新变量
+source /etc/profile
 ```
 
-2、配置rabbitmq的环境变量
+### 4. Python
 
-编辑文件：`vim /etc/profile`
-加入内容：`export PATH=$PATH:/usr/local/rabbitmq/sbin`
-刷新环境变量：`source /etc/profile`
+Linux 下基本不需要配置 Python 的环境，有个别的 ISO 镜像版本比较老，比如 CentOS7 的 mini ISO 镜像是2.x的，我们可以通过各大系统的包管理工具进行安装，也可以自己通过源码编译安装。
 
-3、rabbitmq的基本操作：
-
-```bash{.line-numbers}
-rabbitmqctl list_users    # 查看用户列表
-rabbitmqctl add_user admin 123456  #添加用户名和密码
-rabbitmqctl set_permissions -p /admin".*" ".*" ".*" #修改权限
-rabbitmqctl set_user_tags admin administrator  #添加用户角色
-
-rabbitmq-server -detached  #守护模式启动（后台运行）
-rabbitmqctl stop    # 停止服务
-rabbitmqctl status  # 查看状态
-```
-
-重启 rabbitmq 服务
-```bash{.line-numbers}
-rabbitmqctl stop
-rabbitmq-server restart
-```
-
-安装完后启动服务并启用插件：`rabbitmq-plugins enable rabbitmq_management`
-启用这个插件之后才可以使用 `http://IP地址:15672` 访问管理页面，查看具体信息。默认登录的初始账号密码为 `guest`。
-
-在较新的版本中默认的账号只能以本地 `localhost` 的方式访问，远程操作时登录时可能会出现 `User can only log in via localhost` 的情况，解决办法就是新添加一个超级管理员账户，使用这个新添加的账户登录。
-> 5672 用于客户端使用，15672 用于网页控制。
-
-[参考网址](https://blog.csdn.net/weixin_36041939/article/details/116908138)
-
-## Python
-
-Linux系统自带Python环境，但是版本基本都是2.x，我们可以手动安装新版本。
-
-{% link Python官网下载最新安装包::https://www.python.org/downloads/ %}
+{% link 源码下载::https://www.python.org/downloads/ %}
 
 ```bash{.line-numbers}
 # 安装相关工具和依赖
@@ -233,7 +142,6 @@ yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel read
 
 # 解压压缩包
 tar -zxvf Python-3.10.2.tgz  
-
 # 进入文件夹
 cd Python-3.10.2
 
@@ -253,116 +161,36 @@ ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
 ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
 ```
 
-[参考网址](https://www.jianshu.com/p/15f40edefb13)
+### 5. Nginx
 
+{% link 官网源码下载::https://nginx.org/en/ %}
 
-
-## Nginx
-
-{% link 官网下载::https://nginx.org/en/ %}
-
-1. 解压：`tar -zvxf nginx-1.20.2.tar.gz`，之后进入解压目录
-2. 执行以下命令：
-```bash
+```bash{.line-numbers}
+# 解压
+tar -zvxf nginx-1.20.2.tar.gz
+# 配置安装路径
 ./configure --prefix=/usr/local/nginx
+# 编译安装
 make && make install
 # 进入安装目录查看是否安装成功
 cd /usr/local/nginx
-```
-./nginx -s stop 
+
+# 启动 停止 重启
+./nginx start
+./nginx -s stop
 ./nginx -s reload
-
-在Nginx的配置文件中，location后面使用的路径与模块内使用root或者alias有关，如果使用的是alias，那么可以为任意名称，alias后跟绝对目标文件路径，而且，末尾必须加上“/”。如果使用的是root，那么location后面的路径是目标路径，root后目标路径的上级路径，末尾的“/“可加可不加。
-例如：
-```
-<!-- 使用root，location 后必须为目标路径 -->
-location /share {
-    <!-- 目标路径的上级目录 -->
-    root /data/xxxx;
-    autoindex on;
-    autoindex_localtime on;
-}
-<!-- 使用alias -->
-location /share {
-    <!-- 绝对路径，末尾的 / 必须加上，否则403 -->
-    alias /data/xxxx/share/;
-    autoindex on;
-    autoindex_localtime on;
-}
-```
-设置自启动：https://www.jianshu.com/p/ca5ee5f7075c
-
-
-## MongoDB
-
-
-{% link 官网下载::https://www.mongodb.com/try/download/community %}
-解压：
-`tar -xvzf mongodb-linux-x86_64-rhel62-3.4.22.tgz`
-创建数据存储目录、工作目录以及日志目录：
-
-```bash
-mv mongodb-linux-x86_64-rhel62-3.4.22 /usr/local/mongodb
-cd /usr/local/mongodb/
-mkdir conf
-mkdir data
-mkdir logs
-```
-配置环境变量/etc/profile：
-```bash
-export MONGODB_HOME=/usr/local/mongodb  
-export PATH=$PATH:$MONGODB_HOME/bin 
 ```
 
-使环境变量生效：`source /etc/profile`
+### 6. Btop++
 
-编辑启动文件：
-```bash
-# 数据存储目录
-dbpath = /usr/local/mongodb/data/db
-# 日志存储目录
-logpath = /usr/local/mongodb/logs/mongodb.log
-# 指定端口号
-port = 27017
-# 以守护进程的方式启动，即在后台运行
-fork = true
-# 可以连接的地址，开启远程登录
-bind_ip = 0.0.0.0
-```
-
-mongodb安装好后第一次进入是不需要密码的，也没有任何用户，通过shell命令可直接进入，cd到mongodb目录下的bin文件夹，执行命令 `./mongo` 即可。如果配置了环境变量，可以在任意路径执行 `mongo` 也可以。
-
-命令：
-```bash{.line-numbers}
-# 启动服务
-./mongod --config /usr/local/mongodb/conf/mongodb.conf
-# 进入系统数据库
-use admin
-# 创建 root 用户
-db.createUser( {user: "root",pwd: "root123",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]});
-# 查看创建的用户
-show users; / db.system.users.find();
-# 关闭服务
-db.shutdownServer();
-
-# 启动时开启密码验证，也可以在配置文件中加入 auth = true 在启动时开启验证，这样就不用 --auth 选项了
-./mongod --config /usr/local/mongodb/conf/mongodb.conf --auth
-```
-
-
-## Btop++
-Btop++ 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和统计资料。
+Btop++ 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和统计资料，界面美观，使用简单。
 
 {% link Github地址::https://github.com/aristocratos/btop %}
+{% link Gitee同步仓库::https://gitee.com/mirrors/btop %}
 
-如果下载速度较慢，可以使用Gitee同步仓库：https://gitee.com/mirrors/btop
-
-CentOS安装:
 ```bash{.line-numbers}
-# 安装依赖
+# 安装、升级相关依赖工具
 yum install coreutils sed build-essential -y
-
-# 升级gcc（10及以上版本）
 yum install centos-release-scl -y
 yum install devtoolset-10 -y
 scl enable devtoolset-10 bash 
@@ -374,27 +202,133 @@ cd btop
 make && make install
 ```
 
-## MySQL
+## Linux通用二进制文件安装
 
-{% link Ubantu系统安装MySQL::https://blog.lanluo.cn/8662 %}
+通用二进制文件一般使用包管理工具即可快速安装使用，写这个主要是因为没有网络的情况下，在自己虚拟机上搭建相应的环境去耍。以下都是推荐使用各个平台的包管理工具去耍。以下都是使用的 yum，之前用的 CentOS 做实验。
 
-CentOS等常用的一键安装网络上有许多参考，这里使用通用版的压缩包方式来安装。
-{% link 参考网址::https://zhuanlan.zhihu.com/p/87069388 %}
+### 1. Docker
+
+推荐使用包管理工具安装 Docker 和 docker-compose。
+
+```bash{.line-numbers}
+# 如果有旧版本先卸载
+yum remove docker docker-common docker-selinux docker-engine
+
+# 安装相关工具
+yum install -y yum-utils
+# 添加阿里云镜像
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# 安装 docker 引擎
+yum install docker-ce
+
+# 设置开机自启
+systemctl enable docker
+```
+
+### 2. Node
+
+{% link 二进制包下载::https://nodejs.org/en/download/ %}
+
+Node 可以直接下载二进制文件，解压配置环境变量即可。
+
+```bash{.line-numbers}
+# 官网下载二进制压缩包是 xz 结尾的，和下面的镜像站下载的略有不同
+tar -Jvxf node-v16.15.0-linux-x64.tar.xz -C /usr/local/
+cd /usr/local/
+mv node-v16.15.0-linux-x64/ nodejs
+ln -s /usr/local/nodejs/bin/node /usr/local/bin
+ln -s /usr/local/nodejs/bin/npm /usr/local/bin
+```
+
+如果嫌弃官网下载速度慢可以到这里 https://registry.npmmirror.com/binary.html?path=node/latest-v16.x/ 选择合适的版本下载。
+
+### 3. MongoDB
+
+{% link 二进制包下载::https://www.mongodb.com/try/download/community %}
+
+```bash{.line-numbers}
+# 解压
+tar -xvzf mongodb-linux-x86_64-rhel62-3.4.22.tgz
+mv mongodb-linux-x86_64-rhel62-3.4.22 /usr/local/mongodb
+
+# 创建数据存储目录、工作目录以及日志目录
+cd /usr/local/mongodb/
+mkdir conf
+mkdir data
+mkdir logs
+
+# 添加环境变量: vim /etc/profile
+export MONGODB_HOME=/usr/local/mongodb  
+export PATH=$PATH:$MONGODB_HOME/bin
+
+# 使环境变量生效
+source /etc/profile
+```
+
+顺带说一下配置，编辑 MongoDB 的配置文件 `mongodb.conf`，修改以下内容：
+
+```bash{.line-numbers}
+# 数据存储目录
+dbpath = /usr/local/mongodb/data/db
+# 日志存储目录
+logpath = /usr/local/mongodb/logs/mongodb.log
+# 指定端口号
+port = 27017
+# 以守护进程的方式启动，即后台运行
+fork = true
+# 可以连接的地址，开启远程登录
+bind_ip = 0.0.0.0
+# 启用密码验证，可根据实际情况配置
+# auth = true
+```
+
+mongodb安装好后第一次启动服务是不需要密码的，也没有任何用户，通过shell命令可直接进入，cd到mongodb目录下的bin文件夹，执行命令 `./mongo` 即可。如果配置了环境变量，可以在任意路径执行 `mongo` 也可以。
+
+```bash{.line-numbers}
+# 指定配置文件启动服务
+./mongod --config /usr/local/mongodb/conf/mongodb.conf
+# 进入系统数据库
+use admin
+# 创建 root 用户
+db.createUser( {user: "root",pwd: "xxx",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]});
+# 查看创建的用户(以下两个命令二选一)
+show users;
+db.system.users.find();
+# 关闭服务
+db.shutdownServer();
+
+# 启动时开启密码验证，也可以在配置文件中加入 auth = true 在启动时开启验证，这样就不用 --auth 选项了
+./mongod --config /usr/local/mongodb/conf/mongodb.conf --auth
+```
+
+### 4. MySQL
+
+MySQL 说实话我觉得通用的二进制文件包安装较为简单，卸载是最简单的，比使用包管理工具安装的简单的多。下面给两个包管理工具安装的参考链接，我没怎么用过，仅作参考。
+
+apt-get安装：https://blog.lanluo.cn/8662
+yum安装：https://zhuanlan.zhihu.com/p/87069388
+
+接下来进入正题，使用通用的 MySQL8.x 版本的二进制压缩包进行安装。至于卸载，就把有关 MySQL 创建的几个文件夹删掉就行了，`/etc/my.cnf` 是默认自带的，卸载的时候删不删都没有问题，没有的也不必担心，新建也是可以的。
 
 ```bash{.line-numbers}
 # 检查mysql用户组和用户是否存在，如果没有，则创建
 cat /etc/group | grep mysql
 cat /etc/passwd | grep mysql
+# 创建 mysql 组
 groupadd mysql
+# 新建 mysql 用户并加入 mysql 群组
 useradd -r -g mysql mysql
 
 # 安装所需依赖(需要安装 libaio-devel.x86_64 numactl 这两个依赖)
 yum -y install libaio-devel.x86_64 numactl
 
-# 初始化数据
+# 解压二进制文件包到 /usr/local/mysql 目录
+tar -C /usr/local/mysql
+cd /usr/local/mysql/bin
+# 初始化数据，需要记录最后 root@localhost: 后的字符串，它是后面进入 bash 环境的初始密码
 ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql
 
-# 编辑配置文件 my.cnf 修改内容：
+# vim /etc/my.cnf(没有该文件手动创建) 修改内容
 datadir=/usr/local/mysql/data
 port = 3306
 
@@ -402,7 +336,7 @@ port = 3306
 cd /usr/local/mysql/support-files/
 mysql.server start
 
-# 添加软链接重启服务
+# 添加软链接并重启服务
 ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
 ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
 service mysql restart
@@ -417,19 +351,22 @@ chmod +x /etc/init.d/mysqld
 chkconfig --add mysqld
 # 4、显示服务列表
 chkconfig --list
+```
 
+至此，安装任务基本完成，下面需要添加用户并分配权限，进入 MySQL 的 bash 环境需要前面我们进行初始化时生成的密码。
+
+```bash{.line-numbers}
 # 登录 MySQL，密码使用初始化成功时 root@localhost: 后的字符串
 mysql -uroot -p
 
-# 修改密码 不然在 bash 环境总报 ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement. 的错误
+# 修改密码 毕竟那么不好记
+# 而且如果不修改 它会报 ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement. 的错误
 alter user root@'localhost' identified by 'newpassword';
 flush privileges;
-# update user set authentication_string='' where user='root';
-# ALTER user 'root'@'localhost' IDENTIFIED BY 'newpassword';
 
 # 开放远程连接
 use mysql;
-# 允许所有主机，都可以通过用户为root用户，密码为默认数据库登录密码，进行访问数据库
+# 允许所有主机，都可以通过用户为root用户，密码为默认数据库登录密码，进行数据库操作
 update user set host='%' where user='root';
 
 # ① 适用于 MySQL 8.0之前的版本，可以直接授权
@@ -442,61 +379,51 @@ flush privileges;
 ```
 
 初始化成功截图：
+{% gallery %}
 ![初始化成功截图](https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/Linux_MySQL初始化成功截图.png)
-记录日志最末尾位置 `root@localhost:` 后的字符串，此字符串为mysql管理员临时登录密码。
+{% endgallery %}
+
+> 记录日志最末尾位置 `root@localhost:` 后的字符串，此字符串为mysql管理员临时登录密码。
 
 如果启动失败查看err日志，根据日志定位修复问题。
 
-### 其它问题
+#### 密码正确但是进不去 bash 环境
+
 ```bash{.line-numbers}
 ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES/NO) 
 ```
+
 解决方法：
+
 1. 使用 kill 命令停止 mysqld 相关服务
-2. cd /usr/local/mysql/bin/,运行命令： `mysqld_safe --user=mysql --skip-grant-tables --skip-networking &`
+2. cd /usr/local/mysql/bin/，运行命令： `mysqld_safe --user=mysql --skip-grant-tables --skip-networking &`
 3. 使用密码登录数据库 mysql -u root -p 并切换到 mysql 数据库
 4. 执行命令：`update user set host='%' where user='root';`
 
-查看MySQL的binlog命令
-/usr/bin/mysqlbinlog --no-defaults -v --base64-output=decode-rows binlog.000001 > nov3.sql
+#### 预读处理
 
-
-根据binlog的内容恢复数据
-/usr/bin/mysqlbinlog binlog.000007 | mysql -uroot -p -v -f > /opt/1.txt
-然后输入密码开始恢复数据，
--f是为了跳过执行错误，
--v是展开执行的详细信息
-如果文件中存在不能执行的指令，可以按照时间进行执行比如：
-加上时间段参数 `--start-datetime=‘2022-01-06 14:14:37’ --stop-datetime=‘2022-01-24 13:04:44’` 恢复指定时间段的数据。
-
-
-#### *可视化工具连接問題*
-
-错误提示：
-```bash
+```bash{.line-numbers}
 mysql> use dbname;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A 
 ```
 
-出現以上原因是因爲數據庫採用了預讀處理，解决办法就是在我们进入MySQL的bash环境时，需要加入 `-A` 参数，不让其预读数据库信息，`mysql -u root -p -A`。
+这个问题是之前使用的 apt-get 管理工具安装的 MySQL 出现的，原因是因爲數據庫採用了預讀處理。解决办法就是在我们进入MySQL的bash环境时，需要加入 `-A` 参数，不让其预读数据库信息，`mysql -u root -p -A`。如果覺得每次进入 bash 环境都要添加参数比较麻烦，也可以在 **`my.cnf`** 文件里加上如下內容：
 
-如果覺得每次进入bash环境添加麻烦，也可以在 **`my.cnf`** 文件里加上如下內容：
-```bash
-    [mysql]
-    no-auto-rehash
+```bash{.line-numbers}
+[mysql]
+no-auto-rehash
 ```
- 
 
-1. Mysql登录授权：
-sudo mysql -u root -p
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY "123";
-（% 表示对全部非本地主机授权）
-有些软件不允许使用 root 用户登录，这时需要创建一个新帐户，并为其授权
-`create user wasd identified by ‘密码’;`
-`grant all privileges on *.* to ‘wasd’@’%’ identified by ‘密码’;`
-删除帐户命令：
-`drop user username@’%’;`
+## Some Questions
 
+### 1. 关于源码编译安装失败
 
+如果源码编译失败，先确认所需依赖是否全部成功安装，然后清除上一次编译的缓存，之后再次编译，不然会一直失败。[参考网址](https://blog.csdn.net/wcnmlgb888/article/details/82713106)
 
+```bash{.line-numbers}
+# 清除上一次编译失败的缓存
+make distclean
+# 再次编译
+make
+```

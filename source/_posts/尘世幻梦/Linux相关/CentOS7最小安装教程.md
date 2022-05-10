@@ -1,6 +1,5 @@
 ---
-title: CentOS7最小安装
-author: 江湖浪子
+title: CentOS7最小安装教程
 categories:
   - Linux
   - CentOS

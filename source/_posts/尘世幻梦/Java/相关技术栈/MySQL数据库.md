@@ -1,5 +1,5 @@
 ---
-title: MySQL数据库
+title: MySQL总结
 music:
   server: netease
   type: song
@@ -9,7 +9,8 @@ categories:
   - MySQL
 abbrlink: 9e299c6e
 ---
-MySQL整理
+
+MySQL数据库整理
 
 <!-- more -->
 
@@ -17,44 +18,42 @@ MySQL整理
 
 <!-- code_chunk_output -->
 
-- [MySQL数据库](#mysql数据库)
-  - [1. 数据库安装](#1-数据库安装)
-    - [1.1 Mysql5.7 版本安装](#11-mysql57-版本安装)
-    - [1.2 MySQL8.0安装](#12-mysql80安装)
-  - [数据库操作：](#数据库操作)
-    - [DQL DML DDL DCL](#dql-dml-ddl-dcl)
-    - [数据库分区](#数据库分区)
-  - [MySQL数据库优化](#mysql数据库优化)
-    - [数据库事务的四个特性](#数据库事务的四个特性)
-    - [事务的四种隔离级别：](#事务的四种隔离级别)
-    - [数据库索引分类：](#数据库索引分类)
-    - [数据表结构优化：](#数据表结构优化)
-    - [表分区](#表分区)
-    - [SQL 语句优化](#sql-语句优化)
-  - [数据库锁](#数据库锁)
-    - [悲观锁、乐观锁](#悲观锁乐观锁)
-  - [架构](#架构)
-  - [MySQL主从复制](#mysql主从复制)
-  - [集群架构](#集群架构)
+- [MySQL 安装（win）](#mysql-安装win)
+  - [1. Mysql5.7 版本安装](#1-mysql57-版本安装)
+  - [2. MySQL8.0安装](#2-mysql80安装)
+- [数据库操作](#数据库操作)
+  - [DQL DML DDL DCL](#dql-dml-ddl-dcl)
+  - [数据库分区](#数据库分区)
+- [MySQL数据库优化](#mysql数据库优化)
+  - [数据库事务的四个特性](#数据库事务的四个特性)
+  - [事务的四种隔离级别：](#事务的四种隔离级别)
+  - [数据库索引分类：](#数据库索引分类)
+  - [数据表结构优化：](#数据表结构优化)
+  - [表分区](#表分区)
+  - [SQL 语句优化](#sql-语句优化)
+- [数据库锁](#数据库锁)
+  - [悲观锁、乐观锁](#悲观锁乐观锁)
+- [架构](#架构)
+- [MySQL主从复制](#mysql主从复制)
+- [集群架构](#集群架构)
+- [进阶操作](#进阶操作)
 
 <!-- /code_chunk_output -->
-# MySQL数据库
 
-## 1. 数据库安装
+## MySQL 安装（win）
 
 官网下载安装版或者解压版，安装版一般不会有什么错误，环境变量如果安装的时候勾选加入 Path 中也不用配置，比较简单。这里介绍解压版的安装使用。
 
-### 1.1 Mysql5.7 版本安装
+### 1. Mysql5.7 版本安装
 
-下载压缩包解压，设置好环境变量 MYSQL_HOME=解压目录，在path加上`%MY_HOME%\bin`。
-然后执行以下三条命令：
+下载压缩包解压，设置好环境变量 MYSQL_HOME=解压目录，在path加上`%MY_HOME%\bin`，然后执行以下三条命令：
+
 ```bash{.line-numbers}
 mysqld -install
 mysqld --initialize-insecure --user=mysql
 net start mysql
 ```
 
-**附：**
 ```bash{.line-numbers}
 # 安装 MySQL 服务
 mysqld -install
@@ -64,9 +63,10 @@ mysqld -remove
 mysqld --initialize
 ```
 
+### 2. MySQL8.0安装
 
-### 1.2 MySQL8.0安装
-解压出来配置好环境变量；然后和上面一样。
+基本和上面一样。
+
 ```bash{.line-numbers}
 # 安装服务并启动
 mysqld --install
@@ -77,20 +77,18 @@ mysql -u root -p
 # 修改密码为 123456，当然也可以修改成其他的
 alter user 'root'@'localhost' identified by '123456';
 ```
-如果连接sqlyog报错，进入到 MySQL 的环境(mysql -u root -p)，然后执行以下命令：
-```bash
-  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-```
-> Java程序中连接8.0以上的数据库时区设置：`serverTimezone=Asia/Shanghai`
-> UTC时间和中国时间相差8小时。
 
-## 数据库操作：
+如果连接sqlyog报错，进入到 MySQL 的环境(mysql -u root -p)，然后执行命令：`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
+
+> Java 程序中连接 8.0 以上的数据库时区设置：`serverTimezone=Asia/Shanghai`
+> UTC 时间和中国时间相差 8 小时。
+
+## 数据库操作
 
 ### DQL DML DDL DCL
 
 1. DQL 数据查询语言：
 `select filed from table where *`
-
 
 2. DML 数据操纵语言：
 数据操纵语言DML主要有三种形式，这也是与各种语言交互使用的：
@@ -101,32 +99,33 @@ alter user 'root'@'localhost' identified by '123456';
 3. DDL 数据定义语言
 数据定义语言DDL用来管理数据库中的各种对象-----表、视图、索引、同义词、聚簇等。
 
-```sql{.line-numbers}
-create
-alter
-drop
--- 修改属性 
-alter table 表名 modify 属性名 set 属性
+    ```sql{.line-numbers}
+    create
+    alter
+    drop
+    -- 修改属性 
+    alter table 表名 modify 属性名 set 属性
 
--- 修改已有字段名及属性
-alter table 表名 change old_字段 new_字段 set 属性
+    -- 修改已有字段名及属性
+    alter table 表名 change old_字段 new_字段 set 属性
 
--- 删除字段
-alter table 表名 drop 字段名
-```
+    -- 删除字段
+    alter table 表名 drop 字段名
+    ```
 
 4. DCL 数据控制语言
-数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等。如：
-1) GRANT：授权。
 
-2) ROLLBACK：回滚命令使数据库状态回到上次最后提交的状态。
+    数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等。如：
+    1) GRANT：授权。
 
-3) COMMIT [WORK]：提交。
+    2) ROLLBACK：回滚命令使数据库状态回到上次最后提交的状态。
 
+    3) COMMIT [WORK]：提交。
 
 ### 数据库分区
 
 MySQL 可以在建表时最后可以创建表分区，通过 partition by 关键字创建。如下示例:
+
 ```sql{.line-numbers}
 -- 注意，这种方式括号内必须是整数字段名或返回确定整数的函数
 -- 如果想要定义非整型和多列范围，需要加入 columns，
@@ -138,23 +137,23 @@ partition by range columns(a, b)
 ```
 
 也可以在建表完成后创建分区，例如：
+
 ```sql{.line-numbers}
 -- 创建分区
 alter TABLE table_name add PARTITION(PARTITION partition_name VALUES LESS THAN (20180630) ENGINE = InnoDB
 );
 -- 删除分区
 ALTER TABLE table_name DROP PARTITION partition_name；
-
 ```
 
 MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
-
 
 ## MySQL数据库优化
 
 阿里巴巴手册：SQL优化标准是到ref，最差是range，达到const最好。
 
 ### 数据库事务的四个特性
+
 1. A 原子性
 2. C 一致性
 3. I 隔离性
@@ -162,6 +161,7 @@ MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
 
 
 ### 事务的四种隔离级别：
+
 隔离性中包含了四种隔离级别，分别是：
 1. 读未提交内容 
 2. 读已提交内容 脏读
@@ -208,15 +208,12 @@ VAR引号要出现，SQL高级也不难。
 若要速度有体现，排序字段索引建；
 统计、分组你咋看？索引索引建建建。
 
-
-
 ## 数据库锁
 
 ### 悲观锁、乐观锁
 
 悲观锁(synchronized)解决超卖问题：启用事务的话，在调用处加锁。（不建议，影响系统性能，耗时长，降低用户体验）
 使用乐观锁（数据库层面解决超卖问题）：使用数据库中定义的 `version` 字段及数据库中的 `事务` 去解决。
-
 
 ## 架构
 
@@ -242,6 +239,7 @@ VAR引号要出现，SQL高级也不难。
 
 登录主节点执行 `show master status` 命令。
 登录从节点执行以下命令：
+
 ```bash
   change master to master_host='master主机地址',
   master_user='master用户名',
@@ -249,12 +247,14 @@ VAR引号要出现，SQL高级也不难。
   master_log_file='log文件名',
   master_log_pos=上面命令的 position;
 ```
+
 开启从节点:
 start/stop slave
 
 > `show slave status\G` 如果出现 1593 的报错，那么先关闭 MySQL 服务，然后删除 /var/lib/mysql/auto.cnf 文件，然后启动 MySQL 服务即可。
 
 ## 集群架构
+
 基于主从复制发展而来，主从架构节点数据库只能实现冗余备份，不能进行操作，但是集群架构可以操作从库。
 
 mycat相当于一个路由，把写的操作转发给写库，把读的操作分发给读库。
@@ -263,3 +263,16 @@ mycat不仅会根据 SQL 语句去分析检测此次操作是发给读库还是�
 
 如果查询也开启了事务，那么查询也会走主库。
 
+
+## 进阶操作
+
+查看MySQL的binlog命令
+/usr/bin/mysqlbinlog --no-defaults -v --base64-output=decode-rows binlog.000001 > nov3.sql
+
+根据binlog的内容恢复数据
+/usr/bin/mysqlbinlog binlog.000007 | mysql -uroot -p -v -f > /opt/1.txt
+然后输入密码开始恢复数据，
+-f是为了跳过执行错误，
+-v是展开执行的详细信息
+如果文件中存在不能执行的指令，可以按照时间进行执行比如：
+加上时间段参数 `--start-datetime=‘2022-01-06 14:14:37’ --stop-datetime=‘2022-01-24 13:04:44’` 恢复指定时间段的数据。

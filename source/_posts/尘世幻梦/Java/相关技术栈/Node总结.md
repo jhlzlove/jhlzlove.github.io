@@ -5,7 +5,6 @@ music:
   type: song
   id: 373114
 categories:
-  - Java
   - Node
 abbrlink: 141e2e2d
 ---
@@ -67,7 +66,6 @@ npm install npm -g
 
 # 显示 npm install -g 全局安装的位置
 npm root -g 
-
 ```
 
 > npm install 可简写为 npm i

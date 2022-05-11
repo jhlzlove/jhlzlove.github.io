@@ -14,15 +14,12 @@ RabbitMQ整理
 
 <!-- code_chunk_output -->
 
-- [RabbitMq的学习整理](#rabbitmq的学习整理)
-  - [RabbitMq 的常用命令](#rabbitmq-的常用命令)
-  - [镜像队列：（使用最多）](#镜像队列使用最多)
+- [RabbitMQ的常用命令](#rabbitmq的常用命令)
+- [镜像队列：（使用最多）](#镜像队列使用最多)
 
 <!-- /code_chunk_output -->
 
-## RabbitMq的学习整理
-
-### RabbitMq 的常用命令
+### RabbitMQ的常用命令
 
 ```bash{.line-numbers}
 rabbitmqctl list_users    # 查看用户列表

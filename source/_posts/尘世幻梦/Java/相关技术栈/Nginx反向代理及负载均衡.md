@@ -1,38 +1,37 @@
 ---
-title: Nginx使用
+title: Nginx
 categories:
   - Java
   - Nginx
 abbrlink: f7ba05e4
 ---
-Nginx使用整理
+
+
 
 <!-- more -->
 
-# Nginx使用
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Nginx使用](#nginx使用)
-	- [反向代理](#反向代理)
-		- [1.1 什么是反向代理](#11-什么是反向代理)
-		- [1.2 配置反向代理-准备工作](#12-配置反向代理-准备工作)
-		- [1.3 配置反向代理](#13-配置反向代理)
-	- [2 负载均衡](#2-负载均衡)
-		- [2.1 什么是负载均衡](#21-什么是负载均衡)
-		- [2.2 配置负载均衡-准备工作](#22-配置负载均衡-准备工作)
-		- [2.3 配置负载均衡](#23-配置负载均衡)
-	- [使用 Nginx 映射资源文件目录](#使用-nginx-映射资源文件目录)
-	- [命令](#命令)
+- [1. 反向代理](#1-反向代理)
+	- [1.1 什么是反向代理](#11-什么是反向代理)
+	- [1.2 配置反向代理-准备工作](#12-配置反向代理-准备工作)
+	- [1.3 配置反向代理](#13-配置反向代理)
+- [2 负载均衡](#2-负载均衡)
+	- [2.1 什么是负载均衡](#21-什么是负载均衡)
+	- [2.2 配置负载均衡-准备工作](#22-配置负载均衡-准备工作)
+	- [2.3 配置负载均衡](#23-配置负载均衡)
+- [3. 映射资源文件目录](#3-映射资源文件目录)
+- [命令](#命令)
 
 <!-- /code_chunk_output -->
 
-## 反向代理
+## 1. 反向代理
+
 ### 1.1 什么是反向代理
 
 反向代理（Reverse Proxy）方式是指以[代理服务器](http://baike.baidu.com/item/代理服务器)来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
-
 
 ### 1.2 配置反向代理-准备工作
 
@@ -44,7 +43,7 @@ Nginx使用整理
 
 （1）在Nginx主机修改 Nginx 配置文件
 
-```properties{.line-numbers}
+```cfg{.line-numbers}
 http {
     include       mime.types;
     default_type  application/octet-stream;
@@ -64,10 +63,7 @@ http {
 	}
 ```
 
-（2）重新启动Nginx 然后用浏览器测试：localhost 
-
-
-
+（2）重新启动Nginx 然后用浏览器测试：localhost
 
 ## 2 负载均衡
 
@@ -124,7 +120,6 @@ http {
 比如想让NO.1出现次数是其它服务器的2倍，则修改配置如下：
 
 ```properties{.line-numbers}
-
 http {
     include       mime.types;
     default_type  application/octet-stream;
@@ -152,11 +147,11 @@ http {
 }
 ```
 
-## 使用 Nginx 映射资源文件目录
+## 3. 映射资源文件目录
 
 我们可以在服务器上使用Nginx映射出一个目录作为共享的目录，然后访问该可以进行下载。有许多网站使用了该技术。
 
-```bash{.line-numbers}
+```properties{.line-numbers}
 server {
         listen       8181;
         server_name  localhost;
@@ -183,6 +178,7 @@ server {
         }
 }
 ```
+
 > 在配置映射目录的时候，容易出现问题。因为在 location 块中可以使用两种目录配置方式。一种是 `root`，一种是 `alias`。
 > 如果使用的是 root（**不是root用户**），那么 `location` 后面应该填写 URL 访问的路径，而 root 后跟上级路径。
 > 如果使用的 alias，那么后面直接写共享的绝对路径即可，注意在绝对路径后加 ”/“，而 location 后依然只写 URL 访问路径即可。

@@ -1,5 +1,5 @@
 ---
-title: Node命令总结
+title: Node相关整理
 music:
   server: netease
   type: song
@@ -12,8 +12,6 @@ abbrlink: 141e2e2d
 Node相关总结
 
 <!-- more -->
-
-# Node总结
 
 {% link Node文档::http://nodejs.cn/learn/ %}
 
@@ -71,8 +69,8 @@ npm root -g
 > npm install 可简写为 npm i
 > npm run 相关：除了 npm run start 和 npm run test，其它的命令都不能省略 run。
 
-npm 是Node自带的包管理工具，使用起来很方便。也可以使用yarn，yarn是facebook发布的一款取代npm的包管理工具，[详情请戳](https://yarn.bootcss.com/)
-安装：
+npm 是Node自带的包管理工具，使用起来很方便。也可以使用yarn，yarn是facebook发布的一款取代npm的包管理工具，[详情请戳](https://yarn.bootcss.com/) [yarn官网介绍](https://yarnpkg.com/getting-started/usage)
+
 ```bash{.line-numbers}
 # 安装 yarn 包管理工具
 npm install -g yarn
@@ -85,5 +83,3 @@ yarn config get registry
 yarn config set registry https://registry.npm.taobao.org --global
 yarn config set disturl https://npm.taobao.org/dist --global
 ```
-
-[yarn常用命令](https://yarnpkg.com/getting-started/usage)

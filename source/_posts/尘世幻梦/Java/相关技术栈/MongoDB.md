@@ -1,5 +1,5 @@
 ---
-title: MongoDB总结
+title: MongoDB总结整理
 categories:
   - Java
   - MongoDB
@@ -24,10 +24,11 @@ MongoDB整理，5.x版本。与之前的版本有些许变化。
   - [复合索引](#复合索引)
   - [聚合查询（aggregate）](#聚合查询aggregate)
 - [SpringBoot 整合 MongoDB](#springboot-整合-mongodb)
-- [MongoDB 中的主从复制（4.0 版本废弃，了解即可）](#mongodb-中的主从复制40-版本废弃了解即可)
-- [MongoDB 中的副本集](#mongodb-中的副本集)
-- [MongoDB 中的分片（sharding）](#mongodb-中的分片sharding)
-  - [环境搭建](#环境搭建)
+- [MongoDB架构](#mongodb架构)
+  - [1. 主从复制（4.0 版本废弃，了解即可）](#1-主从复制40-版本废弃了解即可)
+  - [2. 副本集](#2-副本集)
+  - [3. 分片（sharding）](#3-分片sharding)
+  - [4. 环境搭建](#4-环境搭建)
 
 <!-- /code_chunk_output -->
 
@@ -320,7 +321,9 @@ db.test.aggregate([{$group: {_id: '$by_user', 'min_by_user': {$min: '$likes'}}}]
 2. 配置 properties 或者 yaml
 3. 编写程序
 
-## MongoDB 中的主从复制（4.0 版本废弃，了解即可）
+## MongoDB架构
+
+### 1. 主从复制（4.0 版本废弃，了解即可）
 
 备份、故障恢复、读扩展
 生产环境中，如果使用的是老版本的 MongoDB，推荐的从节点不超过 12 个。
@@ -340,7 +343,7 @@ db.test.aggregate([{$group: {_id: '$by_user', 'min_by_user': {$min: '$likes'}}}]
 
 > yum install -y lrzsz 文件的上传和下载
 
-## MongoDB 中的副本集
+### 2. 副本集
 
 为了解决主从复制中自动转移的问题，尽管主从在新版本中已经废弃，MongoDB 又提出了新的结构，就是副本集。可以理解为带有自动故障转移的主从复制架构。推荐的副本集为奇数个。
 
@@ -378,7 +381,7 @@ mongod --port 27019 --dbpath ../repl/data3 --bind_ip 0.0.0.0 --replSet myreplace
 
 当集群超过半数以上的节点宕机时，集群无法对外提供服务。
 
-## MongoDB 中的分片（sharding）
+### 3. 分片（sharding）
 
 目的：解决单点压力问题（并发访问）
 
@@ -387,7 +390,7 @@ Config Server：mongod实例，存储了整个ClusterMetadata。
 Query Routers：前端路由，客户端由此接入，且让整个集群看上去像单一数据库，前端应用可以透明使用。
 Shard Key：片键，设置分片时需要在集合中选择一个片键作为拆分数据的依据。片键的选取决定了数据散列是否均匀。
 
-### 环境搭建
+### 4. 环境搭建
 
 MongoDB4.0版本之后要求Config Server必须以副本集方式部署，以保证系统的高可用。也建议每一个Shard也为一个副本集，目前没有强制要求必须为副本集。
 

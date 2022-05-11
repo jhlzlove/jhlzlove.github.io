@@ -1,5 +1,5 @@
 ---
-title: MySQL总结
+title: MySQL整理总结中……
 music:
   server: netease
   type: song
@@ -21,7 +21,7 @@ MySQL数据库整理
 - [MySQL 安装（win）](#mysql-安装win)
   - [1. Mysql5.7 版本安装](#1-mysql57-版本安装)
   - [2. MySQL8.0安装](#2-mysql80安装)
-- [数据库操作](#数据库操作)
+- [MySQL基础](#mysql基础)
   - [DQL DML DDL DCL](#dql-dml-ddl-dcl)
   - [数据库分区](#数据库分区)
 - [MySQL数据库优化](#mysql数据库优化)
@@ -83,20 +83,13 @@ alter user 'root'@'localhost' identified by '123456';
 > Java 程序中连接 8.0 以上的数据库时区设置：`serverTimezone=Asia/Shanghai`
 > UTC 时间和中国时间相差 8 小时。
 
-## 数据库操作
+## MySQL基础
 
 ### DQL DML DDL DCL
 
-1. DQL 数据查询语言：
-`select filed from table where *`
-
-2. DML 数据操纵语言：
-数据操纵语言DML主要有三种形式，这也是与各种语言交互使用的：
-   1) 插入：INSERT
-   2) 更新：UPDATE
-   3) 删除：DELETE
-
-3. DDL 数据定义语言
+1. DQL 数据查询语言：select
+2. DML 数据操纵语言：insert update delete
+3. DDL 数据定义语言：create alter drop
 数据定义语言DDL用来管理数据库中的各种对象-----表、视图、索引、同义词、聚簇等。
 
     ```sql{.line-numbers}
@@ -262,7 +255,6 @@ mycat相当于一个路由，把写的操作转发给写库，把读的操作分
 mycat不仅会根据 SQL 语句去分析检测此次操作是发给读库还是写库，还会根据是否具有事务属性区分是读还是写。
 
 如果查询也开启了事务，那么查询也会走主库。
-
 
 ## 进阶操作
 

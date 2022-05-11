@@ -14,6 +14,10 @@ abbrlink: ff45fa2
 
 <!-- more -->
 
+## 配置示例
+
+### 1. properties
+
 ```properties{.line-numbers}
 # 应用名称
 spring.application.name=mytest
@@ -43,7 +47,8 @@ mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 ```
 
-yml 配置
+### 2. yml
+
 ```yml{.line-numbers}
 logging:
     level:
@@ -73,7 +78,8 @@ spring:
         password: 
 ```
 
-#### 附：
+## 附
+
 ```bash{.line-numbers}
 sqlserver默认端口号为：1433
 
@@ -88,10 +94,6 @@ oracle    默认端口号为：1521
 URL:"jdbc:oracle:thin:@localhost:1521:orcl";
 DRIVERNAME:"oracle.jdbc.driver.OracleDriver";
 
-
-
 mongodb 连接配置 默认端口:27017
 URL:"mongodb://root:123456@localhost:27017/test"
-
 ```
-

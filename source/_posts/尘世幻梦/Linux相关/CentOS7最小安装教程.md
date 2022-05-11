@@ -3,6 +3,7 @@ title: CentOS7最小安装教程
 categories:
   - Linux
   - CentOS
+  - 教程
 cover: true
 headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/linux.jpeg
 music:
@@ -12,7 +13,7 @@ music:
 abbrlink: 5d8de8e6
 ---
 
-作为服务器，还是无桌面的可以最大化发挥已有的资源，对吧。
+一般都选 CentOS/Ubantu 作为服务器，这里介绍使用 CentOS7.9 最小化安装。
 
 <!-- more -->
 
@@ -20,24 +21,23 @@ abbrlink: 5d8de8e6
 
 <!-- code_chunk_output -->
 
-- [CentOS 最小安装](#centos-最小安装)
-  - [1、配置网卡](#1配置网卡)
-  - [2、关闭防火墙以及 Linux 的一些安全策略](#2关闭防火墙以及-linux-的一些安全策略)
-  - [3、配置本地 yum 源](#3配置本地-yum-源)
-  - [4、安装常用工具](#4安装常用工具)
-  - [5、安装依赖关系](#5安装依赖关系)
-  - [6、修改yum源](#6修改yum源)
-  - [命令](#命令)
-  - [问题](#问题)
+- [1、配置网卡](#1配置网卡)
+- [2、关闭防火墙以及 Linux 的一些安全策略](#2关闭防火墙以及-linux-的一些安全策略)
+- [3、配置本地 yum 源](#3配置本地-yum-源)
+- [4、安装常用工具](#4安装常用工具)
+- [5、安装依赖关系](#5安装依赖关系)
+- [6、修改yum源](#6修改yum源)
+- [rpm命令](#rpm命令)
+- [问题](#问题)
 
 <!-- /code_chunk_output -->
-
-# CentOS 最小安装
 
 采用最小安装的方式安装后没有 `vim` 命令。我们需要先使用 `vi`，这个命令是原生就有的。
 
 ## 1、配置网卡
+
 先进行网络的连接，编辑网络配置文件（`vi /etc/sysconfig/network-scripts/ifcfg-ens32`），不同的机器最后的文件名称可能不同，一般都是 `ifcfg-` 开头。
+
 ```bash{.line-numbers}
 # 空着的部分自定义即可
 BOOTPROTO=static
@@ -47,6 +47,7 @@ NETMASK=
 GATEWAY=
 DNS1=
 ```
+
 设置完成后，保存退出，使用命令 `systemctl restart network` 重启网卡。
 
 ## 2、关闭防火墙以及 Linux 的一些安全策略
@@ -61,6 +62,7 @@ setenforce 0
 ```
 
 ## 3、配置本地 yum 源
+
 ```bash{.line-numbers}
 # 进入目录
 cd /etc/yum.repos.d/
@@ -73,6 +75,7 @@ cp bak/CentOS-Media.repo /etc/yum.repos.d/CentOS-Media.repo
 ```
 
 编辑刚才我们拷贝的文件：`vi CentOS-Media.repo`，这就是安装软件时读取的安装源配置，加入以下内容，先使用本地镜像安装。
+
 ```bash{.line-numbers}
     [linux]
     name=linux
@@ -80,6 +83,7 @@ cp bak/CentOS-Media.repo /etc/yum.repos.d/CentOS-Media.repo
     gpgcheck=0
     enabled=1
 ```
+
 清除yum缓存：`yum -y clean all`
 重建yum缓存：`yum makecache`
 
@@ -88,6 +92,7 @@ cp bak/CentOS-Media.repo /etc/yum.repos.d/CentOS-Media.repo
 `yum -y install curl telnet vim wget lrzsz net-tools`
 
 修改vim配置（可以不修改，按照默认的即可，这里仅仅是偏好）
+
 ```bash{.line-numbers}
 vim ~/.vimrc
 set encoding=utf-8      " 文件编码
@@ -171,7 +176,8 @@ enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 ```
 
-## 命令
+## rpm命令
+
 安装：rpm -ivh xxx.rpm
 卸载：rpm -evh xxx.rpm
 更新：rpm -Uvh xxx.rpm
@@ -179,6 +185,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 CentOS安装lrzsz工具：sz下载，rz上传
 
 ## 问题
+
 centos7问题描述：
 用的好好的虚拟机，之前内网都通，突然xshell连不上虚拟机了也连不上外网了，这时候怎么办呢？
 > 解决方法：

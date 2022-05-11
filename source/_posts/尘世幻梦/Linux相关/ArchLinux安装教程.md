@@ -1,8 +1,9 @@
 ---
-title: 安装ArchLinux教程
+title: ArchLinux安装教程
 categories:
   - Linux
   - Arch
+  - 教程
 cover: true
 headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/arch.jpeg
 music:

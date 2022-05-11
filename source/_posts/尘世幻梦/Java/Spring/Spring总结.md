@@ -15,6 +15,7 @@ Spring使用总结
 
 <!-- code_chunk_output -->
 - [Spring使用总结](#spring使用总结)
+  - [注入方式](#注入方式)
     - [Spring 的核心 API：](#spring-的核心-api)
     - [程序开发：](#程序开发)
     - [Set 注入的简化写法](#set-注入的简化写法)
@@ -77,6 +78,12 @@ Spring使用总结
     - [Spring 工厂创建对象的优先级](#spring-工厂创建对象的优先级)
 
 <!-- /code_chunk_output -->
+
+## 注入方式
+setter注入、构造注入(推荐使用)、自动注入
+Autowired：Spring框架 默认根据类型注入
+Resource：JavaEE规范 默认根据名称注入 自动根据类型注入
+属性注入：@Value注入map集合时，文件中必须使用json格式赋值，使用"#{${属性}}"取值，map的键如果相同，后面的值会覆盖前面的值。
 
 ### Spring 的核心 API：
 - ApplicationContext

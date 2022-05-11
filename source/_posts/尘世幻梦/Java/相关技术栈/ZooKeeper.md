@@ -13,48 +13,67 @@ Zookeeoer 总结
 
 <!-- more -->
 
-# ZooKeeper 总结
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [ZooKeeper 总结](#zookeeper-总结)
-  - [ZK 的配置文件](#zk-的配置文件)
-  - [客户端基本指令](#客户端基本指令)
-  - [节点监听机制](#节点监听机制)
-  - [Java 操作 ZK](#java-操作-zk)
-  - [ZK 集群搭建](#zk-集群搭建)
-  - [Java 操作 ZK 集群](#java-操作-zk-集群)
+- [Zookeeper的结构认识](#zookeeper的结构认识)
+  - [节点分类](#节点分类)
+    - [特点](#特点)
+    - [节点监听机制](#节点监听机制)
+- [ZK 的配置文件](#zk-的配置文件)
+- [客户端基本指令](#客户端基本指令)
+- [ZK伪集群搭建示例](#zk伪集群搭建示例)
 
 <!-- /code_chunk_output -->
-ZK 是基于 Java 编写的，可以使用 jps 命令查询相关进程。
 
-dubbo、springcloud 框架使用 ZK 作为注册中心；
-Hadoop、Hbase组件使用 ZK 作为集群管理者；
-redis 可以使用 ZK 实现分布式锁。
+Zookeeper 简称 ZK，是基于 Java 语言编写的开放源码的分布式应用程序协调服务，可以使用 jps 命令查询相关进程。
 
-ZK 的内存结构：和 Linux 结构相似。
+ZooKeeper主要服务于分布式系统：统一配置管理、统一命名服务、分布式锁、集群管理。
 
-节点模型的特点：
+- dubbo、springcloud 框架使用 ZK 作为注册中心；
+- Hadoop、Hbase组件使用 ZK 作为集群管理者；
+- redis 可以使用 ZK 实现分布式锁。
+
+## Zookeeper的结构认识
+
+ZK 的内存结构和 Linux 文件系统非常相似。
+
+ZK中的节点称为 ZNode，节点模型的特点：
+
 - 每个子目录都被称为一个节点，这个节点是它所在路径的唯一标识。
 - 节点可以有子节点目录，每个子节点都可以存储数据。
 - 节点是有版本的，每个子节点中的数据都可以有多个版本，也就是一个访问路径可以存储多份数据。
 - 节点可以被监控，包括这个目录节点中存储的数据的修改，节点目录的变化等，一旦变化可以通知监听的客户端。
 
+### 节点分类
 
-节点分类：
 - 持久性节点：PERSISTENT
 - 持久性顺序节点：PERSISTENT_SEQUENTIAL
 - 临时节点：EPHEMERAL
 - 临时顺序节点：EPHEMERAL_SEQUENTIAL
 
+#### 特点
 
-临时/临时顺序节点上不可以包含任何的子节点。
+- 临时/临时顺序节点上不可以包含任何的子节点。
 
-ZK 默认在根路径中有一个 zookeeper 节点，zookeeper 节点下有一个 quota 子节点。
+- ZK 默认在根路径中有一个 zookeeper 节点，zookeeper 节点下有一个 quota 子节点。
+
+#### 节点监听机制
+
+一个 Watch 事件是一个一次性的触发器，当被设置了 Watch 的数据和目录发生了改变的时候，则服务器将这个改变发送给设置了 Watch 的客户端以便通知他们。
+
+节点的监听是一次性的。监听一次就会失效。
+
+```bash{.line-numbers}
+# 监听路径变化
+ls /node true
+
+# 监听数据变化
+get /node true
+```
 
 ## ZK 的配置文件
-
 
 ```bash{.line-numbers}
 # 集群节点之间的心跳时间
@@ -71,11 +90,8 @@ clientPort=2181
 
 ## 客户端基本指令
 
-指定配置文件启动：
-./bin/zkServer.sh start ./conf/zoo.cfg
-
-客户端连接：
-./bin/zkCli.sh -server localhost:2181
+指定配置文件启动：`./bin/zkServer.sh start ./conf/zoo.cfg`
+客户端连接：`./bin/zkCli.sh -server localhost:2181`
 
 ```bash{.line-numbers}
 # 查看路径节点
@@ -111,106 +127,71 @@ rmr /node
 # 退出当前会话
 quit
 ```
-> create /node jhlz
-创建节点时，默认创建的是持久化节点。
 
+> 创建节点时，默认创建的是持久化节点。create /node jhlz，这样就创建了一个 jhlz 的持久化节点
 
-## 节点监听机制
-
-一个 Watch 事件是一个一次性的触发器，当被设置了 Watch 的数据和目录发生了改变的时候，则服务器将这个改变发送给设置了 Watch 的客户端以便通知他们。
-
-节点的监听是一次性的。监听一次就会失效。
-```bash{.line-numbers}
-# 监听路径变化
-ls /node true
-
-# 监听数据变化
-get /node true
-```
-
-
-
-## Java 操作 ZK
-
-引入依赖：
-```xml{.line-numbers}
-<dependency>
-    <groupId>com.101tec</groupId>
-    <artifactId>zkclient</artifactId>
-    <version>0.10</version>
-</dependency>
-```
-具体操作非常简单，毕竟都是基于客户端封装的 API。
-
-Java 中对于节点数据的监听是永久的。
-
-## ZK 集群搭建
+## ZK伪集群搭建示例
 
 集群的搭建和其它集群的搭建都是一样的，非常简单：创建不同的配置文件，在服务启动时指明需要的配置文件即可。
 
 1. 首先建立三个文件夹： zk1 zk2 zk3
 在每一个数据目录中创建一个 myid 文件。并在每一个 myid 文件中添加标号。
 
-```bash{.line-numbers}
-mkdir zk1 zk2 zk3
+    ```bash{.line-numbers}
+    mkdir zk1 zk2 zk3
 
-touch zk1/myid /zk2/myid zk3/myid
+    touch zk1/myid /zk2/myid zk3/myid
 
-echo "1" > zk1/myid
-echo "2" > zk2/myid
-echo "3" > zk3/myid
-```
-
+    echo "1" > zk1/myid
+    echo "2" > zk2/myid
+    echo "3" > zk3/myid
+    ```
 
 2. 修改各自的配置
 
-```bash{.line-numbers}
-# 编辑第一个
-vim zk1/zoo.cfg
-tickTime=2000
-initLimit=10
-syncLimit=5
-dataDir=/tmp/zk1
-clientPort=3001
-server.1=localhost:3002:3003
-server.2=localhost:4002:4003
-server.3=localhost:5002:5003
-# 编辑第二个
-vim zk1/zoo.cfg
-tickTime=2000
-initLimit=10
-syncLimit=5
-dataDir=/tmp/zk1
-clientPort=4001
-server.1=localhost:3002:3003
-server.2=localhost:4002:4003
-server.3=localhost:5002:5003
-# 编辑第三个
-vim zk3/zoo.cfg
-tickTime=2000
-initLimit=10
-syncLimit=5
-dataDir=/tmp/zk1
-clientPort=5001
-server.1=localhost:3002:3003
-server.2=localhost:4002:4003
-server.3=localhost:5002:5003
-```
+    ```bash{.line-numbers}
+    # 编辑第一个
+    vim zk1/zoo.cfg
+    tickTime=2000
+    initLimit=10
+    syncLimit=5
+    dataDir=/tmp/zk1
+    clientPort=3001
+    server.1=localhost:3002:3003
+    server.2=localhost:4002:4003
+    server.3=localhost:5002:5003
+    # 编辑第二个
+    vim zk1/zoo.cfg
+    tickTime=2000
+    initLimit=10
+    syncLimit=5
+    dataDir=/tmp/zk1
+    clientPort=4001
+    server.1=localhost:3002:3003
+    server.2=localhost:4002:4003
+    server.3=localhost:5002:5003
+    # 编辑第三个
+    vim zk3/zoo.cfg
+    tickTime=2000
+    initLimit=10
+    syncLimit=5
+    dataDir=/tmp/zk1
+    clientPort=5001
+    server.1=localhost:3002:3003
+    server.2=localhost:4002:4003
+    server.3=localhost:5002:5003
+    ```
 
-> 其中，server.1 的区分就是上面创建的 myid 文件的编号，ZK 会自动根据 myid 的编号去识别，但是我们在集群配置中需要写明。
-> 3002: 数据同步使用的端口号。
-> 3003： leader 选举使用的端口号。 
+    > 其中，server.1 的区分就是上面创建的 myid 文件的编号，ZK 会自动根据 myid 的编号去识别，但是我们在集群配置中需要写明。
+    > 3002: 数据同步使用的端口号。
+    > 3003： leader 选举使用的端口号。
 
 3. 指定配置文件启动服务
 
-```bash{.line-numbers}
-./bin/zkServer.sh start zk1/zoo.cfg
+    ```bash{.line-numbers}
+    ./bin/zkServer.sh start zk1/zoo.cfg
 
-./bin/zkServer.sh start zk2/zoo.cfg
+    ./bin/zkServer.sh start zk2/zoo.cfg
 
-./bin/zkServer.sh start zk3/zoo.cfg
-```
-
-## Java 操作 ZK 集群
-
-和操作单个的区别就是，把集群的每个 IP:port 都写到创建连接的 zkServers 中，就是如此简单。
+    ./bin/zkServer.sh start zk3/zoo.cfg
+    ```

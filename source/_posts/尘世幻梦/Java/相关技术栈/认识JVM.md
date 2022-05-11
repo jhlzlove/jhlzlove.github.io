@@ -16,7 +16,8 @@ JVM的一些术语介绍，简单了解一下。
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=true} -->
 
-# JVM内存模型
+## JVM内存模型
+
 {% gallery %}
 ![JVM内存模型图](https://cdn.jsdelivr.net/gh/prettywinter/dist/images/doc/JVN内存模型.png)
 {% endgallery %}
@@ -30,10 +31,8 @@ JVM的一些术语介绍，简单了解一下。
 
 方法区、永久代、元空间的关系：可以把方法区看作是一种规范，永久代和元空间都是这种规范的实现和不同的称呼，JDK1.8之前使用永久代实现，它和堆使用的物理内存是连续的。JDK1.8之后，方法区存在于元空间，物理内存不再与堆连续，而是直接存在于本地内存中。
 
+## 调优命令
 
-
-
-# 调优命令
 Sun JDK监控和故障处理命令有jps jstat jmap jhat jstack jinfo
 jps，JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。
 jstat，JVM statistics Monitoring是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。
@@ -41,11 +40,11 @@ jmap，JVM Memory Map命令用于生成heap dump文件
 jhat，JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看jstack，用于生成java虚拟机当前时刻的线程快照。
 jinfo，JVM Configuration info 这个命令作用是实时查看和调整虚拟机运行参数。
 
-# 常见调优工具有哪些
+## 常见调优工具
+
 常用调优工具分为两类,jdk自带监控工具：jconsole和jvisualvm，第三方有：MAT(Memory
 Analyzer Tool)、GChisto。
 jconsole，Java Monitoring and Management Console是从java5开始，在JDK中自带的java监控和管理控制台，用于对JVM中内存，线程和类等的监控
 jvisualvm，jdk自带全能工具，可以分析内存快照、线程快照；监控内存变化、GC变化等。
 MAT，Memory Analyzer Tool，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的Java heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗
 GChisto，一款专业分析gc日志的工具
-

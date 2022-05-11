@@ -11,6 +11,7 @@ centos7
 问题描述：内网相通，但使用xshell等终端工具连不上虚拟机也连不上外网
 
 解决方法：
+
 ```bash{.line-numbers}
 # 1.将networkmanager服务停掉并禁止其自启
 systemctl stop NetworkManager

@@ -10,31 +10,31 @@ Git 入门
 
 <!-- more -->
 
-# Git入门
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=true} -->
 
 <!-- code_chunk_output -->
 
-- [Git入门](#git入门)
-  - [Git 配置](#git-配置)
-  - [Git命令](#git命令)
-    - [1. 远程代码托管平台相关（Github、Gitee、Gitlab）：](#1-远程代码托管平台相关githubgiteegitlab)
-    - [2. 日常操作：](#2-日常操作)
-  - [Git配置多个SSH-Key](#git配置多个ssh-key)
-    - [1. 生成gitee使用的SSH-Key](#1-生成gitee使用的ssh-key)
-    - [2. 生成Github用的SSH-Key](#2-生成github用的ssh-key)
-    - [3. 配置](#3-配置)
-    - [4. 用ssh命令分别测试](#4-用ssh命令分别测试)
-  - [一张图总结](#一张图总结)
+- [Git 配置SSH密钥](#git-配置ssh密钥)
+- [Git命令](#git命令)
+  - [1. 远程代码托管平台相关（Github、Gitee、Gitlab）：](#1-远程代码托管平台相关githubgiteegitlab)
+  - [2. 日常操作：](#2-日常操作)
+- [Git配置多个SSH-Key](#git配置多个ssh-key)
+  - [1. 生成gitee使用的SSH-Key](#1-生成gitee使用的ssh-key)
+  - [2. 生成Github用的SSH-Key](#2-生成github用的ssh-key)
+  - [3. 配置](#3-配置)
+  - [4. 用ssh命令分别测试](#4-用ssh命令分别测试)
+- [一张图总结](#一张图总结)
 
 <!-- /code_chunk_output -->
 
-## Git 配置
+## Git 配置SSH密钥
 
-Git 下载安装略过，一路 next 即可。教程一般都需要配置 SSH KEY，这样不用每次 pull、push 都要输入账号密码。注意，是每次与Github、Gitee等这样的远程托管平台交互时都会弹出一个对话框让你输入。详细了解可以参看下方链接：
+[下载地址](https://npm.taobao.org/mirrors/git-for-windows/)
+
+为什么配置SSH密钥？
+如果不配置 SSH 密钥的话，在你每次pull、push的时候需要身份认证，这样每次都需要我们手动去输入账户信息，比较耗时。而使用 SSH 的话就省略了输入账户信息的步骤，直接在本地和远程库之间进行操作，用户信息的认证工作交给了 SSH 帮我们进行。
 
 {% link Git官方文档::https://git-scm.com/book/zh/v2 %}
-{% link 了解更多::https://zhuanlan.zhihu.com/p/347114235#:~:text=%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%88%86%20%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%20%E5%92%8C%20%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%20%EF%BC%8C%E5%85%B6%E4%B8%AD%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86%20%E5%AF%86%E9%92%A5%E7%9B%B8%E5%90%8C%20%EF%BC%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8A%A0%E5%AF%86%E5%AF%86%E9%92%A5%E4%B8%8E%E8%A7%A3%E5%AF%86%20%E5%AF%86%E9%92%A5%E4%B8%8D%E5%90%8C,%E5%92%8C%20%E6%8E%A5%E6%94%B6%20%E5%8F%8C%E6%96%B9%E9%83%BD%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E5%AF%86%E9%92%A5%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%20%E5%8A%A0%E5%AF%86%20%E5%92%8C%20%E8%A7%A3%E5%AF%86%20%E3%80%82%20%E8%BF%99%E5%B0%B1%E8%A6%81%E6%B1%82%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E6%96%B9%E4%BA%8B%E5%85%88%E9%83%BD%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E5%8A%A0%E5%AF%86%E7%9A%84%E5%AF%86%E9%92%A5%E3%80%82 %}
 
 ```bash{.line-numbers}
 $ git config --global user.name "你的名字或昵称"
@@ -62,6 +62,7 @@ $ git config --global core.autocrlf true
 # Mac、Linux 设置 (提交时CRLF替换为LF，检出时无操作)
 $ git config --global core.autocrlf input
 ```
+
 > 检出: 可以理解为下载/克隆/pull命令
 
 

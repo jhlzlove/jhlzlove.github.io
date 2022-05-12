@@ -81,19 +81,18 @@ spring:
 ## 附
 
 ```bash{.line-numbers}
-sqlserver默认端口号为：1433
-
+# sqlserver 默认端口号为：1433
 URL:"jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=dbname"
 DRIVERNAME:"com.microsoft.jdbc.sqlserver.SQLServerDriver";
 
-mysql      默认端口号为：3306
+# mysql 默认端口号为：3306
 URL:"jdbc:mysql://localhost:3306/test?username=root&password=&useUnicode=true&characterEncoding=utf-8&mysqlEncoding=utf-8&serverTimezone=Asia/Shanghai"
 DRIVERNAME:"com.mysql.jdbc.Driver";
 
-oracle    默认端口号为：1521
+# oracle 默认端口号为：1521
 URL:"jdbc:oracle:thin:@localhost:1521:orcl";
 DRIVERNAME:"oracle.jdbc.driver.OracleDriver";
 
-mongodb 连接配置 默认端口:27017
+# mongodb 默认端口：27017
 URL:"mongodb://root:123456@localhost:27017/test"
 ```

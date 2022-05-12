@@ -22,10 +22,10 @@ abbrlink: 8699d8dc
 
 - [Docker入门](#docker入门)
 - [配置](#配置)
-  - [docker常用命令](#docker常用命令)
+  - [1. docker常用命令](#1-docker常用命令)
 - [Docker进一步理解](#docker进一步理解)
-  - [Docker为什么提供网络功能？](#docker为什么提供网络功能)
-  - [docker数据卷（volume）](#docker数据卷volume)
+  - [1. Docker为什么提供网络功能？](#1-docker为什么提供网络功能)
+  - [2. docker数据卷（volume）](#2-docker数据卷volume)
 - [Dockerfile](#dockerfile)
 - [docker-compose](#docker-compose)
   - [1. 常用命令](#1-常用命令)
@@ -64,7 +64,7 @@ docker ps
 3、阿里云的镜像加速器(需要注册)：登录阿里云的容器hub服务，镜像加速器那一栏里会为你独立分配一个加速器地址
 4、DaoCloud的镜像加速器(需要注册)：登录DaoCloud的加速器获取脚本，该脚本可以将加速器添加到守护进程的配置文件中。
 
-### docker常用命令
+### 1. docker常用命令
 
 ```bash{.line-numbers}
 # 镜像操作
@@ -162,7 +162,7 @@ docker images
 
 ## Docker进一步理解
 
-### Docker为什么提供网络功能？
+### 1. Docker为什么提供网络功能？
 
 Docker允许通过外部访问容器或容器互联的方式来提供网络服务，方便了不同容器间进行通信。一般在使用docker网桥(bridge)实现容器与容器通信时，都是站在一个应用角度进行容器通信。
 
@@ -188,7 +188,7 @@ docker run -d --name tomcat02 -p 8082:8080 --network ems tomcat:8.0-jre8
 curl http://tomcat02:8082
 ```
 
-### docker数据卷（volume）
+### 2. docker数据卷（volume）
 
 1. 数据卷的修改会立即影响到容器；
 2. 对数据的更新修改，不会影响镜像；

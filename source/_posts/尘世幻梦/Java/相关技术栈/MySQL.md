@@ -22,21 +22,24 @@ MySQL数据库整理
   - [1. Mysql5.7 版本安装](#1-mysql57-版本安装)
   - [2. MySQL8.0安装](#2-mysql80安装)
 - [MySQL基础](#mysql基础)
-  - [DQL DML DDL DCL](#dql-dml-ddl-dcl)
-  - [数据库分区](#数据库分区)
-- [MySQL数据库优化](#mysql数据库优化)
-  - [数据库事务的四个特性](#数据库事务的四个特性)
-  - [事务的四种隔离级别：](#事务的四种隔离级别)
-  - [数据库索引分类：](#数据库索引分类)
-  - [数据表结构优化：](#数据表结构优化)
-  - [表分区](#表分区)
-  - [SQL 语句优化](#sql-语句优化)
+  - [1. 认识DQL DML DDL DCL](#1-认识dql-dml-ddl-dcl)
+  - [2. 数据库索引分类](#2-数据库索引分类)
+  - [3. 数据库事务的四个特性](#3-数据库事务的四个特性)
+  - [4. 事务的四种隔离级别](#4-事务的四种隔离级别)
+  - [5. 数据库分区](#5-数据库分区)
+- [MySQL优化](#mysql优化)
+  - [1. 数据表结构优化](#1-数据表结构优化)
+  - [2. 表分区](#2-表分区)
+  - [3. MySQL语句优化口诀](#3-mysql语句优化口诀)
 - [数据库锁](#数据库锁)
-  - [悲观锁、乐观锁](#悲观锁乐观锁)
-- [架构](#架构)
-- [MySQL主从复制](#mysql主从复制)
-- [集群架构](#集群架构)
-- [进阶操作](#进阶操作)
+  - [1. 悲观锁、乐观锁](#1-悲观锁乐观锁)
+  - [2. 死锁的原因](#2-死锁的原因)
+    - [产生死锁的四个必要条件](#产生死锁的四个必要条件)
+    - [死锁的解除](#死锁的解除)
+- [MySQL架构](#mysql架构)
+  - [1. MySQL主从复制](#1-mysql主从复制)
+  - [2. 集群架构](#2-集群架构)
+- [MySQL进阶操作](#mysql进阶操作)
 
 <!-- /code_chunk_output -->
 
@@ -85,7 +88,7 @@ alter user 'root'@'localhost' identified by '123456';
 
 ## MySQL基础
 
-### DQL DML DDL DCL
+### 1. 认识DQL DML DDL DCL
 
 1. DQL 数据查询语言：select
 2. DML 数据操纵语言：insert update delete
@@ -110,12 +113,31 @@ alter user 'root'@'localhost' identified by '123456';
 
     数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等。如：
     1) GRANT：授权。
-
     2) ROLLBACK：回滚命令使数据库状态回到上次最后提交的状态。
+    3) COMMIT：提交。
 
-    3) COMMIT [WORK]：提交。
+### 2. 数据库索引分类
 
-### 数据库分区
+1. 主键索引
+2. 唯一索引
+3. 普通索引（前缀索引）
+4. 复合索引
+
+### 3. 数据库事务的四个特性
+
+1. A 原子性
+2. C 一致性
+3. I 隔离性
+4. D 持久性
+
+### 4. 事务的四种隔离级别
+
+1. 读未提交内容
+2. 读已提交内容 脏读
+3. 幻读（重复读） 读已提交
+4. 可串行化 解决幻影读
+
+### 5. 数据库分区
 
 MySQL 可以在建表时最后可以创建表分区，通过 partition by 关键字创建。如下示例:
 
@@ -141,31 +163,9 @@ ALTER TABLE table_name DROP PARTITION partition_name；
 
 MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
 
-## MySQL数据库优化
+## MySQL优化
 
-阿里巴巴手册：SQL优化标准是到ref，最差是range，达到const最好。
-
-### 数据库事务的四个特性
-
-1. A 原子性
-2. C 一致性
-3. I 隔离性
-4. D 持久性
-
-
-### 事务的四种隔离级别：
-
-隔离性中包含了四种隔离级别，分别是：
-1. 读未提交内容 
-2. 读已提交内容 脏读
-3. 幻读（重复读） 读已提交
-4. 可串行化 解决幻影读
-
-
-### 数据库索引分类：
-主键索引、唯一索引、普通索引（前缀索引）、复合索引
-
-### 数据表结构优化：
+### 1. 数据表结构优化
 
 1. 选择合适的数据类型
 （1）使用可存下数据的最小的数据类型。
@@ -175,7 +175,8 @@ MySQL 支持四种分区方式：RANGE、LIST、HASH、KEY
 
 2. LIKE关键字匹配'%'开头的字符串,不会使用索引。含有 or 的查询子句，如果要利用索引，那么 or 之间的每一个字段都必须是索引字段。or 之间的任何一个字段没有索引的话所有涉及的索引都不会被利用。
 
-### 表分区
+### 2. 表分区
+
 MySQL5.1开始支持分区功能，在不同版本中查看当前数据库是否支持的命令也不相同。
 |版本|命令|
 |--|--|
@@ -183,8 +184,9 @@ MySQL5.1开始支持分区功能，在不同版本中查看当前数据库是否
 |5.6之后（包括5.6）|show plugins;|如果包含`partition`选项代表支持|
 |8.0之后|只有InnoDB支持表分区||
 
-### SQL 语句优化
+### 3. MySQL语句优化口诀
 
+阿里巴巴手册：SQL优化标准是到ref，最差是range，达到const最好。
 索引失效：
 全值匹配最喜欢，最左前缀规矩严。
 带头大哥不能死，中间兄弟不能断。
@@ -203,52 +205,73 @@ VAR引号要出现，SQL高级也不难。
 
 ## 数据库锁
 
-### 悲观锁、乐观锁
+### 1. 悲观锁、乐观锁
 
-悲观锁(synchronized)解决超卖问题：启用事务的话，在调用处加锁。（不建议，影响系统性能，耗时长，降低用户体验）
-使用乐观锁（数据库层面解决超卖问题）：使用数据库中定义的 `version` 字段及数据库中的 `事务` 去解决。
+悲观锁：使用系统层面的加锁方式
+乐观锁：数据库层面的锁，通过增加 `version` 字段以及使用数据库的 **事务** 的方式加锁
 
-## 架构
+可以解决超卖等问题，一般使用乐观锁，乐观锁的性能相较于悲观锁要好得多，这样在不影响用户的体验下保证了应用的性能。
 
-## MySQL主从复制
+### 2. 死锁的原因
+
+死锁是由于两个或以上的线程互相持有对方需要的资源，导致这些线程处于等待状态，无法执行。
+
+#### 产生死锁的四个必要条件
+
+1.互斥性：线程对资源的占有是排他性的，一个资源只能被一个线程占有，直到释放。
+
+2.请求和保持条件：一个线程对请求被占有资源发生阻塞时，对已经获得的资源不释放。
+
+3.不剥夺：一个线程在释放资源之前，其他的线程无法剥夺占用。
+
+4.循环等待：发生死锁时，线程进入死循环，永久阻塞。
+
+#### 死锁的解除
+
+1.抢占资源，从一个或多个进程中抢占足够数量的资源，分配给死锁进程，以解除死锁状态。
+
+2.终止（或撤销）进程，终止（或撤销）系统中的一个或多个死锁进程，直至打破循环环路，使系统从死锁状态解脱出来.
+
+## MySQL架构
+
+### 1. MySQL主从复制
 
 1. 修改MySQL的配置文件：`vim /etc/my.cnf`
 2. 分别在配置文件中加入如下配置
 
 ```bash{.line-numbers}
-  # 两台及其的 server-id 不能一样
-  mysql(master)
-  server-id=1
-  log-bin=mysql-bin
-  log-slave-updates
-  slave-skip-errors=all
+# 两台及其的 server-id 不能一样
+mysql(master)
+server-id=1
+log-bin=mysql-bin
+log-slave-updates
+slave-skip-errors=all
 
-  mysql(slave)
-  server-id=2
-  log-bin=mysql-bin
-  log-slave-updates
-  slave-skip-errors=all
+mysql(slave)
+server-id=2
+log-bin=mysql-bin
+log-slave-updates
+slave-skip-errors=all
 ```
 
 登录主节点执行 `show master status` 命令。
 登录从节点执行以下命令：
 
 ```bash
-  change master to master_host='master主机地址',
-  master_user='master用户名',
-  master_password='master密码',
-  master_log_file='log文件名',
-  master_log_pos=上面命令的 position;
+change master to master_host='master主机地址',
+master_user='master用户名',
+master_password='master密码',
+master_log_file='log文件名',
+master_log_pos=上面命令的 position;
 ```
 
-开启从节点:
-start/stop slave
+开启从节点: `start/stop slave`
 
 > `show slave status\G` 如果出现 1593 的报错，那么先关闭 MySQL 服务，然后删除 /var/lib/mysql/auto.cnf 文件，然后启动 MySQL 服务即可。
 
-## 集群架构
+### 2. 集群架构
 
-基于主从复制发展而来，主从架构节点数据库只能实现冗余备份，不能进行操作，但是集群架构可以操作从库。
+基于主从复制发展而来，主从架构节点数据库只能实现冗余备份，不能进行操作，但是集群架构可以操作从库。可以使用阿里开源的 mycat 作为 MySQL 的统一管理中心。
 
 mycat相当于一个路由，把写的操作转发给写库，把读的操作分发给读库。
 
@@ -256,7 +279,7 @@ mycat不仅会根据 SQL 语句去分析检测此次操作是发给读库还是�
 
 如果查询也开启了事务，那么查询也会走主库。
 
-## 进阶操作
+## MySQL进阶操作
 
 查看MySQL的binlog命令
 /usr/bin/mysqlbinlog --no-defaults -v --base64-output=decode-rows binlog.000001 > nov3.sql

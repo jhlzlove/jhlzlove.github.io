@@ -7,6 +7,7 @@ music:
   server: netease
   type: song
   id: 440403990
+abbrlink: 6d89a949
 ---
 
 Java 框架之 SSH 整理，之前有过把 SSH（Spring、Spring MVC、Hibernate） 的项目重构为 SSM 的经历，把一些东西整理一下，做个记录。

@@ -30,7 +30,7 @@ Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘�
   - [用户、用户组命令](#用户用户组命令)
   - [tar 包常用命令](#tar-包常用命令)
   - [挂载文件命令](#挂载文件命令)
-  - [任务计划(Crontab)命令：](#任务计划crontab命令)
+  - [任务计划(Crontab)命令](#任务计划crontab命令)
   - [Ubantu软件相关命令](#ubantu软件相关命令)
 
 <!-- /code_chunk_output -->
@@ -271,12 +271,13 @@ tar -xvf
 # -C 可以在解压的时候指定解压路径
 tar -C 指定路径 -zvxf 目标包文件
 ```
+
 ## 挂载文件命令
 
 mount 设备 挂载目录
 umount 设备 挂载目录
 
-## 任务计划(Crontab)命令：
+## 任务计划(Crontab)命令
 
 ![定时任务说明](https://www.linuxprobe.com/wp-content/uploads/2016/09/crontab.png)
 在以上各个字段中，还可以使用以下特殊字符：
@@ -298,6 +299,7 @@ crontab中的command尽量使用绝对路径，否则会经常因为路径错误
 %在crontab文件中表示“换行”，因此假如脚本或命令含有%,需要使用" \\% "来进行转义。
 
 **Crontab配置实例:**
+
 ```bash{.line-numbers}
 #每一分钟执行一次command（因cron默认每1分钟扫描一次，因此全为*即可）
 *    *    *    *    *  command

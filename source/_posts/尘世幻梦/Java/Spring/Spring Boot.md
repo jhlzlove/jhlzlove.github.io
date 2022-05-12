@@ -8,6 +8,7 @@ music:
   server: netease
   type: song
   id: 440403990
+abbrlink: a541262a
 ---
 
 
@@ -18,12 +19,12 @@ music:
 <!-- code_chunk_output -->
 
 - [Spring Boot](#spring-boot)
-  - [注解](#注解)
-  - [SpringBoot 处理异常](#springboot-处理异常)
-  - [日志打印](#日志打印)
-  - [Maven打包(打包之前先清理(clean)再打包(package))](#maven打包打包之前先清理clean再打包package)
-  - [SpringBoot解决跨域问题](#springboot解决跨域问题)
-  - [Jasypt 加密](#jasypt-加密)
+  - [1. 注解](#1-注解)
+  - [2. SpringBoot 处理异常](#2-springboot-处理异常)
+  - [3. 日志打印](#3-日志打印)
+  - [4. Maven打包(打包之前先清理(clean)再打包(package))](#4-maven打包打包之前先清理clean再打包package)
+  - [5. SpringBoot解决跨域问题](#5-springboot解决跨域问题)
+  - [6. Jasypt 加密](#6-jasypt-加密)
 
 <!-- /code_chunk_output -->
 
@@ -31,7 +32,7 @@ music:
 
 使用 IDEA 工具创建 SpringBoot 项目时，可以使用阿里云的快速构建模板：`https://start.aliyun.com/`，速度还可以。
 
-### 注解
+### 1. 注解
 
 1. @SpringBootApplication注解：是一个组合注解，包含多个注解；
 特定注解：修饰注解的注解，@Target:指定注解的范围；@Retention:指定注解什么时候有效。
@@ -44,11 +45,11 @@ music:
 3. @Component 只能创建单个对象
 4. @MapperScan 扫描Dao层接口，交给Spring工厂去创建对象
 
-### SpringBoot 处理异常
+### 2. SpringBoot 处理异常
 
 在自定义的全局异常类上加入 @ControllerAdvice，配合 @ExceptionHandler 处理指定的异常。
 
-### 日志打印
+### 3. 日志打印
 
 Spring Boot自带日志插件可以用来输出SQL语句;Spring Boot默认是 info 级别的日志。可以使用 `logging.level` 修改日志级别。
 
@@ -65,7 +66,7 @@ logging:
     path: XXX/
 ```
 
-### Maven打包(打包之前先清理(clean)再打包(package))
+### 4. Maven打包(打包之前先清理(clean)再打包(package))
 
 1. jar
     Spring Boot默认的打包方式就是 jar 包，使用maven的方式打包即可。
@@ -119,7 +120,7 @@ logging:
 
 后台方式启动 jar 包：`nohup java -jar jar包名称 &`
 
-### SpringBoot解决跨域问题
+### 5. SpringBoot解决跨域问题
 
 1. @CrossOrigin 注解用在 Controller 类中，所有方法允许其它域中进行访问
 2. 全局配置：写一个配置类（正式项目一般都是此方式）
@@ -142,7 +143,7 @@ public class CorsConfig {
 }
 ```
 
-### Jasypt 加密
+### 6. Jasypt 加密
 
 引入相关依赖，编写加密配置；
 

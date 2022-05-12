@@ -43,10 +43,6 @@ yay 是使用 AUR 的命令，它类似于 CentOS 的 yum，也是 Arch/Manjaro 
 
 {% link 详细了解::https://zhuanlan.zhihu.com/p/363666022 %}
 
-```bash{.line-numbers}
-
-```
-
 yay 常用命令：
 
 ```bash{.line-numbers}

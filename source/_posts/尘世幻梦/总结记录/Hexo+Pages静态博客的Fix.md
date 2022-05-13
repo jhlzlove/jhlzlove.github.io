@@ -38,15 +38,15 @@ abbrlink: 61d2e814
 在博客目录的配置文件 `blog/_config.yml` 中找到对应 `permalink` 标签，修改即可。下面是示例：
 
   ```yml{.line-numbers}
-    # permalink: :year/:month/:day/:title/
-    permalink: p/:abbrlink/
-    abbrlink: 
-      alg: crc32  #算法： crc16(default) and crc32
-      rep: hex    #进制： dec(default) and hex
-    permalink_defaults:
-    pretty_urls:
-      trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
-      trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  # permalink: :year/:month/:day/:title/
+  permalink: p/:abbrlink/
+  abbrlink: 
+    alg: crc32  #算法： crc16(default) and crc32
+    rep: hex    #进制： dec(default) and hex
+  permalink_defaults:
+  pretty_urls:
+    trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+    trailing_html: true # Set to false to remove trailing '.html' from permalinks
   ```
 
 不同算法、进制生成的链接格式如下：

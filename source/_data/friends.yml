@@ -1,12 +1,12 @@
 - friends: # 分组标题
-  description:  # 分组描述
+  description: 剑笑红尘 # 分组描述
   items:
-    - title: 诗酒趁年华 # 名称
+    - title: 江湖浪子 # 名称
       avatar: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/avatar/avatar.jpeg # 头像
       url: https://jhlzlove.github.io # 链接 
       screenshot: # 截图
-      keywords: # 关键词
-      description: # 描述
+      keywords: 江湖 # 关键词
+      description: 浮萍漂泊本无根 天涯游子君莫问 # 描述
 
 - groupGitHub:
   title: 来自 GitHub 的朋友

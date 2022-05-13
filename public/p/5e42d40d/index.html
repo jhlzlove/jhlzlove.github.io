@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/5.0.0-alpha.9'>
+    <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/5.0.0-rc.110'>
   <meta name="generator" content="Hexo 5.4.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
@@ -24,9 +24,9 @@
   <!-- Custom Files headBegin begin-->
   
   <!-- Custom Files headBegin end-->
-  <link rel="preload" href="/css/style.ad0b2f1a.css" as="style">
-  <link rel="preload" href="/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/style.43ac097c.css" as="style">
+  <link rel="preload" href="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
         <link rel="alternate" href="/atom.xml" title="浮萍一叶" type="application/atom+xml">
@@ -43,12 +43,12 @@
 <meta property="og:site_name" content="浮萍一叶">
 <meta property="og:description" content="Linux 下基本有源码编译安装、二进制包解压缩安装（可以使用包管理器安装，方便快捷）、Appimage格式的软件等，当然，最后一个一般在服务器上也用不到。整理这个就是为了防止有一天浪子在没网络的时候，比较无聊，搭个环境在本地写写代码什么的。我相信大家都喜欢使用各个系统相应的包管理工具（rpm、apt-get、pacman等）直接安装，一个字，爽的不要不要的，不需要担心，缺啥装啥就行了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jhlzlove.github.io/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="og:image" content="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-03-27T08:07:44.221Z">
 <meta property="article:modified_time" content="2022-05-10T11:22:54.577Z">
 <meta property="article:author" content="江湖浪子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jhlzlove.github.io/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta name="twitter:image" content="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   </pjax>
   <style>
     /* 首屏样式 */
@@ -82,7 +82,7 @@
   --color-h6: #666;
   --color-p: #444;
   --color-list: #666;
-  --color-list-hl: #36ac91;
+  --color-list-hl: #30ad91;
   --color-meta: #888;
   --color-read-bkg: #e0d8c8;
   --color-read-post: #f8f1e2;
@@ -103,7 +103,7 @@
   background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-  background: #44d7b6;
+  background: #3dd9b6;
   cursor: pointer;
   border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -126,7 +126,7 @@ html >::-webkit-scrollbar-track-piece {
   background: transparent;
 }
 html >::-webkit-scrollbar-thumb {
-  background: #44d7b6;
+  background: #3dd9b6;
   cursor: pointer;
   border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -155,7 +155,7 @@ body.modal-active {
   }
 }
 a {
-  color: #1b79c4;
+  color: #2092ec;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.28s ease;
@@ -277,103 +277,6 @@ button {
   position: relative;
   overflow: hidden;
   margin-bottom: -100px;
-}
-.cover-wrapper .cover-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-}
-.cover-wrapper .cover-bg.lazyload:not(.loaded) {
-  opacity: 0;
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-}
-.cover-wrapper .cover-bg.lazyload.loaded {
-  animation-delay: 0s;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
-  animation-name: fadeIn;
-}
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    -khtml-transform: scale(1.02);
-    -moz-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
-  }
 }
 .cover-wrapper .cover-body {
   z-index: 1;
@@ -795,36 +698,36 @@ button {
   }
   :root:not([color-scheme]) {
     --color-site-body: #121212;
-    --color-read-bkg: #222;
-    --color-read-post: #333;
-    --color-site-bg: #222;
-    --color-site-inner: #eee;
-    --color-site-footer: #aaa;
-    --color-card: #333;
-    --color-text: #eee;
-    --color-block: #3a3a3a;
-    --color-codeblock: #343a3c;
+    --color-read-bkg: #1f1f1f;
+    --color-read-post: #262626;
+    --color-site-bg: #1f1f1f;
+    --color-site-inner: rgba(238,238,238,0.871);
+    --color-site-footer: rgba(170,170,170,0.871);
+    --color-card: #262626;
+    --color-text: rgba(238,238,238,0.871);
+    --color-block: #434343;
+    --color-codeblock: #1f1f1f;
     --color-inlinecode: #d56d28;
-    --color-h1: #eee;
-    --color-h2: #eee;
-    --color-h3: #ddd;
-    --color-h4: #ddd;
-    --color-h5: #ddd;
-    --color-h6: #ddd;
-    --color-p: #bbb;
-    --color-list: #aaa;
-    --color-list-hl: #69dfc4;
-    --color-meta: #888;
-    --color-link: #888;
+    --color-h1: rgba(255,255,255,0.871);
+    --color-h2: rgba(255,255,255,0.871);
+    --color-h3: rgba(255,255,255,0.6);
+    --color-h4: rgba(255,255,255,0.6);
+    --color-h5: rgba(255,255,255,0.6);
+    --color-h6: rgba(255,255,255,0.6);
+    --color-p: rgba(217,217,217,0.871);
+    --color-list: rgba(217,217,217,0.871);
+    --color-list-hl: #63e0c4;
+    --color-meta: rgba(191,191,191,0.871);
+    --color-link: rgba(191,191,191,0.871);
   }
   :root:not([color-scheme]) img {
     filter: brightness(70%) !important;
   }
   :root:not([color-scheme]) .blur {
-    background: rgba(34,34,34,0.9) !important;
+    background: rgba(31,31,31,0.9) !important;
   }
   :root:not([color-scheme]) .white-box.blur {
-    background: rgba(51,51,51,0.9) !important;
+    background: rgba(38,38,38,0.9) !important;
   }
   :root:not([color-scheme]) .nav-main .u-search-input {
     background: var(--color-card) !important;
@@ -866,36 +769,36 @@ button {
 }
 [color-scheme='dark'] {
   --color-site-body: #121212;
-  --color-read-bkg: #222;
-  --color-read-post: #333;
-  --color-site-bg: #222;
-  --color-site-inner: #eee;
-  --color-site-footer: #aaa;
-  --color-card: #333;
-  --color-text: #eee;
-  --color-block: #3a3a3a;
-  --color-codeblock: #343a3c;
+  --color-read-bkg: #1f1f1f;
+  --color-read-post: #262626;
+  --color-site-bg: #1f1f1f;
+  --color-site-inner: rgba(238,238,238,0.871);
+  --color-site-footer: rgba(170,170,170,0.871);
+  --color-card: #262626;
+  --color-text: rgba(238,238,238,0.871);
+  --color-block: #434343;
+  --color-codeblock: #1f1f1f;
   --color-inlinecode: #d56d28;
-  --color-h1: #eee;
-  --color-h2: #eee;
-  --color-h3: #ddd;
-  --color-h4: #ddd;
-  --color-h5: #ddd;
-  --color-h6: #ddd;
-  --color-p: #bbb;
-  --color-list: #aaa;
-  --color-list-hl: #69dfc4;
-  --color-meta: #888;
-  --color-link: #888;
+  --color-h1: rgba(255,255,255,0.871);
+  --color-h2: rgba(255,255,255,0.871);
+  --color-h3: rgba(255,255,255,0.6);
+  --color-h4: rgba(255,255,255,0.6);
+  --color-h5: rgba(255,255,255,0.6);
+  --color-h6: rgba(255,255,255,0.6);
+  --color-p: rgba(217,217,217,0.871);
+  --color-list: rgba(217,217,217,0.871);
+  --color-list-hl: #63e0c4;
+  --color-meta: rgba(191,191,191,0.871);
+  --color-link: rgba(191,191,191,0.871);
 }
 [color-scheme='dark'] img {
   filter: brightness(70%) !important;
 }
 [color-scheme='dark'] .blur {
-  background: rgba(34,34,34,0.9) !important;
+  background: rgba(31,31,31,0.9) !important;
 }
 [color-scheme='dark'] .white-box.blur {
-  background: rgba(51,51,51,0.9) !important;
+  background: rgba(38,38,38,0.9) !important;
 }
 [color-scheme='dark'] .nav-main .u-search-input {
   background: var(--color-card) !important;
@@ -941,14 +844,14 @@ button {
 }
 @font-face {
   font-family: 'UbuntuMono';
-  src: url("/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
+  src: url("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
+  font-family: 'Varela Round';
+  src: url("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
@@ -1152,7 +1055,7 @@ button {
   -moz-transition: all 0.28s ease;
   -o-transition: all 0.28s ease;
   -ms-transition: all 0.28s ease;
-  color: #44d7b6;
+  color: #3dd9b6;
 }
 .l_header .switcher >li >a:hover {
   border: none;
@@ -1332,7 +1235,7 @@ ul.m-pc >li>a {
 }
 ul.m-pc >li>a:active,
 ul.m-pc >li>a.active {
-  border-bottom: 2px solid #44d7b6;
+  border-bottom: 2px solid #3dd9b6;
 }
 ul.m-pc li:hover >ul.list-v,
 ul.list-v li:hover >ul.list-v {
@@ -1471,7 +1374,7 @@ ul.list-v >li>a:hover {
 }
 .l_header ul.nav-list-h>li >a:active,
 .l_header ul.nav-list-h>li >a.active {
-  color: #44d7b6;
+  color: #3dd9b6;
 }
 .l_header ul.nav-list-h>li:hover>a {
   color: var(--color-list-hl);
@@ -1782,8 +1685,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.ad0b2f1a.css" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.ad0b2f1a.css"></noscript>
+  <link rel="stylesheet" href="/css/style.43ac097c.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.43ac097c.css"></noscript>
     <script>
       let userColorScheme=localStorage.getItem("color-scheme")
       if(userColorScheme){
@@ -1861,9 +1764,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   volantis.GLOBAL_CONFIG ={
     debug: false,
-    cdn: {"js":{"app":"/js/app.3690b000.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.1d2dd3e0.js","rightMenus":"/js/plugins/rightMenus.48fa1716.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.06d40311.js"},"css":{"style":"/css/style.ad0b2f1a.css"}},
-    default: {"avatar":"/media/placeholder/avatar/round/3442075.svg","link":"/media/placeholder/link/8f277b4ee0ecd.svg","cover":"/media/placeholder/cover/76b86c0226ffd.svg","image":"/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1652430741544),
+    cdn: {"js":{"app":"/js/app.3690b000.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.1d2dd3e0.js","rightMenus":"/js/plugins/rightMenus.48fa1716.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.06d40311.js"},"css":{"style":"/css/style.43ac097c.css"}},
+    default: {"avatar":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/avatar/round/3442075.svg","link":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/cover/76b86c0226ffd.svg","image":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/image/2659360.svg"},
+    lastupdate: new Date(1652435676317),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -1879,15 +1782,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       }
     },
     plugins: {
-      message: {"enable":true,"css":"https://unpkg.com/volantis-static@0.0.1649552113628/libs/izitoast/dist/css/iziToast.min.css","js":"https://unpkg.com/volantis-static@0.0.1649552113628/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
-      fancybox: {"css":"/libs/@fancyapps/ui/dist/fancybox.css","js":"/libs/@fancyapps/ui/dist/fancybox.umd.js"},
+      message: {"enable":true,"css":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/izitoast/dist/css/iziToast.min.css","js":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/izitoast/dist/js/iziToast.min.js","icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      fancybox: {"css":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/@fancyapps/ui/dist/fancybox.css","js":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       aplayer: {
         id: 1852892593,
-        enable:true
+        enable:null
       },
       rightmenu: {
         faicon: "fa",
-        layout: ["home","hr","source_theme","hr","print","darkmode","reading","music"],
+        layout: ["home","hr","hr","source_theme","hr","print","darkmode","reading","music"],
         music_alwaysShow: true,
         customPicUrl: {"enable":false,"old":null,"new":null}
       },      
@@ -2129,7 +2032,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   volantis.import = {
     jQuery: () => {
       if (typeof jQuery == "undefined") {
-        return volantis.js("/libs/jquery/dist/jquery.min.js")
+        return volantis.js("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/jquery/dist/jquery.min.js")
       } else {
         return new Promise(resolve => {
           resolve()
@@ -2254,11 +2157,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   /******************************************************************************/
   //图像加载出错时的处理
   function errorImgAvatar(img) {
-    img.src = "/media/placeholder/avatar/round/3442075.svg";
+    img.src = "https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/avatar/round/3442075.svg";
     img.onerror = null;
   }
   function errorImgCover(img) {
-    img.src = "/media/placeholder/cover/76b86c0226ffd.svg";
+    img.src = "https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/cover/76b86c0226ffd.svg";
     img.onerror = null;
   }
   /******************************************************************************/
@@ -2276,7 +2179,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin begin-->
     
     <!-- Custom Files bodyBegin end-->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2600,7 +2503,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://jhlzlove.github.io/p/5e42d40d/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="浮萍一叶">
@@ -2729,41 +2632,41 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <!-- /code_chunk_output -->
 
 <p><strong>TIPS：</strong> 如果下面的命令不是使用超级用户执行的话，可能不能安装成功，这个时候可以添加 <code>sudo</code> 选项进行重试。</p>
-<div class="story post-story"><h2 id="Linux源码安装"><a href="#Linux源码安装" class="headerlink" title="Linux源码安装"></a>Linux源码安装</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1. Redis"></a>1. Redis</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://redis.io/download/"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://redis.io/download/</p></div></a></div>
+<div class="story post-story"><h2 id="Linux源码安装"><a href="#Linux源码安装" class="headerlink" title="Linux源码安装"></a>Linux源码安装</h2><h3 id="1-Redis"><a href="#1-Redis" class="headerlink" title="1. Redis"></a>1. Redis</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://redis.io/download/"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://redis.io/download/</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 安装编译 redis 需要的工具</span><br><span class="line">sudo yum -y install gcc automake autoconf libtool make</span><br><span class="line"># 进入解压目录，进行编译，直到编译完成</span><br><span class="line">make MALLOC=libc</span><br><span class="line"># 安装到指定路径</span><br><span class="line">make install PREFIX=/usr/local/redis</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Redis 的默认的配置文件在源码解压后的目录中</p>
 </blockquote>
-<h3 id="2-Git"><a href="#2-Git" class="headerlink" title="2. Git"></a>2. Git</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://github.com/git/git/tags"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://github.com/git/git/tags</p></div></a></div>
+<h3 id="2-Git"><a href="#2-Git" class="headerlink" title="2. Git"></a>2. Git</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://github.com/git/git/tags"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://github.com/git/git/tags</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 安装编译 Git 源码的工具和依赖</span><br><span class="line">yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br><span class="line"></span><br><span class="line"># 卸载旧版 Git</span><br><span class="line">yum -y remove git</span><br><span class="line"></span><br><span class="line"># 编译 Git 源码</span><br><span class="line">make prefix=/usr/local/git all</span><br><span class="line"></span><br><span class="line"># 安装git至指定的路径</span><br><span class="line">make prefix=/usr/local/git install</span><br><span class="line"></span><br><span class="line"># 配置环境变量： 编辑文件 vi /etc/profile </span><br><span class="line">export PATH=$PATH:/usr/local/git/bin</span><br><span class="line"></span><br><span class="line"># 刷新环境变量</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line"># 查看Git是否安装完成</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-RabbitMQ"><a href="#3-RabbitMQ" class="headerlink" title="3. RabbitMQ"></a>3. RabbitMQ</h3><p>RabbitMQ 是使用 Erlang 语言编写的中间件，联想一下 Java，我们可以猜到它需要先搭建 Erlang 环境。主要是这个环境需要编译源码，RabbitMQ 本身官网提供了二进制压缩包。</p>
-<div class="tag link"><a class="link-card" title="Erlang源码下载" target="_blank" rel="noopener" href="https://www.erlang.org/downloads"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Erlang源码下载</p><p class="url">https://www.erlang.org/downloads</p></div></a></div>
+<div class="tag link"><a class="link-card" title="Erlang源码下载" target="_blank" rel="noopener" href="https://www.erlang.org/downloads"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Erlang源码下载</p><p class="url">https://www.erlang.org/downloads</p></div></a></div>
 
 <p>一、Erlang环境搭建</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 安装编译 Erlang 的相关依赖</span><br><span class="line">yum install gcc glibc-devel make ncurses-devel openssl-devel xmlto</span><br><span class="line"># 解压源码包</span><br><span class="line">tar -zxvf otp_src_24.1.7.tar.gz</span><br><span class="line"></span><br><span class="line">cd otp_src_24.1.7/</span><br><span class="line"># 指定安装目录</span><br><span class="line">./configure --prefix=/usr/local/erlang</span><br><span class="line"># 编译安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"># 测试安装是否成功：</span><br><span class="line">cd /usr/local/erlang/bin/</span><br><span class="line">./erl</span><br><span class="line"></span><br><span class="line"># 安装成功后配置环境变量 vim /etc/profile</span><br><span class="line">export PATH=$PATH:/usr/local/erlang/bin</span><br><span class="line"></span><br><span class="line"># 添加完成保存退出，刷新使其生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 
 <p>二、安装Rabbitmq</p>
 <p>通过第一步，我们就搭建好了 Erlang 环境，接下来就是安装 RabbitMQ 了，这个还是比较简单的，因为它已经编译好了，我们可以下载直接配置，无需编译。</p>
-<div class="tag link"><a class="link-card" title="二进制文件包下载" target="_blank" rel="noopener" href="https://www.rabbitmq.com/install-generic-unix.html"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制文件包下载</p><p class="url">https://www.rabbitmq.com/install-generic-unix.html</p></div></a></div>
+<div class="tag link"><a class="link-card" title="二进制文件包下载" target="_blank" rel="noopener" href="https://www.rabbitmq.com/install-generic-unix.html"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制文件包下载</p><p class="url">https://www.rabbitmq.com/install-generic-unix.html</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 解压</span><br><span class="line">tar -Jxvf rabbitmq-server-generic-unix-3.9.11.tar.xz</span><br><span class="line"># 移动</span><br><span class="line">mv rabbitmq_server-3.9.11 /usr/local/rabbitmq</span><br><span class="line"></span><br><span class="line"># 添加环境变量：vim /etc/profile</span><br><span class="line">export PATH=$PATH:/usr/local/rabbitmq/sbin</span><br><span class="line"># 刷新变量</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-Python"><a href="#4-Python" class="headerlink" title="4. Python"></a>4. Python</h3><p>Linux 下基本不需要配置 Python 的环境，有个别的 ISO 镜像版本比较老，比如 CentOS7 的 mini ISO 镜像是2.x的，我们可以通过各大系统的包管理工具进行安装，也可以自己通过源码编译安装。</p>
-<div class="tag link"><a class="link-card" title="源码下载" target="_blank" rel="noopener" href="https://www.python.org/downloads/"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">源码下载</p><p class="url">https://www.python.org/downloads/</p></div></a></div>
+<div class="tag link"><a class="link-card" title="源码下载" target="_blank" rel="noopener" href="https://www.python.org/downloads/"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">源码下载</p><p class="url">https://www.python.org/downloads/</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 安装相关工具和依赖</span><br><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel</span><br><span class="line"></span><br><span class="line"># 解压压缩包</span><br><span class="line">tar -zxvf Python-3.10.2.tgz  </span><br><span class="line"># 进入文件夹</span><br><span class="line">cd Python-3.10.2</span><br><span class="line"></span><br><span class="line"># 配置安装位置</span><br><span class="line">./configure prefix=/usr/local/python3</span><br><span class="line"></span><br><span class="line"># 编译并安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"># 使用 python3 验证是否安装成功</span><br><span class="line">python3 -V</span><br><span class="line"></span><br><span class="line">#添加python3的软链接 </span><br><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3 </span><br><span class="line"></span><br><span class="line">#添加 pip3 的软链接 </span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-Nginx"><a href="#5-Nginx" class="headerlink" title="5. Nginx"></a>5. Nginx</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://nginx.org/en/"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://nginx.org/en/</p></div></a></div>
+<h3 id="5-Nginx"><a href="#5-Nginx" class="headerlink" title="5. Nginx"></a>5. Nginx</h3><div class="tag link"><a class="link-card" title="官网源码下载" target="_blank" rel="noopener" href="https://nginx.org/en/"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">官网源码下载</p><p class="url">https://nginx.org/en/</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 解压</span><br><span class="line">tar -zvxf nginx-1.20.2.tar.gz</span><br><span class="line"># 配置安装路径</span><br><span class="line">./configure --prefix=/usr/local/nginx</span><br><span class="line"># 编译安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"># 进入安装目录查看是否安装成功</span><br><span class="line">cd /usr/local/nginx</span><br><span class="line"></span><br><span class="line"># 启动 停止 重启</span><br><span class="line">./nginx start</span><br><span class="line">./nginx -s stop</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-Btop"><a href="#6-Btop" class="headerlink" title="6. Btop++"></a>6. Btop++</h3><p>Btop++ 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和统计资料，界面美观，使用简单。</p>
-<div class="tag link"><a class="link-card" title="Github地址" target="_blank" rel="noopener" href="https://github.com/aristocratos/btop"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Github地址</p><p class="url">https://github.com/aristocratos/btop</p></div></a></div>
-<div class="tag link"><a class="link-card" title="Gitee同步仓库" target="_blank" rel="noopener" href="https://gitee.com/mirrors/btop"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Gitee同步仓库</p><p class="url">https://gitee.com/mirrors/btop</p></div></a></div>
+<div class="tag link"><a class="link-card" title="Github地址" target="_blank" rel="noopener" href="https://github.com/aristocratos/btop"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Github地址</p><p class="url">https://github.com/aristocratos/btop</p></div></a></div>
+<div class="tag link"><a class="link-card" title="Gitee同步仓库" target="_blank" rel="noopener" href="https://gitee.com/mirrors/btop"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Gitee同步仓库</p><p class="url">https://gitee.com/mirrors/btop</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 安装、升级相关依赖工具</span><br><span class="line">yum install coreutils sed build-essential -y</span><br><span class="line">yum install centos-release-scl -y</span><br><span class="line">yum install devtoolset-10 -y</span><br><span class="line">scl enable devtoolset-10 bash </span><br><span class="line">echo &quot;source /opt/rh/devtoolset-10/enable&quot; &gt;&gt; /etc/profile</span><br><span class="line"></span><br><span class="line"># 克隆源码编译安装</span><br><span class="line">git clone https://gitee.com/mirrors/btop.git</span><br><span class="line">cd btop</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
@@ -2771,13 +2674,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h3 id="1-Docker"><a href="#1-Docker" class="headerlink" title="1. Docker"></a>1. Docker</h3><p>推荐使用包管理工具安装 Docker 和 docker-compose。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 如果有旧版本先卸载</span><br><span class="line">yum remove docker docker-common docker-selinux docker-engine</span><br><span class="line"></span><br><span class="line"># 安装相关工具</span><br><span class="line">yum install -y yum-utils</span><br><span class="line"># 添加阿里云镜像</span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"># 安装 docker 引擎</span><br><span class="line">yum install docker-ce</span><br><span class="line"></span><br><span class="line"># 设置开机自启</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-Node"><a href="#2-Node" class="headerlink" title="2. Node"></a>2. Node</h3><div class="tag link"><a class="link-card" title="二进制包下载" target="_blank" rel="noopener" href="https://nodejs.org/en/download/"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制包下载</p><p class="url">https://nodejs.org/en/download/</p></div></a></div>
+<h3 id="2-Node"><a href="#2-Node" class="headerlink" title="2. Node"></a>2. Node</h3><div class="tag link"><a class="link-card" title="二进制包下载" target="_blank" rel="noopener" href="https://nodejs.org/en/download/"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制包下载</p><p class="url">https://nodejs.org/en/download/</p></div></a></div>
 
 <p>Node 可以直接下载二进制文件，解压配置环境变量即可。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 官网下载二进制压缩包是 xz 结尾的，和下面的镜像站下载的略有不同</span><br><span class="line">tar -Jvxf node-v16.15.0-linux-x64.tar.xz -C /usr/local/</span><br><span class="line">cd /usr/local/</span><br><span class="line">mv node-v16.15.0-linux-x64/ nodejs</span><br><span class="line">ln -s /usr/local/nodejs/bin/node /usr/local/bin</span><br><span class="line">ln -s /usr/local/nodejs/bin/npm /usr/local/bin</span><br></pre></td></tr></table></figure>
 
 <p>如果嫌弃官网下载速度慢可以到这里 <a target="_blank" rel="noopener" href="https://registry.npmmirror.com/binary.html?path=node/latest-v16.x/">https://registry.npmmirror.com/binary.html?path=node/latest-v16.x/</a> 选择合适的版本下载。</p>
-<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3. MongoDB"></a>3. MongoDB</h3><div class="tag link"><a class="link-card" title="二进制包下载" target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community"><div class="left"><img src="/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制包下载</p><p class="url">https://www.mongodb.com/try/download/community</p></div></a></div>
+<h3 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3. MongoDB"></a>3. MongoDB</h3><div class="tag link"><a class="link-card" title="二进制包下载" target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community"><div class="left"><img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">二进制包下载</p><p class="url">https://www.mongodb.com/try/download/community</p></div></a></div>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 解压</span><br><span class="line">tar -xvzf mongodb-linux-x86_64-rhel62-3.4.22.tgz</span><br><span class="line">mv mongodb-linux-x86_64-rhel62-3.4.22 /usr/local/mongodb</span><br><span class="line"></span><br><span class="line"># 创建数据存储目录、工作目录以及日志目录</span><br><span class="line">cd /usr/local/mongodb/</span><br><span class="line">mkdir conf</span><br><span class="line">mkdir data</span><br><span class="line">mkdir logs</span><br><span class="line"></span><br><span class="line"># 添加环境变量: vim /etc/profile</span><br><span class="line">export MONGODB_HOME=/usr/local/mongodb  </span><br><span class="line">export PATH=$PATH:$MONGODB_HOME/bin</span><br><span class="line"></span><br><span class="line"># 使环境变量生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 
@@ -2854,6 +2757,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-05-10T19:22:54+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年5月10日</p>
+  </a>
+</div>
+
+        
+      
+        
           
 
         
@@ -2870,7 +2783,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           >
           
-            <img src="/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           
         </a>
       
@@ -2882,7 +2795,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           >
           
-            <img src="/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           
         </a>
       
@@ -2894,7 +2807,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           >
           
-            <img src="/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           
         </a>
       
@@ -2939,24 +2852,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/p/8ecfb81b/'>
-          <p class='title'>ArchLinux/Manjaro安装一些常用软件<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>整理一些 ArchLinux 中常用的软件。
+        <a class='next' href='/p/817c7d82/'>
+          <p class='title'>Linux常用命令<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Linux 常用命令总结。这些东西还是要常敲的，记住的总会忘记。
+
+
+Linux 常用命令
 
 
 
 
-
-
-
-1. AUR 助手 yay
-2. 中文输入法
-3. 字体
-4. 网易云音乐
-5. 火焰截图
-6. 谷歌浏览器
-7. Tim、微信
-8....</p>
+Linux 常用命令
+命令
+几个目录介绍
+VI 编辑器常用命令
+权限
+Shell 脚本组成命令...</p>
         </a>
       
     </div>
@@ -2970,7 +2881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
   
-  <article class="post white-box shadow" id="comments">
+  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
       <meta itemprop="discussionUrl" content="/p/5e42d40d/index.html#comments">
     </span>
@@ -2997,7 +2908,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-  <section class="widget toc-wrapper shadow desktop mobile pjax" id="toc-div" >
+  <section class="widget toc-wrapper shadow floatable blur desktop mobile pjax" id="toc-div" >
     
   <header>
     
@@ -3090,23 +3001,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="aplayer-container">
           
 
-  
-    <meting-js
-      theme='#1BCDFC'
-      autoplay='true'
-      volume='0.7'
-      loop='all'
-      order='list'
-      fixed='false'
-      list-max-height='320px'
-      server='netease'
-      type='search'
-      id='1852892593'
-      list-folded='true'>
-    </meting-js>
-  
 
-
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper" itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          
+            
+          
+            
+          
+            
+          
         </div>
       
     
@@ -3116,9 +3024,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
     
       
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fa-solid fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fa-solid fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
         本站使用
-        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/dev" target="_blank" class="codename">Volantis</a>
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/5.0.0-rc.110" target="_blank" class="codename">Volantis</a>
         作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © since 2017 XXX</a></p>
+
+        </div>
       
     
     <!-- Custom Files footer begin-->
@@ -3146,7 +3068,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   
-  volantis.css("/libs/@fortawesome/fontawesome-free/css/all.min.css");
+  volantis.css("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/@fortawesome/fontawesome-free/css/all.min.css");
   
   
   
@@ -3159,134 +3081,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script src="/js/app.3690b000.js"></script>
 
-
-
-  
-  
-  
-  <div id="rightmenu-wrapper">
-    <ul class="list-v rightmenu" id="rightmenu-content">
-      <li class='navigation menuNavigation-Content'>
-        <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
-        <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
-        <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
-        <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
-      </li>
-      <li class='option menuOption-Content'>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copyText'>
-          
-          <i class='fa fa-copy fa-fw'></i> 复制文本
-        </span>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copyPaste'>
-          
-          <i class='fa fa-paste fa-fw mR12'></i> 粘贴文本
-        </span>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copySelect'>
-          
-          <i class='fa fa-object-ungroup fa-fw mR12'></i> 全选文本
-        </span>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copyCut'>
-          
-          <i class='fa fa-cut fa-fw mR12'></i> 剪切文本
-        </span>
-        
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='searchWord'>
-          
-          <i class='fa fa-search fa-fw'></i> 站内搜索
-        </span>
-        
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='openTab'>
-          
-          <i class='fa fa-external-link-square-alt fa-fw mR12'></i> 在新标签页打开
-        </span>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copySrc'>
-          
-          <i class='fa fa-image fa-fw mR12'></i> 复制图片地址
-        </span>
-        <span class='vlts-menu opt fix-cursor-default menu-Option' data-fn-type='copyImg'>
-          
-          <i class='fa fa-images fa-fw mR12'></i> 复制图片文件
-        </span>
-      </li>
-      
-        
-      
-        
-          <hr class="menuLoad-Content">
-        
-      
-        
-          
-    <li class="menuLoad-Content">
-      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/hexo-theme-volantis/
-        
-        
-        
-        
-          id="https:githubcomvolantis-xhexo-theme-volantis"
-        
-      >
-        <i class='fa fa-code-branch fa-fw'></i> 主题源码
-      </a>
-    </li>
-  
-        
-      
-        
-          <hr class="menuLoad-Content">
-        
-      
-        
-          <li class='option menuOption-Content'>
-            <span class='vlts-menu opt fix-cursor-default' id='printHtml'>
-              <i class='fa fa-print fa-fw '></i> 打印页面
-            </span>
-          </li>  
-        
-      
-        
-          <li class='option menuOption-Content'>
-            <span class='vlts-menu opt fix-cursor-default toggle-mode-btn' id='menuDarkBtn'>
-              <i class='fa fa-moon fa-fw '></i> 暗黑模式
-            </span>
-          </li>
-        
-      
-        
-          <li class='option menuOption-Content'>
-            <span class='vlts-menu opt fix-cursor-default' id='readingModel'>
-              <i class='fa fa-book-open fa-fw '></i> 阅读模式
-            </span>
-          </li>  
-        
-      
-        
-          <div id="menuMusic">
-            <li class='music name menuOption-Content'>
-              <p class='nav music-title fix-cursor-default'></p>
-            </li>
-            <li class='music ctrl'>
-              <a class='nav icon-only backward fix-cursor-default' href="/" onclick="return false;" title="backward"><i class='fa fa-step-backward fa-fw'></i></a>
-              <a class='nav icon-only toggle fix-cursor-default' href="/" onclick="return false;" title="toggle"><i class='fa fa-play fa-fw'></i></a>
-              <a class='nav icon-only forward fix-cursor-default' href="/" onclick="return false;" title="forward"><i class='fa fa-step-forward fa-fw'></i></a>
-            </li>
-            <li class='music volume'>
-              <div class='nav volume'>
-                <div class="aplayer-volume-bar-wrap">
-                  <div class="aplayer-volume-bar fix-cursor-pointer">
-                    <div class="aplayer-volume"></div>
-                    <i class='left fa fa-volume-off fa-fw'></i>
-                    <i class='right fa fa-volume-up fa-fw'></i>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </div>
-        
-      
-    </ul>
-  </div>
-  <script>volantis.js('/js/plugins/rightMenu.1d2dd3e0.js')</script>
 
 
 
@@ -3795,7 +3589,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script defer src="/libs/vanilla-lazyload/dist/lazyload.min.js"></script>
+  <script defer src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/vanilla-lazyload/dist/lazyload.min.js"></script>
 <script>
   // https://www.npmjs.com/package/vanilla-lazyload
   // Set the options globally
@@ -3834,88 +3628,39 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 	hoverDelay: 0
   };
 </script>
-<script defer src="/libs/flying-pages/flying-pages.min.js"></script>
+<script defer src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/flying-pages/flying-pages.min.js"></script>
 
 
 
 
 
-
-
-  <script>
-  volantis.css("/libs/aplayer/dist/APlayer.min.css");
-  (async () => {
-    // APlayer 需要在  MetingJS 之前加载
-    await volantis.js("/libs/aplayer/dist/APlayer.min.js")
-    await volantis.js("/libs/meting/dist/Meting.min.js")
-  
-    // 右键 music 需要在 APlayer  MetingJS 之后加载
-    await volantis.js('/js/plugins/aplayer.dbe5eea9.js')
-  
-  })();
-
-  function SetAPlayerPlugin(){
-    let Metings = document.querySelectorAll('meting-js');
-    if (Metings.length === 0) {return;};
-    if (Metings[0].aplayer && Metings[0].aplayer.on) {
-      // improve the accessibility https://web.dev/button-name/
-      document.querySelectorAll(".aplayer-icon-menu").forEach(e=>{
-        e.setAttribute("aria-label","Aplayer Menu")
-      })
-      // message see: /layout/_plugins/message/script.ejs
-      
-        try {
-          setTimeout(() => {
-            Metings.forEach((item, index) => {
-              const aplayerItem = item.aplayer; if(!aplayerItem) return;
-              const rightAplayerCheck = 'true' === 'true'
-                && item.meta.id === '1852892593'; 
-              if(rightAplayerCheck) RightMenuAplayer.checkAPlayer();
-              if(aplayerItem.events.events.play.every(item => {return item.name !== 'messagePlay'})) {
-                aplayerItem.on('play', function messagePlay() {
-                  let index = aplayerItem.list.index;
-                  let title = aplayerItem.list.audios[index].title;
-                  let artist = aplayerItem.list.audios[index].artist;
-                  setTimeout(() => {
-                    VolantisApp.message('音乐通知', title + ' - ' + artist, {
-                      icon: 'fa-solid fa-play',
-                      transitionIn: 'flipInX',
-                      transitionOut: 'flipOutX'
-                    });
-                  }, 100)
-                });
-              }
-              if(aplayerItem.events.events.pause.every(item => {return item.name !== 'messagePause'})) {
-                aplayerItem.on('pause', function messagePause() {
-                  let index = aplayerItem.list.index;
-                  let title = aplayerItem.list.audios[index].title;
-                  let artist = aplayerItem.list.audios[index].artist;
-                  setTimeout(() => {
-                    // 歌曲播放结束也会触发 pause 事件，为了避免错误提示，等待一会儿
-                    if(aplayerItem.paused) {
-                      VolantisApp.message('音乐通知', title + ' - ' + artist, {
-                        icon: 'fa-solid fa-pause',
-                        transitionIn: 'flipInX',
-                        transitionOut: 'flipOutX'
-                      });
-                    }
-                  }, 100)
-                });
-              }
-            });
-          }, 500)
-        } catch (error) { console.error(error); }
-      
-    }else{
-      volantis.requestAnimationFrame(SetAPlayerPlugin)
+   <script type="text/javascript">
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal("#l_main .reveal", {
+      distance: "32px",
+      duration: "800",
+      interval: "20",
+      scale: "1",
+      easing: "ease-out",
+    });
+  }
+  function init_scrollrebeal() {
+    if (typeof ScrollReveal == "undefined") {
+      volantis.requestAnimationFrame(init_scrollrebeal);
+    } else {
+      pjax_scrollrebeal();
     }
   }
-
-  document.addEventListener("DOMContentLoaded", ()=>{
-    SetAPlayerPlugin();
-  });
-  volantis.pjax.push(SetAPlayerPlugin);
+  volantis.js("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/scrollreveal/dist/scrollreveal.min.js");
+  document.addEventListener("DOMContentLoaded", init_scrollrebeal);
+  volantis.pjax.push(
+    pjax_scrollrebeal,
+    "pjax_scrollrebeal",
+    (setRequestAnimationFrame = false)
+  );
 </script>
+
+
 
 
 
@@ -4059,7 +3804,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://cdn.jsdelivr.net/gh/prettywinter/dist/images/background/bg03.png","https://cdn.jsdelivr.net/gh/prettywinter/dist/images/background/bg01.png","https://cdn.jsdelivr.net/gh/prettywinter/dist/images/background/bg02.jpg"];
+  let imgs = ["https://cdn.jsdelivr.net/gh/prettywinter/dist/images/background/bg03.png","https://cdn.jsdelivr.net/gh/prettywinter/dist/images/background/bg01.png"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4116,8 +3861,8 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   <script>
   function load_swiper() {
     if (!document.querySelectorAll(".swiper-container")[0]) return;
-    volantis.css("/libs/swiper/swiper-bundle.min.css");
-    volantis.js("/libs/swiper/swiper-bundle.min.js").then(() => {
+    volantis.css("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/swiper/swiper-bundle.min.css");
+    volantis.js("https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/swiper/swiper-bundle.min.js").then(() => {
       pjax_swiper();
     });
   }
@@ -4358,7 +4103,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"浮萍一叶","url":"http://jhlzlove.github.io/","logo":{"@type":"ImageObject","url":"/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"江湖浪子","image":{"@type":"ImageObject","url":"/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://jhlzlove.github.io/","sameAs":["https://github.com/volantis-x"],"description":"浮萍漂泊本无根 天涯游子君莫问"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://jhlzlove.github.io/","name":"浮萍一叶"}},{"@type":"ListItem","position":2,"item":{"@id":"http://jhlzlove.github.io/categories/Linux/","name":"Linux"}},{"@type":"ListItem","position":2,"item":{"@id":"http://jhlzlove.github.io/categories/Linux/软件安装/","name":"软件安装"}},{"@type":"ListItem","position":3,"item":{"@id":"http://jhlzlove.github.io/p/5e42d40d/","name":"Linux安装软件"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Linux安装软件","description":"Linux 下基本有源码编译安装、二进制包解压缩安装（可以使用包管理器安装，方便快捷）、Appimage格式的软件等，当然，最后一个一般在服务器上也用不到。整理这个就是为了防止有一天浪子在没网络的时候，比较无聊，搭个环境在本地写写代码什么的。我相信大家都喜欢使用各个系统相应的包管理工具（rpm、apt-get、pacman等）直接安装，一个字，爽的不要不要的，不需要担心，缺啥装啥就行了。","datePublished":"2022-03-27T08:07:44.221Z","dateModified":"2022-05-10T11:22:54.577Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://jhlzlove.github.io/p/5e42d40d/"},"author":{"@type":"Person","name":"江湖浪子","image":{"@type":"ImageObject","url":"/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://jhlzlove.github.io/"},"publisher":{"@type":"Organization","name":"浮萍一叶","logo":{"@type":"ImageObject","url":"/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://jhlzlove.github.io/p/5e42d40d/","wordCount":195,"articleSection":"Linux","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/linux.jpeg","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"浮萍一叶","url":"http://jhlzlove.github.io/","logo":{"@type":"ImageObject","url":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"江湖浪子","image":{"@type":"ImageObject","url":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://jhlzlove.github.io/","sameAs":["https://github.com/volantis-x"],"description":"浮萍漂泊本无根 天涯游子君莫问"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://jhlzlove.github.io/","name":"浮萍一叶"}},{"@type":"ListItem","position":2,"item":{"@id":"http://jhlzlove.github.io/categories/Linux/","name":"Linux"}},{"@type":"ListItem","position":2,"item":{"@id":"http://jhlzlove.github.io/categories/Linux/软件安装/","name":"软件安装"}},{"@type":"ListItem","position":3,"item":{"@id":"http://jhlzlove.github.io/p/5e42d40d/","name":"Linux安装软件"}}]},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Linux安装软件","description":"Linux 下基本有源码编译安装、二进制包解压缩安装（可以使用包管理器安装，方便快捷）、Appimage格式的软件等，当然，最后一个一般在服务器上也用不到。整理这个就是为了防止有一天浪子在没网络的时候，比较无聊，搭个环境在本地写写代码什么的。我相信大家都喜欢使用各个系统相应的包管理工具（rpm、apt-get、pacman等）直接安装，一个字，爽的不要不要的，不需要担心，缺啥装啥就行了。","datePublished":"2022-03-27T08:07:44.221Z","dateModified":"2022-05-10T11:22:54.577Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://jhlzlove.github.io/p/5e42d40d/"},"author":{"@type":"Person","name":"江湖浪子","image":{"@type":"ImageObject","url":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://jhlzlove.github.io/"},"publisher":{"@type":"Organization","name":"浮萍一叶","logo":{"@type":"ImageObject","url":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://jhlzlove.github.io/p/5e42d40d/","wordCount":195,"articleSection":"Linux","image":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/linux.jpeg","width":1024,"height":768}}]</script>
 
 
 
@@ -4373,7 +4118,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-<script src="/libs/pjax/pjax.min.js"></script>
+<script src="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/libs/pjax/pjax.min.js"></script>
 
 
 <script>

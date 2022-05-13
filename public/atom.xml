@@ -151,6 +151,59 @@
   </entry>
   
   <entry>
+    <title>Java开发错误总结</title>
+    <link href="http://jhlzlove.github.io/p/c0eb5989/"/>
+    <id>http://jhlzlove.github.io/p/c0eb5989/</id>
+    <published>2022-03-27T08:07:44.221Z</published>
+    <updated>2022-05-12T06:49:16.282Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;整理一些在Java开发中遇到的一些问题，不定时更新。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://jhlzlove.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows相关问题</title>
+    <link href="http://jhlzlove.github.io/p/undefined/"/>
+    <id>http://jhlzlove.github.io/p/undefined/</id>
+    <published>2022-03-27T08:07:44.221Z</published>
+    <updated>2022-05-11T11:35:26.434Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;window 使用技巧合集，更新待续&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="window" scheme="http://jhlzlove.github.io/categories/window/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在移动硬盘或者U盘中安装 wintogo 系统</title>
+    <link href="http://jhlzlove.github.io/p/72ef477f/"/>
+    <id>http://jhlzlove.github.io/p/72ef477f/</id>
+    <published>2022-03-27T08:07:44.221Z</published>
+    <updated>2022-05-11T10:56:14.943Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;tag link&quot;&gt;&lt;a class=&quot;link-card&quot; title=&quot;参考网址&quot; href=&quot;https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN&quot;&gt;&lt;div class=&quot;left&quot;&gt;&lt;img src=&quot;https://unpkg.com/volantis-static@0.0.1649552113628/media/org.volantis/logo/256/safari.png&quot;/&gt;&lt;/div&gt;&lt;div class=&quot;right&quot;&gt;&lt;p class=&quot;text&quot;&gt;参考网址&lt;/p&gt;&lt;p class=&quot;url&quot;&gt;https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="window" scheme="http://jhlzlove.github.io/categories/window/"/>
+    
+    <category term="系统" scheme="http://jhlzlove.github.io/categories/window/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>ArchLinux安装教程</title>
     <link href="http://jhlzlove.github.io/p/8166567f/"/>
     <id>http://jhlzlove.github.io/p/8166567f/</id>
@@ -168,6 +221,27 @@
     <category term="Arch" scheme="http://jhlzlove.github.io/categories/Linux/Arch/"/>
     
     <category term="教程" scheme="http://jhlzlove.github.io/categories/Linux/Arch/%E6%95%99%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux/Manjaro安装一些常用软件</title>
+    <link href="http://jhlzlove.github.io/p/8ecfb81b/"/>
+    <id>http://jhlzlove.github.io/p/8ecfb81b/</id>
+    <published>2022-03-27T08:07:44.221Z</published>
+    <updated>2022-05-12T08:04:45.581Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;整理一些 ArchLinux 中常用的软件。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="http://jhlzlove.github.io/categories/Linux/"/>
+    
+    <category term="Arch" scheme="http://jhlzlove.github.io/categories/Linux/Arch/"/>
+    
+    <category term="软件安装" scheme="http://jhlzlove.github.io/categories/Linux/Arch/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
     
     
   </entry>
@@ -213,27 +287,6 @@
   </entry>
   
   <entry>
-    <title>ArchLinux/Manjaro安装一些常用软件</title>
-    <link href="http://jhlzlove.github.io/p/8ecfb81b/"/>
-    <id>http://jhlzlove.github.io/p/8ecfb81b/</id>
-    <published>2022-03-27T08:07:44.221Z</published>
-    <updated>2022-05-12T08:04:45.581Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;整理一些 ArchLinux 中常用的软件。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="http://jhlzlove.github.io/categories/Linux/"/>
-    
-    <category term="Arch" scheme="http://jhlzlove.github.io/categories/Linux/Arch/"/>
-    
-    <category term="软件安装" scheme="http://jhlzlove.github.io/categories/Linux/Arch/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Linux常用命令</title>
     <link href="http://jhlzlove.github.io/p/817c7d82/"/>
     <id>http://jhlzlove.github.io/p/817c7d82/</id>
@@ -246,59 +299,6 @@
     
     
     <category term="Linux" scheme="http://jhlzlove.github.io/categories/Linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java开发错误总结</title>
-    <link href="http://jhlzlove.github.io/p/c0eb5989/"/>
-    <id>http://jhlzlove.github.io/p/c0eb5989/</id>
-    <published>2022-03-27T08:07:44.221Z</published>
-    <updated>2022-05-12T06:49:16.282Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;整理一些在Java开发中遇到的一些问题，不定时更新。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="http://jhlzlove.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows相关问题</title>
-    <link href="http://jhlzlove.github.io/p/undefined/"/>
-    <id>http://jhlzlove.github.io/p/undefined/</id>
-    <published>2022-03-27T08:07:44.221Z</published>
-    <updated>2022-05-11T11:35:26.434Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;window 使用技巧合集，更新待续&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="window" scheme="http://jhlzlove.github.io/categories/window/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在移动硬盘或者U盘中安装 wintogo 系统</title>
-    <link href="http://jhlzlove.github.io/p/72ef477f/"/>
-    <id>http://jhlzlove.github.io/p/72ef477f/</id>
-    <published>2022-03-27T08:07:44.221Z</published>
-    <updated>2022-05-11T10:56:14.943Z</updated>
-    
-    
-    <summary type="html">&lt;div class=&quot;tag link&quot;&gt;&lt;a class=&quot;link-card&quot; title=&quot;参考网址&quot; href=&quot;https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN&quot;&gt;&lt;div class=&quot;left&quot;&gt;&lt;img src=&quot;/media/org.volantis/logo/256/safari.png&quot;/&gt;&lt;/div&gt;&lt;div class=&quot;right&quot;&gt;&lt;p class=&quot;text&quot;&gt;参考网址&lt;/p&gt;&lt;p class=&quot;url&quot;&gt;https://social.technet.microsoft.com/Forums/zh-CN/d80d0f84-72f4-46ee-9f66-bd7412bf13eb/229142030920174win10319953247923433350133823620687259912021420013?forum=win10itprogeneralCN&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;</summary>
-    
-    
-    
-    <category term="window" scheme="http://jhlzlove.github.io/categories/window/"/>
-    
-    <category term="系统" scheme="http://jhlzlove.github.io/categories/window/%E7%B3%BB%E7%BB%9F/"/>
     
     
   </entry>
@@ -338,6 +338,23 @@
   </entry>
   
   <entry>
+    <title>Rust</title>
+    <link href="http://jhlzlove.github.io/p/a49987e3/"/>
+    <id>http://jhlzlove.github.io/p/a49987e3/</id>
+    <published>2022-03-27T08:07:44.221Z</published>
+    <updated>2022-05-11T08:31:49.303Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Rust浅尝辄止。官网教程链接：&lt;a href=&quot;https://www.rust-lang.org/zh-CN/learn&quot;&gt;https://www.rust-lang.org/zh-CN/learn&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="rust" scheme="http://jhlzlove.github.io/categories/rust/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Java面试题总结</title>
     <link href="http://jhlzlove.github.io/p/3dcb9ab5/"/>
     <id>http://jhlzlove.github.io/p/3dcb9ab5/</id>
@@ -359,23 +376,6 @@
     <category term="Java" scheme="http://jhlzlove.github.io/categories/Java/"/>
     
     <category term="面试题" scheme="http://jhlzlove.github.io/categories/Java/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Rust</title>
-    <link href="http://jhlzlove.github.io/p/a49987e3/"/>
-    <id>http://jhlzlove.github.io/p/a49987e3/</id>
-    <published>2022-03-27T08:07:44.221Z</published>
-    <updated>2022-05-11T08:31:49.303Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;Rust浅尝辄止。官网教程链接：&lt;a href=&quot;https://www.rust-lang.org/zh-CN/learn&quot;&gt;https://www.rust-lang.org/zh-CN/learn&lt;/a&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="rust" scheme="http://jhlzlove.github.io/categories/rust/"/>
     
     
   </entry>

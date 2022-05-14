@@ -7,7 +7,6 @@ categories:
 cover: true
 headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/blogcover/工欲善其事.jpg
 abbrlink: 6a7c9e96
-pin: true
 ---
 
 Window开发环境的配置，主要是Windows平台，Linux非常简单，末尾给一个示例。如果你的 Linux 是 CentOS 或者 Ubantu，使用 rpm、deb 安装一般不用配置环境变量。

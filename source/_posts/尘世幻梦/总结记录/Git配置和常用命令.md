@@ -1,5 +1,5 @@
 ---
-title: Git配置和常用明林
+title: Git配置和常用命令
 categories: Git
 cover: true
 headimg: https://cdn.jsdelivr.net/gh/prettywinter/dist/images/doc/git_command.jpg

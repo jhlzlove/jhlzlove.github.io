@@ -7,9 +7,3 @@
       screenshot: # 截图
       keywords:  # 关键词
       description:  # 描述
-
-- groupGitHub:
-  title: 来自 GitHub 的朋友
-  description: '以下友链通过 [GitHub Issue](https://github.com/jhlzlove/friends/issues/) 提交，按 issue 最后更新时间排序：'
-  api: https://issues-api.vercel.app
-  repo: jhlzlove/friends

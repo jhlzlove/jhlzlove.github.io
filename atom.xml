@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>浮萍一叶</title>
+  <icon>http://jhlzlove.github.io/icon.png</icon>
+  
+  <link href="http://jhlzlove.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://jhlzlove.github.io/"/>
+  <updated>2022-07-12T08:35:46.000Z</updated>
+  <id>http://jhlzlove.github.io/</id>
+  
+  <author>
+    <name>江湖浪子</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>生产力工具整理</title>
+    <link href="http://jhlzlove.github.io/p/6a7c9e96/"/>
+    <id>http://jhlzlove.github.io/p/6a7c9e96/</id>
+    <published>2022-07-12T08:35:46.000Z</published>
+    <updated>2022-07-12T08:35:46.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Window开发环境的配置，以及一些工具网站、插件、软件的整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="配置" scheme="http://jhlzlove.github.io/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue3的新特性</title>
+    <link href="http://jhlzlove.github.io/p/911bf4f7/"/>
+    <id>http://jhlzlove.github.io/p/911bf4f7/</id>
+    <published>2022-07-07T01:45:39.000Z</published>
+    <updated>2022-07-07T01:45:39.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;story post-story&quot;&gt;&lt;h2 id=&quot;新的特性、代码升级&quot;&gt;&lt;a href=&quot;#新的特性、代码升级&quot; class=&quot;headerlink&quot; title=&quot;新的特性、代码升级&quot;&gt;&lt;/a&gt;新的特性、代码升级&lt;/h2&gt;&lt;p&gt;vue3</summary>
+        
+      
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="Vue3" scheme="http://jhlzlove.github.io/tags/Vue3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题总结</title>
+    <link href="http://jhlzlove.github.io/p/3dcb9ab5/"/>
+    <id>http://jhlzlove.github.io/p/3dcb9ab5/</id>
+    <published>2022-07-07T01:45:39.000Z</published>
+    <updated>2022-07-07T01:45:39.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;把他人分享的一些面试题整理一下，这份面试题适合有工作经验的人去看，并且从实际中去获取答案，直接去找参考答案的方式浪子并不推荐。对于应付面试的可以，多了解一些东西都是有好处的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="杂谈" scheme="http://jhlzlove.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+    <category term="面试题" scheme="http://jhlzlove.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开发的经验之谈</title>
+    <link href="http://jhlzlove.github.io/p/ff20cb9c/"/>
+    <id>http://jhlzlove.github.io/p/ff20cb9c/</id>
+    <published>2022-07-07T01:45:39.000Z</published>
+    <updated>2022-07-07T01:45:39.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本人从事 Java</summary>
+        
+      
+    
+    
+    
+    <category term="杂谈" scheme="http://jhlzlove.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PostgreSQL总结</title>
+    <link href="http://jhlzlove.github.io/p/3bb7479a/"/>
+    <id>http://jhlzlove.github.io/p/3bb7479a/</id>
+    <published>2022-06-28T09:08:18.000Z</published>
+    <updated>2022-06-29T03:56:15.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;PostgreSQL 是一个功能强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多可安全存储和扩展最复杂数据工作负载的特性。PostgreSQL 的起源可以追溯到 1986 年，作为POSTGRES项目的一部分，并在核心平台上进行了 30 多年的积极开发。&lt;/p&gt;
+&lt;p&gt;PostgreSQL 因其久经考验的架构、可靠性、数据完整性、强大的功能集、可扩展性以及软件背后的开源社区致力于始终如一地提供高性能和创新解决方案而赢得了良好的声誉。PostgreSQL 可在所有主要操作系统一直符合 ACID，并具有强大的附加组件，例如流行的PostGIS地理空间数据库扩展器。毫不奇怪，PostgreSQL 已成为许多人和组织选择的开源关系数据库。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="数据库" scheme="http://jhlzlove.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="PostgreSQL" scheme="http://jhlzlove.github.io/tags/PostgreSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构</title>
+    <link href="http://jhlzlove.github.io/p/79666db/"/>
+    <id>http://jhlzlove.github.io/p/79666db/</id>
+    <published>2022-06-28T09:08:18.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;对于数据结构的理解和学习，浪子建议扔掉自己掌握的语言的相关实现。所谓数据结构，是一种抽象化的存储数据的结构，它是一种抽象的概念，数据结构最最重要的是它的特性，特性决定了我们在开发中的选择，进而影响程序的运行效率和占用空间。学好数据结构的相关知识，开发中在合适的地方采用合适数据结构，能够让我们的程序更好的运行。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="数据结构，概念" scheme="http://jhlzlove.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E6%A6%82%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu安装常用软件</title>
+    <link href="http://jhlzlove.github.io/p/3f0cd8be/"/>
+    <id>http://jhlzlove.github.io/p/3f0cd8be/</id>
+    <published>2022-06-28T09:08:18.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Ubuntu 中提供了方便的包管理工具 &lt;a href=&quot;https://www.computerhope.com/unix/apt-get.htm&quot;&gt;apt-get&lt;/a&gt;，安装软件什么的非常好用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="http://jhlzlove.github.io/categories/Linux/"/>
+    
+    
+    <category term="软件安装" scheme="http://jhlzlove.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
+    
+    <category term="Ubuntu" scheme="http://jhlzlove.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github Action自动部署Hexo静态博客</title>
+    <link href="http://jhlzlove.github.io/p/9e08f2ab/"/>
+    <id>http://jhlzlove.github.io/p/9e08f2ab/</id>
+    <published>2022-05-23T02:32:00.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;使用 Github Pages 服务和 Hexo 搭建的个人静态博客网站，集成 Github Action 完成自动部署。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="http://jhlzlove.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="Github Action" scheme="http://jhlzlove.github.io/tags/Github-Action/"/>
+    
+    <category term="Hexo" scheme="http://jhlzlove.github.io/tags/Hexo/"/>
+    
+    <category term="CD" scheme="http://jhlzlove.github.io/tags/CD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://jhlzlove.github.io/p/4a17b156/"/>
+    <id>http://jhlzlove.github.io/p/4a17b156/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-05-22T07:11:59.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Docker入门</title>
+    <link href="http://jhlzlove.github.io/p/8699d8dc/"/>
+    <id>http://jhlzlove.github.io/p/8699d8dc/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-07-07T05:50:27.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在大数据时代，应用往往需要撑得住高并发，实现高可用，还要具备高性能，由此演变出了集群架构，但是集群的配置和管理成了一个问题。随着集群架构的发展，目前 k8s 和 docker 这两个容器化的产品大杀四方，其中 docker 的学习成本低，上手快，在企业中应用较多。本篇文章写写入门操作。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="docker" scheme="http://jhlzlove.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker安装常用服务</title>
+    <link href="http://jhlzlove.github.io/p/4bb2ae3a/"/>
+    <id>http://jhlzlove.github.io/p/4bb2ae3a/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-07-14T01:56:42.254Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;使用 Docker 安装常用服务，可以在 &lt;a href=&quot;https://registry.hub.docker.com/&quot;&gt;Docker Hub&lt;/a&gt; 上搜索镜像以及版本进行拉取&amp;#x2F;下载。带有 &lt;code&gt;offical image&lt;/code&gt; 标签的都是官方镜像。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="docker" scheme="http://jhlzlove.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ElasticSearch + Kibana总结</title>
+    <link href="http://jhlzlove.github.io/p/b279c45e/"/>
+    <id>http://jhlzlove.github.io/p/b279c45e/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-13T04:34:35.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;ES的内部使用了Restful API，并且使用的 JSON 语法，对程序员友好；Kibana提供了友好的客户端操作页面，具有相关的语法提示、图表分析等强大的功能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="ELK" scheme="http://jhlzlove.github.io/tags/ELK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM</title>
+    <link href="http://jhlzlove.github.io/p/32178238/"/>
+    <id>http://jhlzlove.github.io/p/32178238/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-13T04:34:35.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;JVM&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="JVM" scheme="http://jhlzlove.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java项目整合配置</title>
+    <link href="http://jhlzlove.github.io/p/ff45fa2/"/>
+    <id>http://jhlzlove.github.io/p/ff45fa2/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;来一部二手秘籍罩你闯荡四方。基于 SpringBoot 的两种常用整合配置，注释含混不清的、缺少的以后有空整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB总结整理</title>
+    <link href="http://jhlzlove.github.io/p/1a01f215/"/>
+    <id>http://jhlzlove.github.io/p/1a01f215/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-13T04:34:35.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;MongoDB整理，5.x版本。与之前的版本有些许变化。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="MongoDB" scheme="http://jhlzlove.github.io/tags/MongoDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL整理总结</title>
+    <link href="http://jhlzlove.github.io/p/9e299c6e/"/>
+    <id>http://jhlzlove.github.io/p/9e299c6e/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-07-13T09:28:42.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;MySQL数据库整理&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="MySQL" scheme="http://jhlzlove.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="http://jhlzlove.github.io/p/f7ba05e4/"/>
+    <id>http://jhlzlove.github.io/p/f7ba05e4/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;!-- @import &quot;[TOC]&quot; {cmd=&quot;toc&quot; depthFrom=2 depthTo=4 orderedList=false} --&gt;
+
+&lt;!-- code_chunk_output</summary>
+        
+      
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="Nginx" scheme="http://jhlzlove.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Node相关整理</title>
+    <link href="http://jhlzlove.github.io/p/141e2e2d/"/>
+    <id>http://jhlzlove.github.io/p/141e2e2d/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-07-07T05:50:27.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Node相关总结&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="Node" scheme="http://jhlzlove.github.io/tags/Node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ整理</title>
+    <link href="http://jhlzlove.github.io/p/2d31c306/"/>
+    <id>http://jhlzlove.github.io/p/2d31c306/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-13T04:34:35.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;RabbitMQ整理&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="RabbitMQ" scheme="http://jhlzlove.github.io/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis数据库</title>
+    <link href="http://jhlzlove.github.io/p/eb52a7b2/"/>
+    <id>http://jhlzlove.github.io/p/eb52a7b2/</id>
+    <published>2022-05-22T07:11:59.000Z</published>
+    <updated>2022-06-30T08:55:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Redis 是一个 Key-Value 结构的开源（BSD）的非关系型数据库。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="skill" scheme="http://jhlzlove.github.io/categories/skill/"/>
+    
+    
+    <category term="数据库" scheme="http://jhlzlove.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="Redis" scheme="http://jhlzlove.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+</feed>

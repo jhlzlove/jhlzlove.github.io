@@ -1,0 +1,708 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Basic Programming：线程与并发 - 浮生一梦</title>
+
+  
+    <meta name="description" content="线程与进程 当我们谈论线程时，通常指的是在一个进程中独立运行的执行单元。一个进程可以包含多个线程，每个线程共享进程的资源，但有自己的独立执行流。线程是操作系统进行调度和执行的基本单位，它使得程序能够同时执行多个任务。 我们要明白线程存在的问题：  线程并不便宜。线程需要进行上下文切换，成本很高。 线程不是无限的。可启动的线程数量受到底层 操作系统 的限制。在服务器端应用程序中，这可能会造成严重瓶">
+<meta property="og:type" content="website">
+<meta property="og:title" content="线程与并发">
+<meta property="og:url" content="https://jhlzlove.github.io/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="线程与进程 当我们谈论线程时，通常指的是在一个进程中独立运行的执行单元。一个进程可以包含多个线程，每个线程共享进程的资源，但有自己的独立执行流。线程是操作系统进行调度和执行的基本单位，它使得程序能够同时执行多个任务。 我们要明白线程存在的问题：  线程并不便宜。线程需要进行上下文切换，成本很高。 线程不是无限的。可启动的线程数量受到底层 操作系统 的限制。在服务器端应用程序中，这可能会造成严重瓶">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-16T02:53:54.000Z">
+<meta property="article:modified_time" content="2024-02-04T07:01:11.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="wiki" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://yesofcorsa.com/wp-content/uploads/2019/05/4K-Binary-Code-Wallpaper-Free.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><div class="main" ff="title">Basic Programming</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/编程后花园/Programming/" placeholder="在 programming 中搜索..."></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">通用概念</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html#start"><span class="toc-text">编程小知识</span></a><a class="link active" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91.html"><span class="toc-text">线程与并发</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5/%E6%97%B6%E5%8C%BA%E5%92%8CUnicode.html"><span class="toc-text">时区和 Unicode</span></a></div><div class="widget-header dis-select"><span class="name">数据结构与算法</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="toc-text">数据结构</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="toc-text">数据结构-堆</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="toc-text">数据结构-散列表</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="toc-text">数据结构-二叉树</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="toc-text">基础排序算法</span></a></div><div class="widget-header dis-select"><span class="name">设计模式</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="toc-text">设计模式-单例模式</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="toc-text">设计模式-策略模式</span></a></div></widget>
+
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：编程后花园</span></div><div class="widget-body"><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/index.html"><span class="title">Java</span><span class="excerpt">Java 生态的相关知识总结。</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title">Kotlin</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Rust/Rust.html"><span class="title">Rust</span><span class="excerpt">Rust 学习</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/index.html"><span class="title">前端知识大杂烩</span><span class="excerpt">前端相关知识</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>Kotlin</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/%E8%AE%A4%E8%AF%86Kotlin%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>认识 Kotlin 的作用域函数</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>编程小知识</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-二叉树</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-堆</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-散列表</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>基础排序算法</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-单例模式</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-策略模式</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html">Basic Programming</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2024-02-04T07:01:11.000Z">2024-02-04</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>线程与并发</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="线程与进程"><a class="markdownIt-Anchor" href="#线程与进程"></a> 线程与进程</h2>
+<p>当我们谈论线程时，通常指的是在一个进程中独立运行的执行单元。一个进程可以包含多个线程，每个线程共享进程的资源，但有自己的独立执行流。线程是操作系统进行调度和执行的基本单位，它使得程序能够同时执行多个任务。</p>
+<p>我们要明白线程存在的问题：</p>
+<ul>
+<li>线程并不便宜。线程需要进行上下文切换，成本很高。</li>
+<li>线程不是无限的。可启动的线程数量受到底层 <strong>操作系统</strong> 的限制。在服务器端应用程序中，这可能会造成严重瓶颈。</li>
+<li>线程并非总是可用。有些平台（如 JavaScript）甚至不支持线程。</li>
+<li>线程并非易事。调试线程和避免竞态条件是我们在多线程编程中经常遇到的问题。</li>
+</ul>
+<h3 id="多线程的两种模型"><a class="markdownIt-Anchor" href="#多线程的两种模型"></a> 多线程的两种模型</h3>
+<ol>
+<li><strong>一对一模型（One-to-One Model）</strong>：
+<ul>
+<li>每个用户级（语言）线程（应用线程）都映射到一个内核级（系统）线程。</li>
+<li>优点：充分利用多核处理器，可以实现真正的并行执行。</li>
+<li>缺点：线程的创建和切换开销较大，特别是在线程数量较多的情况下。</li>
+</ul>
+</li>
+<li><strong>M:N 模型</strong></li>
+</ol>
+<h3 id="并发模型"><a class="markdownIt-Anchor" href="#并发模型"></a> 并发模型</h3>
+<ul>
+<li>
+<p>OS 线程：</p>
+<ul>
+<li>无需改变编程模型，线程间同步困难，性能开销大</li>
+<li>线程池可以降低一些成本，但难以支撑大量1O绑定的工作</li>
+</ul>
+</li>
+<li>
+<p>Event-driven 模型：</p>
+<ul>
+<li>与回调函数一起用，可能高效</li>
+<li>非线性的控制流，数据流和错误传播难以追踪</li>
+</ul>
+</li>
+<li>
+<p>Coroutines:</p>
+<ul>
+<li>类似线程，无需改变编程模型</li>
+<li>类似 async，支持大量任务</li>
+<li>抽象掉了底层细节（这对系统编程、自定义运行时的实现很重要）</li>
+</ul>
+</li>
+<li>
+<p>Actor 模型：</p>
+<ul>
+<li>将所有并发计算划分为 actor，消息通信易出错</li>
+<li>可以有效的实现 actor 模型，但许多实际问题没解决（例如流控制、重试逻辑）</li>
+</ul>
+</li>
+<li>
+<p>Async/await、Future</p>
+</li>
+</ul>
+<h3 id="futures-promises-and-others"><a class="markdownIt-Anchor" href="#futures-promises-and-others"></a> Futures, promises, and others</h3>
+<p>这种方法要求我们在编程方式上做出一系列改变：</p>
+<p>不同的编程模型。与回调类似，编程模式也从自上而下的命令式方法转变为链式调用的组合模式。在这种模式下，循环、异常处理等传统程序结构通常不再有效。</p>
+<p>不同的应用程序接口。通常需要学习全新的 API，如 <code>thenCompose</code> 或 <code>thenAccept</code>，不同平台的 API 也会有所不同。</p>
+<p>特定的返回类型。返回类型脱离了我们所需的实际数据，而是返回一个新的 <code>Promise</code> 类型，这就需要进行内省。</p>
+<p>错误处理可能很复杂。错误的传播和链式的调用并不总是那么直观、简单。</p>
+<h3 id="reactive-extensions-反应式扩展"><a class="markdownIt-Anchor" href="#reactive-extensions-反应式扩展"></a> Reactive extensions 反应式扩展</h3>
+<p>Reactive Extensions (Rx) 由 Erik Meijer 引入 C#。虽然它在 <code>.NET</code> 平台上得到了广泛应用，但直到 Netflix 将其移植到 Java 并命名为 RxJava 后，它才真正成为主流应用。从那时起，包括 JavaScript (RxJS) 在内的各种平台都有了大量的移植版本。</p>
+<p>Rx 背后的理念是转向所谓的可观察流，即我们现在将数据视为流（无限量的数据），而这些流是可以被观察到的。在实际应用中，Rx 就是简单的观察者模式（Observer Pattern），通过一系列扩展，我们可以对数据进行操作。</p>
+<p>在方法上，它与 Futures 非常相似，但我们可以认为 Futures 返回的是离散元素，而 Rx 返回的是数据流。不过，与前者类似，它也为我们的编程模型引入了一种全新的思维方式，著名的说法是</p>
+<p>“everything is a stream, and it’s observable”。</p>
+<p>这意味着处理问题的方式不同了，与我们在编写同步代码时的习惯相比，有了很大的转变。与 Futures 相比，Rx 的一个好处是，由于它已被移植到如此多的平台上，因此无论我们使用 C#、Java、JavaScript 或任何其他可用 Rx 的语言，一般都能找到一致的 API 体验。此外，Rx 在错误处理方面也确实引入了一种更好的方法。</p>
+<h3 id="coroutines"><a class="markdownIt-Anchor" href="#coroutines"></a> Coroutines</h3>
+<p>Coroutines：“协程” 是一种可暂停计算的思想，即函数可以在某个时刻暂停执行，稍后再恢复执行。</p>
+<p>协程的好处之一是，对于开发人员来说，编写非阻塞代码与编写阻塞代码本质上是一样的。编程模型本身并没有真正改变。</p>
+<p>Coroutines 并不是一个新概念，它们已经存在了几十年，在 Go 等其他编程语言中很流行。</p>
+<blockquote>
+<p>以上内容摘自 Kotlin 官网。</p>
+</blockquote>
+<h2 id="多线程可能出现的问题"><a class="markdownIt-Anchor" href="#多线程可能出现的问题"></a> 多线程可能出现的问题</h2>
+<p>执行的顺序无法预测、死锁、竞态条件……</p>
+<h3 id="锁"><a class="markdownIt-Anchor" href="#锁"></a> 锁</h3>
+<p>在计算机编程中，锁是一种同步机制，用于控制多个线程或进程对共享资源的访问。锁的目的是防止多个线程同时修改共享数据，从而避免数据不一致或其他并发问题。</p>
+<p>以下是几种常见的锁类型：</p>
+<ol>
+<li>
+<p><strong>互斥锁（Mutex）</strong>：互斥锁是最基本的锁类型之一。在任意时刻，只有一个线程可以持有互斥锁，其他线程必须等待释放锁后才能获取。这确保了同一时刻只有一个线程能够执行被保护的代码段，从而防止数据竞争。</p>
+</li>
+<li>
+<p><strong>信号量（Semaphore）</strong>：信号量是一种更为通用的同步机制，它不仅可以用于互斥访问共享资源，还可以用于控制同时访问某个资源的线程数量。信号量维护一个计数器，线程可以通过执行P（等待）和V（释放）操作来增加或减少计数器的值。</p>
+</li>
+<li>
+<p><strong>读写锁（Read-Write Lock）</strong>：读写锁允许多个线程同时读取共享资源，但只有一个线程能够写入。这种锁适用于读操作频繁而写操作较少的场景，提高了并发性。</p>
+</li>
+<li>
+<p><strong>自旋锁（Spin Lock）</strong>：自旋锁是一种不会使线程进入睡眠状态的锁。当线程尝试获取自旋锁而发现它已经被其他线程持有时，它会一直循环（自旋）等待，直到锁被释放。</p>
+</li>
+<li>
+<p><strong>条件变量（Condition Variable）</strong>：条件变量通常与互斥锁一起使用，用于线程之间的通信。一个线程可以等待某个条件成立，而另一个线程在满足条件时发送信号，唤醒等待的线程。</p>
+</li>
+<li>
+<p><strong>轻量级锁（Lightweight Locking）</strong>：通常用于优化互斥锁的性能。轻量级锁尝试通过使用一些特殊的硬件指令来减小锁的开销，以提高并发性。</p>
+</li>
+<li>
+<p><strong>递归锁（Recursive Lock）</strong>：允许同一线程多次获取同一个锁，而不会造成死锁。线程必须释放相同数量的锁，才能完全释放锁。</p>
+</li>
+</ol>
+<p>锁在多线程和多进程编程中都是非常重要的工具，正确地使用锁可以确保程序在并发环境下的正确性和稳定性。然而，不正确的锁使用可能导致死锁、竞态条件等问题，因此在设计并发程序时需要谨慎使用和管理锁。</p>
+<p>除了上述提到的常见锁类型之外，还有一些其他特定场景或特性的锁，这里列举一些：</p>
+<ol>
+<li>
+<p><strong>分布式锁（Distributed Lock）</strong>：用于分布式系统中的多个节点之间同步访问共享资源。分布式锁需要考虑网络延迟、节点故障等问题，以确保在整个分布式系统中的一致性。</p>
+</li>
+<li>
+<p><strong>公平锁（Fair Lock）</strong>：公平锁保证等待时间最长的线程最先获得锁，以确保资源的公平分配。相对于非公平锁，公平锁可能导致更大的性能开销。</p>
+</li>
+<li>
+<p><strong>写入优先锁（Write-Priority Lock）</strong>：允许写入操作优先于读取操作，适用于写入操作频繁但读取操作较少的场景。</p>
+</li>
+<li>
+<p><strong>悲观锁（Pessimistic Lock）</strong>：在整个访问过程中保持资源锁定，适用于并发写入较多的情况。常见的悲观锁包括数据库中的排他锁。</p>
+</li>
+<li>
+<p><strong>乐观锁（Optimistic Lock）</strong>：在大部分时间内不加锁，只在更新时检查是否有其他线程对数据进行了修改。如果检测到冲突，再采取相应的处理措施，例如重试或放弃更新。</p>
+</li>
+<li>
+<p><strong>时间锁（Timed Lock）</strong>：允许线程在尝试获取锁时设置最大等待时间，超过该时间仍未获取到锁则放弃。</p>
+</li>
+<li>
+<p><strong>自适应自旋锁（Adaptive Spin Lock）</strong>：根据锁的争用程度动态调整自旋等待时间，以提高性能。</p>
+</li>
+<li>
+<p><strong>多粒度锁（Multi-Granularity Lock）</strong>：允许在不同层次上锁定资源，以提高并发性。</p>
+</li>
+</ol>
+<p>这些锁类型的选择取决于具体的应用场景和性能需求。在设计并发系统时，开发者需要仔细考虑并选择适当的锁机制，以确保系统的正确性、性能和可维护性。</p>
+<h3 id="死锁"><a class="markdownIt-Anchor" href="#死锁"></a> 死锁</h3>
+<p>死锁是多线程或多进程并发编程中一种常见的问题，它发生在两个或多个线程（或进程）相互等待对方释放资源的情况下，导致它们都无法继续执行。死锁通常涉及多个锁，而线程或进程之间的相互等待形成一个闭环。</p>
+<p>死锁产生的主要原因包括：</p>
+<ol>
+<li>
+<p><strong>互斥条件（Mutual Exclusion）</strong>：资源具有排他性，即一次只能由一个线程或进程占用。如果一个线程已经占用了一个资源，其他线程必须等待。</p>
+</li>
+<li>
+<p><strong>占有且等待（Hold and Wait）</strong>：一个线程在持有资源的同时等待其他资源，而其他线程则可能持有其需要的资源。这样的循环等待可能导致死锁。</p>
+</li>
+<li>
+<p><strong>不可抢占（No Preemption）</strong>：一个线程在没有释放资源的情况下，其他线程无法强制抢占它占用的资源，只能等待。</p>
+</li>
+<li>
+<p><strong>环路等待（Circular Wait）</strong>：存在一个等待循环，使得每个线程都在等待下一个线程释放资源，形成一个环路。</p>
+</li>
+</ol>
+<p>避免死锁的一般方法包括：</p>
+<ul>
+<li>
+<p><strong>按顺序获取锁</strong>：规定线程获取锁的顺序，使得所有线程都按照相同的顺序获取锁，从而避免循环等待。</p>
+</li>
+<li>
+<p><strong>使用超时机制</strong>：允许线程在等待一段时间后放弃对资源的请求，以避免死锁。</p>
+</li>
+<li>
+<p><strong>资源分配策略</strong>：确保系统在资源分配时不会导致死锁，可以采用银行家算法等策略。</p>
+</li>
+<li>
+<p><strong>死锁检测和恢复</strong>：定期检测系统中是否存在死锁，并在检测到死锁时采取措施进行恢复，例如强制终止某些线程。</p>
+</li>
+<li>
+<p><strong>使用锁的层次性</strong>：按照资源的层次性进行加锁，确保每个线程按照相同的顺序获取锁。</p>
+</li>
+</ul>
+<p>注意，死锁的发生不仅仅取决于锁的使用，还与程序的设计、资源管理和线程调度等因素有关。因此，在设计并发系统时，需要仔细考虑这些因素，以降低死锁的发生概率。</p>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html">编程小知识</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5/%E6%97%B6%E5%8C%BA%E5%92%8CUnicode.html">时区和 Unicode</a></div></section></div>
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B"><span class="toc-text"> 线程与进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%9E%8B"><span class="toc-text"> 多线程的两种模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="toc-text"> 并发模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#futures-promises-and-others"><span class="toc-text"> Futures, promises, and others</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reactive-extensions-%E5%8F%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95"><span class="toc-text"> Reactive extensions 反应式扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#coroutines"><span class="toc-text"> Coroutines</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text"> 多线程可能出现的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81"><span class="toc-text"> 锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text"> 死锁</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

@@ -1,0 +1,696 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Database：Redis - 浮生一梦</title>
+
+  
+    <meta name="description" content="一、Redis 简介 Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="https://jhlzlove.github.io/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/Redis.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="一、Redis 简介 Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-10T14:08:20.000Z">
+<meta property="article:modified_time" content="2023-12-25T12:41:15.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="wiki" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://phanmemmienphi.vn/wp-content/uploads/2021/07/khoa-dao-tao-phan-tich-xu-ly-du-lieu-sql-databases-tai-imic-technology.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html"><div class="main" ff="title">Database</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/编程后花园/" placeholder="在 Database 中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">SQL</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html#start"><span class="toc-text">数据库SQL</span></a></div><div class="widget-header dis-select"><span class="name">Postgresql</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/PostgreSQL.html"><span class="toc-text">PostgreSQL</span></a></div><div class="widget-header dis-select"><span class="name">MySQL</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MySQL.html"><span class="toc-text">MySQL</span></a></div><div class="widget-header dis-select"><span class="name">Redis</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/Redis.html"><span class="toc-text">Redis</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">MongoDB</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MongoDB%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.html"><span class="toc-text">MongoDB基础操作</span></a></div><div class="widget-header dis-select"><span class="name">ES</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/ElasticSearch.html"><span class="toc-text">ElasticSearch + Kibana</span></a></div></widget>
+
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：技术加油站</span></div><div class="widget-body"><a class="item wiki" href="/wiki/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/CloudService/index.html"><span class="title">云原生与微服务</span></a><a class="item wiki" href="/wiki/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/Git/index.html"><span class="title">Git入门到进阶</span><span class="excerpt">Git 版本管理系统从入门到进阶。</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>Kotlin</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/%E8%AE%A4%E8%AF%86Kotlin%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>认识 Kotlin 的作用域函数</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>编程小知识</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-二叉树</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-堆</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-散列表</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>基础排序算法</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-单例模式</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-策略模式</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html">Database</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2023-12-25T12:41:15.000Z">2023-12-25</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Redis</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="一-redis-简介"><a class="markdownIt-Anchor" href="#一-redis-简介"></a> 一、Redis 简介</h2>
+<p>Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动分区提供高可用性。<br />
+你可以在这些类型上运行原子操作，如追加字符串；递增哈希值；向列表添加元素；计算集合的交集、联合和差值；或获取排序集合中排名最靠前的成员。<br />
+为了达到最佳性能，Redis 使用内存数据集。根据使用情况，Redis 可以通过定期将数据集转储到磁盘或将每条命令附加到基于磁盘的日志来持久化数据。如果你只需要功能丰富的网络内存缓存，也可以禁用持久化功能。<br />
+Redis 支持异步复制，具有快速无阻塞同步和自动重新连接功能，并可在网络拆分时进行部分重新同步。</p>
+<p>Redis 由 ANSI C 编写，可在大多数 POSIX 系统（如 Linux、*BSD 和 Mac OS X）上运行，无需外部依赖。Linux 和 OS X 是 Redis 开发和测试最多的两个操作系统，官方建议使用 Linux 进行部署。Redis 可在 Solaris 衍生系统（如 SmartOS）中运行，但只能尽力提供支持。Windows 版本没有官方支持。</p>
+<h3 id="windows-版下载"><a class="markdownIt-Anchor" href="#windows-版下载"></a> Windows 版下载</h3>
+<p>官方没有提供 Windows 的安装包，推荐部署到 Linux 中的，但是有时候我们需要在客户的 Windows 中开发，本地的服务还是很有必要的。可以在 Github 中下载 <a target="_blank" rel="noopener" href="https://github.com/redis-windows/redis-windows/releases">Redis-Version-Windows-x64-with-Service.tar.gz</a>，<strong>with-service</strong> 后缀的包可以注册服务自动运行。</p>
+<h4 id="注册-redis-服务并启动"><a class="markdownIt-Anchor" href="#注册-redis-服务并启动"></a> 注册 Redis 服务并启动</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc.exe create Redis binpath=<span class="string">&quot;RedisService.exe所在的绝对路径&quot;</span> start= auto</span><br><span class="line">net start Redis</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>binpath 声明的路径必须使用引号！</p>
+</blockquote>
+<h4 id="停止并卸载"><a class="markdownIt-Anchor" href="#停止并卸载"></a> 停止并卸载</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止 Redis 服务</span></span><br><span class="line">net stop Redis</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sc.exe delete Redis</span><br></pre></td></tr></table></figure>
+<h3 id="linux-安装"><a class="markdownIt-Anchor" href="#linux-安装"></a> Linux 安装</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb <span class="subst">$(lsb_release -cs)</span> main&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/redis.list</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install redis</span><br></pre></td></tr></table></figure>
+<h3 id="redis-各个版本的配置文件"><a class="markdownIt-Anchor" href="#redis-各个版本的配置文件"></a> Redis 各个版本的配置文件</h3>
+<p><a target="_blank" rel="noopener" href="https://redis.io/docs/management/config/">https://redis.io/docs/management/config/</a></p>
+<h2 id="二-redis-不同版本"><a class="markdownIt-Anchor" href="#二-redis-不同版本"></a> 二、Redis 不同版本</h2>
+<p>Redis 4.0 中开始使用多线程，但是用户无法定义；Redis 的业务主要由主线程处理，后台线程只处理一些较慢的操作，例如：清理数据、释放无用连接。</p>
+<p>Redis 6.0 中引入多线程，并且用户可以配置，多线程默认是 <strong>关闭</strong> 的，开启需要修改 <code>io-threads-do-reads</code> 为 <code>yes</code>，然后修改使用的线程数：<code>io-threads</code>。</p>
+<p>在 Redis 7 及更高版本中，可以使用 <a target="_blank" rel="noopener" href="https://redis.io/docs/interact/programmability/functions-intro/">Redis Functions</a> 来管理和运行脚本。在 Redis 6.2 及更低版本中，可以使用带有 <a target="_blank" rel="noopener" href="https://redis.io/docs/interact/programmability/eval-intro/">EVAL</a> 命令的 Lua 脚本对服务器进行编程。</p>
+<p>Functions 与数据本身一起存储。Functions 也会持久化到 AOF 文件中，并从主服务器复制到副本，因此它们与数据本身存储的时间一样。当 Redis 用作短暂缓存时，还需要额外的机制（如下所述）来提高函数的持久性。<br />
+与 Redis 中的所有其他操作一样，函数的执行是原子性的。函数的执行会在整个过程中阻塞所有服务器活动，这与事务的语义类似。这些语义意味着脚本的所有效果要么尚未发生，要么已经发生。已执行函数的阻塞语义始终适用于所有已连接的客户端。由于运行函数会阻塞 Redis 服务器，因此函数的目的是快速完成执行，因此应避免使用长时间运行的函数。<br />
+每个程序库至少需要包含一个注册函数才能成功加载。已注册函数会被命名，并作为库的入口点。目标执行引擎在处理 FUNCTION LOAD 命令时，会注册库的函数。</p>
+<p>在 v7.0 中添加的 Redis 函数本质上是作为第一类数据库元素的脚本。因此，函数将脚本与应用程序逻辑分离，并支持脚本的独立开发、测试和部署。若要使用函数，需要先加载它们，然后它们可供所有连接的客户端使用。在这种情况下，将函数加载到数据库成为一项管理部署任务，这会将脚本与应用程序分开。</p>
+<h3 id="redis-持久化方式"><a class="markdownIt-Anchor" href="#redis-持久化方式"></a> <a target="_blank" rel="noopener" href="https://redis.io/docs/management/persistence/">Redis 持久化方式</a></h3>
+<p>RDB（Redis Database）：RDB 持久性可按指定时间间隔对数据集执行时间点快照。<br />
+AOF（Append Only File）： AOF 持久化会记录服务器收到的每个写操作。这些操作可以在服务器启动时再次重放，重建原始数据集。命令记录格式与 Redis 协议本身相同。<br />
+无持久性 可以完全禁用持久化。这有时会在缓存时使用。<br />
+RDB + AOF：还可以在同一实例中结合使用 AOF 和 RDB。</p>
+<h4 id="1-rdb时间间隔内的数据快照"><a class="markdownIt-Anchor" href="#1-rdb时间间隔内的数据快照"></a> 1. RDB（时间间隔内的数据快照）</h4>
+<h5 id="优势"><a class="markdownIt-Anchor" href="#优势"></a> 优势</h5>
+<ul>
+<li>RDB 是 Redis 数据非常紧凑的单文件时间点表示。RDB 文件非常适合备份。例如，你可能希望每小时归档最近 24 小时的 RDB 文件，每天保存一个 RDB 快照，持续 30 天。这样就可以在发生灾难时轻松恢复数据集的不同版本。</li>
+<li>RDB 非常适合灾难恢复，因为它是一个紧凑的文件，可以传输到远处的数据中心或亚马逊 S3（可能已加密）等。</li>
+<li>RDB 能最大限度地提高 Redis 的性能，因为 Redis 父进程为持久化所需做的唯一工作就是分叉一个子进程，由子进程完成其余所有工作。父进程永远不会执行磁盘 I/O 或类似操作。</li>
+<li>与 AOF 相比，RDB 允许更快地重启大数据集。</li>
+<li>在副本上，RDB 支持<a target="_blank" rel="noopener" href="https://redis.io/docs/management/replication/">重启和故障切换后的部分重新同步</a>。</li>
+</ul>
+<h5 id="不足"><a class="markdownIt-Anchor" href="#不足"></a> 不足</h5>
+<ul>
+<li>如果需要在 Redis 停止工作（例如停电后）时尽量减少数据丢失的几率，那么 RDB 就不太合适。你可以配置生成 RDB 的不同保存点（例如，数据集至少经过 5 分钟和 100 次写入后，你可以有多个保存点）。不过，你通常会每五分钟或更长时间创建一次 RDB 快照，因此，如果 Redis 因故停止工作而没有正确关机，你应该做好丢失最近几分钟数据的准备。</li>
+<li>如果数据集很大，fork() 可能会很耗时，如果数据集很大，CPU 性能又不高，可能会导致 Redis 在几毫秒甚至一秒内停止为客户端提供服务。AOF 也需要 fork()，但频率较低，你可以调整重写日志的频率，而无需牺牲可用性。</li>
+</ul>
+<h4 id="2-aof操作记录"><a class="markdownIt-Anchor" href="#2-aof操作记录"></a> 2. AOF（操作记录）</h4>
+<h5 id="优势-2"><a class="markdownIt-Anchor" href="#优势-2"></a> 优势</h5>
+<ul>
+<li>使用 AOF Redis 则更耐用：你可以使用不同的 fsync 策略：完全不执行 fsync、每秒执行 fsync、每次查询都执行 fsync。fsync 是使用后台线程执行的，主线程会在没有 fsync 的情况下努力执行写入操作，因此只会损失一秒钟的写入量。</li>
+<li>AOF 日志是一种仅追加的日志，因此不会出现寻道问题，也不会在断电时出现损坏问题。即使由于某种原因（磁盘已满或其他原因），日志以写入一半的命令结束，redis-check-aof 工具也能轻松修复。</li>
+<li>当 AOF 过大时，Redis 会在后台自动重写。重写是完全安全的，因为 Redis 在继续追加旧文件的同时，会用创建当前数据集所需的最少操作集生成一个全新的文件，一旦第二个文件准备就绪，Redis 就会切换这两个文件，并开始追加新文件。</li>
+<li>AOF 包含一个接一个操作的日志，格式简单易懂，易于解析。你甚至可以轻松导出 AOF 文件。例如，即使你不小心使用 FLUSHALL 命令刷新了所有数据，只要在此期间没有重写日志，你仍然可以通过停止服务器、删除最新命令并重新启动 Redis 来保存数据集。</li>
+</ul>
+<h6 id="不足-2"><a class="markdownIt-Anchor" href="#不足-2"></a> 不足</h6>
+<ul>
+<li>对于相同的数据集，AOF 文件通常比相应的 RDB 文件大。</li>
+<li>AOF 可能比 RDB 慢，这取决于具体的同步策略。一般来说，当 fsync 设置为每秒一次时，AOF 的性能仍然很高，而当 fsync 禁用时，即使在高负载情况下，AOF 的速度也应与 RDB 完全相同。不过，即使在写入负载很大的情况下，RDB 也能提供更多关于最大延迟的保证。</li>
+</ul>
+<p>在 Redis 7.x 以下，还可能会有以下情况：</p>
+<ul>
+<li>如果在重写过程中向数据库写入内容（这些内容在内存中缓冲，并在最后写入新的 AOF），AOF 可能会占用大量内存。</li>
+<li>在重写过程中到达的所有写入命令都会写入磁盘两次。</li>
+<li>Redis 可能会在重写结束时冻结向新的 AOF 文件写入和同步这些写入命令。</li>
+</ul>
+<h4 id="what-should-i-use"><a class="markdownIt-Anchor" href="#what-should-i-use"></a> what should I use?</h4>
+<p>一般来说，如果你想获得与 PostgreSQL 相当的数据安全程度，就应该同时使用这两种持久化方法。</p>
+<p>如果你非常关心你的数据，但仍然可以忍受灾难发生时几分钟的数据丢失，那么你可以只使用 RDB。</p>
+<p>有许多用户只使用 AOF，但我们不鼓励他们这样做，因为偶尔或者说拥有一个某一时刻的 RDB 快照是一个很好的主意，这样可以进行数据库备份、更快地重新启动，以及在 AOF 引擎出现错误时使用。</p>
+<blockquote>
+<p>以上内容机翻+自翻译官网内容</p>
+</blockquote>
+<h3 id="内存淘汰策略驱逐策略"><a class="markdownIt-Anchor" href="#内存淘汰策略驱逐策略"></a> <a target="_blank" rel="noopener" href="https://redis.io/docs/reference/eviction/">内存淘汰策略/驱逐策略</a></h3>
+<p>内存淘汰策略：Redis 的内存淘汰策略是指在Redis的用于缓存的内存不足时，怎么处理需要新写入且需要申请额外空间的数据。</p>
+<h2 id="三-redis-的几种模式"><a class="markdownIt-Anchor" href="#三-redis-的几种模式"></a> 三、Redis 的几种模式</h2>
+<ol>
+<li>主从模式<br />
+redis 主从复制，从节点默认是只读的，当 master 服务挂掉之后，从节点不能代替主节点；主从复制架构只是一个数据的备份。</li>
+<li>哨兵模式(建立在主从模式上)<br />
+哨兵的作用，就是监控主、从数据库的状态，当主数据库宕机以后，哨兵会在一定的时间内去判断，然后在从数据库中选举出一个去顶替主数据库，从而实现redis数据的高可用。</li>
+<li>集群模式</li>
+</ol>
+<p>Redis 的集群模式使用了 CRC16 算法，该算法有以下特点:</p>
+<ol>
+<li>对集群模式下的所有key进行 CRC16 计算，计算的结果始终在 0-16383 之间（Redis 有 16384 的 slot）</li>
+<li>对客户端的key进行CRC16算法计算时，同一个key经过多次计算，计算结果始终一致。</li>
+<li>对客户端的不同的key进行CRC16计算，会出现不同的key计算结果一致。</li>
+</ol>
+<h3 id="伪集群搭建配置文件示例"><a class="markdownIt-Anchor" href="#伪集群搭建配置文件示例"></a> 伪集群搭建配置文件示例</h3>
+<p>搭建 redis 伪集群实现 session 共享：<br />
+修改不同端口的配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动端口号</span></span><br><span class="line">port 7000</span><br><span class="line"><span class="comment"># 允许远程连接</span></span><br><span class="line"><span class="built_in">bind</span> 0.0.0.0</span><br><span class="line"><span class="comment"># rdb 方式持久化数据的文件名</span></span><br><span class="line">dbfilename dump-7000.rdb</span><br><span class="line"><span class="comment"># 开启守护进程(即后台运行)</span></span><br><span class="line">daemonize <span class="built_in">yes</span></span><br><span class="line"><span class="comment"># 开启 aof 缓存并指定 aof 方式持久化数据的文件名</span></span><br><span class="line">appendonly <span class="built_in">yes</span></span><br><span class="line">appendonlyfilename <span class="string">&quot;appendonly-7000.aof&quot;</span></span><br><span class="line"><span class="comment"># 开启集群配置</span></span><br><span class="line">cluster-enabled <span class="built_in">yes</span></span><br><span class="line"><span class="comment"># 配置集群节点名称</span></span><br><span class="line">cluster-config-file nodes-7000.conf</span><br><span class="line"><span class="comment"># 集群超时时间 5s</span></span><br><span class="line">cluster-node-timeout 5000</span><br></pre></td></tr></table></figure>
+<p>配置主从数据库后使用 redis-cli 进行连接后，使用 <code>info replication</code> 命令查看当前数据库的 role，“master” 是主节点，“slave” 是从节点。默认从库是只读的，不能进行写操作。</p>
+<h2 id="四-缓存设计典型问题"><a class="markdownIt-Anchor" href="#四-缓存设计典型问题"></a> 四、缓存设计典型问题</h2>
+<h3 id="1-缓存穿透"><a class="markdownIt-Anchor" href="#1-缓存穿透"></a> 1. 缓存穿透</h3>
+<p>缓存穿透是指查询一个根本不存在的数据，缓存层和存储层都不会命中，通常出于容错的考虑，如果从存储层查不到数据则不写入缓存层。缓存穿透将导致不存在的数据每次请求都要到存储层去查询，失去了缓存保护后端存储的意义。<br />
+造成缓存穿透的基本原因有两个：第一，自身业务代码或者数据出现问题。第二，一些恶意攻击、爬虫等造成大量空命中。</p>
+<p>解决方案：</p>
+<ol>
+<li>缓存空对象；</li>
+<li>布隆过滤器<br />
+对于恶意攻击，向服务器请求大量不存在的数据造成的缓存穿透，还可以用布隆过滤器先做一次过滤，对于不存在的数据，布隆过滤器一般都能够过滤掉，不让请求再往后端发送。当布隆过滤器说某个值存在时，这个值可 能不存在；当它说不存在时，那就肯定不存在。</li>
+</ol>
+<h4 id="布隆过滤器"><a class="markdownIt-Anchor" href="#布隆过滤器"></a> 布隆过滤器</h4>
+<p>布隆过滤器就是一个大型的位数组和几个不一样的无偏 hash 函数。所谓无偏就是能够把元素的 hash 值算得比较均匀。 向布隆过滤器中添加 key 时，会使用多个 hash 函数对 key 进行 hash，算得一个整数索引值然后对位数组长度进行取模运算得到一个位置，每个 hash 函数都会算得一个不同的位置。再把位数组的这几个位置都置为 1 就完成了 add 操作。<br />
+向布隆过滤器询问 key 是否存在时，跟 add 一样，也会把 hash 的几个位置都算出来，看看位数组中这几个位置是否都为 1，只要有一个位为 0，那么说明布隆过滤器中这个 key 不存在。如果都是 1，这并不能说明这 个 key 就一定存在，只是极有可能存在，因为这些位被置为 1 可能是因为其它的 key 存在所致。如果这个位数组比较稀疏，这个概率就会很大，如果这个位数组比较拥挤，这个概率就会降低。<br />
+这种方法适用于数据命中不高、数据相对固定、实时性低（通常是数据集较大）的应用场景，代码维护较为 <strong>复杂</strong>，但是缓存空间占用很少。</p>
+<h3 id="2-缓存击穿失效"><a class="markdownIt-Anchor" href="#2-缓存击穿失效"></a> 2. 缓存击穿（失效）</h3>
+<p>由于大批量缓存在同一时间失效可能导致大量请求同时穿透缓存直达数据库，可能会造成数据库瞬间压力过大甚至挂掉，对于这种情况我们在批量增加缓存时最好将这一批数据的缓存过期时间设置为一个时间段内的不同时间。</p>
+<h3 id="3-缓存雪崩"><a class="markdownIt-Anchor" href="#3-缓存雪崩"></a> 3. 缓存雪崩</h3>
+<p>由于缓存层承载着大量请求，能够有效地保护存储层，但是如果缓存层由于某些原因不能提供服务(比如超大并 发过来，缓存层支撑不住，或者由于缓存设计不好，类似大量请求访问bigkey，导致缓存能支撑的并发急剧下降)，于是大量请求都会打到存储层，存储层的调用量会暴增，造成存储层也会级联宕机的情况。<br />
+预防和解决缓存雪崩问题，可以从以下三个方面进行着手。<br />
+1） 保证缓存层服务高可用性，比如使用 Redis Sentinel 或 Redis Cluster。<br />
+2） 依赖隔离组件为后端限流熔断并降级。比如使用 Sentinel 或 Hystrix 限流降级组件。比如服务降级，我们可以针对不同的数据采取不同的处理方式。当业务应用访问的是非核心数据（例如电商商 品属性，用户信息等）时，暂时停止从缓存中查询这些数据，而是直接返回预定义的默认降级信息、空值或是错误提示信息；当业务应用访问的是核心数据（例如电商商品库存）时，仍然允许查询缓存，如果缓存缺失，也可以继续通过数据库读取。<br />
+3） 提前演练。在项目上线前，演练缓存层宕掉后，应用以及后端的负载情况以及可能出现的问题，在此基础上做一些预案设定。</p>
+<h3 id="4-热点缓存key重建优化"><a class="markdownIt-Anchor" href="#4-热点缓存key重建优化"></a> 4. 热点缓存key重建优化</h3>
+<p>开发人员使用“缓存+过期时间”的策略既可以加速数据读写，又保证数据的定期更新，这种模式基本能够满足绝大部分需求。 但是有两个问题如果同时出现，可能就会对应用造成致命的危害：当前key是一个热点key（例如一个热门的娱乐新闻），并发量非常大。重建缓存不能在短时间完成，可能是一个复杂计算，例如复杂的SQL、多次IO、多个依赖等。在缓存失效的瞬间， 有大量线程来重建缓存，造成后端负载加大，甚至可能会让应用崩溃。<br />
+要解决这个问题主要就是要避免大量线程同时重建缓存。我们可以利用互斥锁来解决，此方法只允许一个线程重建缓存，其他线程等待重建缓存的线程执行完，重新从缓存获取数据即可。</p>
+<figure class="highlight java"><figcaption><span>伪代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">get</span><span class="params">(String key)</span> &#123; </span><br><span class="line">  <span class="comment">// 从Redis中获取数据</span></span><br><span class="line">  <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> redis.get(key);</span><br><span class="line">  <span class="comment">// 如果value为空，则开始重构缓存</span></span><br><span class="line">  <span class="keyword">if</span> (value == <span class="literal">null</span>) &#123; </span><br><span class="line">    <span class="type">String</span> <span class="variable">mutexKey</span> <span class="operator">=</span> <span class="string">&quot;mutext:key:&quot;</span> + key;</span><br><span class="line">    <span class="comment">// 只允许一个线程重建缓存，使用nx，并设置过期时间ex</span></span><br><span class="line">    <span class="keyword">if</span> (redis.set(mutexKey, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;ex 180&quot;</span>, <span class="string">&quot;nx&quot;</span>)) &#123;</span><br><span class="line">      <span class="comment">// 从数据源获取数据</span></span><br><span class="line">      value = db.get(key);</span><br><span class="line">      <span class="comment">// 回写Redis，并设置过期时间</span></span><br><span class="line">      redis.setex(key, timeout, value);</span><br><span class="line">      <span class="comment">// 删除key_mutex</span></span><br><span class="line">      redis.delete(mutexKey); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 其他线程休息50毫秒后重试</span></span><br><span class="line">      Thread.sleep(<span class="number">50</span>);</span><br><span class="line">      get(key);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> value; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="五-规范建议"><a class="markdownIt-Anchor" href="#五-规范建议"></a> 五、规范建议</h2>
+<h3 id="1-key-设计"><a class="markdownIt-Anchor" href="#1-key-设计"></a> 1. key 设计</h3>
+<ol>
+<li>可读性和可管理性：以业务名(或数据库名)为前缀(防止 key 冲突)，用冒号分隔，比如 <strong>业务名:表名:id</strong>，不要包含特殊字符。</li>
+<li>简洁性：保证语义的前提下，控制 key 的长度，当 key 较多时，内存占用也不容忽视。</li>
+</ol>
+<h3 id="2-value-设计"><a class="markdownIt-Anchor" href="#2-value-设计"></a> 2. value 设计</h3>
+<ol>
+<li>拒绝bigkey(防止网卡流量、慢查询) 在Redis中，一个字符串最大512MB，一个二级数据结构（例如hash、list、set、zset）可以存 储大约40亿个(2^32-1)个元素，但实际中如果下面两种情况，就可以认为它是bigkey。
+<ol>
+<li>字符串类型：它的big体现在单个value值很大，一般认为超过10KB就是bigkey。</li>
+<li>非字符串类型：哈希、列表、集合、有序集合，它们的big体现在元素个数太多。一般来说，string类型控制在10KB以内，hash、list、set、zset元素个数不要超过5000。反例：一个包含200万个元素的list。非字符串的bigkey，不要使用del删除，使用hscan、sscan、zscan方式渐进式删除，同时要注意防止bigkey过期时间自动删除问题(例如一个200万的zset设置1小时过期，会触发del操作，造成阻塞）。</li>
+</ol>
+</li>
+</ol>
+<p>bigkey的危害：</p>
+<ol>
+<li>导致redis阻塞</li>
+<li>网络拥塞<br />
+bigkey也就意味着每次获取要产生的网络流量较大，假设一个 bigkey 为 1 MB，客户端每秒访问量为1000，那么每秒产生1000MB的流量，对于普通的千兆网卡(按照字节算是128MB/s)的服务器来说简直是灭顶之灾，而且一般服务器会采用单机多实例的方式来部署，也就是说一个 bigkey 可能会对其他实例也造成影响，其后果不堪设想。</li>
+<li>过期删除<br />
+有个bigkey，它安分守己（只执行简单的命令，例如hget、lpop、zscore等），但它设置了过期时间，当它过期后，会被删除，如果没有使用 Redis4.0 的过期异步删除(lazyfree-lazy-expire yes)，就会存在阻塞Redis的可能性。</li>
+</ol>
+<p>一般来说，bigkey 的产生都是由于程序设计不当，或者对于数据规模预料不清楚造成的，来看几个例子：<br />
+(1) 社交类：粉丝列表，如果某些明星或者大v不精心设计下，必是bigkey。<br />
+(2) 统计类：例如按天存储某项功能或者网站的用户集合，除非没几个人用，否则必是bigkey。<br />
+(3) 缓存类：将数据从数据库 load 出来序列化放到 Redis 里，这个方式非常常用，但有两个地方需要注意。第一，是不是有必要把所有字段都缓存；第二，有没有相关关联的数据，有的同学为了图方便把相关数据都存一个 key 下，产生 bigkey。</p>
+<p>如何优化bigkey？</p>
+<ol>
+<li>拆<br />
+big list： list1、list2、…listN；<br />
+big hash：可以讲数据分段存储，比如一个大的key，假设存了1百万的用户数据，可以拆分成 200 个key，每个key下面存放5000个用户数据</li>
+<li>如果 bigkey 不可避免，也要思考一下要不要每次把所有元素都取出来(例如有时候仅仅需要 hmget，而不是 hgetall)，删除也是一样，尽量使用优雅的方式来处理。</li>
+<li>选择适合的数据类型。 例如：实体类型(要合理控制和使用数据结构，但也要注意节省内存和性能之间的平衡)</li>
+</ol>
+<div class="tag-plugin colorful note" ><div class="body"><div class="tag-plugin tabs"id="tab_5"><div class="nav-tabs"><div class="tab active"><a href="#tab_5-1">正例</a></div><div class="tab"><a href="#tab_5-2">反例</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_5-1"><div class="tag-plugin colorful note" color="green" child="codeblock"><div class="body"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hmset user:1 name tom age 19 favor football</span><br></pre></td></tr></table></figure></div></div></div><div class="tab-pane" id="tab_5-2"><div class="tag-plugin colorful note" color="red" child="codeblock"><div class="body"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> user:1:age 19 3 </span><br><span class="line"><span class="built_in">set</span> user:1:favor football</span><br><span class="line"><span class="built_in">set</span> user:1:name tom</span><br></pre></td></tr></table></figure></div></div></div></div></div></div></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MySQL.html">MySQL</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MongoDB%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.html">MongoDB基础操作</a></div></section></div>
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-redis-%E7%AE%80%E4%BB%8B"><span class="toc-text"> 一、Redis 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows-%E7%89%88%E4%B8%8B%E8%BD%BD"><span class="toc-text"> Windows 版下载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C-redis-%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%90%AF%E5%8A%A8"><span class="toc-text"> 注册 Redis 服务并启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E5%B9%B6%E5%8D%B8%E8%BD%BD"><span class="toc-text"> 停止并卸载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-%E5%AE%89%E8%A3%85"><span class="toc-text"> Linux 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis-%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text"> Redis 各个版本的配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-redis-%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC"><span class="toc-text"> 二、Redis 不同版本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="toc-text"> Redis 持久化方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-rdb%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E5%86%85%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7"><span class="toc-text"> 1. RDB（时间间隔内的数据快照）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-aof%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95"><span class="toc-text"> 2. AOF（操作记录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#what-should-i-use"><span class="toc-text"> what should I use?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5"><span class="toc-text"> 内存淘汰策略&#x2F;驱逐策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-redis-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-text"> 三、Redis 的几种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="toc-text"> 伪集群搭建配置文件示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E5%85%B8%E5%9E%8B%E9%97%AE%E9%A2%98"><span class="toc-text"> 四、缓存设计典型问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-text"> 1. 缓存穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text"> 布隆过滤器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E5%A4%B1%E6%95%88"><span class="toc-text"> 2. 缓存击穿（失效）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-text"> 3. 缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%83%AD%E7%82%B9%E7%BC%93%E5%AD%98key%E9%87%8D%E5%BB%BA%E4%BC%98%E5%8C%96"><span class="toc-text"> 4. 热点缓存key重建优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE"><span class="toc-text"> 五、规范建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-key-%E8%AE%BE%E8%AE%A1"><span class="toc-text"> 1. key 设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-value-%E8%AE%BE%E8%AE%A1"><span class="toc-text"> 2. value 设计</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

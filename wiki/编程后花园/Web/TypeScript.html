@@ -1,0 +1,638 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Web：TypeScript 入门 - 浮生一梦</title>
+
+  
+    <meta name="description" content="更加完善的 TS 教程：https:&#x2F;&#x2F;ts.xcatliu.com&#x2F;  基本类型 number、NaN（Not a Number） string boolean undefined null unknown any void  虽然 Any 和 unknown 都可以表示不确定的类型，但是 Any 是可以添加对象参数属性的，而 unknown 则不能。 ts 中尽量少用 Any。  123456">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TypeScript 入门">
+<meta property="og:url" content="https://jhlzlove.github.io/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/TypeScript.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="更加完善的 TS 教程：https:&#x2F;&#x2F;ts.xcatliu.com&#x2F;  基本类型 number、NaN（Not a Number） string boolean undefined null unknown any void  虽然 Any 和 unknown 都可以表示不确定的类型，但是 Any 是可以添加对象参数属性的，而 unknown 则不能。 ts 中尽量少用 Any。  123456">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-26T11:00:20.000Z">
+<meta property="article:modified_time" content="2023-12-16T11:02:46.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="wiki" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://meterpreter.org/wp-content/uploads/2021/06/AdobeStock_283463385-1024x576.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/index.html"><div class="main" ff="title">Web</div><div class="sub cap">大杂烩香？好吃？</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/编程后花园/Web/" placeholder="在 Web 中搜索..."></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/index.html#start"><span class="toc-text">Web</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/NodeJs.html"><span class="toc-text">NodeJs</span></a><a class="link active" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/TypeScript.html"><span class="toc-text">TypeScript 入门</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：编程后花园</span></div><div class="widget-body"><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/index.html"><span class="title">Java</span><span class="excerpt">Java 生态的相关知识总结。</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title">Kotlin</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title">编程基础知识</span><span class="excerpt">编程必知二三事</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Rust/Rust.html"><span class="title">Rust</span><span class="excerpt">Rust 学习</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>Kotlin</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/%E8%AE%A4%E8%AF%86Kotlin%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>认识 Kotlin 的作用域函数</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>编程小知识</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-二叉树</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-堆</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-散列表</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>基础排序算法</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-单例模式</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-策略模式</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/index.html">Web</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2023-12-16T11:02:46.000Z">2023-12-16</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>TypeScript 入门</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>更加完善的 TS 教程：<a target="_blank" rel="noopener" href="https://ts.xcatliu.com/">https://ts.xcatliu.com/</a></p>
+<h3 id="基本类型"><a class="markdownIt-Anchor" href="#基本类型"></a> 基本类型</h3>
+<p>number、NaN（Not a Number）<br />
+string<br />
+boolean<br />
+undefined<br />
+null<br />
+unknown<br />
+any<br />
+void</p>
+<blockquote>
+<p>虽然 Any 和 unknown 都可以表示不确定的类型，但是 Any 是可以添加对象参数属性的，而 unknown 则不能。<br />
+ts 中尽量少用 Any。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">p1</span>: <span class="built_in">any</span> = &#123;&#125;</span><br><span class="line">p1.<span class="property">name</span> = <span class="string">&#x27;江湖浪子&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p2</span>: <span class="built_in">unknown</span> = &#123;&#125;</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="comment">// p2.name = &#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 都可以修改值</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p3</span>: <span class="built_in">any</span> = <span class="string">&quot;金风玉露一相逢&quot;</span></span><br><span class="line">p3 = <span class="string">&quot;便胜却人间无数&quot;</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p4</span>: <span class="built_in">unknown</span> = <span class="string">&quot;千里姻缘一线牵&quot;</span></span><br><span class="line">p4 = <span class="number">2.36</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p2);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p3);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p4);</span><br></pre></td></tr></table></figure>
+<h3 id="联合类型"><a class="markdownIt-Anchor" href="#联合类型"></a> 联合类型</h3>
+<p>命名变量时使用 <strong>|</strong> 作为分隔符，写为其它类型，对该变量赋值时可以使用这几种类型的任何一种。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">p1</span>: <span class="built_in">number</span>|<span class="built_in">string</span> = <span class="number">123</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p2</span>: <span class="built_in">number</span>|<span class="built_in">string</span> = <span class="string">&quot;诗酒趁年华&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="类型断言"><a class="markdownIt-Anchor" href="#类型断言"></a> 类型断言</h3>
+<p>将不确定的类型断言为确定的类型，类似 Java 中的强转。</p>
+<p>有时，我们需要获取特定类型中的属性，返回值若是联合类型或者 Any，则该属性无法正常获取，编译会报错，这时我们可以采取以下方式：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一</span></span><br><span class="line"><span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;#xxx&quot;</span>) <span class="keyword">as</span> <span class="title class_">HTMLImageElement</span></span><br><span class="line">img.<span class="property">src</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line"><span class="keyword">let</span> img = &lt;<span class="title class_">HTMLImageElement</span>&gt;<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;#xxx&quot;</span>)</span><br><span class="line">img.<span class="property">height</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组类型"><a class="markdownIt-Anchor" href="#数组类型"></a> 数组类型</h3>
+<p>数组一般都是同类型的。</p>
+<h4 id="杂乱数组泛型数组"><a class="markdownIt-Anchor" href="#杂乱数组泛型数组"></a> 杂乱数组/泛型数组</h4>
+<p>数组中有多种不同类型的元素。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">arr1</span>: <span class="built_in">any</span>[] = [<span class="string">&quot;仰天大笑出门去&quot;</span>, <span class="number">9981</span>, <span class="literal">false</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr2</span>: (<span class="built_in">string</span>|<span class="built_in">number</span>|<span class="built_in">boolean</span>)[] = [<span class="literal">true</span>, <span class="string">&quot;123&quot;</span>, <span class="number">456</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="多维数组"><a class="markdownIt-Anchor" href="#多维数组"></a> 多维数组</h4>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>: <span class="built_in">number</span>[][] = [[<span class="number">1</span>], [<span class="number">12</span>]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>还有另一种写法，但是不够通用，这里略过。</p>
+</blockquote>
+<h4 id="类数组"><a class="markdownIt-Anchor" href="#类数组"></a> 类数组</h4>
+<h4 id="元组"><a class="markdownIt-Anchor" href="#元组"></a> 元组</h4>
+<p>元组的优点是防止越界。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">arr1</span>: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">boolean</span>] = [<span class="number">1</span>, <span class="string">&quot;true&quot;</span>, <span class="literal">false</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr1[<span class="number">0</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr1[<span class="number">1</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr1[<span class="number">2</span>]);</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="comment">// console.log(arr1[3]);</span></span><br></pre></td></tr></table></figure>
+<h2 id="接口"><a class="markdownIt-Anchor" href="#接口"></a> 接口</h2>
+<p>接口定义类信息，类似 Java 中的 class，存在只读属性、可选属性，默认属性必须选择。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> &#123;</span><br><span class="line">    <span class="comment">// 只读属性，不能修改</span></span><br><span class="line">    <span class="keyword">readonly</span> <span class="attr">id</span>: <span class="built_in">number</span></span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">    <span class="comment">// ? 可选属性</span></span><br><span class="line">    address?: <span class="built_in">string</span></span><br><span class="line">    like?: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">user</span>: <span class="title class_">UserInfo</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;jhlz&quot;</span></span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line">user.<span class="property">name</span> = <span class="string">&quot;江湖浪子&quot;</span></span><br><span class="line">user.<span class="property">address</span> = <span class="string">&quot;上下五千年&quot;</span></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="comment">// user.id = 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user.<span class="property">name</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="接口中定义方法"><a class="markdownIt-Anchor" href="#接口中定义方法"></a> 接口中定义方法</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    age?: <span class="built_in">number</span></span><br><span class="line">    <span class="comment">// 定义函数</span></span><br><span class="line">    <span class="attr">getName</span>: <span class="function">() =&gt;</span> <span class="built_in">string</span></span><br><span class="line">    <span class="attr">setAge</span>: <span class="function">(<span class="params">age: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">user</span>: <span class="title class_">UserInfo</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;江湖浪子&quot;</span>,</span><br><span class="line">    <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">setAge</span>(<span class="params">age</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">user.<span class="title function_">setAge</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user.<span class="property">name</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="继承"><a class="markdownIt-Anchor" href="#继承"></a> 继承</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="comment">// 1 男 2 女</span></span><br><span class="line">    <span class="attr">gender</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> <span class="keyword">extends</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">user</span>: <span class="title class_">UserInfo</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;江湖浪子&quot;</span>,</span><br><span class="line">    <span class="comment">// 必须给 gender 赋值</span></span><br><span class="line">    <span class="attr">gender</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口交叉类型"><a class="markdownIt-Anchor" href="#接口交叉类型"></a> 接口交叉类型</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="comment">// 1 男 2 女</span></span><br><span class="line">    <span class="attr">gender</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">UserInfo</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    age?: <span class="built_in">number</span></span><br><span class="line">    <span class="comment">// 1 男 2 女，把这里的 number 改为其它类型将报错</span></span><br><span class="line">    <span class="attr">gender</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">user</span>: <span class="title class_">UserInfo</span> &amp; <span class="title class_">User</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;江湖浪子&quot;</span>,</span><br><span class="line">    <span class="attr">gender</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(user);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>交叉类型仅合并属性，而不处理属性的值或类型。如果两个接口中的相同属性具有不同的类型，代码将会报错。如果需要处理相同属性类型不同的情况，可以使用联合类型或其他适当的方法来处理。</p>
+</blockquote>
+<h2 id="类型别名"><a class="markdownIt-Anchor" href="#类型别名"></a> 类型别名</h2>
+<p>这个简单常用，给某些类型、函数定义别名，也可以用来定义对象。</p>
+<h3 id="定义对象"><a class="markdownIt-Anchor" href="#定义对象"></a> 定义对象</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> infoType = &#123;</span><br><span class="line">    <span class="keyword">readonly</span> id : <span class="built_in">number</span></span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    age?: <span class="built_in">number</span></span><br><span class="line">    address?: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">info</span>: infoType = &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;江湖浪子&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(info);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>interface 可以继承，type 不可以，只可以使用交叉类型；<br />
+interface 遇到重复命名的会自动合并；而 type 不会（直接报错）；（实际项目中基本不会这样使用）</p>
+</blockquote>
+<h3 id="定义函数"><a class="markdownIt-Anchor" href="#定义函数"></a> 定义函数</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义函数类型</span></span><br><span class="line"><span class="keyword">type</span> fn = <span class="function">(<span class="params">para1: <span class="built_in">number</span>, para2: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">sum</span>: fn = <span class="function">(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>) =&gt;</span>  num1 + num2</span><br><span class="line"><span class="keyword">let</span> <span class="attr">diff</span>: fn = <span class="function">(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>) =&gt;</span>  num1 - num2</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">diff</span>(<span class="number">10</span>, <span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
+<p>默认为数字枚举，并且从 0 开始增长，如果中间中断，那往下会继续从中断的地方自动增长。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span> &#123;</span><br><span class="line">    <span class="variable constant_">RED</span>,</span><br><span class="line">    <span class="variable constant_">BLUE</span>,</span><br><span class="line">    <span class="variable constant_">GREEN</span>,</span><br><span class="line">    <span class="variable constant_">YELLOW</span> = <span class="number">10000</span>,</span><br><span class="line">    <span class="variable constant_">BLACK</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Color</span>.<span class="property">RED</span>);     <span class="comment">// 0</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Color</span>.<span class="property">BLACK</span>);   <span class="comment">// 10001</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串枚举"><a class="markdownIt-Anchor" href="#字符串枚举"></a> 字符串枚举</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span> &#123;</span><br><span class="line">    <span class="variable constant_">RED</span>=<span class="string">&quot;red&quot;</span>,</span><br><span class="line">    <span class="variable constant_">BLUE</span>=<span class="string">&quot;blue&quot;</span>,</span><br><span class="line">    <span class="variable constant_">GREEN</span>=<span class="string">&quot;green&quot;</span>,</span><br><span class="line">    <span class="comment">// 支持混合枚举，这里提一下</span></span><br><span class="line">    <span class="comment">// YELLOW = 10000</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Color</span>.<span class="property">RED</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="接口枚举"><a class="markdownIt-Anchor" href="#接口枚举"></a> 接口枚举</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ColorInterface</span> &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Color</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="title class_">Color</span>.<span class="property">BLUE</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span> &#123;</span><br><span class="line">    <span class="variable constant_">RED</span>,</span><br><span class="line">    <span class="variable constant_">BLUE</span>,</span><br><span class="line">    <span class="variable constant_">GREEN</span>,</span><br><span class="line">    <span class="variable constant_">YELLOW</span> = <span class="number">10000</span>,</span><br><span class="line">    <span class="variable constant_">BLACK</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">c</span>: <span class="title class_">ColorInterface</span> = &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Color</span>.<span class="property">RED</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="title class_">Color</span>.<span class="property">BLUE</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br></pre></td></tr></table></figure>
+<h3 id="const-枚举"><a class="markdownIt-Anchor" href="#const-枚举"></a> const 枚举</h3>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ColorInterface</span> &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Color</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="title class_">Color</span>.<span class="property">BLUE</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">enum</span> <span class="title class_">Color</span> &#123;</span><br><span class="line">    <span class="variable constant_">RED</span>,</span><br><span class="line">    <span class="variable constant_">BLUE</span>,</span><br><span class="line">    <span class="variable constant_">GREEN</span>,</span><br><span class="line">    <span class="variable constant_">YELLOW</span> = <span class="number">10000</span>,</span><br><span class="line">    <span class="variable constant_">BLACK</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">c</span>: <span class="title class_">ColorInterface</span> = &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Color</span>.<span class="property">RED</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="title class_">Color</span>.<span class="property">BLUE</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br></pre></td></tr></table></figure>
+<p>主要作用就是节省因为枚举带来的资源消耗。</p>
+<p>例如上面的接口枚举 ts 代码编译后如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Color</span>;</span><br><span class="line">(<span class="keyword">function</span> (<span class="params">Color</span>) &#123;</span><br><span class="line">    <span class="title class_">Color</span>[<span class="title class_">Color</span>[<span class="string">&quot;RED&quot;</span>] = <span class="number">0</span>] = <span class="string">&quot;RED&quot;</span>;</span><br><span class="line">    <span class="title class_">Color</span>[<span class="title class_">Color</span>[<span class="string">&quot;BLUE&quot;</span>] = <span class="number">1</span>] = <span class="string">&quot;BLUE&quot;</span>;</span><br><span class="line">    <span class="title class_">Color</span>[<span class="title class_">Color</span>[<span class="string">&quot;GREEN&quot;</span>] = <span class="number">2</span>] = <span class="string">&quot;GREEN&quot;</span>;</span><br><span class="line">    <span class="title class_">Color</span>[<span class="title class_">Color</span>[<span class="string">&quot;YELLOW&quot;</span>] = <span class="number">10000</span>] = <span class="string">&quot;YELLOW&quot;</span>;</span><br><span class="line">    <span class="title class_">Color</span>[<span class="title class_">Color</span>[<span class="string">&quot;BLACK&quot;</span>] = <span class="number">10001</span>] = <span class="string">&quot;BLACK&quot;</span>;</span><br><span class="line">&#125;)(<span class="title class_">Color</span> || (<span class="title class_">Color</span> = &#123;&#125;));</span><br><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Color</span>.<span class="property">RED</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="title class_">Color</span>.<span class="property">BLUE</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br></pre></td></tr></table></figure>
+<p>而使用 const 枚举编译后：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="number">0</span> <span class="comment">/* Color.RED */</span>,</span><br><span class="line">    <span class="attr">blue</span>: <span class="number">1</span> <span class="comment">/* Color.BLUE */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br></pre></td></tr></table></figure>
+<h2 id="泛型"><a class="markdownIt-Anchor" href="#泛型"></a> 泛型</h2>
+<p>泛型的好处大家也都了解，每种语言基本都会提供泛型，使用方式也都差不多。先声明后使用。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> array&lt;T&gt;(<span class="attr">a</span>: T, <span class="attr">b</span>: T):T[] &#123;</span><br><span class="line">    <span class="keyword">return</span> [a, b]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> array&lt;T <span class="keyword">extends</span> <span class="built_in">string</span>&gt;(<span class="attr">a</span>: T, <span class="attr">b</span>: T): T[] &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">length</span>);</span><br><span class="line">    <span class="keyword">return</span> [a, b]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> array&lt;T, E&gt;(<span class="attr">a</span>: T, <span class="attr">b</span>: E):(T|E)[] &#123;</span><br><span class="line">    <span class="keyword">return</span> [a, b]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">    <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">user</span>: <span class="title class_">User</span> = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;江湖浪子&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型约束：T 只能是 User 接口中的属性</span></span><br><span class="line"><span class="keyword">function</span> getValue&lt;T <span class="keyword">extends</span> keyof <span class="title class_">User</span>&gt;(<span class="attr">u</span>: <span class="title class_">User</span>, <span class="attr">key</span>: T): <span class="title class_">User</span>[T] &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(u[key]);</span><br><span class="line">    <span class="keyword">return</span> u[key]</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">getValue</span>(user, <span class="string">&quot;age&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="内置对象"><a class="markdownIt-Anchor" href="#内置对象"></a> 内置对象</h2>
+<p>ECMAScript</p>
+<h3 id="dom"><a class="markdownIt-Anchor" href="#dom"></a> DOM</h3>
+<p>常见的 html 标签都在 <code>HTMLElementTagNameMap</code> 接口中。</p>
+<p>Location<br />
+Storage<br />
+localStorage<br />
+sessionStorage<br />
+document.cookie（string 类型）</p>
+<h2 id="tsconfigjson"><a class="markdownIt-Anchor" href="#tsconfigjson"></a> tsconfig.json</h2>
+<p>生成该文件的命令：<code>tsc -init</code></p>
+<p>该文件的说明可以查阅 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">官网</a>，也可以百度网上查询，都有很多详解。下面也是从网上找的部分常用的配置项说明：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ES6&quot;</span><span class="punctuation">,</span> <span class="comment">// 目标语言的版本</span></span><br><span class="line">    <span class="attr">&quot;module&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ES6&quot;</span><span class="punctuation">,</span> <span class="comment">// 生成代码的模板标准</span></span><br><span class="line">    <span class="comment">// &quot;outFile&quot;: &quot;./app.js&quot;, // 将多个相互依赖的文件生成一个文件，可以用在AMD模块中，即开启时应设置&quot;module&quot;: &quot;AMD&quot;,</span></span><br><span class="line">    <span class="attr">&quot;lib&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;DOM&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ES2015&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ScriptHost&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ES2019.Array&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="comment">// TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入&quot;ES2019.Array&quot;,</span></span><br><span class="line">    <span class="attr">&quot;allowJs&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 允许编译器编译JS，JSX文件</span></span><br><span class="line">    <span class="attr">&quot;checkJs&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 允许在JS文件中报错，通常与allowJS一起使用</span></span><br><span class="line">    <span class="attr">&quot;outDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist&quot;</span><span class="punctuation">,</span> <span class="comment">// 指定输出目录</span></span><br><span class="line">    <span class="attr">&quot;rootDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./&quot;</span><span class="punctuation">,</span> <span class="comment">// 指定输出文件目录(用于输出)，用于控制输出目录结构</span></span><br><span class="line">    <span class="attr">&quot;removeComments&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 删除注释</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;strict&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 开启所有严格的类型检查</span></span><br><span class="line">    <span class="attr">&quot;alwaysStrict&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 在代码中注入&#x27;use strict&#x27;</span></span><br><span class="line">    <span class="attr">&quot;noImplicitAny&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 不允许隐式的any类型</span></span><br><span class="line">    <span class="attr">&quot;strictNullChecks&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 不允许把null、undefined赋值给其他类型的变量</span></span><br><span class="line">    <span class="attr">&quot;strictFunctionTypes&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 不允许函数参数双向协变</span></span><br><span class="line">    <span class="attr">&quot;strictPropertyInitialization&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 类的实例属性必须初始化</span></span><br><span class="line">    <span class="attr">&quot;strictBindCallApply&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 严格的bind/call/apply检查</span></span><br><span class="line">    <span class="attr">&quot;noImplicitThis&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 不允许this有隐式的any类型</span></span><br><span class="line">    <span class="attr">&quot;noUnusedLocals&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 检查只声明、未使用的局部变量(只提示不报错)</span></span><br><span class="line">    <span class="attr">&quot;noUnusedParameters&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 检查未使用的函数参数(只提示不报错)</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;baseUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./&quot;</span><span class="punctuation">,</span> <span class="comment">// 解析非相对模块的基地址，默认是当前目录</span></span><br><span class="line">    <span class="attr">&quot;paths&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="comment">// 路径映射，相对于baseUrl</span></span><br><span class="line">      <span class="comment">// 如使用jq时不想使用默认版本，而需要手动指定版本，可进行如下配置</span></span><br><span class="line">      <span class="attr">&quot;jquery&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;node_modules/jquery/dist/jquery.min.js&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="声明文件-dts"><a class="markdownIt-Anchor" href="#声明文件-dts"></a> 声明文件 d.ts</h2>
+<p>声明全局的变量和函数等</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> <span class="title class_">Hello</span>:<span class="built_in">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">function</span> getValue&lt;T&gt;(param : T):<span class="built_in">string</span></span><br></pre></td></tr></table></figure>
+<h2 id="装饰器"><a class="markdownIt-Anchor" href="#装饰器"></a> 装饰器</h2>
+<p>装饰器是 ES7 提出的实验性功能，默认是关闭的，可以使用以下选项进行开启：</p>
+<figure class="highlight json"><figcaption><span>tsconfig.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;experimentalDecorators&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;emitDecoratorMetadata&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="类装饰器"><a class="markdownIt-Anchor" href="#类装饰器"></a> 类装饰器</h3>
+<p>在不改变原有代码的前提下，实现在原有逻辑前后增加功能。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">app</span>: <span class="title class_">ClassDecorator</span> = <span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(fn)</span><br><span class="line">    fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">userName</span> = <span class="string">&quot;江湖浪子&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@app</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> u = <span class="keyword">new</span> <span class="title class_">User</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((u <span class="keyword">as</span> <span class="built_in">any</span>).<span class="property">userName</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数柯里化</span></span><br><span class="line"><span class="keyword">const</span> app = (<span class="attr">str</span>: <span class="built_in">string</span>): <span class="function"><span class="params">ClassDecorator</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">        fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">userName</span> = str</span><br><span class="line">        fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getUserName</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">userName</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@app</span>(<span class="string">&quot;jhlz&quot;</span>)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> u = <span class="keyword">new</span> <span class="title class_">User</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((u <span class="keyword">as</span> <span class="built_in">any</span>).<span class="property">userName</span>)</span><br></pre></td></tr></table></figure>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/NodeJs.html">NodeJs</a></div><div class="item" id="next"></div></section></div>
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 基本类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80"><span class="toc-text"> 类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 数组类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%82%E4%B9%B1%E6%95%B0%E7%BB%84%E6%B3%9B%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="toc-text"> 杂乱数组&#x2F;泛型数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-text"> 多维数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E6%95%B0%E7%BB%84"><span class="toc-text"> 类数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-text"> 元组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text"> 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%AD%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="toc-text"> 接口中定义方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text"> 继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 接口交叉类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-text"> 类型别名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 定义对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="toc-text"> 定义函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text"> 枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9E%9A%E4%B8%BE"><span class="toc-text"> 字符串枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%9E%9A%E4%B8%BE"><span class="toc-text"> 接口枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#const-%E6%9E%9A%E4%B8%BE"><span class="toc-text"> const 枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text"> 泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 内置对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dom"><span class="toc-text"> DOM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tsconfigjson"><span class="toc-text"> tsconfig.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6-dts"><span class="toc-text"> 声明文件 d.ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text"> 装饰器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text"> 类装饰器</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

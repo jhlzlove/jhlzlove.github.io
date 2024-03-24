@@ -1,0 +1,830 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>解锁数字媒体：认识视频音频格式以及编解码 - 浮生一梦</title>
+
+  
+    <meta name="description" content="最近使用了 OBS Studio 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解锁数字媒体：认识视频音频格式以及编解码">
+<meta property="og:url" content="https://jhlzlove.github.io/2023/10/17/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/index.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="最近使用了 OBS Studio 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-17T03:46:25.000Z">
+<meta property="article:modified_time" content="2024-02-28T12:16:50.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta property="article:tag" content="科普">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="科普">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/icon/avatar.jpeg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">浮生一梦</div><div class="sub normal cap">可叹 落叶飘零</div><div class="sub hover cap" style="opacity:0"> Sadly, the leaves are falling.</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/2024/03/24/2024/"><span class="title">琐碎人生的真实写照：2024年一地鸡毛的生活点滴与反思</span></a><a class="item title" href="/2023/12/25/%E4%B8%AD%E5%9B%BD%E8%BF%91%E7%8E%B0%E4%BB%A3%E5%8F%B2%E7%BA%B2%E8%A6%81/"><span class="title">中国近代史纲要</span></a><a class="item title" href="/2024/03/24/%E7%A4%BE%E4%BC%9A%E5%AD%A6%E6%A6%82%E8%AE%BA/"><span class="title">社会学概论</span></a><a class="item title" href="/2023/06/24/Window/Window%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="title">Windows 开发环境配置</span></a><a class="item title" href="/2023/12/19/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/"><span class="title">马克思主义基本原理概述</span></a><a class="item title" href="/2024/01/06/%E8%A1%8C%E6%94%BF%E7%BB%84%E7%BB%87%E7%90%86%E8%AE%BA/"><span class="title">行政组织理论</span></a><a class="item title" href="/2023/10/17/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/"><span class="title">解锁数字媒体：认识视频音频格式以及编解码</span></a><a class="item title" href="/2023/07/22/Linux/Debian/%E5%88%9D%E6%AC%A1%E6%8A%8A%E7%8E%A9Debian12/"><span class="title">【Linux】 初次把玩Debian12</span></a><a class="item title" href="/2023/06/24/%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/%E4%B8%80%E4%BA%9B%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/"><span class="title">Vsocde、Fleet配置备份</span></a><a class="item title" href="/2024/02/15/%E4%BD%BF%E7%94%A8Netlify%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E4%BA%91%E5%87%BD%E6%95%B0/"><span class="title">使用 Netlify 免费部署云函数</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
+<div class="flex-row" id="post-meta"><a class="author" href="/author/jhlz/index.html">江湖浪子</a><span class="sep"></span><span class="text created"><time datetime="2023-10-17T03:46:25.000Z">2023-10-17</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-02-28T12:16:50.000Z">2024-02-28</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>解锁数字媒体：认识视频音频格式以及编解码</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>最近使用了 <a target="_blank" rel="noopener" href="https://obsproject.com/">OBS Studio</a> 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。</p>
+<span id="more"></span>
+<h2 id="一-视频"><a class="markdownIt-Anchor" href="#一-视频"></a> 一、视频</h2>
+<h3 id="视频格式"><a class="markdownIt-Anchor" href="#视频格式"></a> 视频格式</h3>
+<p>通常，判断一个文件最直观的方式就是看该文件的后缀。例如 MP4, MOV, MKV, TS 以及微软的 WMV 等，它们一般被称为视频封装格式。可以把它们理解成一个 container 或者说一个盒子，可以装入视频帧、音频、元数据、字幕等信息。</p>
+<p>MKV：MKV 是一种非常灵活的容器，兼容 OBS Studio 支持的所有音频和视频编码器。它具有故障保护功能，即由于断电或其他原因导致的未完成录制仍可播放和恢复。不过，它在编辑软件中的支持度不高，在编辑软件中使用时可能需要重新复用。编辑软件支持不佳。</p>
+<p>MP4/MOV：MP4 是互联网视频的事实标准。MOV 是其姊妹格式，在编解码器兼容性方面略有不同，主要用于 Mac 平台。MP4/MOV 需要对文件进行 &quot;最终处理 &quot;才能播放，如果写入过程因故中断，文件可能无法恢复。因此不建议直接录制成 MP4/MOV。编辑软件提供出色的支持。</p>
+<p>片段式/分片 MP4/MOV：片段化是一种将 MP4/MOV 文件写成独立块的方法，这样文件就不需要最终处理就能使用，使其具有比 MKV 更高的兼容性，同时具有类似的抗错能力。当使用无损或未压缩音频时，可能需要重新复用才能在某些编辑套件中正常工作。编辑软件有很好的支持。</p>
+<p>FLV：FLV 是 RTMP 中使用的容器。它对编解码器的支持非常有限（H.264/AAC），而且只支持单音轨。它的弹性与 MKV 相似，但很少得到编辑软件的支持。编辑软件支持不佳。</p>
+<p>MPEG-TS/HLS (M3U8)：MPEG-TS 用于各种流媒体协议，其恢复能力与 MKV 相似，但对编解码器的支持较少。在使用 HLS 时，视频是以单独的 <code>.ts</code> 文件加上播放列表的形式分段编写的，播放列表会指示播放器如何读取文件。这主要用于互联网流媒体。MPEG-TS 在编辑软件中得到了很好的支持，HLS 在编辑软件方面的支持很差甚至没有。</p>
+<h3 id="视频编解码器"><a class="markdownIt-Anchor" href="#视频编解码器"></a> 视频编解码器</h3>
+<p>视频编码器可以简单理解成专门用来压缩视频的，解码器正好相反。通常，一个视频若不经过编码器处理的话，视频的体积往往比较大，由于互联网的带宽限制，视频体积当然要越小越好，越利于网络传输。所以封装为指定的视频格式时都会采用一些技术进行压缩。<strong>同一种</strong> 视频格式可以使用 <strong>不同</strong> 的编解码器进行编解码。</p>
+<p>常见的视频编解码器有如下几种：</p>
+<h4 id="avch264"><a class="markdownIt-Anchor" href="#avch264"></a> AVC/H.264</h4>
+<p>AVC（Advanced Video Coding）一种用于视频会议的低比特率可视通信标准。H.264 由 MPEG 和 ITU-T VCEG 共同开发。H.264 一种基于 MPEG-4 的国际电信联盟视频压缩标准。H.264 非常流行，尤其适用于蓝光等高清视频。利用当今芯片的优势，H.264 可以压缩更大的帧尺寸。此外，还支持分辨率较低的 MPEG-2 质量，但数据传输率大大降低。</p>
+<p>H.264 是 OBS 的默认编解码器。它的历史相当悠久（2004 年标准化），但在网络视频中无处不在，几乎可以在所有设备或软件上播放。对于大多数流媒体服务来说，它是目前唯一受支持的编解码器。同时大多数编辑软件都能提供出色的支持。</p>
+<h4 id="hevch265"><a class="markdownIt-Anchor" href="#hevch265"></a> HEVC/H.265</h4>
+<p>HEVC（High Efficiency Video Coding） 国际电信联盟（ITU）和国际标准化组织（ISO）联合开发的超高清视频压缩标准。HEVC 也称为 H.265，支持 8K 分辨率。根据视频内容的不同，HEVC 能以 H.264/AVC 编码一半的比特率提供相同的视频质量，从而能以更少的带宽传输高质量视频，或以相同的带宽传输更高质量的视频。</p>
+<p>H.264（2013 年标准化）的继承者，在相同比特率/文件大小的情况下提供更好的质量。不过，由于其许可协议限制较多，网络流媒体并未广泛支持或使用它。它仅通过 OBS Studio 中的硬件编码器（英伟达 NVENC、AMD AMF、英特尔 QSV、苹果 VT）支持。编辑软件有较好的支持。</p>
+<h4 id="av1"><a class="markdownIt-Anchor" href="#av1"></a> AV1</h4>
+<p>AOMedia Video 1 开放媒体联盟（AOMedia）的一种视频编解码器。该联盟成立于 2015 年，AV1 于 2018 年首次发布。AV1 旨在取代 VP9 编解码器，成为 IETF 互联网视频编解码器（NETVC）标准。思科的 Thor 编解码器和 <a target="_blank" rel="noopener" href="http://Xiph.Org">Xiph.Org</a> 基金会的 Daala 编解码器的元素也包含在内。AV1 的主要竞争对手是 HEVC/H.265，与之相比，AV1 完全免收版权费，而且 AV1 的功能都经过仔细的专利侵权审查。</p>
+<p>OBS Studio 支持的最新编解码器（2019 年标准化），与 HEVC 相比，质量/文件大小均有改善。软件编码可使用 SVT-AV1/libaom-av1，但需要高端 CPU 进行实时压缩。也可通过 AMD（RX 7000 系列）、NVIDIA（RTX 40 系列）和英特尔（Arc）最新 GPU 上的硬件编码器进行编码。编辑软件尚不支持。</p>
+<p>SVT-AV1 是开源的 AV1 编解码器实现。英特尔和 Netflix 自2018年8月以来一直在就 SVT-AV1 编解码器框架进行合作。团队一直密切合作进行 SVT-AV1 的开发、交流架构决策；实施新工具并改善压缩效率。</p>
+<h4 id="prores"><a class="markdownIt-Anchor" href="#prores"></a> ProRes</h4>
+<p>Apple 的编解码器，适用于不需要考虑文件大小的专业用途，可根据质量需求提供各种配置文件。通过 Mac 上的硬件和软件编码器提供支持。编辑软件有较好的支持。</p>
+<h3 id="rate-control速率控制cbr-vbr-cqp"><a class="markdownIt-Anchor" href="#rate-control速率控制cbr-vbr-cqp"></a> Rate Control（速率控制）：CBR、VBR、CQP</h3>
+<p>如果互联网是完美的，那么所有流媒体都可以使用 CQP（或者更好的：任何恒定质量模式，如 CRF 或 ICQ）。这些编码方法对每一帧都能产生相同的质量，与运动无关。在这种情况下，如果运动量大，则需要较高的比特率；如果运动量小，则需要较低的比特率。遗憾的是，比特率可变的数据流无法在互联网上完美传输。如果高动态场景的比特率升高，而接收方（用户）又有很多，发送方的连接可能会超载，每个接收方都会出现延迟或缓冲视频。每当一个接收器的带宽超过短时间的比特率峰值时，也会发生这种情况。</p>
+<p>对于录制而言，基于质量的编码方式（VBR）效果更好，因为高运动场景的编码质量比 CBR 模式更好。当然，也可以将 CBR 的比特率提高到最高级别，这样就不会再看到差异，但这样做会浪费磁盘空间，因为低运动场景可以用更少的带宽（或空间）保存，而不会影响质量。</p>
+<h4 id="速率控制详解"><a class="markdownIt-Anchor" href="#速率控制详解"></a> 速率控制详解</h4>
+<ol>
+<li>
+<p>CBR：恒定码率控制算法，用以恒定比特率流式传输或录制。质量由比特率决定。比特率越高，质量越好。</p>
+</li>
+<li>
+<p>VBR：可变码率控制算法，用以实时、录制和可变比特率流式传输。根据 SDK 的描述，该算法符合 HRD 标准，可能可以很好地用于流式传输，尽管它不是严格的恒定比特率算法。质量由 2 比特率参数决定。比特率越高，质量越好。</p>
+</li>
+<li>
+<p>CQP：常量化参数算法，用以可变比特率录制。无论运动如何，视频都以恒定的质量编码。比特率由视频材料的复杂性决定。质量由 QPI，QPP 和 QPB 参数决定。QPI 确定帧内质量（称为关键帧），QPP 确定预测 （P-） 帧质量，QPB 确定 h.264 B 帧（P 帧的较弱版本）。您希望对所有 3 个参数使用相同的值。非常适合原始素材的本地录制，因为如果您将比特率设置得足够高，质量不限于比特率，同时不会在低复杂场景中浪费磁盘空间。质量由 3 个 QP 参数 （1…51） 决定。值越低，质量越好，最终视频占用空间较大。最佳点可能在 20-25 左右。我的选择是 22，最大比特率为 50000，这导致平均比特率约为 29000，同时保持最高质量的高复杂场景。低于 22 的值会大大增加比特率要求。并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>AVBR：平均可变比特率控制算法，用以可变比特率录制。质量由比特率决定。比特率越高，质量越好。允许高复杂度短场景的比特率消耗峰值，以保持质量。高复杂度场景的质量由精度和收敛参数决定。这对于像 VBR 算法（不符合 HRD 标准）这样的流媒体来说不够稳定。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>LA（VBR）：具有前瞻性的 VBR 算法（VBR 升级版），用以可变比特率录制。VBR 算法的更好版本。质量改进了 VBR。由于在实际编码之前对几十帧进行了大量分析，因此延迟巨大，内存消耗增加。质量由比特率和预视深度 （1…100） 决定。比特率越高，质量越好。LA 值为 0 时，SDK 为默认值。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>ICQ：智能恒定质量算法，用以可变比特率录制。CQP 模式的更好版本。以恒定的质量录制，类似于x.264的CRF模式，比CQP模式更好地使用带宽。质量由 ICQQuality 参数 （1…51） 确定，其中 1 对应于最佳质量。ICQQuality 的理智值可能在 20…25 左右，就像在 CQP 模式下一样。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>VCM：视频会议模式，用以视频会议。可能是低延迟、低比特率要求、低质量。我没有找到有关此模式的任何详细信息，但它可能不适合高质量的流媒体或录制，但专注于低带宽使用和数据流的稳健性。并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>LA ICQ：具有前瞻性的智能恒定质量算法，用以可变比特率录制。与 LA （VBR） 相同的质量改进和注意事项，但适用于 ICQ 算法。可能是最好的质量，同时消耗所有可用算法中最少的带宽 - 如果您的 CPU 支持它。质量由 ICQQuality 参数 （1…51） 和前瞻深度 （1…100） 确定，其中 1 对应于最佳质量。“前瞻”越大，质量越好，其中 0 表示 SDK 默认值。ICQQuality 的理智值可能在 20…25 左右，就像在 CQP 模式下一样。该算法并非在每个高清显卡中都可用。</p>
+</li>
+</ol>
+<p>OBS 论坛有大佬给出的推荐顺序是：</p>
+<p>LA ICQ -&gt; ICQ -&gt; CQP -&gt; LA （VBR） -&gt; AVBR -&gt; VBR -&gt; CBR</p>
+<p>浪子推荐：</p>
+<p>如果主要使用流式传输，则保持 OBS 的默认值（CBR 2500kbs）即可，也可以使用 VBR，但不推荐其它的算法。如果电脑的配置较好，可以适当提高码率，核显的话还是推荐保持默认值即可。如果直播是游戏的话，推荐使用独显。核显可以玩游戏，但不代表可以直播；如果可以直播，但不代表最终质量如何。</p>
+<p>本地录制的选择就较多了，可以结合自己的硬件选择，情况不一。</p>
+<blockquote>
+<p>视频最终的质量由编码 + 码率决定。一般互联网视频推荐 .H264 编码封装为 MP4 的格式。<br />
+码率越大，视频体积越大。</p>
+</blockquote>
+<h3 id="视频画面比例"><a class="markdownIt-Anchor" href="#视频画面比例"></a> 视频画面比例</h3>
+<p>常见的竖屏画面比例为 4:3；横屏为 16:9、18:9、21:9，横向数字越大，上下的黑边越宽。还有其它各种稀奇古怪的比例，就不详细讲解了，可以观看视频：</p>
+
+    <div class="tag-plugin video" style="aspect-ratio:1.7777777777777777;max-width:100%;">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Zo4y1Z7Y6&autoplay=false" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+    </iframe>
+    </div>
+    
+<p>如果什么都不懂，建议导出竖屏时 4:3，横屏时 16:9，这些硬件支持较好。</p>
+<h2 id="二-音频"><a class="markdownIt-Anchor" href="#二-音频"></a> 二、音频</h2>
+<h3 id="音频编解码器"><a class="markdownIt-Anchor" href="#音频编解码器"></a> 音频编解码器</h3>
+<p>AAC：与 H.264 一样，AAC 的历史也相当悠久（1997 年），但支持范围非常广泛，在典型比特率下仍能提供不错的质量。几乎所有流媒体服务都使用这种编解码器。编辑软件提供出色的支持。</p>
+<p>Opus：比 AAC（2012 年）的编解码器更新、质量更高，并且免费授权。它的质量更高，但兼容性更差。编辑软件提供一般支持。</p>
+<p>FLAC：无损编解码器，免费授权，广泛用于音乐，但不太支持视频文件。编辑软件提供一般支持。</p>
+<p>ALAC：苹果公司的无损音频编解码器，在 MOV/MP4 和编辑软件中得到很好的支持。编辑软件有较好的支持。</p>
+<p>PCM：无压缩音频，包括 32 位浮点录音支持，使编辑更加灵活。编辑软件提供出色的支持。</p>
+<h2 id="三-音视频格式与编解码器的兼容性"><a class="markdownIt-Anchor" href="#三-音视频格式与编解码器的兼容性"></a> 三、<a target="_blank" rel="noopener" href="https://obsproject.com/kb/audio-video-formats-guide">音/视频格式与编解码器的兼容性</a></h2>
+<h3 id="视频编解码器与音频编解码器的兼容性"><a class="markdownIt-Anchor" href="#视频编解码器与音频编解码器的兼容性"></a> 视频编解码器与音频编解码器的兼容性</h3>
+<table>
+<thead>
+<tr>
+<th>编解码器</th>
+<th>H.264</th>
+<th>HEVC</th>
+<th>AV1</th>
+<th>ProRes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AAC</td>
+<td>Any</td>
+<td>MP4, MOV, MKV, TS</td>
+<td>MP4, MKV</td>
+<td>MOV, MKV</td>
+</tr>
+<tr>
+<td>ALAC</td>
+<td>MP4, MOV, MKV</td>
+<td>MP4, MOV, MKV</td>
+<td>MP4, MKV</td>
+<td>MOV, MKV</td>
+</tr>
+<tr>
+<td>FLAC</td>
+<td>MP4, MKV</td>
+<td>MP4, MKV</td>
+<td>MP4, MKV</td>
+<td>MKV</td>
+</tr>
+<tr>
+<td>Opus</td>
+<td>MP4, MKV, TS</td>
+<td>MP4, MKV, TS</td>
+<td>MP4, MKV</td>
+<td>MKV</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>MOV, MKV</td>
+<td>MOV, MKV</td>
+<td>MKV</td>
+<td>MOV, MKV</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>表格横向为视频编解码器，纵向为音频编解码器；</li>
+<li>TS 包括 m3u8(HLS)；</li>
+</ul>
+</blockquote>
+<h3 id="视频格式与其编解码器的支持"><a class="markdownIt-Anchor" href="#视频格式与其编解码器的支持"></a> 视频格式与其编解码器的支持</h3>
+<table>
+<thead>
+<tr>
+<th>container</th>
+<th>H.264</th>
+<th>HEVC</th>
+<th>AV1</th>
+<th>ProRes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLV</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MOV</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>MKV</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>M3U8 (HLS)</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>TS</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>MPEG-TS 中的 AV1 正在标准化，一旦最终确定，它将可用于 TS 和 HLS 输出。</p>
+</blockquote>
+<h3 id="音频格式与编解码器的兼容性支持"><a class="markdownIt-Anchor" href="#音频格式与编解码器的兼容性支持"></a> 音频格式与编解码器的兼容性支持</h3>
+<table>
+<thead>
+<tr>
+<th>container</th>
+<th>AAC</th>
+<th>ALAC</th>
+<th>FLAC</th>
+<th>Opus</th>
+<th>PCM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLV</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MOV</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>MKV</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>M3U8 (HLS)</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>TS</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>MP4 中的 PCM 是标准化的，但 FFmpeg 和 OBS Studio 尚不支持。</p>
+</blockquote>
+
+<div class="article-footer fs14">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://obsproject.com/forum/resources/custom-parameters-of-quicksync.104/">速率控制说明</a></p>
+
+        </li>
+        
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://slurptech.com/best-obs-settings-for-recording/">用于录制的最佳 OBS 设置</a></p>
+
+        </li>
+        
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://streamlabs.com/content-hub/post/best-bitrate-settings-for-live-streaming">直播的最佳比特率设置</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2023/11/03/VuePress2%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/">使用 VuePress2 搭建网站</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2023/07/22/Linux/Debian/%E5%88%9D%E6%AC%A1%E6%8A%8A%E7%8E%A9Debian12/">【Linux】 初次把玩Debian12</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E8%A7%86%E9%A2%91"><span class="toc-text"> 一、视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 视频格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text"> 视频编解码器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#avch264"><span class="toc-text"> AVC&#x2F;H.264</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hevch265"><span class="toc-text"> HEVC&#x2F;H.265</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#av1"><span class="toc-text"> AV1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prores"><span class="toc-text"> ProRes</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rate-control%E9%80%9F%E7%8E%87%E6%8E%A7%E5%88%B6cbr-vbr-cqp"><span class="toc-text"> Rate Control（速率控制）：CBR、VBR、CQP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9F%E7%8E%87%E6%8E%A7%E5%88%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text"> 速率控制详解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E7%94%BB%E9%9D%A2%E6%AF%94%E4%BE%8B"><span class="toc-text"> 视频画面比例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E9%9F%B3%E9%A2%91"><span class="toc-text"> 二、音频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text"> 音频编解码器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text"> 三、音&#x2F;视频格式与编解码器的兼容性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8%E4%B8%8E%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text"> 视频编解码器与音频编解码器的兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E5%85%B6%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text"> 视频格式与其编解码器的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F%E4%B8%8E%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E6%94%AF%E6%8C%81"><span class="toc-text"> 音频格式与编解码器的兼容性支持</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

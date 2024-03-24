@@ -1,0 +1,689 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>java：SpringSecurity - 浮生一梦</title>
+
+  
+    <meta name="description" content="一、官网学习 官方文档https:&#x2F;&#x2F;docs.spring.io&#x2F;spring-security&#x2F;reference&#x2F;servlet&#x2F;authentication&#x2F;architecture.html 本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。 Spring Security 是一个框架，提供针对常见攻击的身份验证、授权和保护。 它为保护命令式和响应式应用程序提供了一流的支持，">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SpringSecurity">
+<meta property="og:url" content="https://jhlzlove.github.io/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/SpringSecurity.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="一、官网学习 官方文档https:&#x2F;&#x2F;docs.spring.io&#x2F;spring-security&#x2F;reference&#x2F;servlet&#x2F;authentication&#x2F;architecture.html 本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。 Spring Security 是一个框架，提供针对常见攻击的身份验证、授权和保护。 它为保护命令式和响应式应用程序提供了一流的支持，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jhlzlove.github.io/images/doc/20231108100948.png">
+<meta property="article:published_time" content="2023-07-10T14:08:20.000Z">
+<meta property="article:modified_time" content="2024-01-08T11:38:32.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jhlzlove.github.io/images/doc/20231108100948.png">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="wiki" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/images/wiki/java/java.webp" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/index.html"><div class="main" ff="title">java</div><div class="sub cap">小小 Java</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/编程后花园/Java/" placeholder="在 java 中搜索..."></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Java</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/index.html#start"><span class="toc-text">Java总结</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/GradleAndMaven.html"><span class="toc-text">Gradle And Maven</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/JavaAPI.html"><span class="toc-text">一些 API 说明</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/Java%E7%BC%96%E5%86%99WebSocket.html"><span class="toc-text">Java 编写 WebSocket</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/Java%E8%A7%A3%E6%9E%90mysql-binlog%E6%95%B0%E6%8D%AE.html"><span class="toc-text">Java解析MySQL的binlog日志</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/volatile.html"><span class="toc-text">volatile 关键字</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/MQ.html"><span class="toc-text">MQ</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81.html"><span class="toc-text">微信公众号模板消息测试推送</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/gRPC.html"><span class="toc-text">gRPC</span></a></div><div class="widget-header dis-select"><span class="name">Spring</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/Spring.html"><span class="toc-text">Spring</span></a><a class="link active" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/SpringSecurity.html"><span class="toc-text">SpringSecurity</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/Spring%E6%B3%A8%E8%A7%A3.html"><span class="toc-text">Spring 注解</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/SpringAPI.html"><span class="toc-text">Spring API</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/Spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5.html"><span class="toc-text">Spring事务失效的几种情况</span></a></div><div class="widget-header dis-select"><span class="name">JVM</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/JVM/JVM.html"><span class="toc-text">JVM</span></a><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/JVM/JFR.html"><span class="toc-text">Java Flight Recording</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/%E9%9A%8F%E7%AC%94/Java%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html"><span class="toc-text">Java使用各种工具问题总结</span></a></div></widget>
+
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：编程后花园</span></div><div class="widget-body"><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title">Kotlin</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title">编程基础知识</span><span class="excerpt">编程必知二三事</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Rust/Rust.html"><span class="title">Rust</span><span class="excerpt">Rust 学习</span></a><a class="item wiki" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Web/index.html"><span class="title">前端知识大杂烩</span><span class="excerpt">前端相关知识</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>Kotlin</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/%E8%AE%A4%E8%AF%86Kotlin%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>认识 Kotlin 的作用域函数</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>编程小知识</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-二叉树</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-堆</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-散列表</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>基础排序算法</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-单例模式</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-策略模式</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/index.html">java</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2024-01-08T11:38:32.000Z">2024-01-08</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>SpringSecurity</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="一-官网学习"><a class="markdownIt-Anchor" href="#一-官网学习"></a> 一、官网学习</h2>
+<div class="tag-plugin link dis-select"><a class="link-card plain" title="官方文档" href="https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html" target="_blank" rel="external nofollow noopener noreferrer" cardlink api="https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url=https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html" autofill="icon"><div class="left"><span class="title">官方文档</span><span class="cap link footnote">https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
+<p>本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。</p>
+<p>Spring Security 是一个框架，提供针对常见攻击的身份验证、授权和保护。 它为保护命令式和响应式应用程序提供了一流的支持，是保护基于 Spring 的应用程序的事实标准。</p>
+<p>在 Security 5.4 中引入了通过创建 <code>SecurityFilterChain</code> Bean 进行配置 HttpSecurity 的功能。自 Security 5.7 开始，<strong>WebSecurityConfigurerAdapter</strong> 弃用，其配置写法以 Java Bean 的方式为主，组件化配置。具体的使用可以阅读 <a target="_blank" rel="noopener" href="https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter">官方文档</a>。</p>
+<h3 id="1-架构"><a class="markdownIt-Anchor" href="#1-架构"></a> 1. 架构</h3>
+<p>Spring Security 基于 servlet 的过滤器链实现，这些过滤器称之为 FilterChain，同时 Security 还提供了 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-filterchainproxy">FilterChainProxy</a> 允许我们设置多个 FilterChain，实现不同的认证，例如基本的认证和 OAuth2 等。在这些过滤器中，我们可以选择重写内部的具体实现完成自己的业务，也可以向 FilterChain 中添加我们自己的新的 Filter，然后在配置中添加生效的位置。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="../../../../images/doc/20231108100948.png" alt="SecurityContextHolder" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">SecurityContextHolder</span></div></div>
+<p>SecurityContextHolder：存储被身份验证者的详细信息的地方；<br />
+SecurityContex：从 SecurityContextHolder 获取，包含当前经过身份验证的用户 Authentication；<br />
+Authentication：可以是 AuthenticationManager 的输入，用于提供用户为进行身份验证而提供的凭据或 SecurityContext 中的当前用户；<br />
+AuthenticationManager：定义 Spring Security 的过滤器如何执行身份验证的 API；<br />
+ProviderManager ：最常见的 AuthenticationManager 实现；</p>
+<p>用户已通过身份验证的最简单方法是直接设置 SecurityContextHolder；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建信息的 context</span></span><br><span class="line"><span class="type">SecurityContext</span> <span class="variable">context</span> <span class="operator">=</span> SecurityContextHolder.createEmptyContext();</span><br><span class="line"><span class="comment">// 创建 authentication 主体完成认证</span></span><br><span class="line"><span class="type">Authentication</span> <span class="variable">authentication</span> <span class="operator">=</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">TestingAuthenticationToken</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;ROLE_USER&quot;</span>); </span><br><span class="line">context.setAuthentication(authentication);</span><br><span class="line"><span class="comment">// 将 Security Context 保存在 SecurityContextHolder 中</span></span><br><span class="line">SecurityContextHolder.setContext(context); </span><br></pre></td></tr></table></figure>
+<h3 id="2-思考"><a class="markdownIt-Anchor" href="#2-思考"></a> 2. 思考</h3>
+<ul>
+<li>为什么在 SpringBoot 中，引入 Spring Security 依赖之后没有任何配置所有的请求就要认证呢？<br />
+SpringBootWebSecurityConfiguration，自动配置类</li>
+<li>在项目中明明没有登录界面，登录界面怎么来的呢？<br />
+访问接口时，在引入 spring security 之后会先经过一系列过滤器。在请求到达 FilterSecurityInterceptor 时，发现请求并未认证，请求拦截下来，并抛出 AccessDeniedException 异常。抛出的异常会被 ExceptionTranslationFilter 捕获，这个 Filter 中会调用 LoginUrlAuthenticationEntryPoint#commence 方法给客户端返回 302，要求客户端进行重定向到 /login 页面。客户端发送 /login 请求。/login 请求会再次被拦截器中 DefaultLoginPageGeneratingFilter 拦截到，并在拦截器中返回生成登录页面。</li>
+<li>为什么使用 user 和控制台打印的密码能登录，登录时验证数据源存在哪里呢？<br />
+Spring Security中有一个基于内存（InMemoryUserDetailsManager）的默认用户实现。</li>
+</ul>
+<h2 id="二-登录认证"><a class="markdownIt-Anchor" href="#二-登录认证"></a> 二、登录认证</h2>
+<p>登录</p>
+<ol>
+<li>调用 ProviderManager 的方法进行认证，如果认证成功生成 jwt，把用户信息存入 redis。</li>
+<li>自定义 UserDetailsService，查询数据库</li>
+</ol>
+<p>校验</p>
+<p>定义 jwt 认证过滤器，获取 token，解析 token 中的 userid，查询 redis 中是否存在相应的 userid 并获取用户信息，最后存入 SecurityContextHolder。</p>
+<h3 id="1-一些说明"><a class="markdownIt-Anchor" href="#1-一些说明"></a> 1. 一些说明</h3>
+<h5 id="authenticationmanager-providermanager-authencationprovider关系"><a class="markdownIt-Anchor" href="#authenticationmanager-providermanager-authencationprovider关系"></a> AuthenticationManager ProviderManager AuthencationProvider关系</h5>
+<p>AuthenticationManager 有全局的和局部的，无论哪种，都是通过 ProviderManager 进行实现。每一个 ProviderManager 中都代理一个 AuthenticationProvider列表，列表中每一个实现代表一种身份认证方式。认证时底层数据源调用 UserDetailsService 来实现。</p>
+<h5 id="websecurityconfigureradapter57-标为弃用"><a class="markdownIt-Anchor" href="#websecurityconfigureradapter57-标为弃用"></a> WebSecurityConfigurerAdapter（5.7+ 标为弃用）</h5>
+<p>WebSecurityConfigurerAdapter 是 Spring Security 为我们提供的扩展类，方便我们重写默认配置，实现定制。</p>
+<p>Spring Security(5.7) 中的 WebSecurityConfigurerAdapter 标记为弃用状态。新版的改变与使用参考 <a target="_blank" rel="noopener" href="https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter#ldap-authentication">5.7新版配置</a>，不同之处在于改变了写法，新版主要以配置 Bean 的方式使用。</p>
+<h5 id="userdetails"><a class="markdownIt-Anchor" href="#userdetails"></a> UserDetails</h5>
+<p>提供核心用户信息，<code>UserDetailsService#loadByUsername()</code> 返回的就是一个 UserDetails 对象。</p>
+<h5 id="userdetailsservice-用来修改默认认证的数据源信息"><a class="markdownIt-Anchor" href="#userdetailsservice-用来修改默认认证的数据源信息"></a> UserDetailsService 用来修改默认认证的数据源信息</h5>
+<p>UserDetailsService 接口下有许多的实现。同时，此接口也方便了我们以后的自定义数据源的扩展。里面定义了一个根据用户名查询用户信息的方法。</p>
+<h5 id="authentication"><a class="markdownIt-Anchor" href="#authentication"></a> Authentication</h5>
+<p>封装的用户信息，包括用户名和密码。</p>
+<h3 id="2-配置authenticationmanager的两种方式"><a class="markdownIt-Anchor" href="#2-配置authenticationmanager的两种方式"></a> 2. 配置AuthenticationManager的两种方式</h3>
+<ol>
+<li>
+<p>继承 WebSecurityConfigurerAdapter，springboot 对 security 默认配置中 在工厂默认创建 AuthenticationManager。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认配置会自动发现创建的 UserDetailService 的 Bean</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">(AuthenticationManagerBuilder builder, DataSource datasource)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;spring boot 自动配置的全局 AuthenticationManager&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>自定义全局认证数据源</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义配置 AuthenticationManager</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(AuthenticationManagerBuilder builder)</span> &#123;</span><br><span class="line">  builder.userDetailsService(customerUserDetailsService())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 暴露本地的 AuthenticationManager 自定义实例</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> AuthenticationManager <span class="title function_">authenticationManagerBean</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">super</span>.authenticationManagerBean();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>小结：</strong></p>
+<ol>
+<li>默认自动配置全局 AuthenticationManager 默认找当前项目中是否存在自定义 UserDetailService 实例，如果存在会自动将当前项目的 UserDetailService 实例设置为数据源。</li>
+<li>默认自动配置全局 AuthenticationManager 在工厂中使用时直接在代码中注入即可。</li>
+<li>一旦通过自定义的方式配置后，会 <strong>自动覆盖</strong> 默认的实现；并且需要在实现中 <strong>指定</strong> 自定义的数据源对象 UserDetailsService 实例，并且这个 AuthenticationManager 需要暴露出来（自定义的默认是本地的，不允许其它组件注入）。</li>
+</ol>
+<h3 id="3-密码加密"><a class="markdownIt-Anchor" href="#3-密码加密"></a> 3. 密码加密</h3>
+<p>常见加密方案：Hash 算法+盐<br />
+单向自适应函数（占用大量系统资源，每个认证请求都会大大降低应用程序的性能），开发者可以通过 bcrypt、PBKDF2、sCrypt 以及 argon2 来体验这种自适应单向函数加密。</p>
+<p>密码的认证是由 PasswordEncoder 进行的，他可以根据不同的加密实现不同的认证方式，所以非常的灵活。自定义密码加密有两种方式，一种是直接指定密码加密的方式（比如Bcrypt），另一种是使用自定义升级的方式。配置中指定密码加密的方式较为常见，另一种方式看自己的项目中是否需要，有需要就可以修改。</p>
+<h3 id="4-rememberme"><a class="markdownIt-Anchor" href="#4-rememberme"></a> 4. RememberMe</h3>
+<p>RememberMe是一种服务端的行为，并非是把用户名密码保存在 Cookie 中的信息。传统的登录方式基于 Session 会话，一旦用户的会话过期，就要再次登录，这样就太过于繁琐。如果有一种机制，会话过期后，还能继续保持认证状态，就会方便很多，RememberMe就是为了解决这一需求而生的。</p>
+<p>具体的实现思路就是通过 Cookie 来记录当前用户身份，用户登录成功之后，会通过一定算法，将用户信息时间戳等进行贾母，加密完成后，通过响应头带回前端存储再Cookie中，当浏览器会话过期之后，如果再次访问网站，会自动将 Cookie 中的信息发送给服务器，服务器对 Cookie 中的信息进行校验分析，进而确定出用户的身份，Cookie 中所保存的用户信息也是有失效的，例如三天、一周等。</p>
+<h3 id="5-会话管理sessionmanagementfilter"><a class="markdownIt-Anchor" href="#5-会话管理sessionmanagementfilter"></a> 5. 会话管理(SessionManagementFilter)</h3>
+<p>会话并发管理：简单来说，就是多个客户端使用同一账户登录。默认情况下，同一账户可以再多少设备上登录并没有限制，我们可以在 Spring Security 中进行配置。</p>
+<p>开启会话管理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义配置</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throw</span> Exception &#123;</span><br><span class="line">    http...</span><br><span class="line">        .sessionManagement() <span class="comment">// 开启会话管理</span></span><br><span class="line">        <span class="comment">// 最大并发会话为 1</span></span><br><span class="line">        .maximumSessions(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Spring Security 开启会话管理默认的是挤掉另一个客户端登录；我们可以设置为禁止其它客户端登录（当前用户登录成功，其它客户端无法使用当前的账户登录，除非当前用户注销退出）。集群下的会话管理可以使用 Redis 的Session 共享。</p>
+<h3 id="6-跨域问题"><a class="markdownIt-Anchor" href="#6-跨域问题"></a> 6. 跨域问题</h3>
+<ol>
+<li>
+<p>入门：@CrossOrigin</p>
+<p>该注解由 Spring 框架提供，含有属性：<br />
+allowCredentials:浏览器是否应当发送凭证信息，如 Cookie。<br />
+allowHeader:允许访问头<br />
+origins:允许指定访问的所属域访问，<code>*</code> 表示所有字段。<br />
+exposeHeaders:哪些响应头可以作为响应的一部分暴露出来。使用通配符无效。<br />
+maxAge:预检查请求的有效期，有效期内不必再次发送预检请求，默认是100s。<br />
+methods:允许的请求方法，<code>*</code> 表示所有方法。</p>
+</li>
+<li>
+<p>进阶：addCrosMapping（Spring MVC 提供）</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> &#123;</span><br><span class="line">        registry.addMapping(<span class="string">&quot;/**&quot;</span>)</span><br><span class="line">                .allowCredentials(<span class="literal">false</span>)</span><br><span class="line">                .allowedHeaders(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .allowedMethods(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .allowedOrigins(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .maxAge(<span class="number">3600</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>CrosFilter（Spring Web提供的跨域处理解决方案）</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.FilterRegistrationBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.cors.CorsConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.cors.UrlBasedCorsConfigurationSource;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.filter.CorsFilter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebMvcConfig</span> &#123;</span><br><span class="line">    FilterRegistrationBean&lt;CorsFilter&gt; <span class="title function_">corsFilter</span><span class="params">()</span> &#123;</span><br><span class="line">        FilterRegistrationBean&lt;CorsFilter&gt; registrationBean = <span class="keyword">new</span> <span class="title class_">FilterRegistrationBean</span>&lt;&gt;();</span><br><span class="line">        <span class="type">CorsConfiguration</span> <span class="variable">corsConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorsConfiguration</span>();</span><br><span class="line">        corsConfiguration.setAllowedHeaders(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setAllowedMethods(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setAllowedOrigins(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setMaxAge(<span class="number">3600L</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">UrlBasedCorsConfigurationSource</span> <span class="variable">source</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UrlBasedCorsConfigurationSource</span>();</span><br><span class="line">        source.registerCorsConfiguration(<span class="string">&quot;/**&quot;</span>, corsConfiguration);</span><br><span class="line">        registrationBean.setFilter(<span class="keyword">new</span> <span class="title class_">CorsFilter</span>(source));</span><br><span class="line">        registrationBean.setOrder(-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> registrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Spring Security中的跨域解决方案</p>
+<p><strong>Q：</strong> 当项目中使用了Spring Security后，上面的方案有的会失效，有的可以继续使用，这是为什么？<br />
+<strong>A：</strong> 通过 <code>@CrossOrigin</code> 注解或者重写 <code>addCorsMappings</code> 方法配置的跨域解决方案，统统失效了（发送的预检请求会被 Spring Security 拦截）；通过 CorsFilter 配置的跨域，有没有失效则要看过滤器的优先级。如果过滤优先级高于 Spring Security 过滤器，即先于 Spring Security 过滤器执行，则 CorsFilter 所配置的跨域处理依然有效；如果优先级低于 Spring Security 过滤器，则 CorsFilter 所配置的跨域处理就会失效。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebMvcConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        http.authorizeRequests().anyRequest()</span><br><span class="line">                .authenticated().and()</span><br><span class="line">                .formLogin().and()</span><br><span class="line">                <span class="comment">// 跨域处理方案</span></span><br><span class="line">                .cors().configurationSource(corsConfigurationSource()).and()</span><br><span class="line">                .csrf().disable();</span><br><span class="line">    &#125;</span><br><span class="line">    CorsConfigurationSource <span class="title function_">corsConfigurationSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">CorsConfiguration</span> <span class="variable">corsConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorsConfiguration</span>();</span><br><span class="line">        corsConfiguration.setAllowedHeaders(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setAllowedMethods(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setAllowedOrigins(Arrays.asList(<span class="string">&quot;*&quot;</span>));</span><br><span class="line">        corsConfiguration.setMaxAge(<span class="number">3600L</span>);</span><br><span class="line">        <span class="type">UrlBasedCorsConfigurationSource</span> <span class="variable">source</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UrlBasedCorsConfigurationSource</span>();</span><br><span class="line">        source.registerCorsConfiguration(<span class="string">&quot;/**&quot;</span>, corsConfiguration);</span><br><span class="line">        <span class="keyword">return</span> source;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="7-异常处理"><a class="markdownIt-Anchor" href="#7-异常处理"></a> 7. 异常处理</h3>
+<h4 id="71-认证异常"><a class="markdownIt-Anchor" href="#71-认证异常"></a> 7.1 认证异常</h4>
+<p>认证异常涉及的异常类型比较多，AuthenticationException 是所有认证异常的父类。一般我们重写 <code>AuthenticationEntryPoint#commence()</code> 来自定义出现认证异常后返回给前端的提示信息。</p>
+<h4 id="72-授权异常"><a class="markdownIt-Anchor" href="#72-授权异常"></a> 7.2 授权异常</h4>
+<p>相较于认证异常，权限异常类就要少了很多。在实际项目开发中，如果默认提供的异常无法满足需求，就需要根据实际需求自定义异常类。一般重写 <code>AccessDeniedHandler#handle()</code> 实现授权失败的返回信息。</p>
+<h4 id="73-自定义异常处理配置示例"><a class="markdownIt-Anchor" href="#73-自定义异常处理配置示例"></a> 7.3 自定义异常处理配置示例</h4>
+<p>为求简单，这里给的是一个使用 lambda 函数的简写形式，没有写单独的类配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebMvcConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        http.authorizeRequests().mvcMatchers(<span class="string">&quot;/hello&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line">                .anyRequest()</span><br><span class="line">                .authenticated().and()</span><br><span class="line">                .formLogin().and()</span><br><span class="line">                .csrf().disable()</span><br><span class="line">                <span class="comment">// 异常处理</span></span><br><span class="line">                .exceptionHandling()</span><br><span class="line">                <span class="comment">// 认证异常</span></span><br><span class="line">                .authenticationEntryPoint((request, response, authException) -&gt; &#123;</span><br><span class="line">                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);</span><br><span class="line">                    response.setStatus(HttpStatus.UNAUTHORIZED.value());</span><br><span class="line">                    response.getWriter().write(<span class="string">&quot;尚未认证，请进行认证操作&quot;</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 权限异常</span></span><br><span class="line">                .accessDeniedHandler((request, response, accessDeniedException) -&gt; &#123;</span><br><span class="line">                    response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);</span><br><span class="line">                    response.setStatus(HttpStatus.FORBIDDEN.value());</span><br><span class="line">                    response.getWriter().write(<span class="string">&quot;无权访问&quot;</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-csrfcross-site-request-forgery"><a class="markdownIt-Anchor" href="#8-csrfcross-site-request-forgery"></a> 8. CSRF（Cross-site request forgery）</h3>
+<p>CSRF 即跨站请求伪造，是 web 常见的攻击方式之一。</p>
+<p>Spring Security 防止 CSRF 攻击的方式就是通过 csrf_token，前端发起请求的时候需要携带这个 csrf_token，后端会有过滤器进行校验，如果没有携带或者是伪造的就不允许访问。</p>
+<p>CSRF 攻击依靠的是 Cookie 中所携带的认证信息。但是在前后端分离的项目我们的认证信息是基于 Token，而 token 并不存储在 Cookie 中，我们的 token 是设置到请求头中的，所以 CSRF 攻击在前后端分离的项目中就失效了。</p>
+<h2 id="二-授权"><a class="markdownIt-Anchor" href="#二-授权"></a> 二、授权</h2>
+<h3 id="21-两种权限管理策略"><a class="markdownIt-Anchor" href="#21-两种权限管理策略"></a> 2.1 两种权限管理策略</h3>
+<ul>
+<li>
+<p>基于过滤器的权限管理（FilterSecurityInterceptor）：主要拦截Http请求，拦截下来后，根据Http请求地址进行权限校验</p>
+</li>
+<li>
+<p>基于方法的权限管理（MethodSecurityInterceptor）：主要是用来处理方法级别的权限问题。当需要调用某一个方法时，基于 AOP 将操作拦截下来，然后判断用户是否具备相关的权限。</p>
+</li>
+</ul>
+<h4 id="1-基于-url-的权限管理"><a class="markdownIt-Anchor" href="#1-基于-url-的权限管理"></a> 1. 基于 URL 的权限管理</h4>
+<ul>
+<li>
+<p>antMatchers()：最早出现的，用于任何 HttpMethod 请求列表。</p>
+</li>
+<li>
+<p>mvcMatchers()：4.x 版本新增的，使用 Spring MVC 的匹配规则。例如，路径 <code>/path</code>，它会匹配 <code>/path</code>，<code>/path/</code>，<code>/path.html</code> 等。如果 Spring MVC 不会处理当前请求，会使用 antMatchers()。</p>
+<p>两种方式本质上没有太大区别。使用 mvcMatchers() 的话优先使用 MVC 进行匹配，如果匹配不到，会使用 antMatchers() 匹配方式。</p>
+</li>
+<li>
+<p>regexMatchers()；支持正则表达式。</p>
+</li>
+</ul>
+<h4 id="2-基于方法的权限管理"><a class="markdownIt-Anchor" href="#2-基于方法的权限管理"></a> 2. 基于方法的权限管理</h4>
+<p>这种方式就是在 controller 层的方法上加上注解，指明需要哪些权限或者具有的角色才能访问对应的资源。</p>
+<p>首先，配置类中开启方法权限校验：@EnableGlobalMethodSecurity(prePostEnabled = true, SecuredEnable = true, jsr250Enabled = true)，<s>（这里开启了三种方式，一般只用第一种）</s></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开启配置 启用方法级别的权限认证</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="comment">// 开启之后就可以使用 @preAuthorize 也是最常用的注解</span></span><br><span class="line"><span class="meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前置校验</span></span><br><span class="line"><span class="meta">@preAuthorize(&quot;hasAuthority(&quot;权限名称&quot;)&quot;)</span></span><br><span class="line"><span class="comment">// 过滤 filterTarget 必须是数组 集合，不能过滤某个对象</span></span><br><span class="line"><span class="meta">@preFilter(filterTarget = &quot;users&quot;)</span></span><br><span class="line"><span class="comment">// 后置校验</span></span><br><span class="line"><span class="meta">@PostAuthorize()</span></span><br><span class="line"><span class="meta">@PostFilter()</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Secured(&quot;role1&quot;, &quot;role2&quot;)</span> <span class="comment">// 只能判断角色，或者 关系，满足一个即通过请求</span></span><br><span class="line"><span class="comment">// 允许所有用户访问</span></span><br><span class="line"><span class="meta">@PermitAll()</span></span><br><span class="line"><span class="comment">// 拒绝所有访问</span></span><br><span class="line"><span class="meta">@DenyAll()</span></span><br><span class="line"><span class="comment">// jsr250 提供的注解，和 Secured() 类似</span></span><br><span class="line"><span class="meta">@RolesAllowed(&quot;role1&quot;, &quot;role2&quot;)</span></span><br></pre></td></tr></table></figure>
+<p>项目中，一般前四个用的较多，后面几个功能较为单一。</p>
+<h3 id="22-动态权限修改"><a class="markdownIt-Anchor" href="#22-动态权限修改"></a> 2.2 动态权限修改</h3>
+<p>以上方式都是通过代码实现的，比较难以修改，可以使用动态的权限修改，比如从数据库层面实现，修改字段即可达到修改相应的权限的目的。</p>
+<p>只需实现 <code>FilterInvocationSecurityMetaSource</code> 接口并重写 <code>getAttributes()</code> 方法。之后在 SecurityConfig 配置类中，使用 http.apply() 方法，覆写里面的配置，setSecurityMetaSource() 改为实现 FilterInvocationSecurityMetaSource 接口的实现类即可。setRejectPublicInvocations() 设为 true/false，为 true 时拒绝 <strong>公共资源</strong>（没有权限管理的公共接口） 的访问。</p>
+<h3 id="23-rbacrole-based-access-control"><a class="markdownIt-Anchor" href="#23-rbacrole-based-access-control"></a> 2.3 RBAC(Role-Based Access Control)</h3>
+<p>RBAC 即基于角色的权限控制，你也可以理解为使用 <strong>角色</strong> 来代理具体的 <strong>权限</strong>。</p>
+<p>想像一下，每次添加用户时都单独添加权限的话，那肯定是比较繁琐的。如果我们加入一个“角色”，把常用的一些权限分配给预定义的角色，然后在添加用户的时候直接把“角色”（比如 admin）设置给用户，这个用户就自动拥有对应的权限。这样就比较简单方便。</p>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/Spring.html">Spring</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Java/SpringFramework/Spring%E6%B3%A8%E8%A7%A3.html">Spring 注解</a></div></section></div>
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%AE%98%E7%BD%91%E5%AD%A6%E4%B9%A0"><span class="toc-text"> 一、官网学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%B6%E6%9E%84"><span class="toc-text"> 1. 架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%80%9D%E8%80%83"><span class="toc-text"> 2. 思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E7%99%BB%E5%BD%95%E8%AE%A4%E8%AF%81"><span class="toc-text"> 二、登录认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E"><span class="toc-text"> 1. 一些说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AEauthenticationmanager%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text"> 2. 配置AuthenticationManager的两种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86"><span class="toc-text"> 3. 密码加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-rememberme"><span class="toc-text"> 4. RememberMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86sessionmanagementfilter"><span class="toc-text"> 5. 会话管理(SessionManagementFilter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-text"> 6. 跨域问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text"> 7. 异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#71-%E8%AE%A4%E8%AF%81%E5%BC%82%E5%B8%B8"><span class="toc-text"> 7.1 认证异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#72-%E6%8E%88%E6%9D%83%E5%BC%82%E5%B8%B8"><span class="toc-text"> 7.2 授权异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#73-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-text"> 7.3 自定义异常处理配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-csrfcross-site-request-forgery"><span class="toc-text"> 8. CSRF（Cross-site request forgery）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E6%8E%88%E6%9D%83"><span class="toc-text"> 二、授权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E4%B8%A4%E7%A7%8D%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text"> 2.1 两种权限管理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8E-url-%E7%9A%84%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text"> 1. 基于 URL 的权限管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8E%E6%96%B9%E6%B3%95%E7%9A%84%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text"> 2. 基于方法的权限管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E4%BF%AE%E6%94%B9"><span class="toc-text"> 2.2 动态权限修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-rbacrole-based-access-control"><span class="toc-text"> 2.3 RBAC(Role-Based Access Control)</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

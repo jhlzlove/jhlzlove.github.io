@@ -1,0 +1,885 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Windows 开发环境配置 - 浮生一梦</title>
+
+  
+    <meta name="description" content="Windows 开发环境配置 + 软件配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 开发环境配置">
+<meta property="og:url" content="https://jhlzlove.github.io/2023/06/24/Window/Window%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="Windows 开发环境配置 + 软件配置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jhlzlove.github.io/images/doc/%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE1.png">
+<meta property="og:image" content="https://jhlzlove.github.io/images/doc/%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201206130445676.png">
+<meta property="article:published_time" content="2023-06-24T10:59:05.000Z">
+<meta property="article:modified_time" content="2024-03-24T12:54:03.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta property="article:tag" content="配置">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jhlzlove.github.io/images/doc/%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE1.png">
+  
+  
+  
+  <meta name="keywords" content="配置">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/icon/avatar.jpeg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">浮生一梦</div><div class="sub normal cap">可叹 落叶飘零</div><div class="sub hover cap" style="opacity:0"> Sadly, the leaves are falling.</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/2024/03/24/2024/"><span class="title">琐碎人生的真实写照：2024年一地鸡毛的生活点滴与反思</span></a><a class="item title" href="/2023/12/25/%E4%B8%AD%E5%9B%BD%E8%BF%91%E7%8E%B0%E4%BB%A3%E5%8F%B2%E7%BA%B2%E8%A6%81/"><span class="title">中国近代史纲要</span></a><a class="item title" href="/2024/03/24/%E7%A4%BE%E4%BC%9A%E5%AD%A6%E6%A6%82%E8%AE%BA/"><span class="title">社会学概论</span></a><a class="item title" href="/2023/06/24/Window/Window%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="title">Windows 开发环境配置</span></a><a class="item title" href="/2023/12/19/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/"><span class="title">马克思主义基本原理概述</span></a><a class="item title" href="/2024/01/06/%E8%A1%8C%E6%94%BF%E7%BB%84%E7%BB%87%E7%90%86%E8%AE%BA/"><span class="title">行政组织理论</span></a><a class="item title" href="/2023/10/17/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/"><span class="title">解锁数字媒体：认识视频音频格式以及编解码</span></a><a class="item title" href="/2023/07/22/Linux/Debian/%E5%88%9D%E6%AC%A1%E6%8A%8A%E7%8E%A9Debian12/"><span class="title">【Linux】 初次把玩Debian12</span></a><a class="item title" href="/2023/06/24/%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/%E4%B8%80%E4%BA%9B%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/"><span class="title">Vsocde、Fleet配置备份</span></a><a class="item title" href="/2024/02/15/%E4%BD%BF%E7%94%A8Netlify%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E4%BA%91%E5%87%BD%E6%95%B0/"><span class="title">使用 Netlify 免费部署云函数</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Windows/">Windows</a></div>
+<div class="flex-row" id="post-meta"><a class="author" href="/author/jhlz/index.html">江湖浪子</a><span class="sep"></span><span class="text created"><time datetime="2023-06-24T10:59:05.000Z">2023-06-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-03-24T12:54:03.000Z">2024-03-24</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Windows 开发环境配置</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>Windows 开发环境配置 + 软件配置。</p>
+<span id="more"></span>
+<h2 id="一-环境配置"><a class="markdownIt-Anchor" href="#一-环境配置"></a> 一、环境配置</h2>
+<p>Windows 的环境变量配置比较简单，它是以键值对（key-value）的方式配置的。</p>
+<p>在 Windows 系统中，有两种变量：用户变量和系统变量。</p>
+<ul>
+<li>
+<p>用户变量：只有当前登录用户能可以使用的变量，类似于 Linux 系统中用户目录下的 <code>.bashrc</code> 文件；</p>
+</li>
+<li>
+<p>系统变量：对所有用户生效、所有用户可以使用的变量，类似于 Linux 系统中的 <code>/etc/profile</code> 文件；</p>
+</li>
+</ul>
+<p>本文都以配置 <strong>系统变量</strong> 为例，但是配置方式不限，配置的 <code>value</code> 路径要替换自己本机的安装路径。Windows 配置变量一般有两种方式：</p>
+<ol>
+<li>直接在 <strong>Path</strong> 里编辑添加软件的执行文件所在的目录（一般是软件的 bin 目录）。</li>
+<li>新建一个变量，设置变量名称（一般随便起，部分有约定，比如 <code>JAVA_HOME</code>，很多需要 java 环境的软件默认查询 <code>JAVA_HOME</code> 变量名）和路径（安装软件的根目录）的 key-value，然后在 <strong>Path</strong> 中引用 <code>%key%</code>。</li>
+</ol>
+<blockquote>
+<p>本文使用命令行测试时，工具可以是 PowerShell(PS)、cmd、Git Bash(推荐)、cmder 等。为了防止出错，最好使用管理员身份运行这些工具。</p>
+</blockquote>
+<h3 id="1-jdk"><a class="markdownIt-Anchor" href="#1-jdk"></a> 1. JDK</h3>
+<p>第一个配置附带了截图，后面的就不带了 😉，只是帮助理解一下上面的第二种配置说明。第一种是比较简单的，直接把软件执行程序路径添加在 <strong>Path</strong> 中。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JAVA_HOME</td>
+<td>D:\software\java</td>
+</tr>
+<tr>
+<td>CLASSPATH</td>
+<td>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar</td>
+</tr>
+</tbody>
+</table>
+<p>Path 配置 <code>%JAVA_HOME%\bin</code></p>
+<p>命令行测试：<code>java -version</code></p>
+<blockquote>
+<p><strong>Tip：</strong> jdk1.5 以后 CLASSPATH 可以不用再进行设置;</p>
+</blockquote>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/images/doc/变量设置1.png" data-fancybox="true"/></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/images/doc/变量设置2.png" data-fancybox="true"/></div></div>
+<h3 id="2-maven"><a class="markdownIt-Anchor" href="#2-maven"></a> 2. Maven</h3>
+<p>Maven 官网下载特别慢，甚至打不开，可以在 <a target="_blank" rel="noopener" href="https://archive.apache.org/dist/maven/maven-3/">https://archive.apache.org/dist/maven/maven-3/</a> 下载。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M2_HOME</td>
+<td>D:\develop\software\maven-3.9.6</td>
+</tr>
+</tbody>
+</table>
+<p>Path: <code>%M2_HOME%\bin</code></p>
+<p>命令行测试：<code>mvn -version</code></p>
+<p>配置<a target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/help/maven.html">腾讯 maven 镜像源</a>：</p>
+<figure class="highlight xml"><figcaption><span>.../maven-3.9.6/conf/setting.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-tencentyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus tencentyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://mirrors.tencent.com/nexus/repository/maven-public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<h3 id="3-gradle"><a class="markdownIt-Anchor" href="#3-gradle"></a> 3. <a target="_blank" rel="noopener" href="https://gradle.org/">Gradle</a></h3>
+<p>Gradle 推荐使用最新版的 IDEA(2023.3.x+)，能够使得本地的 Gradle 的作用发挥出来，否则还是推荐配置 <code>GRADLE_USER_HOME</code> 环境变量。这样 IDEA 下载新版本或者依赖的时候优先下载到这个文件夹中而不会使用默认 C 盘的目录。</p>
+<p>本地 <a target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/gradle/">下载</a> 解压。配置环境变量：</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GRADLE_HOME</td>
+<td>D:\develop\software\gradle-8.5</td>
+</tr>
+</tbody>
+</table>
+<p>PATH: <code>%GRADLE_HOME%\bin</code></p>
+<p>命令行测试：<code>gradle -V</code></p>
+<p>配置下载源：</p>
+<figure class="highlight kotlin"><figcaption><span>.../gradle-8.5/init.d/init.gradle</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> RepositoryHandler.<span class="title">enableMirror</span><span class="params">()</span></span> &#123;</span><br><span class="line">    all &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">is</span> MavenArtifactRepository) &#123;</span><br><span class="line">            <span class="keyword">val</span> originUrl = <span class="keyword">this</span>.url.toString().removeSuffix(<span class="string">&quot;/&quot;</span>)</span><br><span class="line">            urlMappings[originUrl]?.let &#123;</span><br><span class="line">                logger.lifecycle(<span class="string">&quot;Repository[<span class="variable">$url</span>] is mirrored to <span class="variable">$it</span>&quot;</span>)</span><br><span class="line">                <span class="keyword">this</span>.setUrl(it)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> urlMappings = mapOf(</span><br><span class="line">    <span class="string">&quot;https://repo.maven.apache.org/maven2&quot;</span> to <span class="string">&quot;https://mirrors.tencent.com/nexus/repository/maven-public/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://dl.google.com/dl/android/maven2&quot;</span> to <span class="string">&quot;https://mirrors.tencent.com/nexus/repository/maven-public/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://plugins.gradle.org/m2&quot;</span> to <span class="string">&quot;https://mirrors.tencent.com/nexus/repository/gradle-plugins/&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">gradle.allprojects &#123;</span><br><span class="line">    buildscript &#123;</span><br><span class="line">        repositories.enableMirror()</span><br><span class="line">    &#125;</span><br><span class="line">    repositories.enableMirror()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gradle.beforeSettings &#123;</span><br><span class="line">    pluginManagement.repositories.enableMirror()</span><br><span class="line">    dependencyResolutionManagement.repositories.enableMirror()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>gradle 下载源查找顺序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 排列顺序即加载顺序 * 代表可以为任意名称</span></span><br><span class="line">~/.gradle/init.gradle</span><br><span class="line">~/.gradle/init.d/*.gradle</span><br><span class="line">GRADLE_HOME/init.d/*.gradle</span><br><span class="line">GRADLE_USER_HOME/init.gradle</span><br><span class="line">GRADLE_USER_HOME/init.d/*.gradle</span><br><span class="line"></span><br><span class="line"><span class="comment"># Gradle 查找依赖的顺序</span></span><br><span class="line"><span class="comment"># M2_HOME 是 Maven 的配置</span></span><br><span class="line">~/.m2/settings.xml</span><br><span class="line">M2_HOME/conf/settings.xml</span><br><span class="line">~/.m2/repository</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>GRADLE_HOME 是本地安装的 Gradle 软件目录。</p>
+</blockquote>
+<h3 id="4-mysql"><a class="markdownIt-Anchor" href="#4-mysql"></a> 4. MySQL</h3>
+<p>使用安装文件（exe 或者 msi）安装一般没有什么问题，安装过程中会提示将安装路径加入环境变量。</p>
+<p>这里只介绍使用 <mark class="tag-plugin colorful mark" color="green">压缩包</mark> 的方式。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MYSQL_HOME</td>
+<td>D:\software\MySQL8.0</td>
+</tr>
+</tbody>
+</table>
+<p>Path: <code>%MYSQL_HOME%\bin</code></p>
+<p>命令行运行以下命令完成初始化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service-name 自己命名，如果不写默认为 mysql，只安装一个版本使用的话可以不指定</span></span><br><span class="line"><span class="comment"># 在安装多个不同版本 MySQL 的时候很有用</span></span><br><span class="line">mysqld --install [service-name]</span><br><span class="line"><span class="comment"># 移除 MySQL 服务</span></span><br><span class="line">mysqld --remove [service-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的命令二选一：分别是 无密码版 和 带密码版</span></span><br><span class="line"><span class="comment"># 使用不安全的初始化（即不生成初始密码）</span></span><br><span class="line">mysqld --initialize-insecure --console</span><br><span class="line"><span class="comment"># 如果需要生成初始化密码，则使用以下命令。--console 选项把生成的密码打印到控制台（需要查看密码保存）</span></span><br><span class="line">mysqld --initialize --console</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 MySQL 服务</span></span><br><span class="line">net start [service-name]</span><br><span class="line"><span class="comment"># 进入 MySQL bash</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment"># 修改密码</span></span><br><span class="line">alter user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified by <span class="string">&#x27;yourpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>开启远程访问：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment"># MySQL 5.x</span></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;yourpassword&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line"><span class="comment"># MySQL 8.x</span></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;yourpassword&#x27;</span> with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>TIP</strong>：安装多个不同 MySQL 版本的时候，需要先 <strong>新建/编辑</strong> <code>my.ini</code> 文件先修改端口号再初始化（即生成 data 目录），避免端口冲突。</p>
+</blockquote>
+<h3 id="5-mariadb"><a class="markdownIt-Anchor" href="#5-mariadb"></a> 5. <a target="_blank" rel="noopener" href="https://mariadb.org/download/?t=mariadb&amp;p=mariadb&amp;r=10.9.3&amp;os=windows&amp;cpu=x86_64&amp;pkg=zip&amp;m=blendbyte">MariaDB</a></h3>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MARIA_HOME</td>
+<td>D:\software\mariadb-11.0.2</td>
+</tr>
+</tbody>
+</table>
+<p>Path: <code>%MARIA_HOME%\bin</code></p>
+<p>命令行运行以下命令完成初始化：</p>
+<figure class="highlight bash"><figcaption><span>D:\software\mariadb-11.0.2\bin</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 名称自己起</span></span><br><span class="line">mysqld.exe --install [service-name]</span><br><span class="line"><span class="comment"># 初始化数据库，生成 data 文件夹以及配置信息</span></span><br><span class="line">mysql_install_db</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">net start [service-name](上面安装时起的名称)</span><br></pre></td></tr></table></figure>
+<p>配置文件（如果本机安装之前还有 MySQL 数据库，推荐解压后先修改配置文件，更改默认端口）：</p>
+<figure class="highlight ini"><figcaption><span>.../mariadb-11.0.2/data/my.ini</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">; 文件目录</span></span><br><span class="line"><span class="attr">datadir</span>=D:/software/mariadb-<span class="number">11.0</span>.<span class="number">2</span>/data</span><br><span class="line"><span class="attr">port</span> = <span class="number">3333</span></span><br><span class="line"><span class="comment">; 字符集设置</span></span><br><span class="line"><span class="attr">character-set-server</span> = utf8mb4</span><br><span class="line"><span class="attr">collation-server</span> = utf8mb4_general_ci</span><br><span class="line">skip-character-set-client-handshake</span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="attr">plugin-dir</span>=D:/software/mariadb-<span class="number">11.0</span>.<span class="number">2</span>/lib/plugin</span><br><span class="line"><span class="comment">; 客户端连接端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3333</span></span><br><span class="line"></span><br><span class="line"><span class="section">[mariadb]</span></span><br><span class="line"><span class="attr">feedback</span>=<span class="literal">off</span></span><br><span class="line"><span class="comment">; 指定端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3333</span></span><br><span class="line"><span class="comment">; 默认创建数据库的类型</span></span><br><span class="line"><span class="attr">default-storage-engine</span> = InnoDB</span><br><span class="line"><span class="comment">; 最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span> = <span class="number">100</span></span><br><span class="line"><span class="comment">; 慢查询</span></span><br><span class="line"><span class="attr">slow_query_log_file</span> = slow.log</span><br><span class="line"><span class="attr">slow_query_log</span>  = <span class="number">0</span></span><br><span class="line"><span class="attr">log_queries_not_using_indexes</span>  = <span class="number">1</span></span><br><span class="line"><span class="attr">long_query_time</span> = <span class="number">0.5</span></span><br><span class="line"><span class="attr">min_examined_row_limit</span> = <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果本机已经安装了 MySQL 数据库，那么使用这种方式安装需要在初始化数据库后，先修改 <code>my.ini</code> 文件，修改端口号避免端口占用导致启动失败，然后启动服务。<br />
+FEEDBACK 启动成功但是连接失败官方说明：<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/feedback-plugin/">https://mariadb.com/kb/en/feedback-plugin/</a><br />
+官方配置文档：<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/">https://mariadb.com/kb/en/configuring-mariadb-with-option-files/</a><br />
+Unicode 排序规则：<a target="_blank" rel="noopener" href="https://www.monolune.com/articles/mysql-utf8-charsets-and-collations-explained/">https://www.monolune.com/articles/mysql-utf8-charsets-and-collations-explained/</a></p>
+</blockquote>
+<h3 id="6-postgresql"><a class="markdownIt-Anchor" href="#6-postgresql"></a> 6. <a target="_blank" rel="noopener" href="https://www.enterprisedb.com/download-postgresql-binaries">PostgreSQL</a></h3>
+<p>Path：<code>D:\software\pgsql\bin</code></p>
+<p>命令行运行以下命令完成初始化：</p>
+<figure class="highlight bash"><figcaption><span>D:\software\pgsql\bin</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化 initdb --help 查看帮助信息</span></span><br><span class="line"><span class="comment"># -D data         指定初始化的数据库目录(此处为当前目录的data文件夹)</span></span><br><span class="line"><span class="comment"># -E utf8         数据库编码格式</span></span><br><span class="line"><span class="comment"># -U postgres     超级管理员名称</span></span><br><span class="line"><span class="comment"># -A              使用密码授权</span></span><br><span class="line">initdb.exe -D <span class="string">&quot;D:\software\develop\pgsql\data&quot;</span> -E UTF8 -U postgres -W</span><br><span class="line"><span class="comment"># 注册服务 -N 指定服务名称</span></span><br><span class="line">pg_ctl register -N <span class="string">&quot;postgresql&quot;</span> -D <span class="string">&quot;D:\software\develop\pgsql\data&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">pg_ctl -D <span class="string">&quot;D:\software\pgsql\data&quot;</span> -l logfile start</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Navicat 15.x 连接时报错 ”datlastsysoid“ 字段不存在，估计需要 Navicat 16 吧，后续经验证，16 完美支持无报错；<br />
+如果使用最新版本的 PG 可以使用官方提供的客户端 pgAdmin4，可在设置中调整为中文界面(目前缺点就是启动响应较慢)，推荐使用开源的 Dbeaver 或者其它 GUI 管理工具；<br />
+pgsql 的配置文件在 data 文件夹中 <code>postgres.conf</code>。</p>
+</blockquote>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img-blog.csdnimg.cn/20201206130445676.png" alt="pgAdmin4界面示例" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">pgAdmin4界面示例</span></div></div>
+<h3 id="7-tomcat"><a class="markdownIt-Anchor" href="#7-tomcat"></a> 7. Tomcat</h3>
+<p>Tomcat 有安装版和压缩包两种，如果是安装版，需要先配置好jdk。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CATALINA_HOME</td>
+<td>D:\software\tomcat8.5</td>
+</tr>
+</tbody>
+</table>
+<p>Path：<code>%CATALINA_HOME%\bin</code>。</p>
+<blockquote>
+<p>Tomcat启动的日志输出的默认字符集编码是 utf-8，但是 window 的 shell 是 gbk 编码，所以如果想要在 window 下正常输出，就要修改 Tomcat 的日志打印编码。<br />
+编辑tomcat安装路径下的 <code>conf/logging.properties</code> 文件,找到以下内容并修改；<br />
+<code>java.util.logging.ConsoleHandler.encoding = GBK</code>，保存重启即可。</p>
+</blockquote>
+<h3 id="8-nodejs"><a class="markdownIt-Anchor" href="#8-nodejs"></a> 8. <a target="_blank" rel="noopener" href="https://nodejs.org/en">NodeJs</a></h3>
+<p>Windows 中安装的 <code>nodejs.msi</code> 中自带了 <code>npm</code>，而 Linux 需要单独安装（使用包管理器的时候）。另外，Windows 中安装后需要修改安装目录的权限，不然只有管理员才能操作该目录，对于当前用户是非常不方便的。</p>
+<p>在安装目录即 <code>nodejs</code> 文件夹，单击右键，选择属性，点击 “安全” 标签，选择 “User” 用户，点击编辑，把权限都勾上，保存退出。</p>
+<p>命令行做一些配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置阿里镜像源</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://mirrors.cloud.tencent.com/npm/</span><br><span class="line"><span class="comment"># 设置全局安装目录（需要先手动创建）</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">&quot;D:\software\develop\nodejs\node_global&quot;</span></span><br><span class="line"><span class="comment"># 设置全局缓存目录（需要先手动创建）</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">&quot;D:\software\develop\nodejs\node_cache&quot;</span></span><br><span class="line"><span class="comment"># 查看修改是否成功</span></span><br><span class="line">npm config list</span><br></pre></td></tr></table></figure>
+<p>Path：<code>D:\software\develop\nodejs\node_global</code></p>
+<blockquote>
+<p>配置 Path 是为了使用 <strong>全局安装</strong> 的工具（例如 yarn、pnpm 等）。<br />
+阿里镜像源：<a target="_blank" rel="noopener" href="https://registry.npmmirror.com">https://registry.npmmirror.com</a></p>
+</blockquote>
+<h3 id="9-jetty"><a class="markdownIt-Anchor" href="#9-jetty"></a> 9. Jetty</h3>
+<div class="tag-plugin link dis-select"><a class="link-card plain" title="官方文档" href="https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html" target="_blank" rel="external nofollow noopener noreferrer" cardlink api="https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url=https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html" autofill="icon"><div class="left"><span class="title">官方文档</span><span class="cap link footnote">https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
+<p>下载后解压，之后进入 jetty 的安装目录。运行以下命令(<code>$JETTY_HOME</code> 是安装目录)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">为当前基目录添加标准文件及文件夹</span></span><br><span class="line">java -jar $JETTY_HOME/start.jar --add-to-startd=http,deploy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建demo演示，不然启动后是404页面</span></span><br><span class="line">java -jar $JETTY_HOME/start.jar --add-module=demo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动jetty服务</span></span><br><span class="line">java -jar $JETTY_HOME/start.jar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果不想用8080，可以使用以下命令在启动时动态修改</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">也可以修改配置文件，使其永久生效</span></span><br><span class="line">java -jar $JETTY_HOME/start.jar jetty.http.port=9999</span><br></pre></td></tr></table></figure>
+<p>之后就可以在浏览器使用 <code>localhost:9999</code> 进行访问了。</p>
+<h3 id="10-rust"><a class="markdownIt-Anchor" href="#10-rust"></a> 10. <a target="_blank" rel="noopener" href="https://www.rust-lang.org/">Rust</a></h3>
+<p>创建 <code>~/.cargo/config</code> 文件，编辑填写以下内容，保存。</p>
+<figure class="highlight toml"><figcaption><span>~/.cargo/config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[source.crates-io]</span></span><br><span class="line"><span class="attr">replace-with</span> = <span class="string">&#x27;mirror&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[source.mirror]</span></span><br><span class="line"><span class="attr">registry</span> = <span class="string">&quot;sparse+https://mirrors.bfsu.edu.cn/crates.io-index/&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="11-python"><a class="markdownIt-Anchor" href="#11-python"></a> 11. <a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置镜像源</span></span><br><span class="line">python -m pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip</span><br><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple</span><br></pre></td></tr></table></figure>
+<h2 id="二-软件"><a class="markdownIt-Anchor" href="#二-软件"></a> 二、软件</h2>
+<h3 id="1-vscode"><a class="markdownIt-Anchor" href="#1-vscode"></a> 1. VsCode</h3>
+<p><strong>自 VsCode 1.7x 版本之后 exe 安装文件也可以选择安装路径了，并且国内下载速度也很快，但是插件默认依然在 C 盘中，当然你可以打一个软连接映射，或者使用便携版本来自定义插件的安装位置。</strong></p>
+<h3 id="2-vivaldi"><a class="markdownIt-Anchor" href="#2-vivaldi"></a> 2. Vivaldi</h3>
+<p>Vivaldi 官网在国内是访问不到的，可以在 <code>hosts</code> 文件中添加以下内容再次访问：</p>
+<figure class="highlight plaintext"><figcaption><span>C:\Windows\System32\drivers\etc\hosts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.67.21.227 vivaldi.com www.vivialdi.com update.vivaldi.com downloads.vivaldi.com help.vivaldi.com bifrost.vivaldi.com mimir.vivaldi.com</span><br></pre></td></tr></table></figure>
+<h2 id="三-插件"><a class="markdownIt-Anchor" href="#三-插件"></a> 三、插件</h2>
+<p>插件在精不在多。</p>
+<h3 id="1-油猴插件"><a class="markdownIt-Anchor" href="#1-油猴插件"></a> 1. 油猴插件</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/394216-%E7%BD%91%E7%9B%98%E9%93%BE%E6%8E%A5%E6%A3%80%E6%9F%A5">网盘链接检查：(自动识别并标记百度云、蓝奏云、腾讯微云和天翼云盘的链接状态)</a></li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/436446-%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B">网盘直链下载助手</a>（需要关注公众号，目前好用的不多了）</li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/422773-%E9%93%BE%E6%8E%A5%E5%8A%A9%E6%89%8B">链接助手</a></li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD">Github 增强 - 高速下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/428960-csdn-%E7%9F%A5%E4%B9%8E-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9-%E7%AE%80%E4%B9%A6%E5%85%8D%E7%99%BB%E5%BD%95%E5%8E%BB%E9%99%A4%E5%BC%B9%E7%AA%97%E5%B9%BF%E5%91%8A">CSDN/知乎/哔哩哔哩/简书免登录去除弹窗广告</a></li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/468975-%E5%A2%9E%E5%BC%BA%E7%89%88-csdn-%E7%9F%A5%E4%B9%8E-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9-%E7%AE%80%E4%B9%A6%E5%85%8D%E7%99%BB%E5%BD%95%E5%8E%BB%E9%99%A4%E5%BC%B9%E7%AA%97%E5%B9%BF%E5%91%8A">增强版 CSDN/知乎/哔哩哔哩/简书免登录去除弹窗广告</a>（推荐）</li>
+</ol>
+<h3 id="2-edge"><a class="markdownIt-Anchor" href="#2-edge"></a> 2. Edge</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons/detail/%E5%8F%AF%E5%8F%AF%E7%BF%BB%E8%AF%91/ebkimaahhkeiplegpghijhgmlcdkeppf">可可翻译</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons/detail/json-beautifier-editor/kpfjmbnldfjpgbglcdcmlkekajbcjlem">JSON Beautifier &amp; Editor</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons/detail/adguard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8/pdffkfellgipmhklpdmokmckkkfcopbh">AdGuard</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons/detail/fatkun%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD-pro/dammmokdamnimedflemdaoamhldmldff">图片下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey-beta/fcmfnpggmnlmfebfghbfnillijihnkoh">Tampermonkey BETA</a></li>
+</ol>
+<h3 id="3-火狐"><a class="markdownIt-Anchor" href="#3-火狐"></a> 3. 火狐</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://addons.mozilla.org/zh-CN/firefox/addon/sctranslator/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=search">可可翻译</a></li>
+<li><a target="_blank" rel="noopener" href="https://addons.mozilla.org/zh-CN/firefox/addon/circle-reader-mini/?utm_content=addons-manager-reviews-link&amp;utm_medium=firefox-browser&amp;utm_source=firefox-browser">Circle 阅读助手基础版</a></li>
+</ol>
+<blockquote>
+<p>火狐新版本默认在当前标签页中选择收藏夹的标签单击打开时会覆盖当前页，而以前会新打开一个标签页：<br />
+地址栏输入 <code>about:config</code> 回车，搜索 <code>browser.search.openintab</code>、<code>browser.urlbar.openintab</code>、<code>browser.tabs.loadBookmarksInTabs</code> 三个选项的值都设置为 true 即可。</p>
+</blockquote>
+<h3 id="4-idea"><a class="markdownIt-Anchor" href="#4-idea"></a> 4. IDEA</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/18969-generate-all-getter-and-setter">Generate All Getter And Setter</a></li>
+<li><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/9417-log-support-2">Log Support 2</a></li>
+<li>Translation</li>
+</ol>
+<blockquote>
+<p>推荐使用 2021.2.2 及以下版本。</p>
+</blockquote>
+<p>jetbrains active server</p>
+<p>Fofa</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header=<span class="string">&quot;https://account.jetbrains.com/fls-auth&quot;</span></span><br></pre></td></tr></table></figure>
+<p>Shodan</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Location: https://account.jetbrains.com/fls-auth</span><br></pre></td></tr></table></figure>
+<p>Censys</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Location: https://account.jetbrains.com/fls-auth</span><br></pre></td></tr></table></figure>
+<h2 id="四-其它"><a class="markdownIt-Anchor" href="#四-其它"></a> 四、其它</h2>
+<h3 id="1-命令操作"><a class="markdownIt-Anchor" href="#1-命令操作"></a> 1. 命令操作</h3>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制面板</td>
+<td>win + r 输入 <code>appwiz.cpl</code> 回车</td>
+</tr>
+<tr>
+<td>系统变量</td>
+<td>win + r 输入 <code>sysdm.cpl</code> 回车</td>
+</tr>
+<tr>
+<td>磁盘管理</td>
+<td>win + r 输入 <code>diskmgmt.msc</code> 回车</td>
+</tr>
+<tr>
+<td>服务</td>
+<td>win + r 输入 <code>services.msc</code> 回车</td>
+</tr>
+<tr>
+<td>电脑信息</td>
+<td>win + r 输入 <code>winver</code> 回车</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-删除开机多余启动项"><a class="markdownIt-Anchor" href="#2-删除开机多余启动项"></a> 2、删除开机多余启动项</h3>
+<kbd>Win</kbd> + <kbd>R</kbd>，输入 `msconfig`，点击确定，选择 “引导” 标签，选择 **非当前OS** 记录，点击删除并应用，按照提示重启即可。
+<p>管理员身份命令行运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看启动项</span></span><br><span class="line">efibootmgr</span><br><span class="line"><span class="comment"># 删除对应的项</span></span><br><span class="line">efibootmgr -b 0001(序号) -B</span><br></pre></td></tr></table></figure>
+<h3 id="3-powershell-运行脚本报错"><a class="markdownIt-Anchor" href="#3-powershell-运行脚本报错"></a> 3. PowerShell 运行脚本报错</h3>
+<p>管理员身份命令行运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入以下命令，选择 Y</span></span><br><span class="line">set-executionpolicy RemoteSigned</span><br></pre></td></tr></table></figure>
+<p>PS 有四种策略：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restricted</td>
+<td>禁止运行任何脚本配置文件（默认）</td>
+</tr>
+<tr>
+<td>AllSigned</td>
+<td>可以运行发布签名的脚本和配置文件，包括本地计算机上编写的脚本</td>
+</tr>
+<tr>
+<td>RemoteSigned</td>
+<td>要求从网络上下载的脚本和配置文件由可信者发布签名，不要求本地计算机上编写的脚本进行签名</td>
+</tr>
+<tr>
+<td>Unrestricted</td>
+<td>可以运行未签名的脚本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-vmware-虚拟机配置双网卡"><a class="markdownIt-Anchor" href="#4-vmware-虚拟机配置双网卡"></a> 4. Vmware 虚拟机配置双网卡</h3>
+<p>虽然 Win 下的 WSL 广受好评，但是浪子懒得折腾，不折腾使用还是不太方便。还是比较喜欢使用 Vmware 创建 Linux 环境，虽然它很吃内存。。。但也没办法 😌</p>
+<p>使用 VMWare 时，推荐创建的虚拟机配置双网卡，默认的使用 NAT 模式，新添加一个使用 仅主机 模式，然后进行修改配置。这样就算以后连接无数个无线网，电脑依然能上网，但是使用 SSH 远程连接时依然不用修改 Linux 的网络配置文件。实现了一次配置，永久使用的效果。配置也很简单：</p>
+<p>在 VMWare 里创建一个虚拟机后，打开改虚拟机的设置，硬件下方的”添加“，然后在弹出的列表里选择”网络适配器“，之后点击新添加的网络适配器，选择”仅主机“。</p>
+<p>然后打开网络适配器修改 VMWare Network Adapter VMnet1 的 IP 为简单的地址，Linux 里的网络配置文件的 IP 地址不要和这个一样，因为 VM1 是本机和 Linux 虚拟机通信的 IP 地址，不能一样，推荐 VM1 10.0.0.1，Linux 配置为 10.0.0.2，简单好记。</p>
+<blockquote>
+<p><strong>注意：</strong> 如果是新建的虚拟机，在安装之前按照以上方法配置，安装后查看网络配置文件时或许会有两个不同的文件，比如：ens33，ens34。如果是之前已经安装过的单网卡想要配置双网卡，可以把已经存在网络配置文件复制一份，修改文件里面的内容即可。如果新建的虚拟机也是只有一个配置文件，也可以直接复制原有的文件进行修改。</p>
+</blockquote>
+<p>另外，第一次安装后网络服务是正常的，之后换了一个无线网连接就出现了问题，可能是因为 NetworkManager 的问题，可以关闭此服务。然后重启网络。内网相通，但使用 xshell 等终端工具连不上虚拟机也连不上外网也可以尝试使用这个方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭服务</span></span><br><span class="line">systemctl stop NetworkManager</span><br><span class="line"><span class="comment"># 禁止开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> NetworkManager</span><br><span class="line"><span class="comment"># chkconfig NetworkManager off</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启网络</span></span><br><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin link dis-select"><a class="link-card plain" title="参考文章地址" href="https://blog.csdn.net/weistin/article/details/80676955" target="_blank" rel="external nofollow noopener noreferrer" cardlink api="https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url=https://blog.csdn.net/weistin/article/details/80676955" autofill="icon"><div class="left"><span class="title">参考文章地址</span><span class="cap link footnote">https://blog.csdn.net/weistin/article/details/80676955</span></div><div class="right"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div></div></a></div>
+<h4 id="centos"><a class="markdownIt-Anchor" href="#centos"></a> CentOS</h4>
+<ol>
+<li>用的好好的虚拟机，之前内网都通，后面使用的时候使用 SSH 工具连不上虚拟机了，并且虚拟机也连不上外网</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.停止并关闭 networkmanager 服务</span></span><br><span class="line">systemctl stop NetworkManager</span><br><span class="line">systemctl <span class="built_in">disable</span> NetworkManager</span><br><span class="line"><span class="comment"># 2.重启网络</span></span><br><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44695793/article/details/108089356">参考原博客地址</a></p>
+<h4 id="其它问题"><a class="markdownIt-Anchor" href="#其它问题"></a> 其它问题</h4>
+<p>使用 VMWare 虚拟机时，如果本机开启着 VPN 时，使用其它远程工具是无法连接到本地虚拟机的，必须退出 VPN 的登录后才可以再次连接新的会话。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2023/06/24/Linux/Linux%E5%85%A5%E9%97%A8/">【Linux】Linux 入门</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2023/06/24/%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/%E4%B8%80%E4%BA%9B%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/">Vsocde、Fleet配置备份</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text"> 一、环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jdk"><span class="toc-text"> 1. JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-maven"><span class="toc-text"> 2. Maven</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-gradle"><span class="toc-text"> 3. Gradle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-mysql"><span class="toc-text"> 4. MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-mariadb"><span class="toc-text"> 5. MariaDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-postgresql"><span class="toc-text"> 6. PostgreSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-tomcat"><span class="toc-text"> 7. Tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-nodejs"><span class="toc-text"> 8. NodeJs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-jetty"><span class="toc-text"> 9. Jetty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-rust"><span class="toc-text"> 10. Rust</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-python"><span class="toc-text"> 11. Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E8%BD%AF%E4%BB%B6"><span class="toc-text"> 二、软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-vscode"><span class="toc-text"> 1. VsCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-vivaldi"><span class="toc-text"> 2. Vivaldi</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%8F%92%E4%BB%B6"><span class="toc-text"> 三、插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6"><span class="toc-text"> 1. 油猴插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-edge"><span class="toc-text"> 2. Edge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%81%AB%E7%8B%90"><span class="toc-text"> 3. 火狐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-idea"><span class="toc-text"> 4. IDEA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E5%85%B6%E5%AE%83"><span class="toc-text"> 四、其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C"><span class="toc-text"> 1. 命令操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A0%E9%99%A4%E5%BC%80%E6%9C%BA%E5%A4%9A%E4%BD%99%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-text"> 2、删除开机多余启动项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-powershell-%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%8A%A5%E9%94%99"><span class="toc-text"> 3. PowerShell 运行脚本报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vmware-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE%E5%8F%8C%E7%BD%91%E5%8D%A1"><span class="toc-text"> 4. Vmware 虚拟机配置双网卡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#centos"><span class="toc-text"> CentOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-text"> 其它问题</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

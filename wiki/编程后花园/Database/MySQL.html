@@ -1,0 +1,748 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Database：MySQL - 浮生一梦</title>
+
+  
+    <meta name="description" content="一、MySQL 配置 &#x2F;etc&#x2F;my.cnf12345678[mysqld]# 修改等待时间，两个选项必须同时修改wait_timeout&#x3D;28800;interactive_timeout&#x3D;28800;# 调整默认时区为东八区default-time-zone&#x3D;&#x27;+08:00&#x27;# 开启 MySQL 事件定时任务（5.7 支持，8.0 默认开启）event_scheduler">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MySQL">
+<meta property="og:url" content="https://jhlzlove.github.io/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MySQL.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="一、MySQL 配置 &#x2F;etc&#x2F;my.cnf12345678[mysqld]# 修改等待时间，两个选项必须同时修改wait_timeout&#x3D;28800;interactive_timeout&#x3D;28800;# 调整默认时区为东八区default-time-zone&#x3D;&#x27;+08:00&#x27;# 开启 MySQL 事件定时任务（5.7 支持，8.0 默认开启）event_scheduler">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jhlzlove.github.io/images/snow.png">
+<meta property="article:published_time" content="2023-09-04T09:51:53.000Z">
+<meta property="article:modified_time" content="2024-02-04T07:01:11.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jhlzlove.github.io/images/snow.png">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="wiki" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://phanmemmienphi.vn/wp-content/uploads/2021/07/khoa-dao-tao-phan-tich-xu-ly-du-lieu-sql-databases-tai-imic-technology.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html"><div class="main" ff="title">Database</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/编程后花园/" placeholder="在 Database 中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">SQL</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html#start"><span class="toc-text">数据库SQL</span></a></div><div class="widget-header dis-select"><span class="name">Postgresql</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/PostgreSQL.html"><span class="toc-text">PostgreSQL</span></a></div><div class="widget-header dis-select"><span class="name">MySQL</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MySQL.html"><span class="toc-text">MySQL</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Redis</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/Redis.html"><span class="toc-text">Redis</span></a></div><div class="widget-header dis-select"><span class="name">MongoDB</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/MongoDB%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.html"><span class="toc-text">MongoDB基础操作</span></a></div><div class="widget-header dis-select"><span class="name">ES</span></div><div class="widget-body fs14"><a class="link" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/ElasticSearch.html"><span class="toc-text">ElasticSearch + Kibana</span></a></div></widget>
+
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：技术加油站</span></div><div class="widget-body"><a class="item wiki" href="/wiki/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/CloudService/index.html"><span class="title">云原生与微服务</span></a><a class="item wiki" href="/wiki/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/Git/index.html"><span class="title">Git入门到进阶</span><span class="excerpt">Git 版本管理系统从入门到进阶。</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/index.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>Kotlin</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Kotlin/%E8%AE%A4%E8%AF%86Kotlin%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0.html"><span class="title"><strong>kotlin</strong><span class="dot"></span>认识 Kotlin 的作用域函数</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/index.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>编程小知识</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-二叉树</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-堆</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%A3%E5%88%97%E8%A1%A8.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构-散列表</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>数据结构</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E7%AE%97%E6%B3%95-%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>基础排序算法</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-单例模式</span></a><a class="item title" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Programming/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.html"><span class="title"><strong>Basic Programming</strong><span class="dot"></span>设计模式-策略模式</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/index.html">Database</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2024-02-04T07:01:11.000Z">2024-02-04</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>MySQL</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="一-mysql-配置"><a class="markdownIt-Anchor" href="#一-mysql-配置"></a> 一、MySQL 配置</h2>
+<figure class="highlight bash"><figcaption><span>/etc/my.cnf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment"># 修改等待时间，两个选项必须同时修改</span></span><br><span class="line">wait_timeout=28800;</span><br><span class="line">interactive_timeout=28800;</span><br><span class="line"><span class="comment"># 调整默认时区为东八区</span></span><br><span class="line">default-time-zone=<span class="string">&#x27;+08:00&#x27;</span></span><br><span class="line"><span class="comment"># 开启 MySQL 事件定时任务（5.7 支持，8.0 默认开启）</span></span><br><span class="line">event_scheduler = 1</span><br></pre></td></tr></table></figure>
+<h2 id="二-查看配置的命令"><a class="markdownIt-Anchor" href="#二-查看配置的命令"></a> 二、查看配置的命令</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看事件是否开启。</span></span><br><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> <span class="string">&#x27;event_scheduler&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建事件删除当天数据，每天凌晨 1 点执行</span></span><br><span class="line"><span class="keyword">CREATE</span> EVENT every_day_delete_gantry </span><br><span class="line"><span class="keyword">ON</span> SCHEDULE <span class="keyword">EVERY</span> <span class="number">1</span> <span class="keyword">DAY</span> STARTS <span class="string">&#x27;2023-08-20 01:00:00&#x27;</span> </span><br><span class="line"><span class="keyword">ON</span> COMPLETION PRESERVE</span><br><span class="line">DO <span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> TO_DAYS(now_time) <span class="operator">&lt;=</span> TO_DAYS(now())</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示最大连接参数</span></span><br><span class="line"><span class="keyword">show</span> VARIABLES <span class="keyword">like</span> <span class="string">&#x27;max_connections&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示等待时间</span></span><br><span class="line"><span class="keyword">show</span> VARIABLES <span class="keyword">like</span> <span class="string">&#x27;%wait_time%&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示数据库时区</span></span><br><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> &quot;%time_zone%&quot;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PRESERVE 表示此次执行完不删除该事件，等到下次继续执行。</p>
+</blockquote>
+<h2 id="三-附"><a class="markdownIt-Anchor" href="#三-附"></a> 三、附</h2>
+<h3 id="1-关于分布式主键的几个问题"><a class="markdownIt-Anchor" href="#1-关于分布式主键的几个问题"></a> 1. 关于分布式主键的几个问题</h3>
+<h4 id="在-mysql-的分布式架构中为什么不能使用自增主键"><a class="markdownIt-Anchor" href="#在-mysql-的分布式架构中为什么不能使用自增主键"></a> 在 MySQL 的分布式架构中，为什么不能使用自增主键？</h4>
+<ol>
+<li>如果基于主键范围分片，压力可能集中在某个分片，采用其它业务字段 hash 分片，可以缓解压力</li>
+<li>如果使用 auto_increment 和 replace into 自增 ID，每当插入数据时，都会占用自增锁和插入锁</li>
+<li>分布式系统中，每个节点都会有自己的自增 ID，合并数据时，会出现 ID 冲突</li>
+</ol>
+<h4 id="uuid-可以做主键存在哪些问题"><a class="markdownIt-Anchor" href="#uuid-可以做主键存在哪些问题"></a> UUID 可以做主键？存在哪些问题？</h4>
+<ol>
+<li>由于其生成随机、无序，所以会发生索引断裂、磁盘碎片。</li>
+<li>uuid 的问题可以通过有序 uuid 来解决，MySQL 8.0 提供 <code>uuid_to_bin</code> 函数来互换uuid的时间低位和高位，将无序的 uuid 转为有序的 uuid，同时保证了唯一性和有序性，也能解决索引性能下降的问题。</li>
+</ol>
+<h4 id="雪花算法生成的-id-有什么缺点"><a class="markdownIt-Anchor" href="#雪花算法生成的-id-有什么缺点"></a> 雪花算法生成的 id 有什么缺点？</h4>
+<p>雪花算法的原理：把当前时间戳转为 unix_time 形式，再将 unix_time 形式的时间戳转为 二进制 数字，这串二进制数据长度为 41 bit。在前面补 0 当作符号位。机器编码的二进制补到 10 bit 机器编号位置，序列号的二进制补到 12 bit 序列号位置，最后把这一长串转为 10 进制数字，这串数字就是该算法生成的 id。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="../../../images/snow.png" alt="雪花算法" /></p>
+<p>雪花算法基于时间戳的自增完成的，可以实现分布式的部署；所以缺点也是显而易见：高度依赖服务器的时间。如果时间发生了回拨，就会出现时间重复，对应生成的 id 可能会重复。</p>
+<p>另外 41 bit 存储的时间跨度是 69 年。而 unix_time 从 1970 年算起，到现在已经过去了 53 年，所以现在生成的可以使用 16 年，会出现 41 bit 不够用的情况。可以使用当前时间减去系统的上线时间，这样可以使用 69 年。</p>
+<blockquote>
+<p>Unix 时间戳是从 1970 年 1 月 1 日（UTC/GMT的午夜）开始所经过的秒数，不考虑闰秒。</p>
+</blockquote>
+<h2 id="四-mysql-调优"><a class="markdownIt-Anchor" href="#四-mysql-调优"></a> 四、MySQL 调优</h2>
+<p>优化是相对的。</p>
+<h3 id="引擎分类"><a class="markdownIt-Anchor" href="#引擎分类"></a> 引擎分类</h3>
+<h4 id="innodb"><a class="markdownIt-Anchor" href="#innodb"></a> InnoDB</h4>
+<p>InnoDB 包含四种索引类型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主键索引</td>
+<td>innoDB 默认为聚簇索引，该列的值不能为 null；</td>
+</tr>
+<tr>
+<td>单值索引</td>
+<td>普通索引）：一个索引只包含单个列；</td>
+</tr>
+<tr>
+<td>唯一索引</td>
+<td>该列的值允许为 null；</td>
+</tr>
+<tr>
+<td>复合索引</td>
+<td>多列的值；</td>
+</tr>
+</tbody>
+</table>
+<h4 id="myisam"><a class="markdownIt-Anchor" href="#myisam"></a> MyISAM</h4>
+<p>全文索引</p>
+<blockquote>
+<p>MySQL 的最左包含原则是条件中含有最左的字段，但并不限制该字段所在的位置顺序。</p>
+</blockquote>
+<h3 id="优化口诀"><a class="markdownIt-Anchor" href="#优化口诀"></a> 优化口诀</h3>
+<p>阿里巴巴手册中说：SQL优化标准是到 ref，最差是 range，达到 const 最好。</p>
+<p>索引失效：<br />
+全值匹配最喜欢，最左前缀规矩严。<br />
+带头大哥不能死，中间兄弟不能断。<br />
+索引列上少计算，范围之后全完蛋。<br />
+LIKE百分最右边，覆盖索引*全不见。<br />
+不等空值还有OR，你建索引也失效。<br />
+VAR引号要出现，SQL高级也不难。</p>
+<p>建立索引口诀：<br />
+主键索引自动建，频繁查询索引现；<br />
+查询关联其他表，外键索引也要看；<br />
+频繁更新引不建，where条件用到算；<br />
+单键/组合选择难，高并发下组合建；<br />
+若要速度有体现，排序字段索引建；<br />
+统计、分组你咋看？索引索引建建建。</p>
+<h4 id="一般守则"><a class="markdownIt-Anchor" href="#一般守则"></a> 一般守则</h4>
+<ol>
+<li>
+<p>尽量不在数据库做复杂运算；</p>
+</li>
+<li>
+<p>单库不超过 300~400 张表，单表不超过 500w 数据，表字段控制在 20~50 个；</p>
+<ul>
+<li>顺序读1G文件需N秒，单行不超过 200 Byte</li>
+<li>单表不超过50个纯INT字段</li>
+<li>单表不超过20个CHAR(10)字段</li>
+</ul>
+</li>
+<li>
+<p>在一些场景中，不必严格遵循三范式，可以适当时牺牲范式，加入冗余；</p>
+</li>
+<li>
+<p>防止 3B：Big SQL、Big Transaction、Big Batch；</p>
+</li>
+<li>
+<p>统一字符集为UTF-8</p>
+</li>
+<li>
+<p>统一命名规范</p>
+<ul>
+<li>库表等名称统一用小写，注意避免用保留字命名。</li>
+<li>索引命名默认为“idx_字段名”</li>
+<li>库名用缩写，尽量在2~7个字母</li>
+</ul>
+</li>
+</ol>
+<h3 id="字段"><a class="markdownIt-Anchor" href="#字段"></a> 字段</h3>
+<h4 id="1-用好数值类型"><a class="markdownIt-Anchor" href="#1-用好数值类型"></a> 1. 用好数值类型</h4>
+<p>TINYINT(1Byte)、SMALLINT(2B)、MEDIUMINT(3B)、INT(4B)、BIGINT(8B)、FLOAT(4B)、DOUBLE(8)、DECIMAL(M,D)</p>
+<p>数字型VS字符串型索引：</p>
+<ul>
+<li>更高效</li>
+<li>查询更快</li>
+<li>占用空间更小</li>
+</ul>
+<div class="tag-plugin colorful note" color="green"><div class="title">举例：</div><div class="body"><p>用无符号INT存储IP，而非CHAR(15)，使用数据库的函数去查看INT UNSIGNED、INET_ATON()、INET_NTOA()</p></div></div>
+<h4 id="2-少用并拆分textblob"><a class="markdownIt-Anchor" href="#2-少用并拆分textblob"></a> 2. 少用并拆分TEXT/BLOB</h4>
+<p>TEXT 类型处理性能远低于 VARCHAR，会强制生成硬盘临时表，浪费更多空间：VARCHAR(65535) ==&gt; 64K (注意UTF-8)；<br />
+尽量不用TEXT/BLOB数据类型，若必须使用则拆分到单独的表</p>
+<h4 id="3-不在数据库里存图片"><a class="markdownIt-Anchor" href="#3-不在数据库里存图片"></a> 3. 不在数据库里存图片</h4>
+<h3 id="索引"><a class="markdownIt-Anchor" href="#索引"></a> 索引</h3>
+<h4 id="1-合理添加索引"><a class="markdownIt-Anchor" href="#1-合理添加索引"></a> 1. 合理添加索引</h4>
+<ul>
+<li>改善查询</li>
+<li>减慢更新</li>
+<li>索引不是越多越好，需要综合评估数据密度和数据分布；最好不超过字段数20%，结合核心SQL优先考虑覆盖索引</li>
+</ul>
+<div class="tag-plugin colorful note" color="green"><div class="title">举例：</div><div class="body"><p>不要给“性别”列创建索引</p></div></div>
+<h4 id="2-不在索引列做运算"><a class="markdownIt-Anchor" href="#2-不在索引列做运算"></a> 2. 不在索引列做运算</h4>
+<p>不在索引列进行数学运算或函数运算，否则会导致无法使用索引以及全表扫描。</p>
+<h4 id="3-自增列或全局id做innodb主键"><a class="markdownIt-Anchor" href="#3-自增列或全局id做innodb主键"></a> 3. 自增列或全局ID做INNODB主键</h4>
+<ul>
+<li>对主键建立聚簇索引</li>
+<li>二级索引存储主键值</li>
+<li>主键不应更新修改</li>
+<li>按自增顺序插入值</li>
+<li>忌用字符串做主键</li>
+<li>聚簇索引分裂</li>
+<li>推荐用独立于业务的 AUTO_INCREMENT 列或全局 ID 生成器做代理主键</li>
+<li>若不指定主键，InnoDB会用唯一且非空值索引代替</li>
+</ul>
+<h4 id="4-尽量不用外键"><a class="markdownIt-Anchor" href="#4-尽量不用外键"></a> 4. 尽量不用外键</h4>
+<p>尽量不使用外键，由程序来保证约束，实际中确实很少使用。虽然外键可节省开发量，但是有额外开销：逐行操作，可‘到达’其它表，意味着锁；在高并发场景容易死锁。</p>
+<h3 id="sql"><a class="markdownIt-Anchor" href="#sql"></a> SQL</h3>
+<ol>
+<li>
+<p>SQL语句尽可能简单</p>
+</li>
+<li>
+<p>保持事务连接小</p>
+</li>
+<li>
+<p>尽可能避免使用SP/TRIG/FUNC</p>
+<ul>
+<li>尽可能少用存储过程、触发器；减用使用MySQL函数对结果进行处理，由客户端程序负责。</li>
+</ul>
+</li>
+<li>
+<p>尽量不用SELECT *，只取需要的数据列</p>
+</li>
+<li>
+<p>改写OR为IN()</p>
+<p>同一字段，将OR改写为IN()。 OR效率：O(n)，IN 效率：O(Log n)</p>
+<p>当n很大时，OR会慢很多。注意控制IN的个数，建议n小于200。</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> opp <span class="keyword">WHERE</span> phone<span class="operator">=</span><span class="string">&#x27;12347856&#x27;</span> <span class="keyword">or</span> phone<span class="operator">=</span><span class="string">&#x27;42242233&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> opp <span class="keyword">WHERE</span> phone <span class="keyword">in</span> (<span class="string">&#x27;12347856&#x27;</span> , <span class="string">&#x27;42242233&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>改写OR为UNION</p>
+<p>不同字段，将or改为union</p>
+<ul>
+<li>减少对不同字段进行 “or” 查询</li>
+<li>Merge index往往很弱智，如果有足够信心：<code>set globaloptimizer_switch='index_merge=off';</code></li>
+</ul>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 原写法</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> opp <span class="keyword">WHERE</span> phone<span class="operator">=</span><span class="string">&#x27;010-88886666&#x27;</span> <span class="keyword">or</span> cellPhone<span class="operator">=</span><span class="string">&#x27;13800138000&#x27;</span>;</span><br><span class="line"><span class="comment">-- 优化写法</span></span><br><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> opp <span class="keyword">WHERE</span> phone<span class="operator">=</span><span class="string">&#x27;010-88886666&#x27;</span> </span><br><span class="line"><span class="keyword">union</span> </span><br><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> opp <span class="keyword">WHERE</span> cellPhone<span class="operator">=</span><span class="string">&#x27;13800138000&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>LIMIT高效分页</p>
+<p>LIMIT 的偏移量越大则查询越慢。</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 分页方式一</span></span><br><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">WHERE</span> id<span class="operator">&gt;=</span><span class="number">23423</span> limit <span class="number">11</span>;</span><br><span class="line"><span class="comment">-- 分页方式二</span></span><br><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">WHERE</span> id <span class="operator">&gt;=</span> ( <span class="keyword">select</span> id <span class="keyword">from</span> <span class="keyword">table</span> limit <span class="number">10000</span>,<span class="number">1</span> ) limit <span class="number">10</span>;</span><br><span class="line"><span class="comment">-- 分页方式三</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">INNER</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> id <span class="keyword">FROM</span> <span class="keyword">table</span> LIMIT <span class="number">10000</span>,<span class="number">10</span>) <span class="keyword">USING</span> (id) ;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>用UNION ALL而非UNION</p>
+<p>若无需对结果去重，则用 UNION ALL，UNION 有去重开销。</p>
+</li>
+<li>
+<p>Load Data导数据</p>
+<p>批量数据导入：</p>
+<ul>
+<li>成批装载比单行装载更快，不需要每次刷新缓存</li>
+<li>无索引时装载比索引装载更快</li>
+<li>Insert values ,values，values 减少索引刷新</li>
+<li>Load data 比 insert 快约20倍</li>
+<li>尽量不用 <code>INSERT INTO... SELECT</code>，可能会出现延迟、同步出错</li>
+</ul>
+</li>
+<li>
+<p>Know Every SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN</span><br><span class="line"><span class="keyword">SHOW</span> PROFILE</span><br><span class="line"><span class="keyword">Show</span> Slow Log</span><br><span class="line"><span class="keyword">Show</span> Processlist</span><br><span class="line"><span class="keyword">SHOW</span> QUERY_RESPONSE_TIME(Percona)</span><br><span class="line">MySQLdumpslow</span><br><span class="line">MySQLsla</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/PostgreSQL.html">PostgreSQL</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/Database/Redis.html">Redis</a></div></section></div>
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-mysql-%E9%85%8D%E7%BD%AE"><span class="toc-text"> 一、MySQL 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text"> 二、查看配置的命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E9%99%84"><span class="toc-text"> 三、附</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B3%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%BB%E9%94%AE%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-text"> 1. 关于分布式主键的几个问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8-mysql-%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E8%87%AA%E5%A2%9E%E4%B8%BB%E9%94%AE"><span class="toc-text"> 在 MySQL 的分布式架构中，为什么不能使用自增主键？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uuid-%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%B8%BB%E9%94%AE%E5%AD%98%E5%9C%A8%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> UUID 可以做主键？存在哪些问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90%E7%9A%84-id-%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9"><span class="toc-text"> 雪花算法生成的 id 有什么缺点？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-mysql-%E8%B0%83%E4%BC%98"><span class="toc-text"> 四、MySQL 调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E6%93%8E%E5%88%86%E7%B1%BB"><span class="toc-text"> 引擎分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#innodb"><span class="toc-text"> InnoDB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#myisam"><span class="toc-text"> MyISAM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%8F%A3%E8%AF%80"><span class="toc-text"> 优化口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%88%E5%88%99"><span class="toc-text"> 一般守则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5"><span class="toc-text"> 字段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%A8%E5%A5%BD%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-text"> 1. 用好数值类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B0%91%E7%94%A8%E5%B9%B6%E6%8B%86%E5%88%86textblob"><span class="toc-text"> 2. 少用并拆分TEXT&#x2F;BLOB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%8D%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E9%87%8C%E5%AD%98%E5%9B%BE%E7%89%87"><span class="toc-text"> 3. 不在数据库里存图片</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-text"> 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%90%88%E7%90%86%E6%B7%BB%E5%8A%A0%E7%B4%A2%E5%BC%95"><span class="toc-text"> 1. 合理添加索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%9C%A8%E7%B4%A2%E5%BC%95%E5%88%97%E5%81%9A%E8%BF%90%E7%AE%97"><span class="toc-text"> 2. 不在索引列做运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%87%AA%E5%A2%9E%E5%88%97%E6%88%96%E5%85%A8%E5%B1%80id%E5%81%9Ainnodb%E4%B8%BB%E9%94%AE"><span class="toc-text"> 3. 自增列或全局ID做INNODB主键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%B0%BD%E9%87%8F%E4%B8%8D%E7%94%A8%E5%A4%96%E9%94%AE"><span class="toc-text"> 4. 尽量不用外键</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sql"><span class="toc-text"> SQL</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

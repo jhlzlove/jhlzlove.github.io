@@ -1,0 +1,627 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>【Linux】 Ubuntu 服务器配置 - 浮生一梦</title>
+
+  
+    <meta name="description" content="Ubuntu Server 22.04 服务器配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Linux】 Ubuntu 服务器配置">
+<meta property="og:url" content="https://jhlzlove.github.io/2023/06/24/Linux/Ubuntu/Ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="浮生一梦">
+<meta property="og:description" content="Ubuntu Server 22.04 服务器配置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-24T10:59:05.000Z">
+<meta property="article:modified_time" content="2024-02-10T12:03:35.000Z">
+<meta property="article:author" content="江湖浪子">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="linux,ubuntu">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="浮生一梦" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  
+
+  
+
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css"/>
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/icon/avatar.jpeg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">浮生一梦</div><div class="sub normal cap">可叹 落叶飘零</div><div class="sub hover cap" style="opacity:0"> Sadly, the leaves are falling.</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19q0-.825.588-1.412T5 17q.825 0 1.413.588T7 19q0 .825-.587 1.413T5 21m13.5 0q-.65 0-1.088-.475T16.9 19.4q-.275-2.425-1.312-4.537T12.9 11.1q-1.65-1.65-3.762-2.687T4.6 7.1q-.65-.075-1.125-.512T3 5.5q0-.65.45-1.062t1.075-.363q3.075.275 5.763 1.563t4.737 3.337q2.05 2.05 3.338 4.738t1.562 5.762q.05.625-.363 1.075T18.5 21m-6 0q-.625 0-1.075-.437T10.85 19.5q-.225-1.225-.787-2.262T8.65 15.35q-.85-.85-1.888-1.412T4.5 13.15q-.625-.125-1.062-.575T3 11.5q0-.65.45-1.075t1.075-.325q1.825.25 3.413 1.063t2.837 2.062q1.25 1.25 2.063 2.838t1.062 3.412q.1.625-.325 1.075T12.5 21"/></svg></a></div><div class="widget-body fs14"><a class="item title" href="/2024/03/24/2024/"><span class="title">琐碎人生的真实写照：2024年一地鸡毛的生活点滴与反思</span></a><a class="item title" href="/2023/12/25/%E4%B8%AD%E5%9B%BD%E8%BF%91%E7%8E%B0%E4%BB%A3%E5%8F%B2%E7%BA%B2%E8%A6%81/"><span class="title">中国近代史纲要</span></a><a class="item title" href="/2024/03/24/%E7%A4%BE%E4%BC%9A%E5%AD%A6%E6%A6%82%E8%AE%BA/"><span class="title">社会学概论</span></a><a class="item title" href="/2023/06/24/Window/Window%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span class="title">Windows 开发环境配置</span></a><a class="item title" href="/2023/12/19/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/"><span class="title">马克思主义基本原理概述</span></a><a class="item title" href="/2024/01/06/%E8%A1%8C%E6%94%BF%E7%BB%84%E7%BB%87%E7%90%86%E8%AE%BA/"><span class="title">行政组织理论</span></a><a class="item title" href="/2023/10/17/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/"><span class="title">解锁数字媒体：认识视频音频格式以及编解码</span></a><a class="item title" href="/2023/07/22/Linux/Debian/%E5%88%9D%E6%AC%A1%E6%8A%8A%E7%8E%A9Debian12/"><span class="title">【Linux】 初次把玩Debian12</span></a><a class="item title" href="/2023/06/24/%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/%E4%B8%80%E4%BA%9B%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/"><span class="title">Vsocde、Fleet配置备份</span></a><a class="item title" href="/2024/02/15/%E4%BD%BF%E7%94%A8Netlify%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E4%BA%91%E5%87%BD%E6%95%B0/"><span class="title">使用 Netlify 免费部署云函数</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Linux/">Linux</a></div>
+<div class="flex-row" id="post-meta"><a class="author" href="/author/jhlz/index.html">江湖浪子</a><span class="sep"></span><span class="text created"><time datetime="2023-06-24T10:59:05.000Z">2023-06-24</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-02-10T12:03:35.000Z">2024-02-10</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>【Linux】 Ubuntu 服务器配置</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>Ubuntu Server 22.04 服务器配置。</p>
+<span id="more"></span>
+<h2 id="一-ubuntu-基本配置"><a class="markdownIt-Anchor" href="#一-ubuntu-基本配置"></a> 一、Ubuntu 基本配置</h2>
+<p>首先，掌握 apt 命令的基本使用：<a target="_blank" rel="noopener" href="https://itsfoss.com/apt-command-guide/">https://itsfoss.com/apt-command-guide/</a></p>
+<h3 id="1-开启-root-用户远程登录"><a class="markdownIt-Anchor" href="#1-开启-root-用户远程登录"></a> 1. 开启 root 用户远程登录</h3>
+<p>对于 <a target="_blank" rel="noopener" href="https://cn.ubuntu.com/server">服务器版本</a> 来说，默认的 root 用户是禁止使用密码登录的（prohibit-password），这里修改允许使用密码进行远程登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置 root 用户的密码</span></span><br><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+<p>编辑文件 <code>sudo vim /etc/ssh/sshd_config</code>，找到 <code>#PermitRootLogin prohibit-password</code> 所在的行，去掉注释并修改 <code>prohibit-password</code> 为 <code>yes</code>，保存退出并重启 sshd 服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure>
+<h3 id="2-apt-get"><a class="markdownIt-Anchor" href="#2-apt-get"></a> 2. <a href="(https://www.computerhope.com/unix/apt-get.htm)">apt-get</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有的安装软件</span></span><br><span class="line">dpkg --list</span><br><span class="line"><span class="comment"># 安装已经下载好的 deb 安装包</span></span><br><span class="line">dpkg -i 安装包</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新所有可更新的软件包</span></span><br><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载指定软件并删除配置文件</span></span><br><span class="line">sudo apt --purge remove 包名</span><br><span class="line"><span class="comment"># 清理不再使用的依赖和库文件</span></span><br><span class="line">sudo apt autoremove</span><br></pre></td></tr></table></figure>
+<h3 id="3-禁止使用-snap"><a class="markdownIt-Anchor" href="#3-禁止使用-snap"></a> 3. 禁止使用 snap</h3>
+<p>snap 可以获取软件的最新版，Ubuntu 逐渐迁移很多软件包到 snap，这样会导致软件不稳定。当然优点也是显而易见的，不过只对开发人员友好。对于个人日常使用、生产环境等场景还是不需要的。</p>
+<p>卸载 snap 请参考：<a target="_blank" rel="noopener" href="https://ubuntuhandbook.org/index.php/2022/04/remove-snap-block-ubuntu-2204/amp/">https://ubuntuhandbook.org/index.php/2022/04/remove-snap-block-ubuntu-2204/amp/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看列表</span></span><br><span class="line">snap list</span><br><span class="line"><span class="comment"># 卸载所有列表中的软件，有些软件依赖其它组件的，注意先后顺序</span></span><br><span class="line">sudo snap remove --purge [soft]</span><br><span class="line"><span class="comment"># 最后卸载 snapd</span></span><br><span class="line">sudo apt remove --autoremove snapd</span><br></pre></td></tr></table></figure>
+<p>然后编辑文件 <code>sudo vim /etc/apt/preferences.d/nosnap.pref</code> 添加下面的内容禁止 apt 使用 sanp 包。</p>
+<figure class="highlight bash"><figcaption><span>/etc/apt/preferences.d/nosnap.pref</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># To prevent repository packages from triggering the installation of snap,</span></span><br><span class="line"><span class="comment"># this file forbids snapd from being installed by APT.</span></span><br><span class="line"></span><br><span class="line">Package: snapd</span><br><span class="line">Pin: release a=*</span><br><span class="line">Pin-Priority: -10</span><br></pre></td></tr></table></figure>
+<p>之后执行 <code>sudo apt update</code>，就不会使用 snap 下载了。</p>
+<h3 id="4-安装基础的开发-编译工具"><a class="markdownIt-Anchor" href="#4-安装基础的开发-编译工具"></a> 4. 安装基础的开发、编译工具</h3>
+<p>由于最小化的服务器版安装有一些编译库默认是没有安装的，需要用户手动安装，所以这里记一下常用的基础库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gcc/g++/gdb/make 编译工具</span></span><br><span class="line">apt-get install build-essential</span><br><span class="line"><span class="comment"># ssl-lib</span></span><br><span class="line">apt-get install openssl libssl-dev</span><br><span class="line">apt-get install zlib1g-dev</span><br></pre></td></tr></table></figure>
+<h3 id="5-时区设置"><a class="markdownIt-Anchor" href="#5-时区设置"></a> 5. 时区设置</h3>
+<p>Ubuntu 可以使用内置的 timedatectl 设置系统的时区。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前的时区</span></span><br><span class="line">timedatectl</span><br><span class="line"><span class="comment"># 查看支持的时区列表</span></span><br><span class="line">timedatectl list-timezones</span><br><span class="line"><span class="comment"># 是否含有中国时区</span></span><br><span class="line">timedatectl list-timezones | grep Asia/Shanghai</span><br><span class="line"><span class="comment"># 设置中国时区</span></span><br><span class="line">timedatectl set-timezone Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无需重启，再次查看</span></span><br><span class="line">timedatectl</span><br></pre></td></tr></table></figure>
+<h3 id="6-语言设置"><a class="markdownIt-Anchor" href="#6-语言设置"></a> 6. 语言设置</h3>
+<h4 id="1-ubuntu-2204-以上"><a class="markdownIt-Anchor" href="#1-ubuntu-2204-以上"></a> ① Ubuntu 22.04 以上</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前系统的语言配置</span></span><br><span class="line">locale</span><br><span class="line"><span class="comment"># 如果使用的 Ubuntu 22.04 以上使用这个命令将更加简单容易，选择完成之后注销重启</span></span><br><span class="line">sudo dpkg-reconfigure locales</span><br><span class="line"><span class="comment"># 再次查看配置</span></span><br><span class="line">locale</span><br></pre></td></tr></table></figure>
+<h4 id="2-ubuntu-2204-以下"><a class="markdownIt-Anchor" href="#2-ubuntu-2204-以下"></a> ② Ubuntu 22.04 以下</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面的适用旧版本 Ubuntu 22.04 以下</span></span><br><span class="line"><span class="comment"># 列出所有启用的区域设置</span></span><br><span class="line">locale -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 locale.gen 文件</span></span><br><span class="line"><span class="comment"># 取消 zh_CN.UTF-8 UTF-8 en_US.UTF-8 UTF-8 两行的注释</span></span><br><span class="line">vim /etc/locale.gen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑保存后，执行以下命令</span></span><br><span class="line">locale-gen</span><br><span class="line"><span class="comment"># 显示正在使用的 Locale 和相关的环境变量</span></span><br><span class="line">locale</span><br><span class="line"><span class="comment"># 设置整个系统使用的区域设置</span></span><br><span class="line">localectl set-locale LANG=zh_CN.UTF-8</span><br><span class="line"><span class="comment"># 立即生效</span></span><br><span class="line"><span class="built_in">unset</span> LANG</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果使用上面的立即生效命令仍然有问题，没有生效，请重启计算机。</p>
+</blockquote>
+<h3 id="7-vim-配置"><a class="markdownIt-Anchor" href="#7-vim-配置"></a> 7. Vim 配置</h3>
+<p>Linux 中有很多编辑工具，像 Vim、Nano 等，都是非常不错的，可以使用自己喜欢的。Vim 的全局配置文件在 <code>/etc/vim/vimrc</code> 或者 <code>/etc/vimrc</code>，对所有用户生效；用户的配置文件一般在 <code>~/.vimrc</code> 中。</p>
+<p>这里修改全局的配置，编辑 <mark class="tag-plugin colorful mark" color="green">/etc/vim/vimrc</mark> 文件，没有的话可以手动创建一个。下面给了一些简单实用的配置。</p>
+<figure class="highlight plaintext"><figcaption><span>/etc/vim/vimrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&quot; 文件编码</span><br><span class="line">set encoding=utf-8</span><br><span class="line">set fileencoding=utf-8</span><br><span class="line">&quot; 自动缩进</span><br><span class="line">set autoindent</span><br><span class="line">&quot; 新行智能自动缩进</span><br><span class="line">set smartindent</span><br><span class="line">&quot; 状态栏标尺</span><br><span class="line">set ruler</span><br><span class="line">&quot; 语法高亮 vim5 之后默认开启</span><br><span class="line">set syntax=on</span><br><span class="line">&quot; Tab键的宽度</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; 搜索忽略大小写</span><br><span class="line">set ignorecase</span><br><span class="line">&quot; 高亮显示匹配的括号</span><br><span class="line">set showmatch</span><br><span class="line">&quot; 总是显示行号</span><br><span class="line">set nu</span><br><span class="line"></span><br><span class="line">&quot; 侦测文件类型</span><br><span class="line">filetype on</span><br><span class="line"></span><br><span class="line">&quot; 状态行显示的内容（包括文件类型和解码）</span><br><span class="line">set statusline=%F%m%r%h%w\ [FORMAT=%&#123;&amp;ff&#125;]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %&#123;strftime(\&quot;%d/%m/%y\ -\ %H:%M\&quot;)&#125;</span><br><span class="line">&quot; 总是显示状态行</span><br><span class="line">set laststatus=2</span><br><span class="line">&quot; 高亮搜索的文本</span><br><span class="line">set hlsearch</span><br></pre></td></tr></table></figure>
+<h2 id="二-常用软件"><a class="markdownIt-Anchor" href="#二-常用软件"></a> 二、常用软件</h2>
+<h3 id="1-redis"><a class="markdownIt-Anchor" href="#1-redis"></a> 1. Redis</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.redis.io/redis-stable.tar.gz</span><br><span class="line">tar -xzvf redis-stable.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-stable</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">redis-server &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="2-mysql"><a class="markdownIt-Anchor" href="#2-mysql"></a> 2. MySQL</h3>
+<p>apt-get安装：<a target="_blank" rel="noopener" href="https://blog.lanluo.cn/8662">https://blog.lanluo.cn/8662</a></p>
+<h3 id="3-docker"><a class="markdownIt-Anchor" href="#3-docker"></a> 3. <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载旧版本</span></span><br><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg \</span><br><span class="line">    lsb-release</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add Docker’s official GPG key:</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/apt/keyrings</span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置稳定版仓库</span></span><br><span class="line"><span class="built_in">echo</span> \</span><br><span class="line"><span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string"><span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新包索引</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment">####################### 下面二选一 #############################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 安装最新版本的 Docker Engine-Community 和 containerd ，或者转到下一步安装特定版本：</span></span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.</span></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">apt-cache madison docker-ce</span><br><span class="line"><span class="comment"># 选择指定的版本安装</span></span><br><span class="line">sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
+<h3 id="4-btop"><a class="markdownIt-Anchor" href="#4-btop"></a> 4. <a target="_blank" rel="noopener" href="https://github.com/aristocratos/btop">btop++</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载解压安装</span></span><br><span class="line">wget https://github.com/aristocratos/btop/releases/download/v1.2.8/btop-x86_64-linux-musl.tbz</span><br><span class="line"><span class="built_in">mkdir</span> btop &amp;&amp; tar xvf btop-x86_64-linux-musl.tbz -C btop</span><br><span class="line"><span class="built_in">cd</span> btop</span><br><span class="line">./install.sh</span><br><span class="line"><span class="comment"># 运行</span></span><br><span class="line">btop</span><br></pre></td></tr></table></figure>
+<h3 id="5-nodejs"><a class="markdownIt-Anchor" href="#5-nodejs"></a> 5. <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions/blob/master/README.md">Nodejs</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+<h3 id="6-open-jdk"><a class="markdownIt-Anchor" href="#6-open-jdk"></a> 6. <a target="_blank" rel="noopener" href="https://openjdk.org/install/">open-jdk</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+<h2 id="三-其它"><a class="markdownIt-Anchor" href="#三-其它"></a> 三、其它</h2>
+<h3 id="1-查找apt安装的软件的路径"><a class="markdownIt-Anchor" href="#1-查找apt安装的软件的路径"></a> 1. 查找apt安装的软件的路径</h3>
+<p>这里以jdk为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> java</span><br><span class="line"><span class="comment"># 多次执行，直到最后打印出一些系统信息</span></span><br><span class="line">file 上一条命令打印的路径</span><br></pre></td></tr></table></figure>
+<h3 id="2-开放指定端口"><a class="markdownIt-Anchor" href="#2-开放指定端口"></a> 2. 开放指定端口</h3>
+<p>随着 Ubuntu 的更新，它的各种软件也在更新，以前用 <code>firewall</code>，新版本（22.04）已经默认使用 <code>ufw</code>，相比较而言，<a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/UFW">UFW</a> command more easily，不过具体使用这里就不详细写了，可以参考官网的说明，很简单。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动防火墙</span></span><br><span class="line">systemctl start firewalld</span><br><span class="line"><span class="comment"># --zone 作用域 --add-port 格式 端口/通讯协议 --permanent 永久生效</span></span><br><span class="line">firewall-cmd --zone=public --add-port=1935/tcp --permanent</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="comment"># 查看当前所有tcp端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"><span class="comment"># 查看所有1935端口使用情况 </span></span><br><span class="line">netstat -ntulp | grep 1935</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用 ufw</span></span><br><span class="line">ufw <span class="built_in">enable</span></span><br><span class="line"><span class="comment"># 禁用 ufw</span></span><br><span class="line">ufw <span class="built_in">disable</span></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">ufw status verbose</span><br><span class="line"><span class="comment"># 放行端口</span></span><br><span class="line">ufw allow port/协议（TCP|UDP）</span><br><span class="line"><span class="comment"># 关闭端口</span></span><br><span class="line">ufw deny port/协议</span><br><span class="line"><span class="comment"># 允许特定 IP 访问</span></span><br><span class="line">ufw allow from IP</span><br></pre></td></tr></table></figure>
+<h3 id="3-ftp服务搭建"><a class="markdownIt-Anchor" href="#3-ftp服务搭建"></a> 3. <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/how-to-setup-and-configure-an-ftp-server-in-linux/">ftp服务搭建</a></h3>
+<p><a target="_blank" rel="noopener" href="https://pkgs.org/download/vsftpd">下载</a> 完成后上传至服务器，执行以下命令安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i xxx.deb</span><br></pre></td></tr></table></figure>
+<p>安装完成后编辑 <code>/etc/vsftpd.conf</code> 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">local_umask=022</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">chroot_local_user=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"># 新增</span><br><span class="line">pasv_enable=Yes</span><br><span class="line">pasv_min_port=10000</span><br><span class="line">pasv_max_port=10100</span><br><span class="line">allow_writeable_chroot=YES</span><br></pre></td></tr></table></figure>
+<p>更新防火墙：<code>sudo ufw allow from any to any port 20,21,10000:10100 proto tcp</code></p>
+<p>重启服务：<code>sudo systemctl restart vsftpd</code></p>
+<p>创建新用户并设置密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m ftptest</span><br><span class="line">sudo passwd ftptest</span><br><span class="line">New password: </span><br><span class="line">Retype new password: </span><br><span class="line">passwd: password updated successfully</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 出于安全考虑，限定用户ftpuser不能登录，只能ftp</span></span><br><span class="line">usermod -s /sbin/nologin ftpuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 出于安全考虑，我们将禁用此用户的 ssh 权限。输入</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 在此文件中添加以下行，然后重启 SSH sudo systemctl restart sshd</span></span><br><span class="line">DenyUsers ftpuser</span><br></pre></td></tr></table></figure>
+<p>添加文件(连接 ftp 时展示的目录为登录的用户的主目录，所以为了安全我们使用新建的用户)：</p>
+<p><code>sudo echo &quot;this is a simple file&quot; &gt; /home/ftptest/test.txt</code></p>
+<p>然后就可以连接测试了：<code>ftp://ip</code></p>
+<h2 id="四-一些问题"><a class="markdownIt-Anchor" href="#四-一些问题"></a> 四、一些问题</h2>
+<h3 id="1-docker"><a class="markdownIt-Anchor" href="#1-docker"></a> 1. Docker</h3>
+<p>Ubuntu version 22.04<br />
+Docker version 23.0.1<br />
+Docker Compose version v2.16.0<br />
+安装 Docker 工具：<a target="_blank" rel="noopener" href="https://snapcraft.io/docs">snap</a><br />
+错误原因：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot Connect to the Docker Daemon at ‘unix:///var/run/docker.sock’</span><br></pre></td></tr></table></figure>
+<p>解决参考：<a target="_blank" rel="noopener" href="https://appuals.com/cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock/">https://appuals.com/cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock/</a></p>
+<p>如果不能解决，尝试下面的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止 docker</span></span><br><span class="line">systemctl stop docker.socket</span><br><span class="line">systemctl stop docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 snap 管理的 docker 状态</span></span><br><span class="line">snap services</span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">snap stop docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后重启</span></span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2023/06/24/Linux/Ubuntu/Ubuntu%E5%AE%89%E8%A3%85Hadoop+Hive/">【Linux】 Ubuntu安装Hadoop+Hive</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2022/05/22/hello-world/">Hello World</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="jhlzlove/jhlzlove.github.io" data-repo-id="R_kgDOGiQvcQ" data-category="DIC_kwDOGiQvcc4CN8Z2" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="jinrishici-sentence"></span> <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script> 本站由 <a href="/">江湖浪子</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。<br />
+<uptime></uptime></p>
+<script>
+  setInterval(() => {
+    let startDate = new Date("2023-10-01")
+    var now = new Date();
+    // 计算时间差（以毫秒为单位）
+    var differenceInMs = now.getTime() - startDate.getTime();
+    // 转换为天数、小时数、分钟数和秒数
+    var days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);
+    let uptimeTags = Array.from(document.getElementsByTagName("uptime"));
+    uptimeTags.forEach(ele => { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });
+  }, 1000);
+</script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-ubuntu-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-text"> 一、Ubuntu 基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%80%E5%90%AF-root-%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text"> 1. 开启 root 用户远程登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-apt-get"><span class="toc-text"> 2. apt-get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8-snap"><span class="toc-text"> 3. 禁止使用 snap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E7%9A%84%E5%BC%80%E5%8F%91-%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="toc-text"> 4. 安装基础的开发、编译工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 5. 时区设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%AF%AD%E8%A8%80%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 6. 语言设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-ubuntu-2204-%E4%BB%A5%E4%B8%8A"><span class="toc-text"> ① Ubuntu 22.04 以上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ubuntu-2204-%E4%BB%A5%E4%B8%8B"><span class="toc-text"> ② Ubuntu 22.04 以下</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-vim-%E9%85%8D%E7%BD%AE"><span class="toc-text"> 7. Vim 配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-text"> 二、常用软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-redis"><span class="toc-text"> 1. Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql"><span class="toc-text"> 2. MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-docker"><span class="toc-text"> 3. Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-btop"><span class="toc-text"> 4. btop++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-nodejs"><span class="toc-text"> 5. Nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-open-jdk"><span class="toc-text"> 6. open-jdk</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%85%B6%E5%AE%83"><span class="toc-text"> 三、其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9F%A5%E6%89%BEapt%E5%AE%89%E8%A3%85%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text"> 1. 查找apt安装的软件的路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%80%E6%94%BE%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3"><span class="toc-text"> 2. 开放指定端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ftp%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA"><span class="toc-text"> 3. ftp服务搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> 四、一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-docker"><span class="toc-text"> 1. Docker</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://melodious-lily-64ecd1.netlify.app/.netlify/functions/index?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+null
+</div></body></html>

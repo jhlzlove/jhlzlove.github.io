@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/post/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/post/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>zola 主题</title>
+      <link>https://jhlzlove.github.io/post/skill/zola-theme/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/zola-theme/</guid>
+      <description>
+        <![CDATA[<h1>zola 主题</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近花了两三天写了一个 <a href="https://jhlzlove.github.io/elysia-ztheme/">zola 主题</a>，全部由 AI 实现，我只是描述功能、效果。本文记录一些调研时的记录。</p>
+<h2 id="写在前面">
+<a class="header-anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2"></a>
+写在前面
+</h2><p>以动态博客优先。</p>
+<p>对于 <a href="https://jamstack.org/generators/">SSG</a>（Static Site Generators） 来说，没必要换的太勤，换的时候还得花时间找一个喜欢的主题，然后进行迁移。何况现在有了 AI + 知识库，博客的存在感更低了。浪子现在连搜索引擎都很少使用了，不会的、不懂的问 AI~ 现在网站的大部分都是以前的文章。</p>
+        
+        <hr><p>本文2026-04-19首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-04-19</p>]]>
+      </description>
+      
+        <category>zola</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>AI 大模型</title>
+      <link>https://jhlzlove.github.io/post/skill/ai/</link>
+      <pubDate>Thu, 26 Feb 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/ai/</guid>
+      <description>
+        <![CDATA[<h1>AI 大模型</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="概念">
+<a class="header-anchor" href="#%e6%a6%82%e5%bf%b5"></a>
+概念
+</h2><h3 id="llm">
+<a class="header-anchor" href="#llm"></a>
+LLM
+</h3><p>LLM（Large Language Model）是一种基于深度学习的自然语言处理模型，能够理解和生成人类语言。它通过海量的文本数据进行训练，可以用于文本生成、问答、翻译等任务。</p>
+        
+        <hr><p>本文2026-02-26首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-02-26</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>kafka</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/kafka/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/kafka/</guid>
+      <description>
+        <![CDATA[<h1>kafka</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>kafka 简介</p>
+        
+        <hr><p>本文2026-02-25首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-02-25</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>mise</title>
+      <link>https://jhlzlove.github.io/post/skill/windows/mise/</link>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/windows/mise/</guid>
+      <description>
+        <![CDATA[<h1>mise</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p><a href="https://mise.jdx.dev/">mise</a> 是 Rust 编写的一个工具，功能全面，支持版本管理和任务。</p>
+        
+        <hr><p>本文2026-02-04首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-02-04</p>]]>
+      </description>
+      
+        <category>Windows</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>云原生与微服务</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</guid>
+      <description>
+        <![CDATA[<h1>云原生与微服务</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微服务时代充满着自由的气息，微服务时代充斥着迷茫的选择。</p>
+<p>微服务（Microservices）是一种架构风格，它将一个大型的软件应用程序划分为一组小型、自治的服务，每个服务都运行在独立的进程中，并通过轻量级的通信机制（通常是HTTP API）相互协作。每个微服务都专注于一个特定的业务功能，可以独立开发、部署、扩展和更新。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>元</title>
+      <link>https://jhlzlove.github.io/post/life/poetry/%E5%85%83/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/life/poetry/%E5%85%83/</guid>
+      <description>
+        <![CDATA[<h1>元</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>山高水长，物象万千。
+非有老笔，清壮何穷。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>人生图书馆</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>微信公众号模板消息测试推送</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</guid>
+      <description>
+        <![CDATA[<h1>微信公众号模板消息测试推送</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微信公众号分为订阅号和服务号，订阅号不支持模板消息，但是每天可以群发消息；而服务号一个月可以群发四次消息。认证过的服务号是可以使用模板消息的，认证需要 money，而订阅号就需要有内测的权限，微信对订阅号正在启用模板消息灰度测试，所以很多是不能自己测试的。但是可以使用测试号。不过值得注意的是，测试号只能用于测试，不能用于向正是号推送消息等。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>唐</title>
+      <link>https://jhlzlove.github.io/post/life/poetry/%E5%94%90/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/life/poetry/%E5%94%90/</guid>
+      <description>
+        <![CDATA[<h1>唐</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>山高水长，物象万千。
+非有老笔，清壮何穷。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>人生图书馆</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>宋词，线装的美酒</title>
+      <link>https://jhlzlove.github.io/post/life/%E6%9C%88%E7%AB%A0%E6%98%9F%E5%8F%A5/%E5%AE%8B%E8%AF%8D%E7%BA%BF%E8%A3%85%E7%9A%84%E7%BE%8E%E9%85%92/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/life/%E6%9C%88%E7%AB%A0%E6%98%9F%E5%8F%A5/%E5%AE%8B%E8%AF%8D%E7%BA%BF%E8%A3%85%E7%9A%84%E7%BE%8E%E9%85%92/</guid>
+      <description>
+        <![CDATA[<h1>宋词，线装的美酒</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>如果有人说宋词是线装的美酒，我就会说至今香醇满喉；如果有人说宋词点亮了满天的星斗，我就会说它妩媚了整个文字的宇宙；如果有人说宋词是千年的花后，我就会说它始终栖息在玫瑰的枝头，至今余香满手；如果有人说宋词是千年的凝眸，我就会说它始终蕴藏在灯火阑珊后，至今温暖心头。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>人生图书馆</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>宋</title>
+      <link>https://jhlzlove.github.io/post/life/poetry/%E5%AE%8B/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/life/poetry/%E5%AE%8B/</guid>
+      <description>
+        <![CDATA[<h1>宋</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>山高水长，物象万千。
+非有老笔，清壮何穷。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>人生图书馆</category>
+      
+    </item>
+    
+  </channel>
+</rss>

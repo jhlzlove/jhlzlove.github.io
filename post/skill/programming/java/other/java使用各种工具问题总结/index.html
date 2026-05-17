@@ -1,0 +1,1184 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Java使用各种工具问题总结 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Java使用各种工具问题总结 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/java/other/java%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="java" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="Java使用各种工具问题总结"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Java使用各种工具问题总结</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一java">一、Java</a>
+      <ul>
+        <li><a href="#1-excel文件导出中文名称时被转义">1. Excel文件导出中文名称时被转义</a></li>
+      </ul>
+    </li>
+    <li><a href="#二spring">二、Spring</a>
+      <ul>
+        <li><a href="#1-spring-security-5x-跨线程获取用户信息">1. Spring Security 5.x 跨线程获取用户信息</a></li>
+        <li><a href="#2-restcontrolleradvice--swagger-导致的问题">2. @RestControllerAdvice + swagger 导致的问题</a></li>
+        <li><a href="#3-自定义-jackson-转换器对-swagger-的影响">3. 自定义 Jackson 转换器对 swagger 的影响</a></li>
+        <li><a href="#4-跨域">4. 跨域</a></li>
+        <li><a href="#5-在-filter-中注入-spring-bean">5. 在 Filter 中注入 Spring Bean</a></li>
+        <li><a href="#6-spring-aop-和-spring-security-6x">6. Spring AOP 和 Spring Security 6.X</a></li>
+        <li><a href="#7-pathpathvariable-使用时建议指定参数名称例如-pathpathvariableid">7. @PathPathVariable 使用时建议指定参数名称，例如 @PathPathVariable(&ldquo;id&rdquo;)</a></li>
+        <li><a href="#8-spring-mvc-pathpatternantpathmatcher">8. Spring MVC PathPattern、AntPathMatcher</a></li>
+        <li><a href="#9-使用构造注入">9. 使用构造注入？</a></li>
+        <li><a href="#10-springboot-3x">10. SpringBoot 3.x</a></li>
+      </ul>
+    </li>
+    <li><a href="#三mybatismybatis-plusmp">三、MyBatis/MyBatis Plus（MP）</a>
+      <ul>
+        <li><a href="#缓存">缓存</a></li>
+        <li><a href="#1--and-">1. $ And #</a></li>
+        <li><a href="#2-接口传参报错">2. 接口传参报错</a></li>
+        <li><a href="#3-mp插入或更新null值">3. MP插入或更新null值</a></li>
+        <li><a href="#4-mapperxml">4. mapper.xml</a></li>
+        <li><a href="#5-mp-的动态数据源插件">5. MP 的动态数据源插件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h2 id="一java">
+<a class="header-anchor" href="#%e4%b8%80java"></a>
+一、Java
+</h2><h3 id="1-excel文件导出中文名称时被转义">
+<a class="header-anchor" href="#1-excel%e6%96%87%e4%bb%b6%e5%af%bc%e5%87%ba%e4%b8%ad%e6%96%87%e5%90%8d%e7%a7%b0%e6%97%b6%e8%a2%ab%e8%bd%ac%e4%b9%89"></a>
+1. Excel文件导出中文名称时被转义
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URLEncode</span><span class="p">.</span><span class="na">encode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;UTF-8&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">response</span><span class="p">.</span><span class="na">setHeader</span><span class="p">(</span><span class="s">&#34;Content-disposition&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;attachment;filename*=utf-8&#39;zh_cn&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;.xlsx&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>文件的下载在响应之前要设置以 <strong>附件（attachment）</strong> 的形式，否则点击下载时会在浏览器打开。
+Spring MVC 默认的上传文件大小(max-request-size)最大为10M，可以在配置文件中修改。</p>
+</blockquote>
+<h2 id="二spring">
+<a class="header-anchor" href="#%e4%ba%8cspring"></a>
+二、Spring
+</h2><h3 id="1-spring-security-5x-跨线程获取用户信息">
+<a class="header-anchor" href="#1-spring-security-5x-%e8%b7%a8%e7%ba%bf%e7%a8%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e4%bf%a1%e6%81%af"></a>
+1. Spring Security 5.x 跨线程获取用户信息
+</h3><p>使用 Spring Security 时，如果采用异步方法获取用户信息是获取不到的，它采用 ThreadLocal 存储，这样的话有些请求无法顺利执行，可以在 Spring Boot 启动类主方法添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 开启本地线程共享</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">setStrategyName</span><span class="p">(</span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">MODE_INHERITABLETHREADLOCAL</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>而使用 Security 6.x+ 版本时，直接使用 <code>SecurityContextHolder.setStrategyName(SecurityContextHolder。MODE_INHERITABLETHREADLOCAL);</code> 开启用户信息在异步线程或者子线程中获取会导致用户无法正常通过验证。所以如果需要在子线程中获取用户信息，可以考虑在主线程中把 SecurityContent 传递给子线程或者异步线程。</p>
+<h3 id="2-restcontrolleradvice--swagger-导致的问题">
+<a class="header-anchor" href="#2-restcontrolleradvice--swagger-%e5%af%bc%e8%87%b4%e7%9a%84%e9%97%ae%e9%a2%98"></a>
+2. @RestControllerAdvice + swagger 导致的问题
+</h3><p>如果在项目中实现 <code>ResponseBodyAdvice</code> 接口统一封装 controller 返回的接口，访问 swagger 地址时会出现弹窗 <code>Unable to infer base url. This is common when using dynamic servlet registration or when the API is behind an API Gateway</code> 的问题。如果是使用的 Knife4j，则访问时可能会显示获取文档错误的信息。</p>
+<p>主要是由于被拦截了，因为 @RestControllerAdvice 的工作机制是在 controller 层的结果返回时自动对其包装(前提是 supports 方法返回 true)，在默认的情况下，文档也被修改了，因此无法正常获取。</p>
+<p>第一种方式最简单，需要在实现 <code>ResponseBodyAdvice</code> 的类注解上加入要扫描的包名(一般是 controller)，例如 <code>@RestControllerAdvice(basePackages = &quot;xxx.xx.controller&quot;)</code> 来限定需要对返回结果进行封装的范围，这样的话就不会拦截 swagger 相关资源的地址，访问就正常了。</p>
+<p>但是随着项目的不同会有许多不同的情况，包名可能没有办法统一格式，好在该注解有另一个属性：annotation，我们可以自定义一个注解，然后所有的 controller 都使用自定义的注解，再使用 <code>@RestControllerAdvice(annotation = 自定义注解.class)</code> 也没有问题。</p>
+<p>另外一种方式就是在 <code>supports()</code> 中修改，遇到包含 swagger 的就放行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RestControllerAdvice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StandardResponseAdvice</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ResponseBodyAdvice</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">supports</span><span class="p">(</span><span class="n">MethodParameter</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">HttpMessageConverter</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">converterType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 过滤掉 swagger 文档，不需要包装</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">getDeclaringClass</span><span class="p">().</span><span class="na">getName</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">&#34;springdoc&#34;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 过滤掉指定类，无需对其进行转换</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">returnType</span><span class="p">.</span><span class="na">getParameterType</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">class</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>也可以下面这样修改（浪子没有测试，具体见：https://juejin.cn/post/6921700441038258189）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RestControllerAdvice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// @RestControllerAdvice(basePackages = &#34;com.example.controller&#34;) // 只对此包中的类进行结果封装</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ResultResponseHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ResponseBodyAdvice</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">supports</span><span class="p">(</span><span class="n">MethodParameter</span><span class="w"> </span><span class="n">returnType</span><span class="p">,</span><span class="w"> </span><span class="n">Class</span><span class="w"> </span><span class="n">converterT</span><span class="w">  </span><span class="n">ype</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 过滤不需要封装的结果</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// isAssignableFrom 可以过滤该类、以及该类的子类、实现类</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">returnType</span><span class="p">.</span><span class="na">getParameterType</span><span class="p">().</span><span class="na">isAssignableFrom</span><span class="p">(</span><span class="n">ResultResp</span><span class="p">.</span><span class="na">class</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">beforeBodyWrite</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">MethodParameter</span><span class="w"> </span><span class="n">returnType</span><span class="p">,</span><span class="w"> </span><span class="n">MediaType</span><span class="w"> </span><span class="n">selectedContentType</span><span class="p">,</span><span class="w"> </span><span class="n">Class</span><span class="w"> </span><span class="n">selectedConverterType</span><span class="p">,</span><span class="w"> </span><span class="n">ServerHttpRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">ServerHttpResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">body</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Json</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">UiConfiguration</span><span class="w"> </span><span class="o">||</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">(</span><span class="n">body</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">ArrayList</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">((</span><span class="n">ArrayList</span><span class="p">)</span><span class="w"> </span><span class="n">body</span><span class="p">).</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">SwaggerResource</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">body</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResultResp</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">body</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="3-自定义-jackson-转换器对-swagger-的影响">
+<a class="header-anchor" href="#3-%e8%87%aa%e5%ae%9a%e4%b9%89-jackson-%e8%bd%ac%e6%8d%a2%e5%99%a8%e5%af%b9-swagger-%e7%9a%84%e5%bd%b1%e5%93%8d"></a>
+3. 自定义 Jackson 转换器对 swagger 的影响
+</h3><p>项目中我们可能使用了 Jackson 作为 json 工具，那么很有可能自定义了转换工具，如果把转换工具放在第一个，那么也会对 swagger 造成影响，直接就返回了一串类似 token 的字符串(web 控制台可以查看。不过具体返回什么，需要自己 Debug 看看什么地方的问题)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SpringMvcConfiguration</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">extendMessageConverters</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">HttpMessageConverter</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">converters</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MappingJackson2HttpMessageConverter</span><span class="w"> </span><span class="n">jackson2HttpMessageConverter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MappingJackson2HttpMessageConverter</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ObjectMapper</span><span class="w"> </span><span class="n">objectMapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jackson2HttpMessageConverter</span><span class="p">.</span><span class="na">getObjectMapper</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// JacksonUtil 是自己写的工具类</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">jackson2HttpMessageConverter</span><span class="p">.</span><span class="na">setObjectMapper</span><span class="p">(</span><span class="n">JacksonUtil</span><span class="p">.</span><span class="na">init</span><span class="p">(</span><span class="n">objectMapper</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 添加文档只能放到第 2 个，否则文档无法访问</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">converters</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">jackson2HttpMessageConverter</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>上面使用 swagger 的集成多多少少会造成一些问题，而且 swagger 对代码的侵入较强，浪子不推荐使用。如果公司项目还是推荐开发人员自行维护接口，例如使用 Apifox、ApiPost、Postman、Yapi 等，这些工具中有的提供了私有化部署，团队维护最合适不过。</p>
+</blockquote>
+<h3 id="4-跨域">
+<a class="header-anchor" href="#4-%e8%b7%a8%e5%9f%9f"></a>
+4. 跨域
+</h3><p>{% box %}
+{% tabs %}</p>
+<p>{% codeblock xxxController.java lang:java %}
+// 注解用在 Controller 类中，该类所有方法允许其它域中进行访问
+@CrossOrigin
+public class xxxController {</p>
+<p>}
+{% endcodeblock %}</p>
+<p>{% codeblock CorsConfig.java lang:java %}
+@Configuration
+public class CorsConfig {
+@Bean
+public CorsFilter corsFilter() {
+UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+CorsConfiguration config = new CorsConfiguration();
+config.setAllowedOrigins(&quot;<em>&quot;);
+config.setAllowedHeaders(&quot;</em>&quot;);
+config.setAllowedMethods(&quot;*&quot;);
+// 处理所有请求的跨域配置
+source.registerCorsConfiguration(&quot;/**&quot;, config);
+return new CorsFilter(source);
+}
+}
+{% endcodeblock %}</p>
+<p>{% codeblock WebMvcConfig.jav lang:java %}
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+/**
+* 跨域访问（CORS）
+*
+* @param registry
+*/
+@Override
+public void addCorsMappings(CorsRegistry registry) {
+registry.addMapping(&quot;/<strong>&quot;)
+.allowCredentials(false)
+// 所有头
+.allowedHeaders(&quot;/</strong>&quot;)
+// 所有源
+.allowedOrigins(&quot;/<strong>&quot;)
+// 所有方法
+.allowedMethods(&quot;/</strong>&quot;)
+.maxAge(5000);
+}
+}
+{% endcodeblock %}
+{% endtabs %}
+{% endbox %}</p>
+<h3 id="5-在-filter-中注入-spring-bean">
+<a class="header-anchor" href="#5-%e5%9c%a8-filter-%e4%b8%ad%e6%b3%a8%e5%85%a5-spring-bean"></a>
+5. 在 Filter 中注入 Spring Bean
+</h3><p>在 Spring Web 中，执行顺序是 context-param–&gt;listener–&gt;filter–&gt;servlet，可以看到 servlet 是在最后的，所以在 Filter 中注入 Bean 的时候就会报 NPE，如果是 SpringBoot 项目，可以在 Filter 的实现类上使用 @Order 注解延迟加载，让 Bean 先行加载，这样就可以在 Filter 中注入了。</p>
+<h3 id="6-spring-aop-和-spring-security-6x">
+<a class="header-anchor" href="#6-spring-aop-%e5%92%8c-spring-security-6x"></a>
+6. Spring AOP 和 Spring Security 6.X
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Cannot invoke <span class="s2">&#34;org.apache.commons.logging.Log.isDebugEnabled()&#34;</span> because <span class="s2">&#34;this.logger&#34;</span> is null
+</span></span></code></pre></div><p>背景：多模块项目，AOP 依赖在 <code>common</code> 模块，Security 在 <code>system</code> 模块，system 依赖于 common。使用 <code>@Aspect</code> 定义了切面和日志，但是定义切入点的时候是 <code>execution(* com.xxx..*.*(..))</code>。<code>com.xxx</code> 项目是顶级包。</p>
+<p>而 Security 中的 <code>OncePerRequestFilter</code> 继承的 <code>GenericFilterBean#init()</code> 中有如下代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logger</span><span class="p">.</span><span class="na">isDebugEnabled</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">debug</span><span class="p">(</span><span class="s">&#34;Filter &#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filterConfig</span><span class="p">.</span><span class="na">getFilterName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39; configured for use&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在进行切入的时候，把这里的 <code>logger</code> 给覆盖了，导致一直拿不到值，项目启动就抛出了 NPE。</p>
+<p>修改很简单，打印日志一般抓 <code>controller</code> 层，只需要把切入点定义改为：<code>execution(* com.xxx.controller..*.*(..))</code>。更加推荐的是把 AOP 依赖直接移入 <code>system</code> 中，相关的日志类也放到该模块，这里出现错误是因为之前的划分原本就不是很合理。</p>
+<h3 id="7-pathpathvariable-使用时建议指定参数名称例如-pathpathvariableid">
+<a class="header-anchor" href="#7-pathpathvariable-%e4%bd%bf%e7%94%a8%e6%97%b6%e5%bb%ba%e8%ae%ae%e6%8c%87%e5%ae%9a%e5%8f%82%e6%95%b0%e5%90%8d%e7%a7%b0%e4%be%8b%e5%a6%82-pathpathvariableid"></a>
+7. @PathPathVariable 使用时建议指定参数名称，例如 @PathPathVariable(&ldquo;id&rdquo;)
+</h3><h3 id="8-spring-mvc-pathpatternantpathmatcher">
+<a class="header-anchor" href="#8-spring-mvc-pathpatternantpathmatcher"></a>
+8. <a href="https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc">Spring MVC PathPattern、AntPathMatcher</a>
+</h3><p><code>PathPattern</code> 是 Spring 5.0 提供的，在 Spring 6.x 中有了改进并被设置默认值。本项目使用 <code>PathPattern</code>，<code>AntPathMatcher</code> 是旧版的路径匹配器。如果是新项目的话，推荐使用新的的 <code>PathPattern</code>。如果项目中没有配置 <code>spring.mvc.pathmatch.matching-strategy</code>，默认使用的也是 <code>PathPatternParser</code>。</p>
+<blockquote>
+<p>新版本中， @RequestMapping(&quot;/xxx&quot;) 会自动在指定的路径后加入 <strong>/</strong>.</p>
+</blockquote>
+<h3 id="9-使用构造注入">
+<a class="header-anchor" href="#9-%e4%bd%bf%e7%94%a8%e6%9e%84%e9%80%a0%e6%b3%a8%e5%85%a5"></a>
+9. <a href="https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html#beans-setter-injection">使用构造注入？</a>
+</h3><p>以下内容摘自 Spring 官网：</p>
+<blockquote>
+<p>Since you can mix constructor-based and setter-based DI, it is a good rule of thumb to use constructors for mandatory
+dependencies and setter methods or configuration methods for optional dependencies. Note that use of the @Autowired
+annotation on a setter method can be used to make the property be a required dependency; however, constructor
+injection
+with programmatic validation of arguments is preferable.</p>
+<p>The Spring team generally advocates constructor injection, as it lets you implement application components as
+immutable objects and ensures that required dependencies are not . Furthermore, constructor-injected components are
+always returned to the client (calling) code in a fully initialized state. As a side note, a large number of
+constructor
+arguments is a bad code smell, implying that the class likely has too many responsibilities and should be refactored
+to
+better address proper separation of concerns.null</p>
+<p>Setter injection should primarily only be used for optional dependencies that can be assigned reasonable default
+values within the class. Otherwise, not-null checks must be performed everywhere the code uses the dependency. One
+benefit of setter injection is that setter methods make objects of that class amenable to reconfiguration or
+re-injection later. Management through JMX MBeans is therefore a compelling use case for setter injection.</p>
+<p>Use the DI style that makes the most sense for a particular class. Sometimes, when dealing with third-party classes
+for which you do not have the source, the choice is made for you. For example, if a third-party class does not expose
+any setter methods, then constructor injection may be the only available form of DI.</p>
+</blockquote>
+<p>机翻一下：
+由于您可以混合基于构造函数和基于 setter 的 DI，因此这是一个很好的经验法则 将构造函数用于必需依赖项和 setter 方法或配置方法用于可选依赖项。请注意，在 setter 方法上使用 @Autowired 注释可用于使属性成为必需的依赖项; 但是，最好使用参数的编程验证进行构造函数注入。</p>
+<p>Spring 团队通常提倡构造函数注入，因为它可以让你实现应用程序组件作为不可变对象，并确保所需的依赖项不是 null.此外，构造函数注入的组件始终返回给客户端（调用）处于完全初始化状态的代码。顺便说一句，大量的构造函数 arguments 是一种不好的代码气味，这意味着该类可能有太多责任，并应进行重构，以更好地解决适当的关注点分离问题。</p>
+<p>Setter 注入应主要仅用于可选的依赖项，这些依赖项可以 在类中分配合理的默认值。否则，非 null 检查必须在代码使用依赖项的任何地方执行。入孵注入的一个好处是 setter 方法使该类对象适合重新配置或重新注入 后。因此，通过 JMX MBean 进行管理是一个引人注目的二传手注入的用例。</p>
+<p>使用对特定类最有意义的 DI 样式。有时，在处理时 对于您没有源代码的第三方类，您可以进行选择。例如，如果第三方类不公开任何 setter 方法，则构造函数注射可能是唯一可用的 DI 形式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Service</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DemoServiceImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">DemoService</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">DemoDao</span><span class="w"> </span><span class="n">demoDao</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 这里的 @Autowired 注解可加可不加</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DemoServiceImpl</span><span class="p">(</span><span class="n">DemoDao</span><span class="w"> </span><span class="n">demoDao</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">demoDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">demoDao</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ...业务逻辑</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>可以使用 lombok 的注解来添加构造方法，不必手动添加。</p>
+<h3 id="10-springboot-3x">
+<a class="header-anchor" href="#10-springboot-3x"></a>
+10. SpringBoot 3.x
+</h3><p>Jakarta EE 9是一个新的顶级包，取代了 Java EE 中的 javax 顶级包。例如，JakartaEE8 中的 Servlet 规范使用 <code>javax.servlet</code> 包，但在 EE9 中已更改为 <code>jakarta.servlet</code>。</p>
+<p>一般来说，不可能在同一个项目中混合使用 Java EE 和 Jakarta EE API。您需要确保您自己的代码以及所有第三方库都使用 <code>jakarta.*</code> 包导入。大多数维护良好的库都在生成 Jakarta EE 9 兼容的变体。例如 Hibernate、Thymeleaf、Tomcat、Jetty 和 Undertow 都已经这样做了。</p>
+<blockquote>
+<p>以上机翻自 Spring 官网。</p>
+</blockquote>
+<h2 id="三mybatismybatis-plusmp">
+<a class="header-anchor" href="#%e4%b8%89mybatismybatis-plusmp"></a>
+三、MyBatis/MyBatis Plus（MP）
+</h2><h3 id="缓存">
+<a class="header-anchor" href="#%e7%bc%93%e5%ad%98"></a>
+缓存
+</h3><p>一级缓存默认开启，基于 SqlSessionFactory，整个会话共享。</p>
+<p>二级缓存也可以说是本地缓存(一个 Map 缓存)，存储在项目应用自身中。在 mapper.xml 中使用 <code>&lt;cache/&gt;</code> 标签即可开启。</p>
+<p>对于具有关联关系(多表连接查询)的缓存，在从表的 mapper.xml 中使用 <code>&lt;cache-ref namespace = &quot;&quot; /&gt;</code> 标签，namespace 指向主表/相关联的表。二级缓存也解决了缓存穿透的问题，如果请求了一个不存在的数据，那么 MyBatis 也会进行缓存，值为 null。</p>
+<p>自定义缓存是在二级缓存的基础上实现的，Mybatis 默认使用 <code>org.apache.ibatis.cache.impl.PerpetualCache</code> 类。我们可以对内部的方法进行覆写，从而实现自定义缓存。</p>
+<ol>
+<li>实现 Mybatis 的 <code>Cache</code> 接口；</li>
+<li>在 mapper.xml 中使用 <code>&lt;cache type=&quot;自定义缓存类全限定名&quot;/&gt;</code> 标签；</li>
+</ol>
+<p>{% box Result Maps collection does not contain value for …… color:red %}</p>
+<p>在 SQL 文件中使用了 <code>resultType=&quot;java.util.map&quot;</code>，并且不止一处使用，那么凡是使用 <code>resultType</code> 或者 <code>resultMap</code> 这种属性的标签，不能有属性指向错误，否则就会报错： “Result Maps collection does not contain value for ……”</p>
+<p>{% endbox %}</p>
+<p>{% box Parameter index out of range (2 &gt; number of parameters, which is 1). color:red %}</p>
+<p>不能在 mybatis 的 <code>sql.xml</code> 中的 sql 标签（<code>&lt;select&gt;、&lt;update&gt;、&lt;delete&gt;等</code>）中注释 sql 语句，如果注释的语句中 {% mark 带有参数 color:red %}，那么就会报这个错误。如果有必须注释的语句，把相关语句复制一份放在 mybatis 标签外面使用<code>&lt;!-- 注释 sql 内容 --&gt;</code> 注释。如果可以，还是把 SQL 语句存储在外部的 txt 等文本文件里。</p>
+<p>{% endbox %}</p>
+<p>{% box org.apache.ibatis.binding.BindingException: Invalid bound statement (not found) color:red %}</p>
+<p>有这个错误的话就是 mapper 接口和对应的 xml 文件没有绑定，或者绑定了，但是 xml 文件不是在 <code>resources/mapper</code> 路径下。需要在项目的 <code>pom.xml</code> 中添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 把 xml 文件一起打包 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;build&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;resources&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;resource&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;directory&gt;</span>src/main/java<span class="nt">&lt;/directory&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;includes&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;include&gt;</span>**/*.properties<span class="nt">&lt;/include&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/includes&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/resource&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;resource&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;includes&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;include&gt;</span>**/*.properties<span class="nt">&lt;/include&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/includes&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/resource&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/resources&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/build&gt;</span>
+</span></span></code></pre></div><p>{% endbox %}</p>
+<h3 id="1--and-">
+<a class="header-anchor" href="#1--and-"></a>
+1. $ And #
+</h3><p>这个我想很多人都知道使用哪个比较好了，说说问题。具体语句省略，请注意循环内的条件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">select * from user u
+</span></span><span class="line"><span class="cl">left join address a on u.address = a.site
+</span></span><span class="line"><span class="cl">where a.longitude = #{longitude} and a.latitude = #{latitude}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;mallId != null and mallId != &#39;&#39;&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    and u.mallId = #{mallId}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;propertyType != null and propertyType.size() &gt; 0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    and u.property_type in
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;foreach</span> <span class="na">collection=</span><span class="s">&#34;propertyType&#34;</span> <span class="na">index=</span><span class="s">&#34;index&#34;</span> <span class="na">item=</span><span class="s">&#34;type&#34;</span> <span class="na">open=</span><span class="s">&#34;(&#34;</span> <span class="na">separator=</span><span class="s">&#34;,&#34;</span> <span class="na">close=</span><span class="s">&#34;)&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        ${type}
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/foreach&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/if&gt;</span>
+</span></span></code></pre></div><p>上面的语句在循环中使用了 <code>${}</code>，我把它修改成了 <code>#{}</code>，但是输入的筛选的条件是不会生效的，继而没有返回数据。</p>
+<p><img src="../../../../images/wiki/java/$%7B%7D.png" alt="#{}不生效"></p>
+<p>之后看了看它传的参数，发现接口接收的字符串，然后在业务层转为字符串集合，并且为每个元素加入单引号后传入 SQL 的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getParamList</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">propertyType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">paramList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">(</span><span class="n">propertyType</span><span class="p">.</span><span class="na">trim</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">split</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">propertyType</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;,&#34;</span><span class="p">):</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="err">（</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">θ</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="w"> </span><span class="n">split</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="err">）</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">split</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">split</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">paramlist</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">split</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">debug</span><span class="p">(</span><span class="s">&#34;propertyType list : {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">paramlist</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">paramlist</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>于是猜想可能就是这个原因导致查询条件不生效，于是把这段代码改成了下面的样子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getParamlist</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="na">trim</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;,&#34;</span><span class="p">)).</span><span class="na">map</span><span class="p">(</span><span class="n">String</span><span class="p">::</span><span class="n">trim</span><span class="p">).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">(</span><span class="n">O</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>这段代码没有给分割后的字符加入英文单引号，map 方法对每一个元素都去掉前后的空格（请结合自身业务场景确定参数是否可包含空格，浪子这里不需要），然后再次测试该接口，perfect！it is working now!</p>
+<p>之后使用修改后的字符转集合方法代码再次使用 <code>${}</code> 去测试，发现 SQL 语句查询又不生效了。。。</p>
+<p>于是浪子明白了：使用 <code>${}</code> 时，参数为 List 类型需要我们为每个元素手动加入单引号，使用单引号包裹才会生效；而使用 <code>#{}</code> 时，List 参数类型则不需要我们手动加入英文单引号，直接传入 List 即可。</p>
+<h3 id="2-接口传参报错">
+<a class="header-anchor" href="#2-%e6%8e%a5%e5%8f%a3%e4%bc%a0%e5%8f%82%e6%8a%a5%e9%94%99"></a>
+2. 接口传参报错
+</h3><p>错误信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">No primary or default constructor found <span class="k">for</span> interface java.util.List<span class="o">]</span>
+</span></span></code></pre></div><p>后端使用 <code>List&lt;String&gt;</code> 或者数组接参数收时，前端传入数组接收不到；但是可以传字符串，每个元素可以使用英文 <code>,</code> 分割。</p>
+<h3 id="3-mp插入或更新null值">
+<a class="header-anchor" href="#3-mp%e6%8f%92%e5%85%a5%e6%88%96%e6%9b%b4%e6%96%b0null%e5%80%bc"></a>
+3. MP插入或更新null值
+</h3><p>当使用 Mybatis Plus 时，更新数据为 null 值时，即使数据库的字段设置为可以为 null，但是更新或插入时还是数据更新失败。这个就涉及到字段验证策略了。MP 官网也给出了 <a href="https://baomidou.com/pages/f84a74/#%E6%8F%92%E5%85%A5%E6%88%96%E6%9B%B4%E6%96%B0%E7%9A%84%E5%AD%97%E6%AE%B5%E6%9C%89-%E7%A9%BA%E5%AD%97%E7%AC%A6%E4%B8%B2-%E6%88%96%E8%80%85-null">解决办法</a></p>
+<h3 id="4-mapperxml">
+<a class="header-anchor" href="#4-mapperxml"></a>
+4. mapper.xml
+</h3><p>在 <code>mapper.xml</code> 中编写 SQL 语句时有部分字符需要转义才可以被框架正确的解析：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">转义字符</th>
+          <th style="text-align: center">含义</th>
+          <th style="text-align: center">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">&amp;gt;</td>
+          <td style="text-align: center">&gt;</td>
+          <td style="text-align: center">greater than</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&amp;lt;</td>
+          <td style="text-align: center">&lt;</td>
+          <td style="text-align: center">less than</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">&amp;amp;</td>
+          <td style="text-align: center">&amp;</td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
+</table>
+<p>也可以使用 <code>&lt;![CDATA[]]&gt;</code> 来声明语句，被这个标记所包含的内容将表示为纯文本。</p>
+<p>MP 就是垃圾！建议放弃，使用 Jimmer！！！</p>
+<h3 id="5-mp-的动态数据源插件">
+<a class="header-anchor" href="#5-mp-%e7%9a%84%e5%8a%a8%e6%80%81%e6%95%b0%e6%8d%ae%e6%ba%90%e6%8f%92%e4%bb%b6"></a>
+5. MP 的动态数据源插件
+</h3><p>如果一个方法中开启了 Spring 的事务，那么将不会切换数据源，需要使用 MP 提供的 <code>@DSTransactional</code>。如果在同一个方法中调用多个数据源的业务，可以采用以下方式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">taskIssue</span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 数据源名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">slave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DynamicDataSourceContextHolder</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="s">&#34;slave&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&#34;当前使用数据源：{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">slave</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DynamicDataSourceContextHolder</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&#34;切换回默认数据源，当前使用数据源：{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">DynamicDataSourceContextHolder</span><span class="p">.</span><span class="na">peek</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/java/other/java%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/&amp;title=Java%e4%bd%bf%e7%94%a8%e5%90%84%e7%a7%8d%e5%b7%a5%e5%85%b7%e9%97%ae%e9%a2%98%e6%80%bb%e7%bb%93&amp;desc=%20%e4%b8%80%e3%80%81Java%201.%20Excel%e6%96%87%e4%bb%b6%e5%af%bc%e5%87%ba%e4%b8%ad%e6%96%87%e5%90%8d%e7%a7%b0%e6%97%b6%e8%a2%ab%e8%bd%ac%e4%b9%89%20String%20fileName%20=%20URLEncode.encode%28name,%20&amp;#34;UTF-8&amp;#34;%29;%20response.setHeader%28&amp;#34;Content-disposition&amp;#34;,%20&amp;#34;attachment;filename*=utf-8&amp;#39;zh_cn&amp;#39;&amp;#34;%20&#43;%20fileName%20&#43;%20&amp;#34;.xlsx&amp;#34;%29;%20%e6%96%87%e4%bb%b6%e7%9a%84%e4%b8%8b%e8%bd%bd%e5%9c%a8%e5%93%8d%e5%ba%94%e4%b9%8b%e5%89%8d%e8%a6%81%e8%ae%be%e7%bd%ae%e4%bb%a5%20%e9%99%84%e4%bb%b6%ef%bc%88attachment%ef%bc%89%20%e7%9a%84%e5%bd%a2%e5%bc%8f%ef%bc%8c%e5%90%a6%e5%88%99%e7%82%b9%e5%87%bb%e4%b8%8b%e8%bd%bd%e6%97%b6%e4%bc%9a%e5%9c%a8%e6%b5%8f%e8%a7%88%e5%99%a8%e6%89%93%e5%bc%80%e3%80%82%20Spring%20MVC%20%e9%bb%98%e8%ae%a4%e7%9a%84%e4%b8%8a%e4%bc%a0%e6%96%87%e4%bb%b6%e5%a4%a7%e5%b0%8f%20%e2%80%a6&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Java使用各种工具问题总结">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Java使用各种工具问题总结">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/java"
+      data-aos="zoom-in"
+      >Java</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/java"
+        rel="tag"
+        >java</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="JTA 分布式事务"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/jta/"
+          aria-label="前一篇:JTA 分布式事务"
+          title="前一篇:JTA 分布式事务"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">JTA 分布式事务</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="Java解析MySQL的binlog日志"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/java-parse-mysql-binlog/"
+          aria-label="后一篇:Java解析MySQL的binlog日志"
+          title="后一篇:Java解析MySQL的binlog日志"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Java解析MySQL的binlog日志</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一java">一、Java</a>
+      <ul>
+        <li><a href="#1-excel文件导出中文名称时被转义">1. Excel文件导出中文名称时被转义</a></li>
+      </ul>
+    </li>
+    <li><a href="#二spring">二、Spring</a>
+      <ul>
+        <li><a href="#1-spring-security-5x-跨线程获取用户信息">1. Spring Security 5.x 跨线程获取用户信息</a></li>
+        <li><a href="#2-restcontrolleradvice--swagger-导致的问题">2. @RestControllerAdvice + swagger 导致的问题</a></li>
+        <li><a href="#3-自定义-jackson-转换器对-swagger-的影响">3. 自定义 Jackson 转换器对 swagger 的影响</a></li>
+        <li><a href="#4-跨域">4. 跨域</a></li>
+        <li><a href="#5-在-filter-中注入-spring-bean">5. 在 Filter 中注入 Spring Bean</a></li>
+        <li><a href="#6-spring-aop-和-spring-security-6x">6. Spring AOP 和 Spring Security 6.X</a></li>
+        <li><a href="#7-pathpathvariable-使用时建议指定参数名称例如-pathpathvariableid">7. @PathPathVariable 使用时建议指定参数名称，例如 @PathPathVariable(&ldquo;id&rdquo;)</a></li>
+        <li><a href="#8-spring-mvc-pathpatternantpathmatcher">8. Spring MVC PathPattern、AntPathMatcher</a></li>
+        <li><a href="#9-使用构造注入">9. 使用构造注入？</a></li>
+        <li><a href="#10-springboot-3x">10. SpringBoot 3.x</a></li>
+      </ul>
+    </li>
+    <li><a href="#三mybatismybatis-plusmp">三、MyBatis/MyBatis Plus（MP）</a>
+      <ul>
+        <li><a href="#缓存">缓存</a></li>
+        <li><a href="#1--and-">1. $ And #</a></li>
+        <li><a href="#2-接口传参报错">2. 接口传参报错</a></li>
+        <li><a href="#3-mp插入或更新null值">3. MP插入或更新null值</a></li>
+        <li><a href="#4-mapperxml">4. mapper.xml</a></li>
+        <li><a href="#5-mp-的动态数据源插件">5. MP 的动态数据源插件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Java使用各种工具问题总结",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/java\/other\/java%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93\/",
+          description: " 一、Java 1. Excel文件导出中文名称时被转义 String fileName = URLEncode.encode(name, \u0026#34;UTF-8\u0026#34;); response.setHeader(\u0026#34;Content-disposition\u0026#34;, \u0026#34;attachment;filename*=utf-8\u0026#39;zh_cn\u0026#39;\u0026#34; \u002b fileName \u002b \u0026#34;.xlsx\u0026#34;); 文件的下载在响应之前要设置以 附件（attachment） 的形式，否则点击下载时会在浏览器打开。 Spring MVC 默认的上传文件大小 …",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

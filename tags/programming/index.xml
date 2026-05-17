@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/programming/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/programming/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>编程小知识</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/common/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/common/</guid>
+      <description>
+        <![CDATA[<h1>编程小知识</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="编程语言">
+<a class="header-anchor" href="#%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80"></a>
+编程语言
+</h2><p>我们都知道，计算机中的执行者 CPU 只认识二进制的 0 和 1 组成的序列，使用 0 和 1 组成的序列我们称之为 <strong>机器码</strong>。<strong>机器码</strong> 是计算机可以直接执行的。但是直接使用机器码编写 CPU 指令不仅费时费力，还特别容易出错，于是后来有了 <strong>汇编语言</strong>。简单概括的话，汇编语言类似于一种助记符，直接面对指令，将二进制指令替换成人类便于记忆的字符串，并给定特殊的格式。每一条汇编指令对应一条二进制指令。根据内核架构的不同，不同的指令有不同的长度和格式。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>JVM</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/jvm/jvm/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/jvm/jvm/</guid>
+      <description>
+        <![CDATA[<h1>JVM</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>JVM 简单理解就是运行 Java 等语言的“操作系统”，没有 JVM，Java 程序就无法运行，JVM 自己“设计”了一套适合自己使用的内存结构。本篇文章就来整理一下，没有用到的就不写进来了，用过的或者学习的整理进来。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Java Flight Recording</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/jvm/jfr/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/jvm/jfr/</guid>
+      <description>
+        <![CDATA[<h1>Java Flight Recording</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="jfr">
+<a class="header-anchor" href="#jfr"></a>
+<a href="https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/preface_jfrrt.htm#JFRUH165">JFR</a>
+</h2><p>JFR（Java Flight Recorder）是Java虚拟机（JVM）提供的一个性能监控和故障诊断工具。它的主要作用是收集、记录并分析Java应用程序在运行时的性能数据。JFR在Java 7 Update 40及更高版本中被引入，并在Java 11及以后的版本中成为开源项目。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

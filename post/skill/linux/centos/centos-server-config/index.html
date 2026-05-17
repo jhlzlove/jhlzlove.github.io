@@ -1,0 +1,1392 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  【Linux】 CentOS 服务器配置 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="【Linux】 CentOS 服务器配置 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/linux/centos/centos-server-config/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-05T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-05T00:00:00&#43;08:00" /><meta property="article:tag" content="linux, centos" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="【Linux】 CentOS 服务器配置"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">【Linux】 CentOS 服务器配置</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一centos7最小安装">一、CentOS7最小安装</a>
+      <ul>
+        <li><a href="#1配置网卡">1、配置网卡</a></li>
+        <li><a href="#2关闭防火墙以及-linux-的一些安全策略">2、关闭防火墙以及 Linux 的一些安全策略</a></li>
+        <li><a href="#3设置镜像源">3、设置镜像源</a></li>
+        <li><a href="#4安装常用工具">4、安装常用工具</a></li>
+        <li><a href="#5安装一些基础依赖">5、安装一些基础依赖</a></li>
+        <li><a href="#6-rpm命令">6. rpm命令</a></li>
+        <li><a href="#7-lrzsz文件上传下载">7. lrzsz：文件上传下载</a></li>
+      </ul>
+    </li>
+    <li><a href="#二部署服务">二、部署服务</a>
+      <ul>
+        <li><a href="#1-redis">1. Redis</a></li>
+        <li><a href="#2-rabbitmq">2. RabbitMQ</a></li>
+        <li><a href="#3-python">3. Python</a></li>
+        <li><a href="#4-nginx">4. Nginx</a></li>
+        <li><a href="#5-btop">5. Btop++</a></li>
+        <li><a href="#6-ffmpeg">6. FFmpeg</a></li>
+        <li><a href="#7-mysql解压版">7. MySQL（解压版）</a></li>
+      </ul>
+    </li>
+    <li><a href="#三附">三、附</a>
+      <ul>
+        <li><a href="#1-关于源码编译安装失败">1. 关于源码编译安装失败</a></li>
+        <li><a href="#2-防火墙">2. 防火墙</a></li>
+        <li><a href="#3-恢复系统初始状态">3. 恢复系统初始状态</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-05 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-05</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-05</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>此篇文章以后随缘更新，这个系统的相关问题网上一般都有答案，浪子个人已不再使用 CentOS 系统。</p>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e4%b8%80centos7%e6%9c%80%e5%b0%8f%e5%ae%89%e8%a3%85">一、CentOS7最小安装</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#1%e9%85%8d%e7%bd%ae%e7%bd%91%e5%8d%a1">1、配置网卡</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#2%e5%85%b3%e9%97%ad%e9%98%b2%e7%81%ab%e5%a2%99%e4%bb%a5%e5%8f%8a-linux-%e7%9a%84%e4%b8%80%e4%ba%9b%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5">2、关闭防火墙以及 Linux 的一些安全策略</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#3%e8%ae%be%e7%bd%ae%e9%95%9c%e5%83%8f%e6%ba%90">3、设置镜像源</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e9%85%8d%e7%bd%ae%e6%9c%ac%e5%9c%b0-yum-%e6%ba%90%e6%a0%87%e5%87%86%e7%89%88%e6%88%96%e8%80%85%e5%85%a8%e9%87%8f%e7%89%88%e5%8f%af%e7%94%a8">配置本地 yum 源(标准版或者全量版可用)</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#4%e5%ae%89%e8%a3%85%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7">4、安装常用工具</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#5%e5%ae%89%e8%a3%85%e4%b8%80%e4%ba%9b%e5%9f%ba%e7%a1%80%e4%be%9d%e8%b5%96">5、安装一些基础依赖</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#6-rpm%e5%91%bd%e4%bb%a4">6. rpm命令</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#7-lrzsz%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e4%b8%8b%e8%bd%bd">7. lrzsz：文件上传下载</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e4%ba%8c%e9%83%a8%e7%bd%b2%e6%9c%8d%e5%8a%a1">二、部署服务</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#1-redis">1. Redis</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#2-rabbitmq">2. RabbitMQ</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#3-python">3. Python</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#4-nginx">4. Nginx</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#5-btop">5. Btop++</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#6-ffmpeg">6. FFmpeg</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#7-mysql%e8%a7%a3%e5%8e%8b%e7%89%88">7. MySQL（解压版）</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e9%97%ae%e9%a2%98%e4%b8%80%e5%af%86%e7%a0%81%e6%ad%a3%e7%a1%ae%e4%bd%86%e6%98%af%e8%bf%9b%e4%b8%8d%e5%8e%bb-bash-%e7%8e%af%e5%a2%83">问题一：密码正确但是进不去 bash 环境</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e9%97%ae%e9%a2%98%e4%ba%8c%e9%a2%84%e8%af%bb%e5%a4%84%e7%90%86">问题二：预读处理</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e9%97%ae%e9%a2%98%e4%b8%89cant-connect-to-local-mysql-server-through-socket-tmpmysqlsock-2">问题三：Can‘t connect to local MySQL server through socket ‘/tmp/mysql.sock‘ (2)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#%e4%b8%89%e9%99%84">三、附</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#1-%e5%85%b3%e4%ba%8e%e6%ba%90%e7%a0%81%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85%e5%a4%b1%e8%b4%a5">1. 关于源码编译安装失败</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#2-%e9%98%b2%e7%81%ab%e5%a2%99">2. 防火墙</a>
+<ul>
+<li><a href="/post/skill/linux/centos/centos-server-config/#centos-7-firewall-%e5%9f%ba%e7%a1%80%e4%bd%bf%e7%94%a8">CentOS 7 firewall 基础使用</a></li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#centos-6-iptables-%e5%9f%ba%e7%a1%80%e4%bd%bf%e7%94%a8">CentOS 6 iptables 基础使用</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/linux/centos/centos-server-config/#3-%e6%81%a2%e5%a4%8d%e7%b3%bb%e7%bb%9f%e5%88%9d%e5%a7%8b%e7%8a%b6%e6%80%81">3. 恢复系统初始状态</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="一centos7最小安装">
+<a class="header-anchor" href="#%e4%b8%80centos7%e6%9c%80%e5%b0%8f%e5%ae%89%e8%a3%85"></a>
+一、CentOS7最小安装
+</h2><h3 id="1配置网卡">
+<a class="header-anchor" href="#1%e9%85%8d%e7%bd%ae%e7%bd%91%e5%8d%a1"></a>
+1、配置网卡
+</h3><p>先进行网络的连接，编辑网络配置文件（<code>vi /etc/sysconfig/network-scripts/ifcfg-ens32</code>），不同的机器最后的文件名称可能不同，一般都是 <code>ifcfg-</code> 开头。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 空着的部分自定义即可</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BOOTPROTO</span><span class="o">=</span>static
+</span></span><span class="line"><span class="cl"><span class="nv">ONBOOT</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="nv">IPADDR</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NETMASK</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GATEWAY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS1</span><span class="o">=</span>
+</span></span></code></pre></div><p>设置完成后，保存退出，使用命令 <code>systemctl restart network</code> 重启网卡。</p>
+<h3 id="2关闭防火墙以及-linux-的一些安全策略">
+<a class="header-anchor" href="#2%e5%85%b3%e9%97%ad%e9%98%b2%e7%81%ab%e5%a2%99%e4%bb%a5%e5%8f%8a-linux-%e7%9a%84%e4%b8%80%e4%ba%9b%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5"></a>
+2、关闭防火墙以及 Linux 的一些安全策略
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl stop firewalld
+</span></span><span class="line"><span class="cl">systemctl disable firewalld
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/g&#39;</span> /etc/selinux/config
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">setenforce <span class="m">0</span>
+</span></span></code></pre></div><h3 id="3设置镜像源">
+<a class="header-anchor" href="#3%e8%ae%be%e7%bd%ae%e9%95%9c%e5%83%8f%e6%ba%90"></a>
+3、设置镜像源
+</h3><p>配置本地 yum 源(标准版或者全量版)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /etc/yum.repos.d/
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 备份 文件夹</span>
+</span></span><span class="line"><span class="cl">mkdir bak
+</span></span><span class="line"><span class="cl"><span class="c1"># 移动该目录下的所有文件到备份文件夹</span>
+</span></span><span class="line"><span class="cl">mv * bak
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置阿里镜像源</span>
+</span></span><span class="line"><span class="cl">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yum clean all
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新 CentOS7 的各种软件包</span>
+</span></span><span class="line"><span class="cl">yum update
+</span></span></code></pre></div><h4 id="配置本地-yum-源标准版或者全量版可用">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae%e6%9c%ac%e5%9c%b0-yum-%e6%ba%90%e6%a0%87%e5%87%86%e7%89%88%e6%88%96%e8%80%85%e5%85%a8%e9%87%8f%e7%89%88%e5%8f%af%e7%94%a8"></a>
+配置本地 yum 源(标准版或者全量版可用)
+</h4><p>这里只是提一下。能够使用该方式的必须是标准版/全量版的镜像，但是使用最小化安装的方式。直接挂载 iso 镜像进行一些工具的安装(工具都在镜像中，但是未安装)，在内网的情况下安装系统这样比较方便。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir /mnt/cdrom
+</span></span><span class="line"><span class="cl">mount /dev/cdrom /mnt/cdrom
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 拷贝一份文件进行编辑</span>
+</span></span><span class="line"><span class="cl">cp /etc/yum.repos.d/bak/CentOS-Media.repo /etc/yum.repos.d/CentOS-Media.repo
+</span></span></code></pre></div><p>编辑刚才我们拷贝的文件：<code>vi CentOS-Media.repo</code>，这就是安装软件时读取的安装源配置，加入以下内容，先使用本地镜像安装。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>linux<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>linux
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>file:///mnt/cdrom
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><p>接下来就可以安装一些镜像中包含的工具后再取消挂载。后面就可以安装自己上传的离线包嘞！</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 清除yum缓存</span>
+</span></span><span class="line"><span class="cl">yum clean all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yum install -y wget vim
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消挂载</span>
+</span></span><span class="line"><span class="cl">umount /media
+</span></span></code></pre></div><h3 id="4安装常用工具">
+<a class="header-anchor" href="#4%e5%ae%89%e8%a3%85%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7"></a>
+4、安装常用工具
+</h3><p><code>yum -y install curl telnet vim wget lrzsz iproute2</code></p>
+<p>修改vim配置（可以不修改，按照默认的即可，这里仅仅是偏好）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim ~/.vimrc
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">encoding</span><span class="o">=</span>utf-8      <span class="s2">&#34; 文件编码
+</span></span></span><span class="line"><span class="cl"><span class="s2">set number              &#34;</span> 显示行号
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>           <span class="s2">&#34; tab宽度为4
+</span></span></span><span class="line"><span class="cl"><span class="s2">set softtabstop=4        &#34;</span> 设置一次可以删除4个空格
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> expandtab           <span class="s2">&#34; tab转换为空格
+</span></span></span><span class="line"><span class="cl"><span class="s2">set nowrap              &#34;</span> 不自动换行
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> showmatch          <span class="s2">&#34; 显示括号配对情
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">syntax on              &#34;</span> 开启语法高亮
+</span></span></code></pre></div><h3 id="5安装一些基础依赖">
+<a class="header-anchor" href="#5%e5%ae%89%e8%a3%85%e4%b8%80%e4%ba%9b%e5%9f%ba%e7%a1%80%e4%be%9d%e8%b5%96"></a>
+5、安装一些基础依赖
+</h3><p><code>yum -y install gcc gcc-c++ make autoconf automake pkg-config gettext wget lrzsz libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5-devel libidn libidn-devel openssl openssl-devel libxslt-devel libevent-devel libtool libtool-ltdl bison gd gd-devel vim-enhanced pcre-devel zip unzip ntpdate sysstat patch bc expect rsync</code></p>
+<h3 id="6-rpm命令">
+<a class="header-anchor" href="#6-rpm%e5%91%bd%e4%bb%a4"></a>
+6. rpm命令
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">rpm -ivh xxx.rpm
+</span></span><span class="line"><span class="cl"><span class="c1"># 卸载</span>
+</span></span><span class="line"><span class="cl">rpm -evh xxx.rpm
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新</span>
+</span></span><span class="line"><span class="cl">rpm -Uvh xxx.rpm
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示所有已安装软件</span>
+</span></span><span class="line"><span class="cl">rpm -qa
+</span></span></code></pre></div><h3 id="7-lrzsz文件上传下载">
+<a class="header-anchor" href="#7-lrzsz%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e4%b8%8b%e8%bd%bd"></a>
+7. lrzsz：文件上传下载
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">yum install -y lrzsz
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载</span>
+</span></span><span class="line"><span class="cl">sz
+</span></span><span class="line"><span class="cl"><span class="c1"># 上传</span>
+</span></span><span class="line"><span class="cl">rz
+</span></span></code></pre></div><h2 id="二部署服务">
+<a class="header-anchor" href="#%e4%ba%8c%e9%83%a8%e7%bd%b2%e6%9c%8d%e5%8a%a1"></a>
+二、部署服务
+</h2><h3 id="1-redis">
+<a class="header-anchor" href="#1-redis"></a>
+1. Redis
+</h3><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://redis.io/download/"
+			title="官网源码下载"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">官网源码下载</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://redis.io/download/</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装编译 redis 需要的工具</span>
+</span></span><span class="line"><span class="cl">sudo yum -y install gcc automake autoconf libtool make
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入解压目录，进行编译，直到编译完成</span>
+</span></span><span class="line"><span class="cl">make <span class="nv">MALLOC</span><span class="o">=</span>libc
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装到指定路径</span>
+</span></span><span class="line"><span class="cl">make install <span class="nv">PREFIX</span><span class="o">=</span>/usr/local/redis
+</span></span></code></pre></div><blockquote>
+<p>Redis 的默认的配置文件在源码解压后的目录中</p>
+</blockquote>
+<h3 id="2-rabbitmq">
+<a class="header-anchor" href="#2-rabbitmq"></a>
+2. RabbitMQ
+</h3><p>RabbitMQ 是使用 Erlang 语言编写的中间件，联想一下 Java，我们可以猜到它需要先搭建 Erlang 环境。主要是这个环境需要编译源码，RabbitMQ 本身官网提供了二进制压缩包。</p>
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.erlang.org/downloads"
+			title="Erlang源码下载"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">Erlang源码下载</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.erlang.org/downloads</div>
+		</div>
+	</div>
+</div>
+
+<p>一、Erlang环境搭建</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装编译 Erlang 的相关依赖</span>
+</span></span><span class="line"><span class="cl">yum install gcc glibc-devel make ncurses-devel openssl-devel xmlto
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压源码包</span>
+</span></span><span class="line"><span class="cl">tar -zxvf otp_src_24.1.7.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> otp_src_24.1.7/
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定安装目录</span>
+</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/erlang
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译安装</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试安装是否成功：</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/erlang/bin/
+</span></span><span class="line"><span class="cl">./erl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装成功后配置环境变量 vim /etc/profile</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/erlang/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加完成保存退出，刷新使其生效</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/profile
+</span></span></code></pre></div><p>二、安装Rabbitmq</p>
+<p>通过第一步，我们就搭建好了 Erlang 环境，接下来就是安装 RabbitMQ 了，这个还是比较简单的，因为它已经编译好了，我们可以下载直接配置，无需编译。</p>
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.rabbitmq.com/install-generic-unix.html"
+			title="二进制文件包下载"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">二进制文件包下载</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.rabbitmq.com/install-generic-unix.html</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">tar -Jxvf rabbitmq-server-generic-unix-3.9.11.tar.xz
+</span></span><span class="line"><span class="cl"><span class="c1"># 移动</span>
+</span></span><span class="line"><span class="cl">mv rabbitmq_server-3.9.11 /usr/local/rabbitmq
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加环境变量：vim /etc/profile</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/rabbitmq/sbin
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新变量</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/profile
+</span></span></code></pre></div><h3 id="3-python">
+<a class="header-anchor" href="#3-python"></a>
+3. Python
+</h3><p>Linux 下基本不需要配置 Python 的环境，有个别的 ISO 镜像版本比较老，比如 CentOS7 的 mini ISO 镜像是2.x的，我们可以通过各大系统的包管理工具进行安装，也可以自己通过源码编译安装。</p>
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.python.org/downloads/"
+			title="源码下载"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">源码下载</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.python.org/downloads/</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装相关工具和依赖</span>
+</span></span><span class="line"><span class="cl">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压压缩包</span>
+</span></span><span class="line"><span class="cl">tar -zxvf Python-3.10.2.tgz
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> Python-3.10.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置安装位置</span>
+</span></span><span class="line"><span class="cl">./configure <span class="nv">prefix</span><span class="o">=</span>/usr/local/python3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译并安装</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 python3 验证是否安装成功</span>
+</span></span><span class="line"><span class="cl">python3 -V
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#添加python3的软链接</span>
+</span></span><span class="line"><span class="cl">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#添加 pip3 的软链接</span>
+</span></span><span class="line"><span class="cl">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
+</span></span></code></pre></div><h3 id="4-nginx">
+<a class="header-anchor" href="#4-nginx"></a>
+4. Nginx
+</h3><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://nginx.org/en/"
+			title="官网源码下载"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">官网源码下载</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://nginx.org/en/</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">tar -zvxf nginx-1.20.2.tar.gz
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置安装路径</span>
+</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译安装</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入安装目录查看是否安装成功</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动 停止 重启</span>
+</span></span><span class="line"><span class="cl">./nginx start
+</span></span><span class="line"><span class="cl">./nginx -s stop
+</span></span><span class="line"><span class="cl">./nginx -s reload
+</span></span></code></pre></div><h3 id="5-btop">
+<a class="header-anchor" href="#5-btop"></a>
+5. Btop++
+</h3><p>Btop++ 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和统计资料，界面美观，使用简单。这里使用了源码编译安装，但是浪子推荐下载 Github 仓库的二进制包解压运行 install.sh 脚本安装。</p>
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://github.com/aristocratos/btop"
+			title="Github地址"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">Github地址</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://github.com/aristocratos/btop</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装、升级相关依赖工具</span>
+</span></span><span class="line"><span class="cl">yum install coreutils sed build-essential -y
+</span></span><span class="line"><span class="cl">yum install centos-release-scl -y
+</span></span><span class="line"><span class="cl">yum install devtoolset-10 -y
+</span></span><span class="line"><span class="cl">scl <span class="nb">enable</span> devtoolset-10 bash
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;source /opt/rh/devtoolset-10/enable&#34;</span> &gt;&gt; /etc/profile
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 克隆源码编译安装</span>
+</span></span><span class="line"><span class="cl">git clone https://gitee.com/mirrors/btop.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> btop
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span></code></pre></div><h3 id="6-ffmpeg">
+<a class="header-anchor" href="#6-ffmpeg"></a>
+6. FFmpeg
+</h3><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="http://www.ffmpeg.org/"
+			title="FFmpeg使用"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">FFmpeg使用</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>http://www.ffmpeg.org/</div>
+		</div>
+	</div>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 克隆源码 也可以下载 https://github.com/FFmpeg/FFmpeg/releases 相应的包上传</span>
+</span></span><span class="line"><span class="cl">git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装相关依赖</span>
+</span></span><span class="line"><span class="cl">yum install yasm.x86_64 -y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ffmpeg
+</span></span><span class="line"><span class="cl">./configure --enable-ffplay --enable-ffserver --prefix<span class="o">=</span>/usr/local/ffmpeg
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译安装</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看是否安装成功</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/ffmpeg
+</span></span></code></pre></div><h3 id="7-mysql解压版">
+<a class="header-anchor" href="#7-mysql%e8%a7%a3%e5%8e%8b%e7%89%88"></a>
+7. MySQL（解压版）
+</h3><p>yum 方式安装：https://zhuanlan.zhihu.com/p/87069388</p>
+<p>使用通用的 MySQL8.x 版本的二进制压缩包进行安装。至于卸载，就把有关 MySQL 创建的几个文件夹删掉就行了，<code>/etc/my.cnf</code> 是默认自带的，卸载的时候删不删都没有问题，如果默认没有这个文件也不必担心，可以手动添加。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查mysql用户组和用户是否存在，如果没有，则创建</span>
+</span></span><span class="line"><span class="cl">cat /etc/group <span class="p">|</span> grep mysql
+</span></span><span class="line"><span class="cl">cat /etc/passwd <span class="p">|</span> grep mysql
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 mysql 组</span>
+</span></span><span class="line"><span class="cl">groupadd mysql
+</span></span><span class="line"><span class="cl"><span class="c1"># 新建 mysql 用户并加入 mysql 群组</span>
+</span></span><span class="line"><span class="cl">useradd -r -g mysql mysql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装所需依赖(需要安装 libaio-devel.x86_64 numactl 这两个依赖)</span>
+</span></span><span class="line"><span class="cl">yum -y install libaio-devel.x86_64 numactl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压二进制文件包到 /usr/local/mysql 目录</span>
+</span></span><span class="line"><span class="cl">tar xxx -C /usr/local/mysql
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/mysql/bin
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化数据，成功初始化后需要记录最后 root@localhost: 后的字符串（初始化失败则不显示），它是后面进入 bash 环境的初始密码</span>
+</span></span><span class="line"><span class="cl">./mysqld --initialize --user<span class="o">=</span>mysql --datadir<span class="o">=</span>/usr/local/mysql/data --basedir<span class="o">=</span>/usr/local/mysql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/my.cnf(没有该文件手动创建) 修改内容</span>
+</span></span><span class="line"><span class="cl"><span class="nv">basedir</span><span class="o">=</span>/usr/local/mysql
+</span></span><span class="line"><span class="cl"><span class="nv">datadir</span><span class="o">=</span>/usr/local/mysql/data
+</span></span><span class="line"><span class="cl"><span class="nv">port</span> <span class="o">=</span> <span class="m">3306</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动MySQL服务 启动成功会有 Starting MySQL.. SUCCESS! 提示；否则就是启动失败，根据提示查看日志记录定位问题</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/mysql/support-files/
+</span></span><span class="line"><span class="cl">mysql.server start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加软链接并重启服务</span>
+</span></span><span class="line"><span class="cl">ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
+</span></span><span class="line"><span class="cl">ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+</span></span><span class="line"><span class="cl">service mysql restart
+</span></span><span class="line"><span class="cl"><span class="c1"># systemctl restart mysql</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加开机自启</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1、将服务文件拷贝到 init.d 下，并重命名为 mysql</span>
+</span></span><span class="line"><span class="cl">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+</span></span><span class="line"><span class="cl"><span class="c1"># 2、赋予可执行权限</span>
+</span></span><span class="line"><span class="cl">chmod +x /etc/init.d/mysqld
+</span></span><span class="line"><span class="cl"><span class="c1"># 3、添加服务</span>
+</span></span><span class="line"><span class="cl">chkconfig --add mysqld
+</span></span><span class="line"><span class="cl"><span class="c1"># 4、显示服务列表</span>
+</span></span><span class="line"><span class="cl">chkconfig --list
+</span></span></code></pre></div><p>至此，安装任务基本完成，下面需要添加用户并分配权限，进入 MySQL 的 bash 环境需要之前进行初始化时生成的密码。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 登录 MySQL，密码使用初始化成功时 root@localhost: 后的字符串</span>
+</span></span><span class="line"><span class="cl">mysql -u root -p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改密码 毕竟那么不好记</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 而且如果不修改 它会报 ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement. 的错误</span>
+</span></span><span class="line"><span class="cl">alter user root@<span class="s1">&#39;localhost&#39;</span> identified by <span class="s1">&#39;newpassword&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">flush privileges<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开放远程连接</span>
+</span></span><span class="line"><span class="cl">use mysql<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ① MySQL 8.0 之前的版本，password 为自己设置的密码</span>
+</span></span><span class="line"><span class="cl">grant all privileges on *.* to <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span> identified by <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ② 适用于 MySQL 8.0 之后的版本，推荐先创建一个用户 dev，再进行授权</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接授权给 root</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;password&#39; with grant option;</span>
+</span></span><span class="line"><span class="cl">create user dev@<span class="s1">&#39;%&#39;</span> identified by <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">grant <span class="k">select</span>,update,delete,insert on *.* to dev@<span class="s1">&#39;%&#39;</span> with grant option<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新权限，这一句很重要，使修改生效，如果没有写，则还是不能进行远程连接。这句表示从mysql数据库的grant表中重新加载权限数据，因为MySQL把权限都放在了cache中，所以，做完修改后需要重新加载。</span>
+</span></span><span class="line"><span class="cl">flush privileges<span class="p">;</span>
+</span></span></code></pre></div><p>初始化成功截图：
+<img src="https://fastly.jsdelivr.net/gh/prettywinter/dist/images/doc/Linux_MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%88%90%E5%8A%9F%E6%88%AA%E5%9B%BE.png" alt="初始化成功截图"></p>
+<blockquote>
+<p>记录日志最末尾位置 <code>root@localhost:</code> 后的字符串，此字符串为mysql管理员临时登录密码。</p>
+</blockquote>
+<h4 id="问题一密码正确但是进不去-bash-环境">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%b8%80%e5%af%86%e7%a0%81%e6%ad%a3%e7%a1%ae%e4%bd%86%e6%98%af%e8%bf%9b%e4%b8%8d%e5%8e%bb-bash-%e7%8e%af%e5%a2%83"></a>
+问题一：密码正确但是进不去 bash 环境
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ERROR <span class="m">1045</span> <span class="o">(</span>28000<span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> <span class="o">(</span>using password: YES/NO<span class="o">)</span>
+</span></span></code></pre></div><p>解决方法：</p>
+<ol>
+<li>使用 kill 命令停止 mysqld 相关服务</li>
+<li>cd /usr/local/mysql/bin/，运行命令： <code>mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp;</code></li>
+<li>使用密码登录数据库 mysql -u root -p 并切换到 mysql 数据库</li>
+<li>执行命令：<code>update user set host='%' where user='root';</code></li>
+</ol>
+<h4 id="问题二预读处理">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%ba%8c%e9%a2%84%e8%af%bb%e5%a4%84%e7%90%86"></a>
+问题二：预读处理
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql&gt; use dbname<span class="p">;</span>
+</span></span><span class="line"><span class="cl">Reading table information <span class="k">for</span> completion of table and column names
+</span></span><span class="line"><span class="cl">You can turn off this feature to get a quicker startup with -A
+</span></span></code></pre></div><p>这个问题是之前使用的 apt-get 管理工具安装的 MySQL 出现的，原因是因爲數據庫採用了預讀處理。解决办法就是在我们进入MySQL的bash环境时，需要加入 <code>-A</code> 参数，不让其预读数据库信息，<code>mysql -u root -p -A</code>。如果覺得每次进入 bash 环境都要添加参数比较麻烦，也可以在 <strong><code>my.cnf</code></strong> 文件里加上如下內容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>mysql<span class="o">]</span>
+</span></span><span class="line"><span class="cl">no-auto-rehash
+</span></span></code></pre></div><h4 id="问题三cant-connect-to-local-mysql-server-through-socket-tmpmysqlsock-2">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%b8%89cant-connect-to-local-mysql-server-through-socket-tmpmysqlsock-2"></a>
+问题三：Can‘t connect to local MySQL server through socket ‘/tmp/mysql.sock‘ (2)
+</h4><p>这是 <code>my.cnf</code> 的配置问题，下面的三块内容必须都要设置，不然就会使用默认的 socket，位于 <code>/tmp/mysql.sock</code> 目录，因此我们最好配置一下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[mysqld]
+</span></span><span class="line"><span class="cl">basedir=/usr/local/mysql
+</span></span><span class="line"><span class="cl">datadir=/usr/local/mysql/data
+</span></span><span class="line"><span class="cl">socket=/usr/local/mysql/mysql.sock
+</span></span><span class="line"><span class="cl">port=3306
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[client]
+</span></span><span class="line"><span class="cl">default-character-set=utf8
+</span></span><span class="line"><span class="cl">socket=/usr/local/mysql/mysql.sock
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[mysql]
+</span></span><span class="line"><span class="cl">default-character-set=utf8
+</span></span><span class="line"><span class="cl">socket=/usr/local/mysql/mysql.sock
+</span></span></code></pre></div><p>或者我们打一个软链接：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln -s /usr/local/mysql/mysql.sock /tmp/mysql.sock
+</span></span></code></pre></div><h2 id="三附">
+<a class="header-anchor" href="#%e4%b8%89%e9%99%84"></a>
+三、附
+</h2><h3 id="1-关于源码编译安装失败">
+<a class="header-anchor" href="#1-%e5%85%b3%e4%ba%8e%e6%ba%90%e7%a0%81%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85%e5%a4%b1%e8%b4%a5"></a>
+1. 关于源码编译安装失败
+</h3><p>如果源码编译失败，先确认所需依赖是否全部成功安装，然后清除上一次编译的缓存，之后再次编译，不然会一直失败。<a href="https://blog.csdn.net/wcnmlgb888/article/details/82713106">参考网址</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 清除上一次编译失败的缓存</span>
+</span></span><span class="line"><span class="cl">make distclean
+</span></span><span class="line"><span class="cl"><span class="c1"># 再次编译</span>
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></div><h3 id="2-防火墙">
+<a class="header-anchor" href="#2-%e9%98%b2%e7%81%ab%e5%a2%99"></a>
+2. 防火墙
+</h3><p>CentOS 版本不同采用的防火墙管理也不同（当然，我们部署后可以安装）。CentOS 6 使用的 <strong>iptables</strong>，CentOS 7 使用的 <strong>firewall</strong>。</p>
+<h4 id="centos-7-firewall-基础使用">
+<a class="header-anchor" href="#centos-7-firewall-%e5%9f%ba%e7%a1%80%e4%bd%bf%e7%94%a8"></a>
+CentOS 7 firewall 基础使用
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询开放端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --list-port
+</span></span><span class="line"><span class="cl"><span class="c1"># 开放端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>8080/tcp --permanent
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --zone<span class="o">=</span>public --remove-port<span class="o">=</span>8083/tcp --permanent
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新加载</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --reload
+</span></span><span class="line"><span class="cl"><span class="c1"># 再次查询开放端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --list-port
+</span></span></code></pre></div><h4 id="centos-6-iptables-基础使用">
+<a class="header-anchor" href="#centos-6-iptables-%e5%9f%ba%e7%a1%80%e4%bd%bf%e7%94%a8"></a>
+CentOS 6 iptables 基础使用
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">service iptables start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭</span>
+</span></span><span class="line"><span class="cl">service iptables stop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看状态</span>
+</span></span><span class="line"><span class="cl">service iptables status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开机禁用</span>
+</span></span><span class="line"><span class="cl">chkconfig iptables off
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开机启用</span>
+</span></span><span class="line"><span class="cl">chkconfig iptables on
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许本地回环接口（即运行本机访问本机） -A和-I参数分别为添加到规则末尾和规则最前面。</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -i lo -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许已建立的或相关联的通行</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许所有本机向外的访问</span>
+</span></span><span class="line"><span class="cl">iptables -P INPUT ACCEPTiptables -A OUTPUT -j ACCEPT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许访问22端口 -s后可以跟 IP 段或指定 IP 地址，如果有其他端口的话，规则也类似。</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">22</span> -j ACCEPT
+</span></span><span class="line"><span class="cl">iptables -A INPUT -p tcp -s 10.159.1.0/24 --dport <span class="m">22</span> -j ACCEPT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许ping</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -p icmp -m icmp --icmp-type <span class="m">8</span> -j ACCEPT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁止其他未允许的规则访问</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -j REJECT
+</span></span><span class="line"><span class="cl">iptables -A FORWARD -j REJECT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 屏蔽单个IP</span>
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 123.45.6.7 -j DROP
+</span></span><span class="line"><span class="cl"><span class="c1"># 封整个段即从123.0.0.1到123.255.255.254</span>
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 123.0.0.0/8 -j DROP
+</span></span><span class="line"><span class="cl"><span class="c1"># 封IP段即从123.45.0.1到123.45.255.254</span>
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 124.45.0.0/16 -j DROP
+</span></span><span class="line"><span class="cl"><span class="c1"># 封IP段即从123.45.6.1到123.45.6.254</span>
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 123.45.6.0/24 -j DROP
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看已有规则 -n：只显示IP地址和端口号，不将 IP 解析为域名</span>
+</span></span><span class="line"><span class="cl">iptables -L -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将所有 iptables 以序号标记显示</span>
+</span></span><span class="line"><span class="cl">iptables -L -n --line-numbers
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加规则</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加的规则是添加在最后面。如针对 INPUT 链增加一条规则，接收从 eth0 口进入且源地址为192.168.0.0/16网段发往本机的数据</span>
+</span></span><span class="line"><span class="cl">iptables -A INPUT -i eth0 -s 192.168.0.0/16 -j ACCEPT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除规则</span>
+</span></span><span class="line"><span class="cl">iptables -D
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除所有规则</span>
+</span></span><span class="line"><span class="cl">iptables -F
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份规则</span>
+</span></span><span class="line"><span class="cl">iptables-save &gt; /etc/sysconfig/iptables.save
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用规则</span>
+</span></span><span class="line"><span class="cl">iptables-restore &lt; /etc/sysconfig/iptables.save
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启生效</span>
+</span></span><span class="line"><span class="cl">service iptables save
+</span></span><span class="line"><span class="cl">service iptables restart
+</span></span></code></pre></div><p>开放端口</p>
+<p>方法一：通过命令行</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">80</span> -j ACCEPT
+</span></span><span class="line"><span class="cl">service iptables save
+</span></span><span class="line"><span class="cl">service iptables restart
+</span></span></code></pre></div><p>方法二：编辑配置文件</p>
+<p>编辑配置文件：<code>vi /etc/sysconfig/iptables</code>，添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">80</span> -j ACCEPT
+</span></span><span class="line"><span class="cl">service iptables restart
+</span></span></code></pre></div><h3 id="3-恢复系统初始状态">
+<a class="header-anchor" href="#3-%e6%81%a2%e5%a4%8d%e7%b3%bb%e7%bb%9f%e5%88%9d%e5%a7%8b%e7%8a%b6%e6%80%81"></a>
+3. 恢复系统初始状态
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum clean all
+</span></span><span class="line"><span class="cl">yum <span class="nb">history</span> list all
+</span></span><span class="line"><span class="cl">yum <span class="nb">history</span> undo <span class="m">1</span>
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/linux/centos/centos-server-config/&amp;title=%e3%80%90Linux%e3%80%91%20CentOS%20%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae&amp;desc=%e6%ad%a4%e7%af%87%e6%96%87%e7%ab%a0%e4%bb%a5%e5%90%8e%e9%9a%8f%e7%bc%98%e6%9b%b4%e6%96%b0%ef%bc%8c%e8%bf%99%e4%b8%aa%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%9b%b8%e5%85%b3%e9%97%ae%e9%a2%98%e7%bd%91%e4%b8%8a%e4%b8%80%e8%88%ac%e9%83%bd%e6%9c%89%e7%ad%94%e6%a1%88%ef%bc%8c%e6%b5%aa%e5%ad%90%e4%b8%aa%e4%ba%ba%e5%b7%b2%e4%b8%8d%e5%86%8d%e4%bd%bf%e7%94%a8%20CentOS%20%e7%b3%bb%e7%bb%9f%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="【Linux】 CentOS 服务器配置">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="【Linux】 CentOS 服务器配置">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/linux"
+      data-aos="zoom-in"
+      >Linux</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/linux"
+        rel="tag"
+        >linux</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/centos"
+        rel="tag"
+        >centos</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="【Linux】 Ubuntu 服务器配置"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/ubuntu-server-config/"
+          aria-label="前一篇:【Linux】 Ubuntu 服务器配置"
+          title="前一篇:【Linux】 Ubuntu 服务器配置"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">【Linux】 Ubuntu 服务器配置</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="【Linux】 ArchLinux安装教程"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/archlinux-install/"
+          aria-label="后一篇:【Linux】 ArchLinux安装教程"
+          title="后一篇:【Linux】 ArchLinux安装教程"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">【Linux】 ArchLinux安装教程</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一centos7最小安装">一、CentOS7最小安装</a>
+      <ul>
+        <li><a href="#1配置网卡">1、配置网卡</a></li>
+        <li><a href="#2关闭防火墙以及-linux-的一些安全策略">2、关闭防火墙以及 Linux 的一些安全策略</a></li>
+        <li><a href="#3设置镜像源">3、设置镜像源</a></li>
+        <li><a href="#4安装常用工具">4、安装常用工具</a></li>
+        <li><a href="#5安装一些基础依赖">5、安装一些基础依赖</a></li>
+        <li><a href="#6-rpm命令">6. rpm命令</a></li>
+        <li><a href="#7-lrzsz文件上传下载">7. lrzsz：文件上传下载</a></li>
+      </ul>
+    </li>
+    <li><a href="#二部署服务">二、部署服务</a>
+      <ul>
+        <li><a href="#1-redis">1. Redis</a></li>
+        <li><a href="#2-rabbitmq">2. RabbitMQ</a></li>
+        <li><a href="#3-python">3. Python</a></li>
+        <li><a href="#4-nginx">4. Nginx</a></li>
+        <li><a href="#5-btop">5. Btop++</a></li>
+        <li><a href="#6-ffmpeg">6. FFmpeg</a></li>
+        <li><a href="#7-mysql解压版">7. MySQL（解压版）</a></li>
+      </ul>
+    </li>
+    <li><a href="#三附">三、附</a>
+      <ul>
+        <li><a href="#1-关于源码编译安装失败">1. 关于源码编译安装失败</a></li>
+        <li><a href="#2-防火墙">2. 防火墙</a></li>
+        <li><a href="#3-恢复系统初始状态">3. 恢复系统初始状态</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "【Linux】 CentOS 服务器配置",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/linux\/centos\/centos-server-config\/",
+          description: "此篇文章以后随缘更新，这个系统的相关问题网上一般都有答案，浪子个人已不再使用 CentOS 系统。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

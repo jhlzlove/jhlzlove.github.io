@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/categories/java/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/categories/java/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>微信公众号模板消息测试推送</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</guid>
+      <description>
+        <![CDATA[<h1>微信公众号模板消息测试推送</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微信公众号分为订阅号和服务号，订阅号不支持模板消息，但是每天可以群发消息；而服务号一个月可以群发四次消息。认证过的服务号是可以使用模板消息的，认证需要 money，而订阅号就需要有内测的权限，微信对订阅号正在启用模板消息灰度测试，所以很多是不能自己测试的。但是可以使用测试号。不过值得注意的是，测试号只能用于测试，不能用于向正是号推送消息等。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 record 类读取 spring 的配置文件</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</guid>
+      <description>
+        <![CDATA[<h1>使用 record 类读取 spring 的配置文件</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Java14 中引入了 record 类型，一定程度上减轻了 class 的工作量，但是语言层面和框架层面更完备的支持还需要时间。</p>
+<p>不过幸好，Spring Boot3 对其响应速度还是可以的，在 Spring Boot 3 之后，我们可以使用 record 去读取 <code>application.yml</code> 中的值啦！太棒啦有木有！</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 Apache PDFBox 读取 pdf 内容</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/pdfbox/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/pdfbox/</guid>
+      <description>
+        <![CDATA[<h1>使用 Apache PDFBox 读取 pdf 内容</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>使用 Apache 的 PDFBox 解析 PDF 文档，目前已经发展到 3.0 版本，和 2.x 有很大的区别，迁移说明请参阅：https://pdfbox.apache.org/3.0/migration.html</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>工作流概述以及 flowable 与 spring 的集成</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/workflow/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/workflow/</guid>
+      <description>
+        <![CDATA[<h1>工作流概述以及 flowable 与 spring 的集成</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>BPMN 工作流的名词解释：https://www.flowable.com/open-source/docs/bpmn/ch02-GettingStarted。可以在线绘制流程图并下载的网站：</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>volatile 关键字</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/volatile/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/volatile/</guid>
+      <description>
+        <![CDATA[<h1>volatile 关键字</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>本篇文章需要掌握JMM（Java Memory Model）</p>
+<h2 id="介绍">
+<a class="header-anchor" href="#%e4%bb%8b%e7%bb%8d"></a>
+介绍
+</h2><p>volatile 在多线程环境下可以保证共享数据的可见性，但不保证数据操作的原子性（线程不安全）。要想保证线程安全，还是需要锁机制或者使用原子类（原子类内部已使用 volatile 保证了可见性）。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>SpringSecurity</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/</guid>
+      <description>
+        <![CDATA[<h1>SpringSecurity</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Spring 事务失效的几种情况</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5/</guid>
+      <description>
+        <![CDATA[<h1>Spring 事务失效的几种情况</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Spring 声明式事务失效的几种原因</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Spring API</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-api/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-api/</guid>
+      <description>
+        <![CDATA[<h1>Spring API</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="spring-api">
+<a class="header-anchor" href="#spring-api"></a>
+Spring Api
+</h2><h3 id="1-localvariabletableparameternamediscoverer-获取参数列表">
+<a class="header-anchor" href="#1-localvariabletableparameternamediscoverer-%e8%8e%b7%e5%8f%96%e5%8f%82%e6%95%b0%e5%88%97%e8%a1%a8"></a>
+1. LocalVariableTableParameterNameDiscoverer 获取参数列表
+</h3><p>问题：<code>Java.lang.reflect</code> 包中提供了很多 API：获取所有的方法，获取所有的参数类型等，但是却没有一个 API 能够帮助我们获取某个方法的参数名列表（注意，Java 反射可以拿到类型，但是不能拿到具体的形参名称，而是以 arg0、arg1 返回的）。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Spring</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring/</guid>
+      <description>
+        <![CDATA[<h1>Spring</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Spring 笔记整理，本文是刚开始工作学习的时候整理的，所以会显得较乱，推荐查阅 Spring <a href="https://docs.spring.io/spring-framework/reference/index.html">官方文档</a>，官方文档写的还是很不错的！</p>
+<p>从 Spring4.x 版本开始，Spring 已经不推荐使用 xml 配置了，而是推荐 Java 配置（注解式开发），Java 配置也是 Spring Boot 推荐的配置方式。不过很多前辈、大牛，都很了解 xml 配置这种方式，这种方式对新手不是那么容易接受，至少浪子刚开始的时候确实如此。</p>
+<p>不过得益于时代发展和技术更新，浪子工作的时候基本都是 Spring Boot 项目，还有更多都是要求掌握 Spring Cloud 了。Cloud也没什么，就是组件多了而已~~(其实是维护排查问题还有数据同步问题困难、麻烦)~~。</p>
+<p>对于 xml 配置的方式进行项目开发接触不是太多。后面随着学习的深入，再看到这种项目浪子觉得 xml 是一个非常好的组件清单（你可以把它看成一个文档）;维护者接手这个项目只要看一眼这个 xml 就能搞清楚系统的组件的“架构（包括依赖关系）”。不过 xml 文件没有类型检查，如果导入了一个错误的类，可能你需要找很长时间的错误(不过我们有智能 IDE！但字符串拼写还是有可能漏查的)。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>RESTful API</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/restful/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/restful/</guid>
+      <description>
+        <![CDATA[<h1>RESTful API</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>RESTful 的简单特点，除了请求方式可以不必拘泥，其它的都挺好</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

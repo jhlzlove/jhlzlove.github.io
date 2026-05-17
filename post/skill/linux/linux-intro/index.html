@@ -1,0 +1,1832 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  【Linux】Linux 入门 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="【Linux】Linux 入门 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/linux/linux-intro/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="0001-01-01T00:00:00&#43;00:00" />
+  <meta property="article:modified_time" content="0001-01-01T00:00:00&#43;00:00" /><meta property="article:tag" content="linux" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="【Linux】Linux 入门"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">【Linux】Linux 入门</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一目录">一、目录</a></li>
+    <li><a href="#二权限">二、权限</a>
+      <ul>
+        <li><a href="#用户操作">用户操作</a></li>
+        <li><a href="#授权操作">授权操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#三命令">三、命令</a>
+      <ul>
+        <li><a href="#系统信息">系统信息</a></li>
+        <li><a href="#系统硬件信息">系统硬件信息</a></li>
+        <li><a href="#tree">tree</a></li>
+        <li><a href="#其它命令">其它命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#四linux-常用软件">四、Linux 常用软件</a>
+      <ul>
+        <li><a href="#vim">VIM</a></li>
+        <li><a href="#curl">cURL</a></li>
+        <li><a href="#ssh">SSH</a></li>
+        <li><a href="#iproute2">iproute2</a></li>
+      </ul>
+    </li>
+    <li><a href="#五tar-包常用命令">五、tar 包常用命令</a></li>
+    <li><a href="#六任务计划crontab命令">六、任务计划(Crontab)命令</a></li>
+    <li><a href="#七shell">七、Shell</a>
+      <ul>
+        <li><a href="#1-整数比较">1. 整数比较</a></li>
+        <li><a href="#2-字符串比较">2. 字符串比较</a></li>
+        <li><a href="#3-几个内置的-shell-变量">3. 几个内置的 shell 变量</a></li>
+        <li><a href="#4-循环语法">4. 循环语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#附linux-其它知识">附：Linux 其它知识</a>
+      <ul>
+        <li><a href="#kdegnomexfce">KDE、Gnome、Xfce</a></li>
+        <li><a href="#初始化程序">初始化程序</a></li>
+        <li><a href="#防火墙">防火墙</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished"
+      >0001-01-01</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >0001-01-01</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>简单了解 Linux 系统，另外推荐一个 Linux 的学习网站：https://www.linuxshelltips.com/。</p>
+<h2 id="一目录">
+<a class="header-anchor" href="#%e4%b8%80%e7%9b%ae%e5%bd%95"></a>
+一、目录
+</h2><table>
+  <thead>
+      <tr>
+          <th>目录名称</th>
+          <th>介绍</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/home</td>
+          <td>用户主目录，子目录名称默认以该用户名命名。</td>
+      </tr>
+      <tr>
+          <td>/root</td>
+          <td>root用户主目录。</td>
+      </tr>
+      <tr>
+          <td>/bin</td>
+          <td>常用的命令文件。</td>
+      </tr>
+      <tr>
+          <td>/sbin</td>
+          <td>包含系统管理员和root用户所使用的命令文件。</td>
+      </tr>
+      <tr>
+          <td>/boot</td>
+          <td>Linux系统的内核文件和引导装载程序文件。</td>
+      </tr>
+      <tr>
+          <td>/opt</td>
+          <td>第三方应用程序的安装文件。</td>
+      </tr>
+      <tr>
+          <td>/etc</td>
+          <td>Linux上的大部分配置文件，建议修改重要的配置文件之前先备份。</td>
+      </tr>
+      <tr>
+          <td>/usr</td>
+          <td>包含可以供所有用户使用的程序和数据。</td>
+      </tr>
+      <tr>
+          <td>/media</td>
+          <td>系统自动为某些设置(比如u盘等)挂载提供挂载目录。</td>
+      </tr>
+      <tr>
+          <td>/mnt</td>
+          <td>手动为某些设备(比如硬盘)挂载提供挂载目录。</td>
+      </tr>
+      <tr>
+          <td>/dev</td>
+          <td>大部分设备文件。</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>一般编译安装的可执行文件默认路径为 <code>/usr/local/</code>。</p>
+</blockquote>
+<h2 id="二权限">
+<a class="header-anchor" href="#%e4%ba%8c%e6%9d%83%e9%99%90"></a>
+二、权限
+</h2><p>在 Linux 中可以明显感受到用户间的不同权限，如果你之前是使用 Windows 系统的话，可能经验比较少，突然使用 Linux 会不习惯，尤其是使用普通用户操作一些超级命令的时候。</p>
+<p>在 Linux 中，打开终端 bash，普通用户是 <code>$</code> 标识，root 用户是 <code>#</code> 标识。为了方便的管理用户，还有用户组的概念。对于系统上的一个文件来说，对于它的操作用户有 3 种：创建它的用户(拥有者)，超级用户(root)，其它用户(other)。</p>
+<h3 id="用户操作">
+<a class="header-anchor" href="#%e7%94%a8%e6%88%b7%e6%93%8d%e4%bd%9c"></a>
+用户操作
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建用户（如果创建用户的时候没有指定组名，默认会自动创建一个和用户名相同的组名）：</span>
+</span></span><span class="line"><span class="cl">useradd -d 设置用户主目录 -g 设置用户组群 username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改用户主目录并移动之前的主目录文件到新的目录中：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果添加了 -m 选项，用户旧目录会移动到新的目录中；如果不存在，就新建</span>
+</span></span><span class="line"><span class="cl">usermod -l new_username -d /home/develop –g developer -m old_username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除用户</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 带 -rf 选项时记得做好备份，会将用户主目录和用户一并删除；若不带选项主目录将保留。</span>
+</span></span><span class="line"><span class="cl">userdel -rf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加组群：</span>
+</span></span><span class="line"><span class="cl">groupadd group_name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改组群名：</span>
+</span></span><span class="line"><span class="cl">groupmod -n newName oldName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除组群：</span>
+</span></span><span class="line"><span class="cl">groupdel group_name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 给指定的用户设置密码（如果新创建的用户没有密码，那么该用户是无法使用的，类似未激活）</span>
+</span></span><span class="line"><span class="cl">passwd username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加用户到组群</span>
+</span></span><span class="line"><span class="cl">gpasswd -a username group_name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除组群的指定用户</span>
+</span></span><span class="line"><span class="cl">gpasswd -d username group_name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看用户属于那些群组</span>
+</span></span><span class="line"><span class="cl">groups username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 让属于该群组的当前用户以指定的组群身份登录</span>
+</span></span><span class="line"><span class="cl">newgrp groupName username
+</span></span></code></pre></div><p>useradd、usermod 命令支持的常用选项如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-c</td>
+          <td>该用户的描述</td>
+      </tr>
+      <tr>
+          <td>-d</td>
+          <td>指定用户主目录，默认 <code>/home/用户名</code>；如果此目录不存在，可以同时使用-m选项，强制创建主目录。</td>
+      </tr>
+      <tr>
+          <td>-g</td>
+          <td>用户组 指定用户所属的用户组。</td>
+      </tr>
+      <tr>
+          <td>-G</td>
+          <td>用户组，用户组 指定用户所属的附加组。</td>
+      </tr>
+      <tr>
+          <td>-s</td>
+          <td>Shell文件 指定用户的登录Shell。</td>
+      </tr>
+      <tr>
+          <td>-u</td>
+          <td>用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="授权操作">
+<a class="header-anchor" href="#%e6%8e%88%e6%9d%83%e6%93%8d%e4%bd%9c"></a>
+授权操作
+</h3><p>Linux 每个文件都是有对应操作权限的，可以使用 <code>ls -l</code> 查看当前所在路径的文件的所属用户、所属组和对应的权限。</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">可选项</th>
+          <th>意义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">u</td>
+          <td>用户所有者</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">g</td>
+          <td>用户组群</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">o</td>
+          <td>其他用户</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">a</td>
+          <td>所有用户，系统默认值</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">+</td>
+          <td>添加某个权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">-(减号)</td>
+          <td>取消某个权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">=(等号)</td>
+          <td>赋予给定权限并取消原有权限(如果有的话)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">r</td>
+          <td>读取权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">w</td>
+          <td>写入权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">x</td>
+          <td>可执行权限</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>数字权限表示法：r=4,w=2,x=1</p>
+</blockquote>
+<p>{% image <a href="https://www.runoob.com/wp-content/uploads/2014/08/rwx-standard-unix-permission-bits.png">https://www.runoob.com/wp-content/uploads/2014/08/rwx-standard-unix-permission-bits.png</a> linux文件权限信息图 ratio:600/400 %}</p>
+<ul>
+<li>
+<p>给指定的文件添加某个权限：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 数字法</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">777</span> file.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 字母法</span>
+</span></span><span class="line"><span class="cl">chmod u+x,g+wx file.sh
+</span></span></code></pre></div></li>
+<li>
+<p>更改文件和目录所有者(二选一)：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chown -R 用户.组群 文件/目录
+</span></span><span class="line"><span class="cl">chown -R 用户:组群 文件/目录
+</span></span></code></pre></div><blockquote>
+<p><code>-R</code> 选项是递归操作，把目录下的所有文件全部修改为当前的权限。</p>
+</blockquote>
+</li>
+<li>
+<p>只修改所属用户(即用户所有者)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chown newGroup file
+</span></span></code></pre></div></li>
+<li>
+<p>只修改所属用户组(二选一)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chown .newGroup file
+</span></span><span class="line"><span class="cl">chown :newGroup file
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="三命令">
+<a class="header-anchor" href="#%e4%b8%89%e5%91%bd%e4%bb%a4"></a>
+三、命令
+</h2><p>Linux 中的命令非常的多，这里只介绍基础使用的命令，这些命令工具在几乎所有的 Linux 发行版中默认安装。另外常用的简单命令，例如 <code>ls</code>、<code>cd</code>、<code>cat</code>、<code>clear</code>、<code>history</code> 等这里也略过。</p>
+<h3 id="系统信息">
+<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af"></a>
+系统信息
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux 发行版信息，也可以使用 cat /etc/os-release 查看</span>
+</span></span><span class="line"><span class="cl">lsb_release -a
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示 Linux 内核版本（架构）、gcc 版本、以及操作系统内部版本</span>
+</span></span><span class="line"><span class="cl">cat /proc/version
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统内核版本、系统内部版本和使用架构</span>
+</span></span><span class="line"><span class="cl">uname -a
+</span></span></code></pre></div><h3 id="系统硬件信息">
+<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e7%a1%ac%e4%bb%b6%e4%bf%a1%e6%81%af"></a>
+系统硬件信息
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 cpu 信息</span>
+</span></span><span class="line"><span class="cl">lscpu
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果没有该命令，请使用下面的命令</span>
+</span></span><span class="line"><span class="cl">cat /proc/cpuinfo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看内存 -g 以G为单位，-m 以MB为单位</span>
+</span></span><span class="line"><span class="cl">free -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看磁盘信息</span>
+</span></span><span class="line"><span class="cl">df -h &lt;path&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">fdisk -l
+</span></span></code></pre></div><p>cpu 信息部分参数说明：</p>
+<table>
+  <thead>
+      <tr>
+          <th>参数名</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>processor</td>
+          <td>核心编号</td>
+      </tr>
+      <tr>
+          <td>model name</td>
+          <td>cpu 信息</td>
+      </tr>
+      <tr>
+          <td>cpu MHz</td>
+          <td>频率</td>
+      </tr>
+      <tr>
+          <td>cache size</td>
+          <td>缓存大小</td>
+      </tr>
+      <tr>
+          <td>flags</td>
+          <td>支持的指令集</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Linux 的磁盘分区方式为 a、b、c、d 这种格式。
+其中 /dev/sda 代表一块磁盘（物理），/dev/sda1、/dev/sda2 代表该盘上的第一个、第二个分区；而 /dev/sdb 是另一块磁盘。
+Linux 中磁盘的编号从 1 到 4 的分区是主分区，大于 5 的分区是逻辑分区。
+/dev/sda，/dev/vda，/dev/hda：s 代表 SCSI，而 h 代表旧的IDE hard磁盘（已经淘汰了），vda 是使用虚拟化感知磁盘驱动程序的磁盘，性能应该要好得多，因为虚拟机管理程序不必模拟某些硬件接口。
+参考：https://unix.stackexchange.com/questions/145332/difference-between-sdx-and-vdx</p>
+</blockquote>
+<h3 id="tree">
+<a class="header-anchor" href="#tree"></a>
+tree
+</h3><table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-a</td>
+          <td>显示所有文件和目录。</td>
+      </tr>
+      <tr>
+          <td>-A</td>
+          <td>使用ASNI绘图字符显示树状图而非以ASCII字符组合。</td>
+      </tr>
+      <tr>
+          <td>-C</td>
+          <td>对输出的文件和目录清单加上色彩，便于区分各种类型。</td>
+      </tr>
+      <tr>
+          <td>-d</td>
+          <td>显示目录名称而非内容。</td>
+      </tr>
+      <tr>
+          <td>-D</td>
+          <td>列出文件或目录的更改时间。</td>
+      </tr>
+      <tr>
+          <td>-f</td>
+          <td>在每个文件或目录之前，显示完整的相对路径名称。</td>
+      </tr>
+      <tr>
+          <td>-F</td>
+          <td>在执行文件，目录，Socket，符号连接，管道名称名称，各自加上&quot;*&quot;,&quot;/&quot;,&quot;=&quot;,&quot;@&quot;,&quot;|&ldquo;号。</td>
+      </tr>
+      <tr>
+          <td>-g</td>
+          <td>列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。</td>
+      </tr>
+      <tr>
+          <td>-i</td>
+          <td>不以阶梯状列出文件或目录名称。</td>
+      </tr>
+      <tr>
+          <td>-I</td>
+          <td>过滤不展示哪些文件</td>
+      </tr>
+      <tr>
+          <td>-L</td>
+          <td>level 限制目录显示层级。</td>
+      </tr>
+      <tr>
+          <td>-l</td>
+          <td>如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。</td>
+      </tr>
+      <tr>
+          <td>-n</td>
+          <td>不在文件和目录清单加上色彩。</td>
+      </tr>
+      <tr>
+          <td>-N</td>
+          <td>直接列出文件和目录名称，包括控制字符。</td>
+      </tr>
+      <tr>
+          <td>-p</td>
+          <td>列出权限标示。</td>
+      </tr>
+      <tr>
+          <td>-P</td>
+          <td>&lt;范本样式&gt; 只显示符合范本样式的文件或目录名称。</td>
+      </tr>
+      <tr>
+          <td>-q</td>
+          <td>用&rdquo;?&ldquo;号取代控制字符，列出文件和目录名称。</td>
+      </tr>
+      <tr>
+          <td>-s</td>
+          <td>列出文件或目录大小。</td>
+      </tr>
+      <tr>
+          <td>-t</td>
+          <td>用文件和目录的更改时间排序。</td>
+      </tr>
+      <tr>
+          <td>-u</td>
+          <td>列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。</td>
+      </tr>
+      <tr>
+          <td>-x</td>
+          <td>将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该子目录予以排除在寻找范围外。</td>
+      </tr>
+  </tbody>
+</table>
+<p>举个例子，显示除了 <code>node_modules</code> 以外的目录，其中目录层级为 2，更深层级的目录不显示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree -I node_modules -dL <span class="m">2</span>
+</span></span></code></pre></div><blockquote>
+<p>node_modules 后面不能添加 /</p>
+</blockquote>
+<h3 id="其它命令">
+<a class="header-anchor" href="#%e5%85%b6%e5%ae%83%e5%91%bd%e4%bb%a4"></a>
+其它命令
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看系统用户名称</span>
+</span></span><span class="line"><span class="cl">hostname
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 按照时间降序并获取前 5 个文件</span>
+</span></span><span class="line"><span class="cl">ls -lt <span class="o">[</span>path<span class="o">]</span> <span class="p">|</span> head -5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 实时监听文件输出</span>
+</span></span><span class="line"><span class="cl">tail -f <span class="o">[</span>filename<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取文件最后 num 行记录</span>
+</span></span><span class="line"><span class="cl">tail -n num <span class="o">[</span>filename<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看活动用户</span>
+</span></span><span class="line"><span class="cl">w
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看用户登录日志</span>
+</span></span><span class="line"><span class="cl">last
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统所有用户</span>
+</span></span><span class="line"><span class="cl">cut -d: -f1 /etc/passwd
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统所有组</span>
+</span></span><span class="line"><span class="cl">cut -d: -f1 /etc/group
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建链接文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -s 创建软链接，相当于 win 下的快捷方式，不加 -s 选项为硬链接。</span>
+</span></span><span class="line"><span class="cl">ln -s 源文件 新的链接文件名
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看进程</span>
+</span></span><span class="line"><span class="cl">ps -ef
+</span></span><span class="line"><span class="cl">ps -aux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 挂载、卸载设备</span>
+</span></span><span class="line"><span class="cl">mount 设备 挂载目录
+</span></span><span class="line"><span class="cl">umount 设备 挂载目录
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 去除 # 注释读取配置内容</span>
+</span></span><span class="line"><span class="cl">grep -Ev <span class="s1">&#39;^#|^$&#39;</span> file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除指定文件</span>
+</span></span><span class="line"><span class="cl">find * <span class="p">|</span> grep -v file <span class="p">|</span> xargs rm
+</span></span></code></pre></div><h2 id="四linux-常用软件">
+<a class="header-anchor" href="#%e5%9b%9blinux-%e5%b8%b8%e7%94%a8%e8%bd%af%e4%bb%b6"></a>
+四、Linux 常用软件
+</h2><h3 id="vim">
+<a class="header-anchor" href="#vim"></a>
+VIM
+</h3><table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>yy</td>
+          <td>复制光标所在行；</td>
+      </tr>
+      <tr>
+          <td>nyy</td>
+          <td>复制光标所在行开始的 <code>n</code> 行,n 代表数字；</td>
+      </tr>
+      <tr>
+          <td>p</td>
+          <td>粘贴复制的内容</td>
+      </tr>
+      <tr>
+          <td>dd</td>
+          <td>删除光标所在行；</td>
+      </tr>
+      <tr>
+          <td>ndd</td>
+          <td>删除光标所在行开始的 <code>n</code> 行，n代表数字；</td>
+      </tr>
+      <tr>
+          <td>i</td>
+          <td>在当前光标所在处后进行编辑</td>
+      </tr>
+      <tr>
+          <td>o</td>
+          <td>在当前光标所在行的下一行新开一行进行编辑</td>
+      </tr>
+      <tr>
+          <td>O</td>
+          <td>在光标当前所在行的上一行新开一行插入</td>
+      </tr>
+      <tr>
+          <td>gg</td>
+          <td>让光标移动到文件首(第一行的第一个非空白字符处)</td>
+      </tr>
+      <tr>
+          <td>G</td>
+          <td>使光标移动到文件尾(最后一行的第一个非空白字符)</td>
+      </tr>
+      <tr>
+          <td>gg=G</td>
+          <td>格式化文本缩进</td>
+      </tr>
+      <tr>
+          <td>u</td>
+          <td>undo，取消上一步操作</td>
+      </tr>
+      <tr>
+          <td>Ctrl + r</td>
+          <td>redo，回到 undo 之前</td>
+      </tr>
+      <tr>
+          <td>set nu/nonu</td>
+          <td>显示/不显示行号</td>
+      </tr>
+      <tr>
+          <td>ggdG</td>
+          <td>清空所有内容</td>
+      </tr>
+      <tr>
+          <td>:wq</td>
+          <td>保存并退出，<code>:x</code>、<code>Shift+zz</code>具有同样效果</td>
+      </tr>
+      <tr>
+          <td>:q!</td>
+          <td>强制退出</td>
+      </tr>
+      <tr>
+          <td>set ff=unix</td>
+          <td>转换换行符格式为 unix 形式</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>VI 和 Vim 的键盘输入有所不同，推荐使用 Vim(当然现在其实更加推荐使用 neovim)，服务器等一些最小安装的版本一般需要手动安装 Vim。</p>
+</blockquote>
+<h3 id="curl">
+<a class="header-anchor" href="#curl"></a>
+<a href="https://www.ubuntumint.com/curl-commands-linux-developers/">cURL</a>
+</h3><table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-X</code></td>
+          <td>指定请求方式：GET、POST 等。</td>
+      </tr>
+      <tr>
+          <td><code>-H</code>、&ndash;header</td>
+          <td>指定请求头</td>
+      </tr>
+      <tr>
+          <td><code>-d</code>、&ndash;data</td>
+          <td>指定请求体</td>
+      </tr>
+      <tr>
+          <td><code>-O</code></td>
+          <td>下载文件</td>
+      </tr>
+      <tr>
+          <td><code>-C - -O</code></td>
+          <td>断点续传</td>
+      </tr>
+  </tbody>
+</table>
+<p>另外还有一个工具：wget，如果你想了解一下 wget VS curl 的区别：可以阅读这篇文章：<code>https://www.geeksforgeeks.org/difference-between-wget-vs-curl/</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看本机基础信息</span>
+</span></span><span class="line"><span class="cl">curl ipinfo.io
+</span></span><span class="line"><span class="cl"><span class="c1"># 本机公网</span>
+</span></span><span class="line"><span class="cl">curl cip.cc
+</span></span></code></pre></div><h3 id="ssh">
+<a class="header-anchor" href="#ssh"></a>
+SSH
+</h3><p>现在大部分的 Linux 发行版都含有 Open SSH 服务和客户端，使用广泛，常用作远程登录身份认证，例如远程登录服务器、Git 的远程托管平台都推荐使用该方式。Open SSH 包含 ssh、sftp、scp 等组件。</p>
+<p>sshd：Unix/Linux 上的 SSH 服务器
+sshd_config：Unix/Linux 上的服务器配置文件
+ssh_config：Unix/Linux 上的客户端配置文件</p>
+<p>讲解一下使用 SSH 密钥登录服务器，一般学习的时候大都使用的账号密码登录，这个时候大多需要借助一些 SSH 工具，否则密码保存、文件传输等都很麻烦。如果使用 SSH 密钥，将非常简单，不需要安装那么多软件。直接使用 Git bash 就可以完成，如果是 windwos，直接使用 windows 的终端也没问题。Linux 上就更不用说了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成一个密钥</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -t ed25519 -f ~/.ssh/server_key
+</span></span><span class="line"><span class="cl"><span class="c1"># 传输到指定的服务器，过程中需要输入服务器密码</span>
+</span></span><span class="line"><span class="cl">ssh-copy-id -i ~/.ssh/server_key.pub user@ip
+</span></span></code></pre></div><p>然后编辑 <code>~/.ssh/config</code> 文件，如果没有就手动创建一个，加入以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Host 随便起一个名称
+</span></span><span class="line"><span class="cl">    HostName server_ip
+</span></span><span class="line"><span class="cl">    User root
+</span></span><span class="line"><span class="cl">    port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">    PreferredAuthentications publickey
+</span></span><span class="line"><span class="cl">    IdentityFile ~/.ssh/公钥文件路径
+</span></span><span class="line"><span class="cl">    IdentitiesOnly yes
+</span></span></code></pre></div><p>使用终端连接：<code>ssh 随便起一个名称</code> 这样就 OK 啦！是不是很简单呢？！而且这一个文件可以上传到多个服务器共用，把 Host 和 HostName 对应修改即可。不过多数人不喜欢配，更喜欢使用用户名密码，然后搭配 SSH 工具的密码管理等超强开箱即用的功能一起使用，效率的确是翻倍的。看你喜欢哪种方式啦。</p>
+<p>如果是上传文件，也很简单，但是下载就不太好用了。就浪子体验而言，推荐 SSH 连接 + 传输文件的工具搭配使用，因为传输文件这个确实不太方便，尤其是跨系统的情况下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">scp file 随便起一个名称:/path/to
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 传输目录下所有文件</span>
+</span></span><span class="line"><span class="cl">scp -r dir/ 随便起一个名称:/path/to
+</span></span></code></pre></div><blockquote>
+<p>ssh-copy-id 使用 SSH 协议连接到目标主机并上传 SSH 用户密钥。该命令编辑服务器上 <code>authorized_keys</code> 的文件。如果 <strong>.ssh</strong> 目录不存在，它将自动创建该目录；如果授权密钥文件不存在，它将自动创建该文件。因此推荐使用该命令上传而不是手动在服务端操作。另外，如果添加 <strong>-f</strong> 选项，可能会导致 <code>authorized_keys</code> 文件中存在多个密钥副本。</p>
+</blockquote>
+<h3 id="iproute2">
+<a class="header-anchor" href="#iproute2"></a>
+<a href="https://wiki.linuxfoundation.org/networking/iproute2">iproute2</a>
+</h3><p>第二代网络工具，相比于 <code>net-tools</code>，命令更加完整一致。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 本机 IP</span>
+</span></span><span class="line"><span class="cl">ip addr
+</span></span><span class="line"><span class="cl">ip addr show ens33
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ip link <span class="p">|</span> ip link show <span class="o">[</span>name<span class="o">]</span> <span class="p">|</span> ip route <span class="p">|</span> ip route show <span class="o">[</span>name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 路由规则</span>
+</span></span><span class="line"><span class="cl">ip rule show
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看端口 -u udp -t tcp</span>
+</span></span><span class="line"><span class="cl">ss -nlp <span class="p">|</span> grep nginx
+</span></span></code></pre></div><h2 id="五tar-包常用命令">
+<a class="header-anchor" href="#%e4%ba%94tar-%e5%8c%85%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"></a>
+五、tar 包常用命令
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 打包</span>
+</span></span><span class="line"><span class="cl">tar -cvf /usr/local/ xxx.tar.xx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看包内容</span>
+</span></span><span class="line"><span class="cl">tar -tvf xxx.tar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解包内容</span>
+</span></span><span class="line"><span class="cl">tar -xvf xxx.tar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下格式的包只需要在选项中加入以下字母即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 例如 tar -zxvf xxx.tar.gz</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># gzip(.tar.gz结尾的包)</span>
+</span></span><span class="line"><span class="cl">-z
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># bzip2(.tar.bz2结尾的包)</span>
+</span></span><span class="line"><span class="cl">-j
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># xz(以.tar.xz结尾的包)</span>
+</span></span><span class="line"><span class="cl">-J
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -C 可以在解压的时候指定解压路径</span>
+</span></span><span class="line"><span class="cl">tar -C 指定路径 -zvxf 目标包文件
+</span></span></code></pre></div><blockquote>
+<p>参数：
+-v 显示详细处理信息
+-f 指定归档包文件，后面必须跟 tar 包相关文件 xxx.tar.gz</p>
+</blockquote>
+<h2 id="六任务计划crontab命令">
+<a class="header-anchor" href="#%e5%85%ad%e4%bb%bb%e5%8a%a1%e8%ae%a1%e5%88%92crontab%e5%91%bd%e4%bb%a4"></a>
+六、任务计划(Crontab)命令
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看当前用户的计划任务服务</span>
+</span></span><span class="line"><span class="cl">crontab -l
+</span></span></code></pre></div><p>{% image <a href="https://www.linuxprobe.com/wp-content/uploads/2016/09/crontab.png">https://www.linuxprobe.com/wp-content/uploads/2016/09/crontab.png</a> 定时任务说明 %}
+在以上各个字段中，还可以使用以下特殊字符：</p>
+<table>
+  <thead>
+      <tr>
+          <th>符号</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>*</td>
+          <td>代表所有的取值范围内的数字，如月份字段为*，则表示1到12个月；</td>
+      </tr>
+      <tr>
+          <td>/</td>
+          <td>代表每一定时间间隔的意思，如分钟字段为 */10，表示每10分钟执行1次。</td>
+      </tr>
+      <tr>
+          <td>-</td>
+          <td>代表从某个区间范围，是闭区间。如“2-5”表示“2,3,4,5”，小时字段中0-23/2表示在0~23点范围内每2个小时执行一次。</td>
+      </tr>
+      <tr>
+          <td>,</td>
+          <td>分散的数字（不一定连续），如1,2,3,4,7,9。</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>crontab注意点:</strong>
+由于各个地方每周第一天不一样，因此Sunday=0（第一天）或Sunday=7（最后1天）。
+crontab 有2种编辑方式：直接编辑 <code>/etc/crontab</code> 文件与 <code>crontab –e</code>，其中 <code>/etc/crontab</code> 里的计划任务是系统中的计划任务，而用户的计划任务需要通过 crontab –e 来编辑；每次编辑完某个用户的cron设置后，cron自动在 <code>/var/spool/cron</code> 下生成一个与此用户同名的文件，此用户的cron信息都记录在这个文件中，这个文件是不可以直接编辑的，只可以用 <code>crontab -e</code> 来编辑。
+crontab 中的 command 尽量使用绝对路径，否则会经常因为路径错误导致任务无法执行。
+新创建的cron job 不会马上执行，至少要等2分钟才能执行，可重启cron来立即执行。
+<code>%</code> 在 crontab 文件中表示“换行”，因此假如脚本或命令含有%,需要使用 <code>\\%</code> 来进行转义。</p>
+</blockquote>
+<p><strong>Crontab配置实例:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#每一分钟执行一次command（因cron默认每1分钟扫描一次，因此全为*即可）</span>
+</span></span><span class="line"><span class="cl">*    *    *    *    *  <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#每小时的第3和第15分钟执行command</span>
+</span></span><span class="line"><span class="cl">3,15   *    *    *    *  <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每天上午8-11点的第3和15分钟执行command：</span>
+</span></span><span class="line"><span class="cl">3,15  8-11  *  *  *  <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每隔2天的上午8-11点的第3和15分钟执行command：</span>
+</span></span><span class="line"><span class="cl">3,15  8-11  */2  *   *  <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每个星期一的上午8点到11点的第3和第15分钟执行command</span>
+</span></span><span class="line"><span class="cl">3,15  8-11   *   *  <span class="m">1</span> <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每晚的21:30重启smb</span>
+</span></span><span class="line"><span class="cl"><span class="m">30</span>  <span class="m">21</span>   *   *  *  /etc/init.d/smb restart
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每月1、10、22日的4 : 45重启smb</span>
+</span></span><span class="line"><span class="cl"><span class="m">45</span>  <span class="m">4</span>  1,10,22  *  *  /etc/init.d/smb restart
+</span></span></code></pre></div><h2 id="七shell">
+<a class="header-anchor" href="#%e4%b8%83shell"></a>
+七、Shell
+</h2><p><a href="https://www.geeksforgeeks.org/how-to-create-a-shell-script-in-linux/">https://www.geeksforgeeks.org/how-to-create-a-shell-script-in-linux/</a>
+<a href="https://www.geeksforgeeks.org/conditional-statements-shell-script">https://www.geeksforgeeks.org/conditional-statements-shell-script</a></p>
+<p>Linux中有许多可用的Shell，例如The bourne shell（sh），The Korn Shell（ksh）和 GNU Bourne-Again Shell（bash）。为 sh shell 编写的脚本称为 shell 脚本，它们可以由 ksh 和 bash shell 解释。ksh 和 Bash 是原始 sh shell 的改进版本，它们比 sh 具有更多的功能。Bash 通常是大多数 Linux 发行版中的默认 shell，专门为 bash shell 编写的脚本称为 bash 脚本。</p>
+<p>您可以指定脚本将使用哪个 shell，即使脚本是从另一个 shell 终端执行的。为此，请在脚本文件顶部添加“#!”，后跟所选 shell 的绝对路径。要将 bash 指定为解释器，请在 shell 脚本顶部添加以下行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span></code></pre></div><p>所有的 bash 都是一种 shell。shell 是一种程序，它解释用户输入的命令或脚本执行的命令，并将其传递给操作系统内核进行执行。bash 是 sh 的超集。</p>
+<h3 id="1-整数比较">
+<a class="header-anchor" href="#1-%e6%95%b4%e6%95%b0%e6%af%94%e8%be%83"></a>
+1. 整数比较
+</h3><table>
+  <thead>
+      <tr>
+          <th>操作符</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-eq</td>
+          <td>等于</td>
+      </tr>
+      <tr>
+          <td>-ne</td>
+          <td>不等于</td>
+      </tr>
+      <tr>
+          <td>-gt</td>
+          <td>大于</td>
+      </tr>
+      <tr>
+          <td>-ge</td>
+          <td>大于等于</td>
+      </tr>
+      <tr>
+          <td>-lt</td>
+          <td>小于</td>
+      </tr>
+      <tr>
+          <td>-le</td>
+          <td>小于等于</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="2-字符串比较">
+<a class="header-anchor" href="#2-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%af%94%e8%be%83"></a>
+2. 字符串比较
+</h3><table>
+  <thead>
+      <tr>
+          <th>操作符</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>==</td>
+          <td>等于</td>
+      </tr>
+      <tr>
+          <td>!=</td>
+          <td>不等于</td>
+      </tr>
+      <tr>
+          <td>&lt;</td>
+          <td>小于，按 ASCII 字母顺序排列</td>
+      </tr>
+      <tr>
+          <td>&gt;</td>
+          <td>大于，按 ASCII 字母顺序排列</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>在 <code>&lt;</code> 和 <code>&gt;</code> 之前添加一个 \，因为它们在 <code>[ ]</code> 结构中键入时需要转义。</p>
+</blockquote>
+<h3 id="3-几个内置的-shell-变量">
+<a class="header-anchor" href="#3-%e5%87%a0%e4%b8%aa%e5%86%85%e7%bd%ae%e7%9a%84-shell-%e5%8f%98%e9%87%8f"></a>
+3. 几个内置的 shell 变量
+</h3><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">参数</th>
+          <th style="text-align: center">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">$?</td>
+          <td style="text-align: center">每当命令结束并将控件返回到父进程时，它都会返回介于 0 和 255 之间的退出代码。退出代码 0 表示命令成功，任何其他退出代码表示命令不成功。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">$#</td>
+          <td style="text-align: center">传递到脚本的参数个数。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">$*</td>
+          <td style="text-align: center">以一个单字符串显示所有向脚本传递的参数。如&rdquo;$*&ldquo;用「&quot;」括起来的情况、以&rdquo;$1 $2 … $n&quot;的形式输出所有参数。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">$$</td>
+          <td style="text-align: center">脚本运行的当前进程ID号。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">$-</td>
+          <td style="text-align: center">显示Shell使用的当前选项，与set命令功能相同。</td>
+      </tr>
+  </tbody>
+</table>
+<p>在 shell 中，有 <code>[]</code> 和 <code>[[]]</code> 两种条件测试表达式，它们有一些区别：</p>
+<ol>
+<li><code>[]</code> 是 shell 自带的 test 命令的一种表现形式，而 <code>[[ ]]</code> 可以看作是内建的测试功能，是相对于传统的 test 命令的扩展强化版本。</li>
+<li><code>[]</code> 只是指针对常规的字符串匹配和文件匹配的，<code>[[ ]]</code> 支持字符串、文件、模式匹配、类型匹配等。</li>
+<li>在 <code>[]</code> 中的变量在没有使用双引号包括时会被扩展和分割，而在 <code>[[ ]]</code> 中不会发生这种情况。</li>
+<li>在 <code>[]</code> 中，|| 和 &amp;&amp; 代表或和和逻辑运算，而 <code>[[ ]]</code> 中，还有两个额外的操作符：<code>&lt;</code> 和 <code>&gt;</code> 可用于字符串比较和整数比较。</li>
+<li><code>[]</code> 支持一些正则表达式的特殊字符，<code>[[ ]]</code> 支持更多的扩展的正则表达式特性。</li>
+</ol>
+<p>因为 <code>[[ ]]</code> 支持的东西更多更强大，建议优先使用 <code>[[ ]]</code> 语法。但需要注意，<code>[[ ]]</code> 只在 bash 及其衍生版本支持，像 sh，dash 等不支持。</p>
+<p>比如寻找文件名是否以某个后缀结尾，可以使用以下语法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$filename</span> <span class="o">=</span>~ <span class="se">\.</span>zip$ <span class="o">]]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;文件以 zip 结尾&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;文件不以 zip 结尾&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><h3 id="4-循环语法">
+<a class="header-anchor" href="#4-%e5%be%aa%e7%8e%af%e8%af%ad%e6%b3%95"></a>
+4. 循环语法
+</h3><h4 id="1-for-循环语句">
+<a class="header-anchor" href="#1-for-%e5%be%aa%e7%8e%af%e8%af%ad%e5%8f%a5"></a>
+1. for 循环语句
+</h4><p>运算时使用 let</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> 条件
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    语句块
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 例如：</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> ad in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> ab in <span class="sb">`</span>seq <span class="m">1</span> 4<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">((</span><span class="nv">ab</span> <span class="o">=</span> 1<span class="p">;</span> ab &lt; 4<span class="p">;</span> ab++<span class="o">))</span>
+</span></span></code></pre></div><p>上面三种示例的写法意思相同，但需要特别注意的是，第二行那个符号不是单引号，而是 Tab 上面，Esc 下面的那个键。因为使用的时候不容易看懂，不推荐使用。推荐第三种写法，注意有两个括号。</p>
+<h4 id="2-while-循环语句">
+<a class="header-anchor" href="#2-while-%e5%be%aa%e7%8e%af%e8%af%ad%e5%8f%a5"></a>
+2. while 循环语句
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">while</span> 条件
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    语句块
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><h4 id="3-until-循环语句">
+<a class="header-anchor" href="#3-until-%e5%be%aa%e7%8e%af%e8%af%ad%e5%8f%a5"></a>
+3. until 循环语句
+</h4><p>和while循环同样，不同的是判断循环的条件，while条件为真时循环，until 条件为假时循环。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">until</span> 条件
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    语句块
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><h4 id="4-判断语法">
+<a class="header-anchor" href="#4-%e5%88%a4%e6%96%ad%e8%af%ad%e6%b3%95"></a>
+4. 判断语法
+</h4><p>shell 脚本的判断语句使用中括号，两端需要加入空格。比如下面这段代码(文件名为：<code>test.sh</code>)：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="m">1</span> -ge <span class="m">2</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;yes&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;no&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><p>在 [ 和 ] 之前键入一个空格，同时指定要检查的条件，否则会出现错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./test.sh: line 3: <span class="o">[</span>1: <span class="nb">command</span> not found
+</span></span></code></pre></div><h4 id="5-脚本示例">
+<a class="header-anchor" href="#5-%e8%84%9a%e6%9c%ac%e7%a4%ba%e4%be%8b"></a>
+5. 脚本示例
+</h4><p>如果你的脚本是在 Window 下写完上传到 Linux 中的，那么文件的换行符可能有问题，可以使用以下命令进行转换:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 两个命令二选一</span>
+</span></span><span class="line"><span class="cl">tr -d <span class="s1">&#39;\r&#39;</span> &lt; 文件名 &gt; 新文件名
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/\r//g&#39;</span> 文件名
+</span></span></code></pre></div><blockquote>
+<p>Linux 换行符是 \n(LF)，Windows 是 \r\n(CRLF).</p>
+</blockquote>
+<p>如果在打开的文件中，可以使用 <strong>:e ++ff=unix</strong> 转换换行符的格式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用超级管理员的命令需要输入密码，这里先输入一下，yourpassword 替换为超级管理员的密码</span>
+</span></span><span class="line"><span class="cl">sudo -S -v <span class="s">&lt;&lt; EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">yourpassword
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -n <span class="s2">&#34;请输入创建的文件夹：&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">read</span> name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&#34;</span><span class="nv">$name</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$name</span><span class="s2"> 文件夹不存在,正在创建&#34;</span>
+</span></span><span class="line"><span class="cl">    sudo mkdir /<span class="nv">$name</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;/</span><span class="nv">$name</span><span class="s2"> 文件夹已存在&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo mkdir /<span class="nv">$name</span>/test
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;文件夹创建成功&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;创建失败&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo touch /<span class="nv">$name</span>/test/111.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># 对文件写入内容</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;自古星耀晦明时，不持太阿误剑诗&#34;</span> <span class="p">|</span> tee /<span class="nv">$name</span>/test/111.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># -a 追加内容</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;无边落木萧萧下，不尽长江滚滚滚来&#34;</span> <span class="p">|</span> tee -a /<span class="nv">$name</span>/test/111.txt
+</span></span></code></pre></div><blockquote>
+<p>Shell 脚本对 bash 中的 &gt; 或者 &raquo; 有不同的处理，如果 shell 中使用这种方式将会报错；</p>
+<p>因此这里使用了 tee 命令来进行文本输入追加。</p>
+</blockquote>
+<h2 id="附linux-其它知识">
+<a class="header-anchor" href="#%e9%99%84linux-%e5%85%b6%e5%ae%83%e7%9f%a5%e8%af%86"></a>
+附：Linux 其它知识
+</h2><h3 id="kdegnomexfce">
+<a class="header-anchor" href="#kdegnomexfce"></a>
+KDE、Gnome、Xfce
+</h3><p>如果要决定使用 Linux 作为日常使用的话，你可能还需要知道 Plasma(KDE)、Gnome、Xfce、x11、Wayland。</p>
+<p>Plasma、Gnome、Xfce 是不同的桌面系统，Plasma 又称 KDE，类似 Windows 桌面，可定制化程度最高；Gnome 比较现代，类似 MacOS 桌面，主张开箱即用，定制化选项较少；Xfce 号称占用资源最少，不过这一项优点除非是老机器否则参考价值不大。三种桌面系统各有千秋，推荐每一种都试试选择自己最喜欢的。当然除了这三种，还有很多其它有名气的桌面系统，大多由社区提供支持。</p>
+<p>x11、Wayland 是开发桌面系统的协议，由于 x11 过于古老，出现了很多缺点，且基本不再维护了，2008 年诞生了 Wayland，目前越来越多的软件、Linux 系统积极拥抱 Wayland，前不久，地面最强的编辑器公司 JetBrains 宣布退出支持 Wayland 桌面的 IDE。</p>
+<p>但是目前来看，Wayland 彻底取代 x11 还有很长的路要走。一方面，是 Wayland 自身的问题，很多功能还没有完善、有一定的缺陷；另一方面 x11 应用还有 x11 与 Wayland 混合应用还有很多，为了兼容这些应用，允许 x11 与 Wayland 共存：Xwayland，系统会自动切换。最后一个阻力就是显卡驱动了，相信使用 Linux 系统的 AMD 显卡的用户一定深有体会。</p>
+<blockquote>
+<ul>
+<li>Plasma: <a href="https://kde.org">https://kde.org</a></li>
+<li>Gnome: <a href="https://www.gnome.org">https://www.gnome.org</a></li>
+<li>Xfce: <a href="https://www.xfce.org/">https://www.xfce.org/</a></li>
+</ul>
+</blockquote>
+<h3 id="初始化程序">
+<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e7%a8%8b%e5%ba%8f"></a>
+<a href="https://www.computernetworkingnotes.com/linux-tutorials/differences-between-sysvinit-upstart-and-systemd.html">初始化程序</a>
+</h3><p>Linux 系统使用不同的 init 系统来管理服务和守护进程。两个最常见的初始化系统是 systemd 和 SysVinit。它们在系统中的 ID 为 1，表示初始化进程(Linux 自身的 ID 为 0)。一旦启动，初始化过程将控制系统的启动。它读取配置文件，并根据配置文件中的配置状态启动所有其他服务和进程。</p>
+<p>systemd 和 SysVinit 的在程序员间的爱恨情仇非常出名，社区有非常多的声音。即便是现在，也有很多开发者讨厌和拒绝，但&hellip;&hellip;关于这块浪子就不再赘述了，网络上很多资料，有兴趣可以自行查找。总之就是 systemd 不仅做了服务管理工具，在其它方面也做了很多的工作，广大资深开发者认为违反了 unix <strong>do one thing and do it well</strong> 的哲学，这很不 Linux。大多数用户，包括浪子本人还是蛮喜欢的。</p>
+<p>sysVinit 最初是为 UNIX 系统创建的，后来在 Linux 中进行了改编。在 RHEL5 之前，RedHat 将其用作其默认系统初始化程序。此后，他们切换到了 systemd。SysVinit 以一种同步的方式加载服务，而不是像 systemd 中并行加载服务。并且只有在当前正在加载的服务超时后，才能加载下一个服务。</p>
+<p>Systemd 是现代系统初始值设定项程序，自 2011 年以来，systemd 已成为大多数 Linux 发行版的默认值。大多数 Linux 开发人员，包括 RedHat（从版本 7 开始）和 Ubuntu（从版本 15.04 开始）都使用 systemd 作为默认的系统初始值设定项程序。它提供了一套全面的工具和功能来管理服务，包括并行启动、按需激活和依赖项管理。</p>
+<p>使用以下命令查看，输出结果为 init 的就是使用的 sysVinit。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps -p <span class="m">1</span> -o <span class="nv">comm</span><span class="o">=</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th>Systemd</th>
+          <th>Sysvinit</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>systemctl start service_name</td>
+          <td>service service_name start</td>
+      </tr>
+      <tr>
+          <td>systemctl stop service_name</td>
+          <td>service service_name stop</td>
+      </tr>
+      <tr>
+          <td>systemctl restart service_name</td>
+          <td>service service_name restart</td>
+      </tr>
+      <tr>
+          <td>systemctl status service_name</td>
+          <td>service service_name status</td>
+      </tr>
+      <tr>
+          <td>systemctl enable service_name</td>
+          <td>chkconfig service_name on</td>
+      </tr>
+      <tr>
+          <td>systemctl disable service_name</td>
+          <td>chkconfig service_name off</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>有关 systemd 的更多信息请参考：https://wiki.archlinux.org/title/Systemd</p>
+<p>更多命令请参考：https://fedoraproject.org/wiki/SysVinit_to_Systemd_Cheatsheet</p>
+</blockquote>
+<h3 id="防火墙">
+<a class="header-anchor" href="#%e9%98%b2%e7%81%ab%e5%a2%99"></a>
+防火墙
+</h3><p>Linux 系统通常通过防火墙直接或间接连接到互联网，但 Linux 本身也内置了防火墙。该防火墙在不断开发和升级，并且配置起来并不总是那么容易。为此，创建了 firewalld 作为管理整个防火墙的统一方式。</p>
+<p>Linux 2.0 附带了 ipfwadm，在 Linux 2.2 中被 ipchains 取代。在 Linux 2.4 中，ipchains 被 iptables 取代。几年来，已经开始用 nftables 替换 iptables，以提供更灵活、更强大的防火墙。使用 nftables 可以动态配置防火墙，并且应该能够在具有 10 Gbps 或更多网络带宽的环境中工作。</p>
+<p>一般，早期的基于 sysVinit 的 Linux 发行版使用 iptables，而使用 systemd 的 Linux 发行版使用 firewalld。</p>
+<p>firewalld 防火墙功能强大，设置起来也非常简单。在底层，Linux 防火墙依赖于 netfilter，即系统内核端网络过滤框架。在用户侧，我们可以选择与 netfilter 交互的工具，例如 iptables、ufw 这些简单的防火墙和 firewalld。</p>
+<p>Firewalld 与 iptables 不兼容，不应一起使用。同时运行这两个服务会弄乱防火墙。无论您选择哪种服务，都可以禁用并屏蔽其他服务。</p>
+<p>有三种 iptables 服务：</p>
+<ul>
+<li>用于 IPv4 配置的 iptables</li>
+<li>用于 IPv6 配置的 ip6tables</li>
+<li>用于软件桥接的 ebtables</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl disable iptables
+</span></span><span class="line"><span class="cl">systemctl disable ip6tables
+</span></span><span class="line"><span class="cl">systemctl disable ebtables
+</span></span></code></pre></div><p>多用户环境中，其它用户可能会有意或无意重启 iptables。因此，我们可以屏蔽它，屏蔽的服务无法手动或自动启动：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl mask iptables
+</span></span><span class="line"><span class="cl">systemctl mask ip6tables
+</span></span><span class="line"><span class="cl">systemctl mask ebtables
+</span></span></code></pre></div><blockquote>
+<p>如果刚刚禁用了活动的 iptables 服务并尝试启用 firewalld 服务，那么 firewalld 服务可能无法启动。从 iptables 切换到 firewalld 需要重新启动系统，然后启动 firewalld 服务。</p>
+</blockquote></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/linux/linux-intro/&amp;title=%e3%80%90Linux%e3%80%91Linux%20%e5%85%a5%e9%97%a8&amp;desc=%e7%ae%80%e5%8d%95%e4%ba%86%e8%a7%a3%20Linux%20%e7%b3%bb%e7%bb%9f%ef%bc%8c%e5%8f%a6%e5%a4%96%e6%8e%a8%e8%8d%90%e4%b8%80%e4%b8%aa%20Linux%20%e7%9a%84%e5%ad%a6%e4%b9%a0%e7%bd%91%e7%ab%99%ef%bc%9ahttps://www.linuxshelltips.com/%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="【Linux】Linux 入门">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="【Linux】Linux 入门">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/linux"
+      data-aos="zoom-in"
+      >Linux</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/linux"
+        rel="tag"
+        >linux</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="Hello World"
+              class="lazyload"
+            /><a
+          href="/post/hello-world/"
+          aria-label="前一篇:Hello World"
+          title="前一篇:Hello World"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Hello World</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="【Linux】Linux Shell"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/linux-shell/"
+          aria-label="后一篇:【Linux】Linux Shell"
+          title="后一篇:【Linux】Linux Shell"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">【Linux】Linux Shell</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一目录">一、目录</a></li>
+    <li><a href="#二权限">二、权限</a>
+      <ul>
+        <li><a href="#用户操作">用户操作</a></li>
+        <li><a href="#授权操作">授权操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#三命令">三、命令</a>
+      <ul>
+        <li><a href="#系统信息">系统信息</a></li>
+        <li><a href="#系统硬件信息">系统硬件信息</a></li>
+        <li><a href="#tree">tree</a></li>
+        <li><a href="#其它命令">其它命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#四linux-常用软件">四、Linux 常用软件</a>
+      <ul>
+        <li><a href="#vim">VIM</a></li>
+        <li><a href="#curl">cURL</a></li>
+        <li><a href="#ssh">SSH</a></li>
+        <li><a href="#iproute2">iproute2</a></li>
+      </ul>
+    </li>
+    <li><a href="#五tar-包常用命令">五、tar 包常用命令</a></li>
+    <li><a href="#六任务计划crontab命令">六、任务计划(Crontab)命令</a></li>
+    <li><a href="#七shell">七、Shell</a>
+      <ul>
+        <li><a href="#1-整数比较">1. 整数比较</a></li>
+        <li><a href="#2-字符串比较">2. 字符串比较</a></li>
+        <li><a href="#3-几个内置的-shell-变量">3. 几个内置的 shell 变量</a></li>
+        <li><a href="#4-循环语法">4. 循环语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#附linux-其它知识">附：Linux 其它知识</a>
+      <ul>
+        <li><a href="#kdegnomexfce">KDE、Gnome、Xfce</a></li>
+        <li><a href="#初始化程序">初始化程序</a></li>
+        <li><a href="#防火墙">防火墙</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "【Linux】Linux 入门",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/linux\/linux-intro\/",
+          description: "简单了解 Linux 系统，另外推荐一个 Linux 的学习网站：https:\/\/www.linuxshelltips.com\/。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

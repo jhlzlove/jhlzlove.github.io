@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/debian/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sat, 22 Jul 2023 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/debian/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>【Linux】 初次把玩Debian12</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/debian12-first-play/</link>
+      <pubDate>Sat, 22 Jul 2023 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/debian12-first-play/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 初次把玩Debian12</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近发现了 <a href="https://www.debian.org/index.zh-cn.html">Debian</a> Linux 系统，使用的也是 <a href="https://www.debian.org/index.zh-cn.html">deb</a> 格式的安装包和 apt 管理器。另外由于使用最新版的 Ubuntu 的时候发现默认下载的 Snap 源的软件，导致更新后一些软件会有问题，不能正常使用。虽然可以关闭，但是 emmmm，一言难尽。趁此机会，把玩一下，嘿嘿~本文基于 Debian12 版本。</p>
+        
+        <hr><p>本文2023-07-22首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2023-07-22</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mysql on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/mysql/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/mysql/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>MySQL</title>
+      <link>https://jhlzlove.github.io/post/skill/db/mysql/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/mysql/</guid>
+      <description>
+        <![CDATA[<h1>MySQL</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一mysql-配置">
+<a class="header-anchor" href="#%e4%b8%80mysql-%e9%85%8d%e7%bd%ae"></a>
+一、MySQL 配置
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>mysqld<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改等待时间，两个选项必须同时修改</span>
+</span></span><span class="line"><span class="cl"><span class="nv">wait_timeout</span><span class="o">=</span>28800<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">interactive_timeout</span><span class="o">=</span>28800<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整默认时区为东八区</span>
+</span></span><span class="line"><span class="cl">default-time-zone<span class="o">=</span><span class="s1">&#39;+08:00&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启 MySQL 事件定时任务（5.7 支持，8.0 默认开启）</span>
+</span></span><span class="line"><span class="cl"><span class="nv">event_scheduler</span> <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MySQL 表名默认区分大小写</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认为 0：区分大小写，1：不区分大小写</span>
+</span></span><span class="line"><span class="cl"><span class="nv">lower_case_table_names</span> <span class="o">=</span> <span class="m">1</span>
+</span></span></code></pre></div><h2 id="二查看配置的命令">
+<a class="header-anchor" href="#%e4%ba%8c%e6%9f%a5%e7%9c%8b%e9%85%8d%e7%bd%ae%e7%9a%84%e5%91%bd%e4%bb%a4"></a>
+二、查看配置的命令
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 查看事件是否开启。
+</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;event_scheduler&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 创建事件删除当天数据，每天凌晨 1 点执行
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="n">EVENT</span><span class="w"> </span><span class="n">every_day_delete_gantry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ON</span><span class="w"> </span><span class="n">SCHEDULE</span><span class="w"> </span><span class="k">EVERY</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w"> </span><span class="n">STARTS</span><span class="w"> </span><span class="s1">&#39;2023-08-20 01:00:00&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ON</span><span class="w"> </span><span class="k">COMPLETION</span><span class="w"> </span><span class="k">PRESERVE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">DO</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TO_DAYS</span><span class="p">(</span><span class="n">now_time</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">TO_DAYS</span><span class="p">(</span><span class="n">now</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示最大连接参数
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;max_connections&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示等待时间
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%wait_time%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示数据库时区
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s2">&#34;%time_zone%&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>PRESERVE 表示此次执行完不删除该事件，等到下次继续执行。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Java解析MySQL的binlog日志</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-parse-mysql-binlog/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-parse-mysql-binlog/</guid>
+      <description>
+        <![CDATA[<h1>Java解析MySQL的binlog日志</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>由于工作需要，研究了一下 Java 解析 MySQL 的 binlog，使用第三方封装的库，可以获取实时插入的信息数据，满足要求。总体看下来使用还是很简单的。</p>
+<ol>
+<li>引入 binlog 的解析库</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.zendesk<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mysql-binlog-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>0.28.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>Github：https://github.com/osheroff/mysql-binlog-connector-java</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

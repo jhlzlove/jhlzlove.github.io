@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wsl on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/wsl/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Wed, 21 Aug 2024 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/wsl/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>甩掉 Vmware 重型机 —— WSL 攻略</title>
+      <link>https://jhlzlove.github.io/post/skill/windows/windows-wsl2/</link>
+      <pubDate>Wed, 21 Aug 2024 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/windows/windows-wsl2/</guid>
+      <description>
+        <![CDATA[<h1>甩掉 Vmware 重型机 —— WSL 攻略</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Windows 上的 wsl 还是挺好用的。不过只推荐安装中间件，极不推荐使用 WSL 进行 remote develop，占用资源较多。</p>
+        
+        <hr><p>本文2024-08-21首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2024-08-21</p>]]>
+      </description>
+      
+        <category>Windows</category>
+      
+    </item>
+    
+  </channel>
+</rss>

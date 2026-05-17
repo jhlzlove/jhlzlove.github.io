@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Binlog on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/binlog/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/binlog/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Java解析MySQL的binlog日志</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-parse-mysql-binlog/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-parse-mysql-binlog/</guid>
+      <description>
+        <![CDATA[<h1>Java解析MySQL的binlog日志</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>由于工作需要，研究了一下 Java 解析 MySQL 的 binlog，使用第三方封装的库，可以获取实时插入的信息数据，满足要求。总体看下来使用还是很简单的。</p>
+<ol>
+<li>引入 binlog 的解析库</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.zendesk<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mysql-binlog-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>0.28.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>Github：https://github.com/osheroff/mysql-binlog-connector-java</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

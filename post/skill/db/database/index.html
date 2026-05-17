@@ -1,0 +1,878 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  数据库杂谈 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="数据库杂谈 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/db/database/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/cover/db.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="database, db, 数据库" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/cover/db.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img  fetchpriority="high" src="/images/cover/db.webp" alt="数据库杂谈"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">数据库杂谈</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用数据库">使用数据库</a></li>
+    <li><a href="#数据库三范式">数据库三范式</a></li>
+    <li><a href="#数据字典映射的必要性">数据字典/映射的必要性</a></li>
+    <li><a href="#sql-优化">SQL 优化</a></li>
+    <li><a href="#jdbc-url-参考">JDBC URL 参考</a></li>
+    <li><a href="#sql">SQL</a>
+      <ul>
+        <li><a href="#oracle">Oracle</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h2 id="使用数据库">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%ba%93"></a>
+使用数据库
+</h2><ul>
+<li>关系型数据库一般分为 <code>catalog.schema.table</code>，catalog 的本质就是数据库(database)，包含多个 schema；一个 schema 下可以有多个对象，比如表、存储过程、触发器等。MySQL 没有 schema 的概念，但它的 schema 和 database 是等价的；</li>
+<li>建表时 <strong>不应使用</strong> 数据库 <strong>内置关键字</strong>，可能会造成一些隐藏的问题；</li>
+<li>真正的 ORM 框架更加重视建模的规范，前期的建模一旦做好，在业务开发和后期中将无往不利，所以 ORM 的选择对项目的影响蛮大的(前提是使用关系型数据库存储)；</li>
+<li>根据业务场景合理使用外键可以构建更健壮的系统；</li>
+</ul>
+<h2 id="数据库三范式">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%89%e8%8c%83%e5%bc%8f"></a>
+数据库三范式
+</h2><p>数据库三范式是关系型数据库设计的基础理论，用来保证数据的完整性和减少数据冗余。三范式层层递进，每个范式都是在前一个范式的基础上进行优化和改进。在实际的数据库设计中，应根据具体的需求和场景选择合适的范式来保证数据的完整性和减少数据冗余。</p>
+<ol>
+<li>第一范式（1NF）：它要求每个属性都必须原子性，也就是不可再分。这个范式的目的是确保数据的完整性，防止数据被不合理地分解 <del>（分到不可再分，一个字段只代表一个含义）</del>。</li>
+<li>第二范式（2NF）：第二范式要求在满足第一范式的前提下，非主键属性必须完全依赖于主键，而不是部分依赖 <del>（按照属性进行归类并拆分表进行关联）</del>。</li>
+<li>第三范式（3NF）：在满足第一、二范式的前提下，非主键属性之间不能存在依赖关系。也就是说，每个属性必须是独立的，不能依赖于其他属性 <del>（高度可维护）</del>。</li>
+</ol>
+<p>实现了三范式，基本上就是 <strong>一张表维护一种数据</strong>，然后使用主键进行关联合并为一个整体。</p>
+<h2 id="数据字典映射的必要性">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%ad%97%e5%85%b8%e6%98%a0%e5%b0%84%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7"></a>
+数据字典/映射的必要性
+</h2><p>我们经常有类似这样的场景：有合同信息，合同信息中有合同类型；有车辆信息，车辆信息中有车辆类型；有人员信息，人员信息中有人员类型&hellip;</p>
+<p>这种情况，我们有几种做法：</p>
+<ol>
+<li>使用数据库 - 每种类型单独建表，该方案不怎么用（除非是递归的父子关系），并且这种类似的场景有很多的话就要多出许多类型表，徒增复杂度；</li>
+<li>使用数据库 - 使用数据库字典；</li>
+<li>后端使用枚举</li>
+<li>前端定义映射</li>
+</ol>
+<p>数据字典的建立一般分为以下几种：</p>
+<ol>
+<li>一张表，简单的 name、value；</li>
+<li>一张表，在 name、value 之上添加 type</li>
+<li>两张表，type、type 说明一张表，name、value、type 一张表（若依开源框架就是使用的这种）</li>
+</ol>
+<p>就目前的开发而言，第三种方式更加的常见(主要是 ruoyi 的流行)，这样可以适用于不同的场景，并且可以充分的利用数据字典表，对于维护也很友好。当然，也能看出有父子关系的树状结构不适用于该方式，所以那种类型表还是需要单独建立的。</p>
+<p>浪子建议简单的类型或分类直接定义枚举即可，ORM 都有对应的转换器可以自动完成实体到数据库的映射。</p>
+<h2 id="sql-优化">
+<a class="header-anchor" href="#sql-%e4%bc%98%e5%8c%96"></a>
+<a href="https://foojay.io/today/sql-best-practices-every-java-engineer-must-know/">SQL 优化</a>
+</h2><h2 id="jdbc-url-参考">
+<a class="header-anchor" href="#jdbc-url-%e5%8f%82%e8%80%83"></a>
+JDBC URL 参考
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># db2 示例：jdbc:db2://localhost:50000/MYDB:user=dbadm;password=dbadm;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://www.ibm.com/support/knowledgecenter/SSEPGG_11.5.0/com.ibm.db2.luw.apdv.java.doc/src/tpc/imjcc_r0052342.html</span>
+</span></span><span class="line"><span class="cl">jdbc:db2://&lt;serverName&gt;<span class="o">[</span>:&lt;portNumber&gt;<span class="o">]</span>/&lt;databaseName&gt;<span class="o">[</span>:&lt;key1&gt;<span class="o">=</span>&lt;value&gt;<span class="p">;</span><span class="o">[</span>&lt;key2&gt;<span class="o">=</span>&lt;value2&gt;<span class="p">;</span><span class="o">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># h2 示例：jdbc:h2:tcp://localhost/~/test,jdbc:h2:mem:myDB</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://h2database.com/html/features.html#database_url</span>
+</span></span><span class="line"><span class="cl">jdbc:h2:<span class="o">{</span> <span class="o">{</span>.<span class="p">|</span>mem:<span class="o">}[</span>name<span class="o">]</span> <span class="p">|</span> <span class="o">[</span>file:<span class="o">]</span>fileName <span class="p">|</span> <span class="o">{</span>tcp<span class="p">|</span>ssl<span class="o">}</span>:<span class="o">[</span>//<span class="o">]</span>server<span class="o">[</span>:port<span class="o">][</span>,server2<span class="o">[</span>:port<span class="o">]]</span>/name <span class="o">}[</span><span class="p">;</span><span class="nv">key</span><span class="o">=</span>value…​<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mariadb 示例：jdbc:mariadb://localhost:3306/test</span>
+</span></span><span class="line"><span class="cl">jdbc:mariadb:<span class="o">[</span>replication:<span class="p">|</span>failover:<span class="p">|</span>sequential:<span class="p">|</span>aurora:<span class="o">]</span>//&lt;hostDescription&gt;<span class="o">[</span>,&lt;hostDescription&gt;…​<span class="o">]</span>/<span class="o">[</span>database<span class="o">][</span>?&lt;key1&gt;<span class="o">=</span>&lt;value1&gt;<span class="o">[</span><span class="p">&amp;</span>&lt;key2&gt;<span class="o">=</span>&lt;value2&gt;<span class="o">]]</span> hostDescription:: &lt;host&gt;<span class="o">[</span>:&lt;portnumber&gt;<span class="o">]</span> or <span class="nv">address</span><span class="o">=(</span><span class="nv">host</span><span class="o">=</span>&lt;host&gt;<span class="o">)[(</span><span class="nv">port</span><span class="o">=</span>&lt;portnumber&gt;<span class="o">)][(</span><span class="nv">type</span><span class="o">=(</span>master<span class="p">|</span>slave<span class="o">))]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mssql 示例：jdbc:sqlserver://localhost:1433;databaseName=AdventureWorks</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://docs.microsoft.com/en-us/sql/connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver?view=sql-server-2017</span>
+</span></span><span class="line"><span class="cl">jdbc:sqlserver://<span class="o">[</span>serverName<span class="o">[</span><span class="se">\i</span>nstanceName<span class="o">][</span>:portNumber<span class="o">]][</span><span class="p">;</span><span class="nv">property</span><span class="o">=</span>value<span class="o">[</span><span class="p">;</span><span class="nv">property</span><span class="o">=</span>value<span class="o">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># oracle 示例：jdbc:oracle:thin:@localhost:1521/ORCL_SVC</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/data-sources-and-URLs.html#GUID-AEA8E228-1B21-4111-AF4C-B1F33744CA08</span>
+</span></span><span class="line"><span class="cl">jdbc:oracle:driver_type:@database_specifier
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pg 示例：jdbc:postgresql://localhost:5432/test</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://jdbc.postgresql.org/documentation/head/connect.html</span>
+</span></span><span class="line"><span class="cl">jdbc:postgresql:<span class="o">[</span>//<span class="o">][</span>host<span class="o">][</span>:port<span class="o">][</span>/database<span class="o">][</span>?key<span class="o">=</span>value…​<span class="o">]</span>
+</span></span></code></pre></div><h2 id="sql">
+<a class="header-anchor" href="#sql"></a>
+SQL
+</h2><h3 id="oracle">
+<a class="header-anchor" href="#oracle"></a>
+Oracle
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 补全一年 12 个月
+</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">lpad</span><span class="p">(</span><span class="k">level</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">level</span><span class="o">&lt;</span><span class="mi">13</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyy-&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">lpad</span><span class="p">(</span><span class="k">level</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">datevalue</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">--oracle 未来12个月
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;YYYY-MM&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">YEARMONTH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">ALL_OBJECTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">--oracle 前12个月
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ROWNUM</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;YYYY-MM&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">YEARMONTH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">ALL_OBJECTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p><a href="https://help.aliyun.com/document_detail/96342.html">hive、oracle、mysql内建函数对照表</a></p>
+</div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/db/database/&amp;title=%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9d%82%e8%b0%88&amp;desc=%20%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%ba%93%20%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%80%e8%88%ac%e5%88%86%e4%b8%ba%20catalog.schema.table%ef%bc%8ccatalog%20%e7%9a%84%e6%9c%ac%e8%b4%a8%e5%b0%b1%e6%98%af%e6%95%b0%e6%8d%ae%e5%ba%93%28database%29%ef%bc%8c%e5%8c%85%e5%90%ab%e5%a4%9a%e4%b8%aa%20schema%ef%bc%9b%e4%b8%80%e4%b8%aa%20schema%20%e4%b8%8b%e5%8f%af%e4%bb%a5%e6%9c%89%e5%a4%9a%e4%b8%aa%e5%af%b9%e8%b1%a1%ef%bc%8c%e6%af%94%e5%a6%82%e8%a1%a8%e3%80%81%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b%e3%80%81%e8%a7%a6%e5%8f%91%e5%99%a8%e7%ad%89%e3%80%82MySQL%20%e6%b2%a1%e6%9c%89%20schema%20%e7%9a%84%e6%a6%82%e5%bf%b5%ef%bc%8c%e4%bd%86%e5%ae%83%e7%9a%84%20schema%20%e5%92%8c%20database%20%e6%98%af%e7%ad%89%e4%bb%b7%e7%9a%84%ef%bc%9b%20%e5%bb%ba%e8%a1%a8%e6%97%b6%20%e4%b8%8d%e5%ba%94%e4%bd%bf%e7%94%a8%20%e6%95%b0%e6%8d%ae%e5%ba%93%20%e5%86%85%e7%bd%ae%e5%85%b3%e9%94%ae%e5%ad%97%ef%bc%8c%e5%8f%af%e8%83%bd%e4%bc%9a%e9%80%a0%e6%88%90%e4%b8%80%e4%ba%9b%e9%9a%90%e8%97%8f%e7%9a%84%e9%97%ae%e9%a2%98%ef%bc%9b%20%e7%9c%9f%e6%ad%a3%e7%9a%84%20ORM%20%e6%a1%86%e6%9e%b6%e6%9b%b4%e5%8a%a0%e9%87%8d%e8%a7%86%e5%bb%ba%e6%a8%a1%e7%9a%84%e8%a7%84%e8%8c%83%ef%bc%8c%e5%89%8d%e6%9c%9f%e7%9a%84%e5%bb%ba%e6%a8%a1%e4%b8%80%e6%97%a6%e5%81%9a%e5%a5%bd%ef%bc%8c%e5%9c%a8%e4%b8%9a%e5%8a%a1%e5%bc%80%e5%8f%91%e5%92%8c%e5%90%8e%e6%9c%9f%e4%b8%ad%e5%b0%86%e6%97%a0%e5%be%80%e4%b8%8d%e5%88%a9%ef%bc%8c%e6%89%80%e4%bb%a5%20ORM%20%e7%9a%84%e9%80%89%e6%8b%a9%e5%af%b9%e9%a1%b9%e7%9b%ae%e7%9a%84%e5%bd%b1%e5%93%8d%e8%9b%ae%e5%a4%a7%e7%9a%84%28%e5%89%8d%e6%8f%90%e6%98%af%e4%bd%bf%e7%94%a8%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ad%98%e5%82%a8%29%ef%bc%9b%20%e6%a0%b9%e6%8d%ae%e4%b8%9a%e5%8a%a1%e5%9c%ba%e6%99%af%e5%90%88%e7%90%86%e4%bd%bf%e7%94%a8%e5%a4%96%e9%94%ae%e5%8f%af%e4%bb%a5%e6%9e%84%e5%bb%ba%e6%9b%b4%e5%81%a5%e5%a3%ae%e7%9a%84%e7%b3%bb%e7%bb%9f%ef%bc%9b%20%e6%95%b0%e6%8d%ae%e5%ba%93%20%e2%80%a6&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="数据库杂谈">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="数据库杂谈">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/database"
+        rel="tag"
+        >database</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/db"
+        rel="tag"
+        >db</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/%e6%95%b0%e6%8d%ae%e5%ba%93"
+        rel="tag"
+        >数据库</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="宋"
+              class="lazyload"
+            /><a
+          href="/post/life/poetry/%E5%AE%8B/"
+          aria-label="前一篇:宋"
+          title="前一篇:宋"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">宋</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="使用 record 类读取 spring 的配置文件"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/java-record/"
+          aria-label="后一篇:使用 record 类读取 spring 的配置文件"
+          title="后一篇:使用 record 类读取 spring 的配置文件"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">使用 record 类读取 spring 的配置文件</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用数据库">使用数据库</a></li>
+    <li><a href="#数据库三范式">数据库三范式</a></li>
+    <li><a href="#数据字典映射的必要性">数据字典/映射的必要性</a></li>
+    <li><a href="#sql-优化">SQL 优化</a></li>
+    <li><a href="#jdbc-url-参考">JDBC URL 参考</a></li>
+    <li><a href="#sql">SQL</a>
+      <ul>
+        <li><a href="#oracle">Oracle</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "数据库杂谈",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/db\/database\/",
+          description: " 使用数据库 关系型数据库一般分为 catalog.schema.table，catalog 的本质就是数据库(database)，包含多个 schema；一个 schema 下可以有多个对象，比如表、存储过程、触发器等。MySQL 没有 schema 的概念，但它的 schema 和 database 是等价的； 建表时 不应使用 数据库 内置关键字，可能会造成一些隐藏的问题； 真正的 ORM 框架更加重视建模的规范，前期的建模一旦做好，在业务开发和后期中将无往不利，所以 ORM 的选择对项目的影响蛮大的(前提是使用关系型数据库存储)； 根据业务场景合理使用外键可以构建更健壮的系统； 数据库 …",
+          cover: "https:\/\/jhlzlove.github.io\/images\/cover\/db.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

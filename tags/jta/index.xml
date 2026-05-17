@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jta on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/jta/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/jta/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>JTA 分布式事务</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/jta/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/jta/</guid>
+      <description>
+        <![CDATA[<h1>JTA 分布式事务</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="jta-事务概念">
+<a class="header-anchor" href="#jta-%e4%ba%8b%e5%8a%a1%e6%a6%82%e5%bf%b5"></a>
+JTA 事务概念
+</h2><p>我们知道，单个数据库的事务是本地的事务，多个数据库生成的事务称为分布式事务。</p>
+<p>一个事务可能涉及多个独立的操作。这些操作可以对同一资源或不同资源执行。在这里将事务（如数据库）中的参与组件称为资源。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

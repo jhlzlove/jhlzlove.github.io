@@ -1,0 +1,1168 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  SpringSecurity | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="SpringSecurity | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="java, spring" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="SpringSecurity"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">SpringSecurity</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一官网学习">一、官网学习</a>
+      <ul>
+        <li><a href="#1-架构">1. 架构</a></li>
+        <li><a href="#2-思考">2. 思考</a></li>
+      </ul>
+    </li>
+    <li><a href="#二登录认证">二、登录认证</a>
+      <ul>
+        <li><a href="#1-一些说明">1. 一些说明</a></li>
+        <li><a href="#2-配置authenticationmanager的两种方式">2. 配置AuthenticationManager的两种方式</a></li>
+        <li><a href="#3-密码加密">3. 密码加密</a></li>
+        <li><a href="#4-rememberme">4. RememberMe</a></li>
+        <li><a href="#5-会话管理sessionmanagementfilter">5. 会话管理(SessionManagementFilter)</a></li>
+        <li><a href="#6-跨域问题">6. 跨域问题</a></li>
+        <li><a href="#7-异常处理">7. 异常处理</a></li>
+        <li><a href="#8-csrfcross-site-request-forgery">8. CSRF（Cross-site request forgery）</a></li>
+      </ul>
+    </li>
+    <li><a href="#二授权">二、授权</a>
+      <ul>
+        <li><a href="#21-两种权限管理策略">2.1 两种权限管理策略</a></li>
+        <li><a href="#22-动态权限修改">2.2 动态权限修改</a></li>
+        <li><a href="#23-rbacrole-based-access-control">2.3 RBAC(Role-Based Access Control)</a></li>
+        <li><a href="#三最佳实践">三、最佳实践</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。</p>
+<h2 id="一官网学习">
+<a class="header-anchor" href="#%e4%b8%80%e5%ae%98%e7%bd%91%e5%ad%a6%e4%b9%a0"></a>
+一、官网学习
+</h2><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html"
+			title="官方文档"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">官方文档</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html</div>
+		</div>
+	</div>
+</div>
+
+<p>Spring Security 是一个框架，提供针对常见攻击的身份验证、授权和保护。 它为保护命令式和响应式应用程序提供了一流的支持，是保护基于 Spring 的应用程序的事实标准。</p>
+<p>在 Security 5.4 中引入了通过创建 <code>SecurityFilterChain</code> Bean 进行配置 HttpSecurity 的功能。自 Security 5.7 开始，<strong>WebSecurityConfigurerAdapter</strong> 弃用，其配置写法以 Java Bean 的方式为主，组件化配置。具体的使用可以阅读 <a href="https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter">官方文档</a>。</p>
+<h3 id="1-架构">
+<a class="header-anchor" href="#1-%e6%9e%b6%e6%9e%84"></a>
+1. 架构
+</h3><p>Spring Security 基于 servlet 的过滤器链实现，这些过滤器称之为 FilterChain，同时 Security 还提供了 <a href="https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-filterchainproxy">FilterChainProxy</a> 允许我们设置多个 FilterChain，实现不同的认证，例如基本的认证和 OAuth2 等。在这些过滤器中，我们可以选择重写内部的具体实现完成自己的业务，也可以向 FilterChain 中添加我们自己的新的 Filter，然后在配置中添加生效的位置。</p>
+<p>{% image ../../../../images/doc/20231108100948.png SecurityContextHolder %}</p>
+<p>SecurityContextHolder：存储身份验证者的详细信息的地方；
+SecurityContex：从 SecurityContextHolder 获取，包含当前经过身份验证的用户 Authentication；
+Authentication：可以是 AuthenticationManager 的输入，用于提供用户为进行身份验证而提供的凭据或 SecurityContext 中的当前用户；
+AuthenticationManager：定义 Spring Security 的过滤器如何执行身份验证的 API；
+ProviderManager：最常见的 AuthenticationManager 实现；</p>
+<p>用户已通过身份验证的最简单方法是直接设置 SecurityContextHolder；</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 创建信息的 context</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">SecurityContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">createEmptyContext</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 创建 authentication 主体完成认证</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Authentication</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">TestingAuthenticationToken</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;password&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;ROLE_USER&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">.</span><span class="na">setAuthentication</span><span class="p">(</span><span class="n">authentication</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 将 Security Context 保存在 SecurityContextHolder 中</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">setContext</span><span class="p">(</span><span class="n">context</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><h3 id="2-思考">
+<a class="header-anchor" href="#2-%e6%80%9d%e8%80%83"></a>
+2. 思考
+</h3><ul>
+<li>为什么在 SpringBoot 中，引入 Spring Security 依赖之后没有任何配置所有的请求就要认证呢？
+SpringBootWebSecurityConfiguration，自动配置类</li>
+<li>在项目中明明没有登录界面，登录界面怎么来的呢？
+访问接口时，在引入 spring security 之后会先经过一系列过滤器。在请求到达 FilterSecurityInterceptor 时，发现请求并未认证，请求拦截下来，并抛出 AccessDeniedException 异常。抛出的异常会被 ExceptionTranslationFilter 捕获，这个 Filter 中会调用 LoginUrlAuthenticationEntryPoint#commence 方法给客户端返回 302，要求客户端进行重定向到 <code>/login</code> 页面。客户端发送 <code>/login</code> 请求。<code>/login</code> 请求会再次被拦截器中 DefaultLoginPageGeneratingFilter 拦截到，并在拦截器中返回生成登录页面。</li>
+<li>为什么使用 user 和控制台打印的密码能登录，登录时验证数据源存在哪里呢？
+Spring Security中有一个基于内存（InMemoryUserDetailsManager）的默认用户实现。</li>
+</ul>
+<h2 id="二登录认证">
+<a class="header-anchor" href="#%e4%ba%8c%e7%99%bb%e5%bd%95%e8%ae%a4%e8%af%81"></a>
+二、登录认证
+</h2><p>登录</p>
+<ol>
+<li>调用 ProviderManager 的方法进行认证，如果认证成功生成 jwt，把用户信息存入到一个地方（可以是本地缓存，也可以是 redis 等）。</li>
+<li>自定义 UserDetailsService 实现类，查询数据库</li>
+</ol>
+<p>校验</p>
+<p>定义 jwt 认证过滤器，获取 token，解析 token 中的 userid，查询 redis 中是否存在相应的 userid 并获取用户信息，最后存入 SecurityContextHolder。</p>
+<h3 id="1-一些说明">
+<a class="header-anchor" href="#1-%e4%b8%80%e4%ba%9b%e8%af%b4%e6%98%8e"></a>
+1. 一些说明
+</h3><h5 id="authenticationmanager-providermanager-authencationprovider关系">
+<a class="header-anchor" href="#authenticationmanager-providermanager-authencationprovider%e5%85%b3%e7%b3%bb"></a>
+AuthenticationManager ProviderManager AuthencationProvider关系
+</h5><p>AuthenticationManager 有全局的和局部的，无论哪种，都是通过 ProviderManager 进行实现。每一个 ProviderManager 中都代理一个 AuthenticationProvider 列表，列表中每一个实现代表一种身份认证方式。认证时底层数据源调用 UserDetailsService 来实现。</p>
+<h5 id="websecurityconfigureradapter57-标为弃用">
+<a class="header-anchor" href="#websecurityconfigureradapter57-%e6%a0%87%e4%b8%ba%e5%bc%83%e7%94%a8"></a>
+WebSecurityConfigurerAdapter（5.7+ 标为弃用）
+</h5><p>WebSecurityConfigurerAdapter 是 Spring Security 为我们提供的扩展类，方便我们重写默认配置，实现定制。</p>
+<p>Spring Security(5.7) 中的 WebSecurityConfigurerAdapter 标记为弃用状态。新版的改变与使用参考 <a href="https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter#ldap-authentication">5.7新版配置</a>，不同之处在于改变了写法，新版主要以配置 Bean 的方式 + 流式写法使用。</p>
+<h5 id="userdetails">
+<a class="header-anchor" href="#userdetails"></a>
+UserDetails
+</h5><p>提供核心用户信息，<code>UserDetailsService#loadByUsername()</code> 返回的就是一个 UserDetails 对象。</p>
+<h5 id="userdetailsservice-用来修改默认认证的数据源信息">
+<a class="header-anchor" href="#userdetailsservice-%e7%94%a8%e6%9d%a5%e4%bf%ae%e6%94%b9%e9%bb%98%e8%ae%a4%e8%ae%a4%e8%af%81%e7%9a%84%e6%95%b0%e6%8d%ae%e6%ba%90%e4%bf%a1%e6%81%af"></a>
+UserDetailsService 用来修改默认认证的数据源信息
+</h5><p>UserDetailsService 接口下有许多的实现。同时，此接口也方便了我们以后的自定义数据源的扩展。里面定义了一个根据用户名查询用户信息的方法。</p>
+<h5 id="authentication">
+<a class="header-anchor" href="#authentication"></a>
+Authentication
+</h5><p>封装的用户信息，包括用户名和密码。</p>
+<h3 id="2-配置authenticationmanager的两种方式">
+<a class="header-anchor" href="#2-%e9%85%8d%e7%bd%aeauthenticationmanager%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f"></a>
+2. 配置AuthenticationManager的两种方式
+</h3><ol>
+<li>
+<p>继承 WebSecurityConfigurerAdapter，springboot 对 security 默认配置中 在工厂默认创建 AuthenticationManager。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 默认配置会自动发现创建的 UserDetailService 的 Bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">AuthenticationManagerBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">,</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="n">datasource</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;spring boot 自动配置的全局 AuthenticationManager&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>自定义全局认证数据源</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 自定义配置 AuthenticationManager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">AuthenticationManagerBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">builder</span><span class="p">.</span><span class="na">userDetailsService</span><span class="p">(</span><span class="n">customerUserDetailsService</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 暴露本地的 AuthenticationManager 自定义实例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">AuthenticationManager</span><span class="w"> </span><span class="nf">authenticationManagerBean</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">authenticationManagerBean</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ol>
+<p><strong>小结：</strong></p>
+<ol>
+<li>默认自动配置全局 AuthenticationManager 默认找当前项目中是否存在自定义 UserDetailService 实例，如果存在会自动将当前项目的 UserDetailService 实例设置为数据源。</li>
+<li>默认自动配置全局 AuthenticationManager 在工厂中使用时直接在代码中注入即可。</li>
+<li>一旦通过自定义的方式配置后，会 <strong>自动覆盖</strong> 默认的实现；并且需要在实现中 <strong>指定</strong> 自定义的数据源对象 UserDetailsService 实例，并且这个 AuthenticationManager 需要暴露出来（自定义的默认是本地的，不允许其它组件注入）。</li>
+</ol>
+<h3 id="3-密码加密">
+<a class="header-anchor" href="#3-%e5%af%86%e7%a0%81%e5%8a%a0%e5%af%86"></a>
+3. 密码加密
+</h3><p>常见加密方案：Hash 算法+盐
+单向自适应函数（占用大量系统资源，每个认证请求都会大大降低应用程序的性能），开发者可以通过 bcrypt、PBKDF2、sCrypt 以及 argon2 来体验这种自适应单向函数加密。</p>
+<p>密码的认证是由 PasswordEncoder 进行的，他可以根据不同的加密实现不同的认证方式，所以非常的灵活。自定义密码加密有两种方式，一种是直接指定密码加密的方式（比如Bcrypt），另一种是使用自定义升级的方式。配置中指定密码加密的方式较为常见，另一种方式看自己的项目中是否需要，有需要就可以修改。</p>
+<h3 id="4-rememberme">
+<a class="header-anchor" href="#4-rememberme"></a>
+4. RememberMe
+</h3><p>RememberMe是一种服务端的行为，并非是把用户名密码保存在 Cookie 中的信息。传统的登录方式基于 Session 会话，一旦用户的会话过期，就要再次登录，这样就太过于繁琐。如果有一种机制，会话过期后，还能继续保持认证状态，就会方便很多，RememberMe就是为了解决这一需求而生的。</p>
+<p>具体的实现思路就是通过 Cookie 来记录当前用户身份，用户登录成功之后，会通过一定算法，将用户信息时间戳等进行贾母，加密完成后，通过响应头带回前端存储再Cookie中，当浏览器会话过期之后，如果再次访问网站，会自动将 Cookie 中的信息发送给服务器，服务器对 Cookie 中的信息进行校验分析，进而确定出用户的身份，Cookie 中所保存的用户信息也是有失效的，例如三天、一周等。</p>
+<h3 id="5-会话管理sessionmanagementfilter">
+<a class="header-anchor" href="#5-%e4%bc%9a%e8%af%9d%e7%ae%a1%e7%90%86sessionmanagementfilter"></a>
+5. 会话管理(SessionManagementFilter)
+</h3><p>会话并发管理：简单来说，就是多个客户端使用同一账户登录。默认情况下，同一账户可以再多少设备上登录并没有限制，我们可以在 Spring Security 中进行配置。</p>
+<p>开启会话管理</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 自定义配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">http</span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">sessionManagement</span><span class="p">()</span><span class="w"> </span><span class="c1">// 开启会话管理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 最大并发会话为 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">maximumSessions</span><span class="p">(</span><span class="n">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Spring Security 开启会话管理默认的是挤掉另一个客户端登录；我们可以设置为禁止其它客户端登录（当前用户登录成功，其它客户端无法使用当前的账户登录，除非当前用户注销退出）。集群下的会话管理可以使用 Redis 的Session 共享。</p>
+<h3 id="6-跨域问题">
+<a class="header-anchor" href="#6-%e8%b7%a8%e5%9f%9f%e9%97%ae%e9%a2%98"></a>
+6. 跨域问题
+</h3><ol>
+<li>
+<p>入门：@CrossOrigin</p>
+<p>该注解由 Spring 框架提供，含有属性：
+allowCredentials:浏览器是否应当发送凭证信息，如 Cookie。
+allowHeader:允许访问头
+origins:允许指定访问的所属域访问，<code>*</code> 表示所有字段。
+exposeHeaders:哪些响应头可以作为响应的一部分暴露出来。使用通配符无效。
+maxAge:预检查请求的有效期，有效期内不必再次发送预检请求，默认是100s。
+methods:允许的请求方法，<code>*</code> 表示所有方法。</p>
+</li>
+<li>
+<p>进阶：addCrosMapping（Spring MVC 提供）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebMvcConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addCorsMappings</span><span class="p">(</span><span class="n">CorsRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">addMapping</span><span class="p">(</span><span class="s">&#34;/**&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">allowCredentials</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">allowedHeaders</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">allowedMethods</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">allowedOrigins</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">maxAge</span><span class="p">(</span><span class="n">3600</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>CrosFilter（Spring Web提供的跨域处理解决方案）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.web.servlet.FilterRegistrationBean</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.context.annotation.Configuration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.cors.CorsConfiguration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.cors.UrlBasedCorsConfigurationSource</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.filter.CorsFilter</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Arrays</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebMvcConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;</span><span class="n">CorsFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">corsFilter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;</span><span class="n">CorsFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">registrationBean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FilterRegistrationBean</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CorsConfiguration</span><span class="w"> </span><span class="n">corsConfiguration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CorsConfiguration</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedHeaders</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedMethods</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedOrigins</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setMaxAge</span><span class="p">(</span><span class="n">3600L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">UrlBasedCorsConfigurationSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UrlBasedCorsConfigurationSource</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">source</span><span class="p">.</span><span class="na">registerCorsConfiguration</span><span class="p">(</span><span class="s">&#34;/**&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">corsConfiguration</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">registrationBean</span><span class="p">.</span><span class="na">setFilter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">CorsFilter</span><span class="p">(</span><span class="n">source</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">registrationBean</span><span class="p">.</span><span class="na">setOrder</span><span class="p">(</span><span class="o">-</span><span class="n">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">registrationBean</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>Spring Security中的跨域解决方案</p>
+<p><strong>Q：</strong> 当项目中使用了Spring Security后，上面的方案有的会失效，有的可以继续使用，这是为什么？
+<strong>A：</strong> 通过 <code>@CrossOrigin</code> 注解或者重写 <code>addCorsMappings</code> 方法配置的跨域解决方案，统统失效了（发送的预检请求会被 Spring Security 拦截）；通过 CorsFilter 配置的跨域，有没有失效则要看过滤器的优先级。如果过滤优先级高于 Spring Security 过滤器，即先于 Spring Security 过滤器执行，则 CorsFilter 所配置的跨域处理依然有效；如果优先级低于 Spring Security 过滤器，则 CorsFilter 所配置的跨域处理就会失效。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebMvcConfig</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">WebSecurityConfigurerAdapter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">http</span><span class="p">.</span><span class="na">authorizeRequests</span><span class="p">().</span><span class="na">anyRequest</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">authenticated</span><span class="p">().</span><span class="na">and</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">formLogin</span><span class="p">().</span><span class="na">and</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 跨域处理方案</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">cors</span><span class="p">().</span><span class="na">configurationSource</span><span class="p">(</span><span class="n">corsConfigurationSource</span><span class="p">()).</span><span class="na">and</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">csrf</span><span class="p">().</span><span class="na">disable</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CorsConfigurationSource</span><span class="w"> </span><span class="nf">corsConfigurationSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CorsConfiguration</span><span class="w"> </span><span class="n">corsConfiguration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CorsConfiguration</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedHeaders</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedMethods</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setAllowedOrigins</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">corsConfiguration</span><span class="p">.</span><span class="na">setMaxAge</span><span class="p">(</span><span class="n">3600L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">UrlBasedCorsConfigurationSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UrlBasedCorsConfigurationSource</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">source</span><span class="p">.</span><span class="na">registerCorsConfiguration</span><span class="p">(</span><span class="s">&#34;/**&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">corsConfiguration</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">source</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="7-异常处理">
+<a class="header-anchor" href="#7-%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86"></a>
+7. 异常处理
+</h3><h4 id="71-认证异常">
+<a class="header-anchor" href="#71-%e8%ae%a4%e8%af%81%e5%bc%82%e5%b8%b8"></a>
+7.1 认证异常
+</h4><p>认证异常涉及的异常类型比较多，AuthenticationException 是所有认证异常的父类。一般我们重写 <code>AuthenticationEntryPoint#commence()</code> 来自定义出现认证异常后返回给前端的提示信息。</p>
+<h4 id="72-授权异常">
+<a class="header-anchor" href="#72-%e6%8e%88%e6%9d%83%e5%bc%82%e5%b8%b8"></a>
+7.2 授权异常
+</h4><p>相较于认证异常，权限异常类就要少了很多。在实际项目开发中，如果默认提供的异常无法满足需求，就需要根据实际需求自定义异常类。一般重写 <code>AccessDeniedHandler#handle()</code> 实现授权失败的返回信息。</p>
+<h4 id="73-自定义异常处理配置示例">
+<a class="header-anchor" href="#73-%e8%87%aa%e5%ae%9a%e4%b9%89%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b"></a>
+7.3 自定义异常处理配置示例
+</h4><p>为求简单，这里给的是一个使用 lambda 函数的简写形式，没有写单独的类配置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebMvcConfig</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">WebSecurityConfigurerAdapter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">http</span><span class="p">.</span><span class="na">authorizeRequests</span><span class="p">().</span><span class="na">mvcMatchers</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">).</span><span class="na">hasRole</span><span class="p">(</span><span class="s">&#34;ADMIN&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">anyRequest</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">authenticated</span><span class="p">().</span><span class="na">and</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">formLogin</span><span class="p">().</span><span class="na">and</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">csrf</span><span class="p">().</span><span class="na">disable</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 异常处理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">exceptionHandling</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 认证异常</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">authenticationEntryPoint</span><span class="p">((</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">authException</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">setContentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON_UTF8_VALUE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">UNAUTHORIZED</span><span class="p">.</span><span class="na">value</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">write</span><span class="p">(</span><span class="s">&#34;尚未认证，请进行认证操作&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 权限异常</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">accessDeniedHandler</span><span class="p">((</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">accessDeniedException</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">setContentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON_UTF8_VALUE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">FORBIDDEN</span><span class="p">.</span><span class="na">value</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">response</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">write</span><span class="p">(</span><span class="s">&#34;无权访问&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="8-csrfcross-site-request-forgery">
+<a class="header-anchor" href="#8-csrfcross-site-request-forgery"></a>
+8. CSRF（Cross-site request forgery）
+</h3><p>CSRF 即跨站请求伪造，是 web 常见的攻击方式之一。</p>
+<p>Spring Security 防止 CSRF 攻击的方式就是通过 csrf_token，前端发起请求的时候需要携带这个 csrf_token，后端会有过滤器进行校验，如果没有携带或者是伪造的就不允许访问。</p>
+<p>CSRF 攻击依靠的是 Cookie 中所携带的认证信息。但是在前后端分离的项目我们的认证信息是基于 Token，而 token 并不存储在 Cookie 中，我们的 token 是设置到请求头中的，所以 CSRF 攻击在前后端分离的项目中就失效了。</p>
+<h2 id="二授权">
+<a class="header-anchor" href="#%e4%ba%8c%e6%8e%88%e6%9d%83"></a>
+二、授权
+</h2><h3 id="21-两种权限管理策略">
+<a class="header-anchor" href="#21-%e4%b8%a4%e7%a7%8d%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86%e7%ad%96%e7%95%a5"></a>
+2.1 两种权限管理策略
+</h3><ul>
+<li>
+<p>基于过滤器的权限管理（FilterSecurityInterceptor）：主要拦截Http请求，拦截下来后，根据Http请求地址进行权限校验</p>
+</li>
+<li>
+<p>基于方法的权限管理（MethodSecurityInterceptor）：主要是用来处理方法级别的权限问题。当需要调用某一个方法时，基于 AOP 将操作拦截下来，然后判断用户是否具备相关的权限。</p>
+</li>
+</ul>
+<h4 id="1-基于-url-的权限管理">
+<a class="header-anchor" href="#1-%e5%9f%ba%e4%ba%8e-url-%e7%9a%84%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86"></a>
+1. 基于 URL 的权限管理
+</h4><ul>
+<li>
+<p>antMatchers()：最早出现的，用于任何 HttpMethod 请求列表。</p>
+</li>
+<li>
+<p>mvcMatchers()：4.x 版本新增的，使用 Spring MVC 的匹配规则。例如，路径 <code>/path</code>，它会匹配 <code>/path</code>，<code>/path/</code>，<code>/path.html</code> 等。如果 Spring MVC 不会处理当前请求，会使用 antMatchers()。</p>
+<p>两种方式本质上没有太大区别。使用 mvcMatchers() 的话优先使用 MVC 进行匹配，如果匹配不到，会使用 antMatchers() 匹配方式。</p>
+</li>
+<li>
+<p>regexMatchers()；支持正则表达式。</p>
+</li>
+</ul>
+<h4 id="2-基于方法的权限管理">
+<a class="header-anchor" href="#2-%e5%9f%ba%e4%ba%8e%e6%96%b9%e6%b3%95%e7%9a%84%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86"></a>
+2. 基于方法的权限管理
+</h4><p>这种方式就是在 controller 层的方法上加上注解，指明需要哪些权限或者具有的角色才能访问对应的资源。</p>
+<p>首先，配置类中开启方法权限校验：@EnableGlobalMethodSecurity(prePostEnabled = true, SecuredEnable = true, jsr250Enabled = true)，<del>（这里开启了三种方式，一般只用第一种）</del></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 开启配置 启用方法级别的权限认证</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 开启之后就可以使用 @preAuthorize 也是最常用的注解</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@EnableGlobalMethodSecurity</span><span class="p">(</span><span class="n">prePostEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 前置校验</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@preAuthorize</span><span class="p">(</span><span class="s">&#34;hasAuthority(&#34;</span><span class="n">权限名称</span><span class="s">&#34;)&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 过滤 filterTarget 必须是数组 集合，不能过滤某个对象</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@preFilter</span><span class="p">(</span><span class="n">filterTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;users&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 后置校验</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@PostAuthorize</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@PostFilter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Secured</span><span class="p">(</span><span class="s">&#34;role1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;role2&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 只能判断角色，或者 关系，满足一个即通过请求</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 允许所有用户访问</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@PermitAll</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 拒绝所有访问</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@DenyAll</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// jsr250 提供的注解，和 Secured() 类似</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@RolesAllowed</span><span class="p">(</span><span class="s">&#34;role1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;role2&#34;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>项目中，一般前四个用的较多，后面几个功能较为单一。</p>
+<h3 id="22-动态权限修改">
+<a class="header-anchor" href="#22-%e5%8a%a8%e6%80%81%e6%9d%83%e9%99%90%e4%bf%ae%e6%94%b9"></a>
+2.2 动态权限修改
+</h3><p>以上方式都是通过代码实现的，比较难以修改，可以使用动态的权限修改，比如从数据库层面实现，修改字段即可达到修改相应的权限的目的。</p>
+<p>只需实现 <code>FilterInvocationSecurityMetaSource</code> 接口并重写 <code>getAttributes()</code> 方法。之后在 SecurityConfig 配置类中，使用 http.apply() 方法，覆写里面的配置，setSecurityMetaSource() 改为实现 FilterInvocationSecurityMetaSource 接口的实现类即可。setRejectPublicInvocations() 设为 true/false，为 true 时拒绝 <strong>公共资源</strong>（没有权限管理的公共接口） 的访问。</p>
+<h3 id="23-rbacrole-based-access-control">
+<a class="header-anchor" href="#23-rbacrole-based-access-control"></a>
+2.3 RBAC(Role-Based Access Control)
+</h3><p>RBAC 即基于角色的权限控制，你也可以理解为使用 <strong>角色</strong> 来代理具体的 <strong>菜单访问权限</strong>。权限系统可以保护某些接口不被其它人滥用，从而提升系统的安全性。也可以简单理解为专门为某一部分人开放的特权。现在的权限管理基本都是基于 RBAC（Role Base Access Control）或者 RBAC 的变体，但其本质相差不大，落到实地的话就是表之间的关联关系较多较杂。</p>
+<p>想像一下，每次添加用户时都单独添加权限的话，那肯定是比较繁琐的（毕竟世界的法则逃不过二八定律）。如果我们加入一个“角色”，把常用的一些权限分配给预定义的角色，然后在添加用户的时候直接把“角色”（比如 admin）设置给用户，这个用户就自动拥有对应的权限。这样就比较简单方便。</p>
+<p>高级权限、特别权限、定制权限只是少部分人才能拥有的。但是像浪子一样的普通用户有很多，基数较大，拥有的权限并无太大的变化。当新用户注册的时候，每次手动给用户授权，开放一个一个的权限则会浪费很多的时间（一个一个是因为某些系统的权限系统粒度较小）。当然这部分也可以每次授权的时候选择默认值，然后根据不同的用户再进行不同权限的选择，这样如果权限发生变动维护起来较为麻烦。</p>
+<p>RBAC 模型就提供了一种较好的实现：先把对应的权限（比如访问路径、操作菜单等）赋给一个角色，用户需要什么权限，就关联一个角色。如果用户需要更改权限，直接修改用户-角色的关联关系即可自动继承角色对应的权限。不仅节省时间，还利于维护。</p>
+<p>所以这样看起来，RBAC 也是一种代理模式，角色充当了多个权限的代理，用户通过这个代理可以访问对应的资源。</p>
+<p>固定权限 + 定制权限：一般对于系统来讲，我们需要分部门，部门拥有的权限都是固定的，然后对于里面的成员处于不同的岗位将会拥有不一样的权限。这样就多出了两个分支：部门、岗位。
+我们可以把部门视作用户组，而岗位就是把用户组的用户再细分一次。这就是 RBAC 模型的变种之一。</p>
+<h3 id="三最佳实践">
+<a class="header-anchor" href="#%e4%b8%89%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5"></a>
+三、最佳实践
+</h3><p>没有最佳实践，只有按需实现，如果需要参考，请参阅：https://github.com/jhlzlove/ruoyi-olive/blob/main/olive-framework/src/main/java/com/olive/framework/config/SecurityConfig.java</p></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/&amp;title=SpringSecurity&amp;desc=%e6%9c%ac%e6%96%87%e5%86%85%e5%ae%b9%e5%9f%ba%e4%ba%8e%e5%ae%98%e6%96%b9%e6%96%87%e6%a1%a3%20&#43;%20%e5%85%b6%e5%ae%83%e8%b5%84%e6%96%99%20&#43;%20%e8%87%aa%e5%b7%b1%e7%9a%84%e4%bd%bf%e7%94%a8%e7%bb%8f%e9%aa%8c%e6%95%b4%e7%90%86%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="SpringSecurity">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="SpringSecurity">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/java"
+      data-aos="zoom-in"
+      >Java</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/java"
+        rel="tag"
+        >java</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/spring"
+        rel="tag"
+        >spring</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="volatile 关键字"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/volatile/"
+          aria-label="前一篇:volatile 关键字"
+          title="前一篇:volatile 关键字"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">volatile 关键字</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="Spring 事务失效的几种情况"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/spring/spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5/"
+          aria-label="后一篇:Spring 事务失效的几种情况"
+          title="后一篇:Spring 事务失效的几种情况"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Spring 事务失效的几种情况</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一官网学习">一、官网学习</a>
+      <ul>
+        <li><a href="#1-架构">1. 架构</a></li>
+        <li><a href="#2-思考">2. 思考</a></li>
+      </ul>
+    </li>
+    <li><a href="#二登录认证">二、登录认证</a>
+      <ul>
+        <li><a href="#1-一些说明">1. 一些说明</a></li>
+        <li><a href="#2-配置authenticationmanager的两种方式">2. 配置AuthenticationManager的两种方式</a></li>
+        <li><a href="#3-密码加密">3. 密码加密</a></li>
+        <li><a href="#4-rememberme">4. RememberMe</a></li>
+        <li><a href="#5-会话管理sessionmanagementfilter">5. 会话管理(SessionManagementFilter)</a></li>
+        <li><a href="#6-跨域问题">6. 跨域问题</a></li>
+        <li><a href="#7-异常处理">7. 异常处理</a></li>
+        <li><a href="#8-csrfcross-site-request-forgery">8. CSRF（Cross-site request forgery）</a></li>
+      </ul>
+    </li>
+    <li><a href="#二授权">二、授权</a>
+      <ul>
+        <li><a href="#21-两种权限管理策略">2.1 两种权限管理策略</a></li>
+        <li><a href="#22-动态权限修改">2.2 动态权限修改</a></li>
+        <li><a href="#23-rbacrole-based-access-control">2.3 RBAC(Role-Based Access Control)</a></li>
+        <li><a href="#三最佳实践">三、最佳实践</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "SpringSecurity",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/java\/spring\/spring-security\/",
+          description: "本文内容基于官方文档 \u002b 其它资料 \u002b 自己的使用经验整理。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

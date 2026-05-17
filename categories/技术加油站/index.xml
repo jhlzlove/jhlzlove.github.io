@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术加油站 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8A%A0%E6%B2%B9%E7%AB%99/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>kafka</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/kafka/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/kafka/</guid>
+      <description>
+        <![CDATA[<h1>kafka</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>kafka 简介</p>
+        
+        <hr><p>本文2026-02-25首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-02-25</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>云原生与微服务</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</guid>
+      <description>
+        <![CDATA[<h1>云原生与微服务</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微服务时代充满着自由的气息，微服务时代充斥着迷茫的选择。</p>
+<p>微服务（Microservices）是一种架构风格，它将一个大型的软件应用程序划分为一组小型、自治的服务，每个服务都运行在独立的进程中，并通过轻量级的通信机制（通常是HTTP API）相互协作。每个微服务都专注于一个特定的业务功能，可以独立开发、部署、扩展和更新。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>数据库杂谈</title>
+      <link>https://jhlzlove.github.io/post/skill/db/database/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/database/</guid>
+      <description>
+        <![CDATA[<h1>数据库杂谈</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="使用数据库">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%ba%93"></a>
+使用数据库
+</h2><ul>
+<li>关系型数据库一般分为 <code>catalog.schema.table</code>，catalog 的本质就是数据库(database)，包含多个 schema；一个 schema 下可以有多个对象，比如表、存储过程、触发器等。MySQL 没有 schema 的概念，但它的 schema 和 database 是等价的；</li>
+<li>建表时 <strong>不应使用</strong> 数据库 <strong>内置关键字</strong>，可能会造成一些隐藏的问题；</li>
+<li>真正的 ORM 框架更加重视建模的规范，前期的建模一旦做好，在业务开发和后期中将无往不利，所以 ORM 的选择对项目的影响蛮大的(前提是使用关系型数据库存储)；</li>
+<li>根据业务场景合理使用外键可以构建更健壮的系统；</li>
+</ul>
+<h2 id="数据库三范式">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%89%e8%8c%83%e5%bc%8f"></a>
+数据库三范式
+</h2><p>数据库三范式是关系型数据库设计的基础理论，用来保证数据的完整性和减少数据冗余。三范式层层递进，每个范式都是在前一个范式的基础上进行优化和改进。在实际的数据库设计中，应根据具体的需求和场景选择合适的范式来保证数据的完整性和减少数据冗余。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>达梦数据库</title>
+      <link>https://jhlzlove.github.io/post/skill/db/dameng/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/dameng/</guid>
+      <description>
+        <![CDATA[<h1>达梦数据库</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="常规安装">
+<a class="header-anchor" href="#%e5%b8%b8%e8%a7%84%e5%ae%89%e8%a3%85"></a>
+常规安装
+</h2><p>常规安装可以参照达梦自带的安装手册。为便于复制，这里再重复一次，安装的目录为 <code>/home/dmdba</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建用户和用户组，并设置密码</span>
+</span></span><span class="line"><span class="cl">groupadd -g <span class="m">12349</span> dinstall
+</span></span><span class="line"><span class="cl">useradd -u <span class="m">12345</span> -g dinstall -m -d /home/dmdba -s /bin/bash dmdba
+</span></span><span class="line"><span class="cl">passwd dmdba
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令行安装，按照提示进行选择即可</span>
+</span></span><span class="line"><span class="cl">./DMInstall.bin -i
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换用户初始化数据库</span>
+</span></span><span class="line"><span class="cl">su - dmdba
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/bin
+</span></span><span class="line"><span class="cl">./dminit <span class="nv">path</span><span class="o">=</span>/home/dmdba/dmdata <span class="nv">PAGE_SIZE</span><span class="o">=</span><span class="m">16</span> <span class="nv">CHARSET</span><span class="o">=</span><span class="m">1</span> <span class="nv">INSTANCE_NAME</span><span class="o">=</span>DM <span class="nv">SYSDBA_PWD</span><span class="o">=</span>yourpassword <span class="nv">SYSAUDITOR_PWD</span><span class="o">=</span>yourpassword
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su - root
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置系统服务</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/script/root
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 选项为设置服务名后缀</span>
+</span></span><span class="line"><span class="cl">./dm_service_installer.sh -t dmserver -dm_ini /home/dmdba/dmdata/DAMENG/dm.ini -p dm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">systemctl start DmServicedm
+</span></span></code></pre></div><blockquote>
+<p>最新的版本需要设置 SYSDBA_PWD 和 SYSAUDITOR_PWD 的密码，如何不设置将会提醒你设置。
+生产模式中 PAGE_SIZE 可以设置 32，本文使用默认的大小写配置</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>初识 Podman</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/podman/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/podman/</guid>
+      <description>
+        <![CDATA[<h1>初识 Podman</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p><a href="https://podman.io/">Podman</a> 和 Docker 一样，也是一个容器化技术的一种实现。它是全开源的。但是它们的底层架构是不同的，Podman 不需要使用 <code>root</code> 用户创建容器，也没有 <code>deamon</code> 进程，所以 Podman 不支持<code>--restart</code> 策略。但是为了迁移方便，Podman 团队采用了和 Docker 类似的命令。</p>
+<p>以下内容摘自 <a href="https://docs.podman.io/en/latest/">官网文档</a>：</p>
+<blockquote>
+<p>Podman 是一个无守护进程、开源的 Linux 原生工具，旨在使用开放容器倡议 （OCI） 容器和容器映像轻松查找、运行、构建、共享和部署应用程序。Podman 提供了一个命令行界面 （CLI），任何使用过 Docker 容器引擎的人都很熟悉。大多数用户可以简单地将Docker别名化为Podman（别名docker=podman），没有任何问题。与其他常见的容器引擎（Docker，CRI-O，containerd）类似，Podman依赖于符合OCI的容器运行时（runc，crun，runv等）与操作系统接口并创建正在运行的容器。这使得 Podman 创建的正在运行的容器与任何其他常见容器引擎创建的容器几乎没有区别。</p>
+<p>Podman 控制下的容器可以由 root 或非特权用户运行。Podman 使用 libpod 库管理整个容器生态系统，包括 pod、容器、容器镜像和容器卷。Podman 专注于帮助您维护和修改 OCI 容器映像的所有命令和功能，例如拉取和标记。它允许您在生产环境中创建、运行和维护这些容器和容器映像。</p>
+</blockquote>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>初识 Kubernetes</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</guid>
+      <description>
+        <![CDATA[<h1>初识 Kubernetes</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <a href="https://kubernetes.io/zh-cn/docs/home/" title="官方文档" target="_blank">官方文档</a>
+<h2 id="pod--container">
+<a class="header-anchor" href="#pod--container"></a>
+Pod &amp; Container
+</h2><p>Kubernetes 的最小调度单元是 Pod，在 Pod 中包含多个 Container。</p>
+<h3 id="pod-基本操作">
+<a class="header-anchor" href="#pod-%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"></a>
+Pod 基本操作
+</h3><h4 id="查看-pod">
+<a class="header-anchor" href="#%e6%9f%a5%e7%9c%8b-pod"></a>
+查看 Pod
+</h4><p>pod 默认有 <code>kube-default</code> 和 <code>kube-system</code> 两个命名空间。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询默认 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get po<span class="p">|</span>pod<span class="p">|</span>pods
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询指定命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询当前命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定 pod 的详细信息（不能查看 pod 中的具体容器，pod 为最小管理单元）</span>
+</span></span><span class="line"><span class="cl">kubectl describe pod <span class="o">[</span>pod-name<span class="o">]</span>
+</span></span></code></pre></div><h4 id="创建-pod">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba-pod"></a>
+<a href="https://kubernetes.io/zh-cn/docs/reference/kubernetes-api/workload-resources/pod-v1/">创建 Pod</a>
+</h4><p>先说一种不常用的方式，这种方式很 docker，该方式生产中一般不用。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Windows 下 Git Bash 配置</title>
+      <link>https://jhlzlove.github.io/post/skill/git/git-bash-config/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/git/git-bash-config/</guid>
+      <description>
+        <![CDATA[<h1>Windows 下 Git Bash 配置</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>如何让 Windows 中的 Git Bash 更好用呢？🤔</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Redis</title>
+      <link>https://jhlzlove.github.io/post/skill/db/redis/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/redis/</guid>
+      <description>
+        <![CDATA[<h1>Redis</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一redis-简介">
+<a class="header-anchor" href="#%e4%b8%80redis-%e7%ae%80%e4%bb%8b"></a>
+一、Redis 简介
+</h2><p>Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动分区提供高可用性。
+你可以在这些类型上运行原子操作，如追加字符串；递增哈希值；向列表添加元素；计算集合的交集、联合和差值；或获取排序集合中排名最靠前的成员。
+为了达到最佳性能，Redis 使用内存数据集。根据使用情况，Redis 可以通过定期将数据集转储到磁盘或将每条命令附加到基于磁盘的日志来持久化数据。如果你只需要功能丰富的网络内存缓存，也可以禁用持久化功能。
+Redis 支持异步复制，具有快速无阻塞同步和自动重新连接功能，并可在网络拆分时进行部分重新同步。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://jhlzlove.github.io/post/skill/db/postgresql/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/postgresql/</guid>
+      <description>
+        <![CDATA[<h1>PostgreSQL</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一简介">
+<a class="header-anchor" href="#%e4%b8%80%e7%ae%80%e4%bb%8b"></a>
+一、简介
+</h2><p>PostgreSQL 是一个功能强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多可安全存储和扩展最复杂数据工作负载的特性。PostgreSQL 的起源可以追溯到 1986 年，作为 POSTGRES 项目的一部分，并在核心平台上进行了 30 多年的积极开发。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Nginx 的安装与简单使用</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/nginx/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/nginx/</guid>
+      <description>
+        <![CDATA[<h1>Nginx 的安装与简单使用</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>nginx 的安装与使用</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

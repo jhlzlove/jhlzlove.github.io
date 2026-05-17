@@ -1,0 +1,1027 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  甩掉 Vmware 重型机 —— WSL 攻略 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="甩掉 Vmware 重型机 —— WSL 攻略 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/windows/windows-wsl2/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2024-08-21T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2024-08-21T00:00:00&#43;08:00" /><meta property="article:tag" content="配置, wsl, win" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="甩掉 Vmware 重型机 —— WSL 攻略"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">甩掉 Vmware 重型机 —— WSL 攻略</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#wsl-基本命令">WSL 基本命令</a></li>
+    <li><a href="#安装-arch-linux">安装 Arch Linux</a>
+      <ul>
+        <li><a href="#创建普通用户设置-root-用户密码">创建普通用户、设置 root 用户密码</a></li>
+        <li><a href="#配置-pacman">配置 pacman</a></li>
+        <li><a href="#安装基本工具">安装基本工具</a></li>
+        <li><a href="#配置中文环境">配置中文环境</a></li>
+        <li><a href="#设置默认登录用户">设置默认登录用户</a></li>
+      </ul>
+    </li>
+    <li><a href="#附一些错误">附：一些错误</a>
+      <ul>
+        <li><a href="#禁用-cgroup-v1">禁用 cgroup v1</a></li>
+        <li><a href="#无法解析服务器的名称或地址">无法解析服务器的名称或地址</a></li>
+        <li><a href="#安装启动时-wslregisterdistribution-failed-with-error">安装启动时 WslRegisterDistribution failed with error</a></li>
+        <li><a href="#dockerpodman-运行容器时报错">docker/podman 运行容器时报错</a></li>
+        <li><a href="#启动-dockerpodman-容器失败">启动 docker/podman 容器失败</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2024-08-21 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2024-08-21</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2024-08-21</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>Windows 上的 wsl 还是挺好用的。不过只推荐安装中间件，极不推荐使用 WSL 进行 remote develop，占用资源较多。</p>
+<blockquote>
+<p>2026.4.23 改：添加多种开发工具、问题记录，移除 wsl 官网教程、除 Arch 外的其它 Linux 子系统说明。偷喵一句：<del>还是 Arch 好用😄</del></p>
+</blockquote>
+<h2 id="环境准备">
+<a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87"></a>
+环境准备
+</h2><ul>
+<li>Windows 11</li>
+<li>Git Bash</li>
+<li>WSL2</li>
+<li>魔法工具</li>
+<li>按下 ⌘，输入 “启用或关闭 Windows 功能”，勾选 <strong>Hyper-V</strong> 和 <strong>适用于 Linux 的 Windows 子系统</strong>，点击确定，然后进行重启。</li>
+</ul>
+<blockquote>
+<p>Git Bash 是浪子在 Windows 下喜欢使用的，Windows 基本全部替换为了这个，<a href="/post/skill/git/git-bash">Git</a> 相关篇中已经介绍过。如果少侠使用的 Windows 10 以上系统，推荐使用 Powershell 代替 CMD。<del>话说 CMD 这种东西现在真的还有开发喜欢嘛？</del></p>
+</blockquote>
+<p>新装的系统可能 WSL kernel 没有更新，需要 <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">更新版本</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 更新 wsl 版本</span>
+</span></span><span class="line"><span class="cl">wsl --update
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看版本</span>
+</span></span><span class="line"><span class="cl">wsl --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置 wsl2 为默认版本</span>
+</span></span><span class="line"><span class="cl">wsl --set-default-version <span class="m">2</span>
+</span></span></code></pre></div><p>如果输出如下类似内容表示安装成功：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">WSL 版本: 2.6.1.0
+</span></span><span class="line"><span class="cl">内核版本: 6.6.87.2-1
+</span></span><span class="line"><span class="cl">WSLg 版本: 1.0.66
+</span></span><span class="line"><span class="cl">MSRDC 版本: 1.2.6353
+</span></span><span class="line"><span class="cl">Direct3D 版本: 1.611.1-81528511
+</span></span><span class="line"><span class="cl">DXCore 版本: 10.0.26100.1-240331-1435.ge-release
+</span></span><span class="line"><span class="cl">Windows: 10.0.26200.7019
+</span></span></code></pre></div><h2 id="wsl-基本命令">
+<a class="header-anchor" href="#wsl-%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4"></a>
+<a href="https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands">WSL 基本命令</a>
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查找支持的 Linux 分发版系统</span>
+</span></span><span class="line"><span class="cl">wsl -l -o
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看已安装的 linux 列表、各自的运行状态以及 wsl 版本</span>
+</span></span><span class="line"><span class="cl">wsl -l -v
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装支持的分发版 Linux 系统</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --name 安装的 Linux 名称，后续进入该系统时使此名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --location 安装到指定的目录</span>
+</span></span><span class="line"><span class="cl">wsl --install -d &lt;Linux-name&gt; --name &lt;name&gt; --location <span class="o">[</span>path<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入系统时直接到家目录</span>
+</span></span><span class="line"><span class="cl">wsl -d &lt;name&gt; --cd ~
+</span></span><span class="line"><span class="cl"><span class="c1"># 以指定用户进入 linux 系统</span>
+</span></span><span class="line"><span class="cl">wsl -d &lt;linux-name&gt; -u <span class="o">[</span>user<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭所有的 linux 子系统</span>
+</span></span><span class="line"><span class="cl">wsl --shutdown
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置默认启动的 linux 发行版，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置完成后可以直接在 bash 中使用 wsl 进行默认的发行版</span>
+</span></span><span class="line"><span class="cl">wsl -s &lt;linux-name&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新 wsl</span>
+</span></span><span class="line"><span class="cl">wsl --update
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 wsl 版本以及默认分发版本</span>
+</span></span><span class="line"><span class="cl">wsl --status
+</span></span><span class="line"><span class="cl"><span class="c1"># wsl 版本信息</span>
+</span></span><span class="line"><span class="cl">wsl --version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导出镜像 tar</span>
+</span></span><span class="line"><span class="cl">wsl --export &lt;linux-name&gt; &lt;filename&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入镜像 tar</span>
+</span></span><span class="line"><span class="cl">wsl --import &lt;linux-name&gt; &lt;install-path&gt; &lt;filename&gt; 
+</span></span></code></pre></div><blockquote>
+<p>注意：以上简写形式的命令选项必须 <a href="https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment">运行最新版本的 Windows 版本</a>。</p>
+</blockquote>
+<h2 id="安装-arch-linux">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85-arch-linux"></a>
+安装 Arch Linux
+</h2><p>借助 <a href="https://github.com/yuk7/ArchWSL">ArchWSL</a> 项目进行，官方文档：https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/</p>
+<blockquote>
+<p>如何更新：https://github.com/yuk7/ArchWSL/issues/23</p>
+</blockquote>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>2025.10.30 补充</p>
+<p>ArchLinux 官方也提供了 <a href="https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL">wsl 镜像</a>，可以直接使用，但是需要注意官方版只支持 WSL2。</p>
+<p><em><strong>注意：本文依旧基于<a href="https://github.com/yuk7/ArchWSL">开源的ArchWSL项目</a>讲解。</strong></em></p></p>
+  </blockquote>
+
+<h3 id="创建普通用户设置-root-用户密码">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e8%ae%be%e7%bd%ae-root-%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81"></a>
+创建普通用户、设置 root 用户密码
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">useradd -m -s /bin/bash &lt;yourname&gt;
+</span></span><span class="line"><span class="cl">passwd &lt;yourname&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置 root 用户密码</span>
+</span></span><span class="line"><span class="cl">passwd root
+</span></span></code></pre></div><h3 id="配置-pacman">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae-pacman"></a>
+<a href="https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#initialize-keyring">配置 pacman</a>
+</h3><p>使用第三方的 ArchWSL 时，默认情况下，pacman 不能直接使用。编辑 <code>/etc/pacman.d/mirrorlist</code>，在文件的顶端添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+</span></span></code></pre></div><p>之后执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman-key --init
+</span></span><span class="line"><span class="cl">sudo pacman-key --populate
+</span></span><span class="line"><span class="cl">sudo pacman -Sy archlinux-keyring
+</span></span><span class="line"><span class="cl">sudo pacman -Su
+</span></span></code></pre></div><blockquote>
+<p>官方版本不需要此配置。</p>
+</blockquote>
+<h3 id="安装基本工具">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85%e5%9f%ba%e6%9c%ac%e5%b7%a5%e5%85%b7"></a>
+安装基本工具
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基本编译工具</span>
+</span></span><span class="line"><span class="cl">sudo pacman -S --needed base-devel
+</span></span><span class="line"><span class="cl"><span class="c1"># 文本编辑器</span>
+</span></span><span class="line"><span class="cl">sudo pacman -S neovim bash-completion
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 podman，oci 运行时选择 crun</span>
+</span></span><span class="line"><span class="cl">pacman -S podman podman-compose
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 paru</span>
+</span></span><span class="line"><span class="cl">git clone https://aur.archlinux.org/paru.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> paru
+</span></span><span class="line"><span class="cl">makepkg -si
+</span></span></code></pre></div><p>开发环境推荐使用 <a href="https://mise.jdx.dev/">mise</a> 管理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">curl https://mise.run <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装完毕之后执行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;eval &#34;$(~/.local/bin/mise activate bash)&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mise use -g usage
+</span></span><span class="line"><span class="cl"><span class="c1"># This requires bash-completion to be installed</span>
+</span></span><span class="line"><span class="cl">mkdir -p ~/.local/share/bash-completion/completions/
+</span></span><span class="line"><span class="cl">mise completion bash --include-bash-completion-lib &gt; ~/.local/share/bash-completion/completions/mise
+</span></span></code></pre></div><p>打开新的 terminal 运行 <code>mise dr</code>，正常输出即安装成功。具体使用参考我的 <a href="/post/skill/windows/mise/">mise 文章</a>。</p>
+<h3 id="配置中文环境">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae%e4%b8%ad%e6%96%87%e7%8e%af%e5%a2%83"></a>
+配置中文环境
+</h3><p>编辑 <code>vim /etc/locale.gen</code> 文件，把 <code>zh_CN.UTF-8 UTF-8</code> 这一行取消注释。然后执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装中文字体</span>
+</span></span><span class="line"><span class="cl">sudo pacman -S wqy-microhei
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果使用 yay 或 paru</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># paru -S maple-mono-nf-cn-unhinted</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">locale-gen
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;LANG=zh_CN.UTF-8&#34;</span> <span class="p">|</span> sudo tee /etc/locale.conf
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/locale.conf
+</span></span><span class="line"><span class="cl">locale
+</span></span></code></pre></div><blockquote>
+<p>参考 <a href="https://wiki.archlinux.org/title/Localization/Simplified_Chinese">Arch Wiki</a></p>
+<p>中文字体需要安装。</p>
+</blockquote>
+<h3 id="设置默认登录用户">
+<a class="header-anchor" href="#%e8%ae%be%e7%bd%ae%e9%bb%98%e8%ae%a4%e7%99%bb%e5%bd%95%e7%94%a8%e6%88%b7"></a>
+设置默认登录用户
+</h3><p>编辑文件 <code>nvim /etc/wsl.conf</code>，加入以下内容。退出 wsl terminal 并关闭系统 <code>wsl --shutdown</code>，然后重新进入。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置默认登录用户</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>user<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">default</span><span class="o">=</span>&lt;yourname&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>interop<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不要加载 Windows 环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="nv">appendWindowsPath</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># [automount]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># enabled = false</span>
+</span></span></code></pre></div><blockquote>
+<p>如果使用远程开发的需求，WSL 不可以关闭自动挂载，否则 idea、zed、vscode 等工具都会链接失败。</p>
+</blockquote>
+<h2 id="附一些错误">
+<a class="header-anchor" href="#%e9%99%84%e4%b8%80%e4%ba%9b%e9%94%99%e8%af%af"></a>
+附：一些错误
+</h2><h3 id="禁用-cgroup-v1">
+<a class="header-anchor" href="#%e7%a6%81%e7%94%a8-cgroup-v1"></a>
+禁用 cgroup v1
+</h3><p>编辑 <code>~/.wslconfig</code> 文件（不存在就新建），加入以下内容，重启 wsl 子系统。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>wsl2<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">kernelCommandLine</span> <span class="o">=</span> <span class="nv">cgroup_no_v1</span><span class="o">=</span>all
+</span></span></code></pre></div><ul>
+<li><code>.wslconfig</code> 用于在 WSL 2 上运行的所有已安装发行版中配置全局设置。</li>
+<li><code>wsl.conf</code> 用于为在 WSL 1 或 WSL 2 上运行的每个 Linux 发行版按各个发行版配置本地设置。</li>
+</ul>
+<h3 id="无法解析服务器的名称或地址">
+<a class="header-anchor" href="#%e6%97%a0%e6%b3%95%e8%a7%a3%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%90%8d%e7%a7%b0%e6%88%96%e5%9c%b0%e5%9d%80"></a>
+无法解析服务器的名称或地址
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wsl -l -o
+</span></span><span class="line"><span class="cl">无法解析服务器的名称或地址
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">或者以下错误：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">无法从“https://raw.githubusercontent.com/microsoft/WSL/master/distributions/DistributionInfo.json”中提取列表分发。无法解析服务器的名称或地址
+</span></span><span class="line"><span class="cl">Error code: Wsl/WININET_E_NAME_NOT_RESOLVED
+</span></span></code></pre></div><p>解决办法：DNS 污染的问题，使用魔法或者一些代理工具吧，修改 HOSTS 文件也可以。</p>
+<h3 id="安装启动时-wslregisterdistribution-failed-with-error">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85%e5%90%af%e5%8a%a8%e6%97%b6-wslregisterdistribution-failed-with-error"></a>
+安装启动时 WslRegisterDistribution failed with error
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">WslRegisterDistribution failed with error: 0x800701bc
+</span></span><span class="line"><span class="cl">Error: 0x800701bc WSL <span class="m">2</span> ?????????????????? https://aka.ms/wsl2kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Press any key to <span class="k">continue</span>...
+</span></span></code></pre></div><p>解决办法：下载安装新的 wsl 内核，下载链接在上面，就是那个更新补丁！</p>
+<h3 id="dockerpodman-运行容器时报错">
+<a class="header-anchor" href="#dockerpodman-%e8%bf%90%e8%a1%8c%e5%ae%b9%e5%99%a8%e6%97%b6%e6%8a%a5%e9%94%99"></a>
+docker/podman 运行容器时报错
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Error: netavark: unable to append rule <span class="s1">&#39;-d 10.88.0.0/16 -j ACCEPT&#39;</span> to table <span class="s1">&#39;nat&#39;</span>: code: 4, msg: iptables v1.8.9 <span class="o">(</span>nf_tables<span class="o">)</span>:  RULE_APPEND failed <span class="o">(</span>No such file or directory<span class="o">)</span>: rule in chain NETAVARK-1D8721804F16F
+</span></span></code></pre></div><p>解决办法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+</span></span><span class="line"><span class="cl">sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+</span></span></code></pre></div><blockquote>
+<p>参考：https://github.com/microsoft/WSL/issues/6655</p>
+</blockquote>
+<h3 id="启动-dockerpodman-容器失败">
+<a class="header-anchor" href="#%e5%90%af%e5%8a%a8-dockerpodman-%e5%ae%b9%e5%99%a8%e5%a4%b1%e8%b4%a5"></a>
+启动 docker/podman 容器失败
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Error: unable to start container <span class="s2">&#34;64d6eadde7ea46e36c2bb9afdec2a92aa99992d15ccc89ad869d344e09efa97b&#34;</span>: systemd slice received as cgroup parent when using cgroupfs: invalid argument
+</span></span></code></pre></div><p>编辑 <code>/etc/wsl.conf</code> 添加以下内容重启 wsl：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>boot<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">systemd</span><span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/windows/windows-wsl2/&amp;title=%e7%94%a9%e6%8e%89%20Vmware%20%e9%87%8d%e5%9e%8b%e6%9c%ba%20%e2%80%94%e2%80%94%20WSL%20%e6%94%bb%e7%95%a5&amp;desc=Windows%20%e4%b8%8a%e7%9a%84%20wsl%20%e8%bf%98%e6%98%af%e6%8c%ba%e5%a5%bd%e7%94%a8%e7%9a%84%e3%80%82%e4%b8%8d%e8%bf%87%e5%8f%aa%e6%8e%a8%e8%8d%90%e5%ae%89%e8%a3%85%e4%b8%ad%e9%97%b4%e4%bb%b6%ef%bc%8c%e6%9e%81%e4%b8%8d%e6%8e%a8%e8%8d%90%e4%bd%bf%e7%94%a8%20WSL%20%e8%bf%9b%e8%a1%8c%20remote%20develop%ef%bc%8c%e5%8d%a0%e7%94%a8%e8%b5%84%e6%ba%90%e8%be%83%e5%a4%9a%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="甩掉 Vmware 重型机 —— WSL 攻略">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="甩掉 Vmware 重型机 —— WSL 攻略">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/windows"
+      data-aos="zoom-in"
+      >Windows</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/%e9%85%8d%e7%bd%ae"
+        rel="tag"
+        >配置</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/wsl"
+        rel="tag"
+        >wsl</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/win"
+        rel="tag"
+        >win</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="Intel Arc 770 的绘世启动器之旅"
+              class="lazyload"
+            /><a
+          href="/post/skill/arc770gpu-use-sd-webui-aki/"
+          aria-label="前一篇:Intel Arc 770 的绘世启动器之旅"
+          title="前一篇:Intel Arc 770 的绘世启动器之旅"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Intel Arc 770 的绘世启动器之旅</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="电子厂漂流记"
+              class="lazyload"
+            /><a
+          href="/post/life/life-electron-factory/"
+          aria-label="后一篇:电子厂漂流记"
+          title="后一篇:电子厂漂流记"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">电子厂漂流记</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#wsl-基本命令">WSL 基本命令</a></li>
+    <li><a href="#安装-arch-linux">安装 Arch Linux</a>
+      <ul>
+        <li><a href="#创建普通用户设置-root-用户密码">创建普通用户、设置 root 用户密码</a></li>
+        <li><a href="#配置-pacman">配置 pacman</a></li>
+        <li><a href="#安装基本工具">安装基本工具</a></li>
+        <li><a href="#配置中文环境">配置中文环境</a></li>
+        <li><a href="#设置默认登录用户">设置默认登录用户</a></li>
+      </ul>
+    </li>
+    <li><a href="#附一些错误">附：一些错误</a>
+      <ul>
+        <li><a href="#禁用-cgroup-v1">禁用 cgroup v1</a></li>
+        <li><a href="#无法解析服务器的名称或地址">无法解析服务器的名称或地址</a></li>
+        <li><a href="#安装启动时-wslregisterdistribution-failed-with-error">安装启动时 WslRegisterDistribution failed with error</a></li>
+        <li><a href="#dockerpodman-运行容器时报错">docker/podman 运行容器时报错</a></li>
+        <li><a href="#启动-dockerpodman-容器失败">启动 docker/podman 容器失败</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "甩掉 Vmware 重型机 —— WSL 攻略",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/windows\/windows-wsl2\/",
+          description: "Windows 上的 wsl 还是挺好用的。不过只推荐安装中间件，极不推荐使用 WSL 进行 remote develop，占用资源较多。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

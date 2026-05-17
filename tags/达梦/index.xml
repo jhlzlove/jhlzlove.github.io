@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>达梦 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/%E8%BE%BE%E6%A2%A6/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/%E8%BE%BE%E6%A2%A6/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>达梦数据库</title>
+      <link>https://jhlzlove.github.io/post/skill/db/dameng/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/dameng/</guid>
+      <description>
+        <![CDATA[<h1>达梦数据库</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="常规安装">
+<a class="header-anchor" href="#%e5%b8%b8%e8%a7%84%e5%ae%89%e8%a3%85"></a>
+常规安装
+</h2><p>常规安装可以参照达梦自带的安装手册。为便于复制，这里再重复一次，安装的目录为 <code>/home/dmdba</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建用户和用户组，并设置密码</span>
+</span></span><span class="line"><span class="cl">groupadd -g <span class="m">12349</span> dinstall
+</span></span><span class="line"><span class="cl">useradd -u <span class="m">12345</span> -g dinstall -m -d /home/dmdba -s /bin/bash dmdba
+</span></span><span class="line"><span class="cl">passwd dmdba
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令行安装，按照提示进行选择即可</span>
+</span></span><span class="line"><span class="cl">./DMInstall.bin -i
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换用户初始化数据库</span>
+</span></span><span class="line"><span class="cl">su - dmdba
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/bin
+</span></span><span class="line"><span class="cl">./dminit <span class="nv">path</span><span class="o">=</span>/home/dmdba/dmdata <span class="nv">PAGE_SIZE</span><span class="o">=</span><span class="m">16</span> <span class="nv">CHARSET</span><span class="o">=</span><span class="m">1</span> <span class="nv">INSTANCE_NAME</span><span class="o">=</span>DM <span class="nv">SYSDBA_PWD</span><span class="o">=</span>yourpassword <span class="nv">SYSAUDITOR_PWD</span><span class="o">=</span>yourpassword
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su - root
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置系统服务</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/script/root
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 选项为设置服务名后缀</span>
+</span></span><span class="line"><span class="cl">./dm_service_installer.sh -t dmserver -dm_ini /home/dmdba/dmdata/DAMENG/dm.ini -p dm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">systemctl start DmServicedm
+</span></span></code></pre></div><blockquote>
+<p>最新的版本需要设置 SYSDBA_PWD 和 SYSAUDITOR_PWD 的密码，如何不设置将会提醒你设置。
+生产模式中 PAGE_SIZE 可以设置 32，本文使用默认的大小写配置</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

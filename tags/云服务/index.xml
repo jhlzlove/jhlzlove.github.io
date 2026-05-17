@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>云服务 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Docker 入门</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/docker/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/docker/</guid>
+      <description>
+        <![CDATA[<h1>Docker 入门</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <ul>
+<li><a href="/post/skill/cloudnative/docker/#%e4%b8%80docker%e5%85%a5%e9%97%a8">一、Docker入门</a></li>
+<li><a href="/post/skill/cloudnative/docker/#%e4%ba%8c%e5%87%86%e5%a4%87">二、准备</a>
+<ul>
+<li><a href="/post/skill/cloudnative/docker/#%e9%95%9c%e5%83%8f%e6%ba%90%e9%85%8d%e7%bd%ae">镜像源配置</a>
+<ul>
+<li><a href="/post/skill/cloudnative/docker/#1-%e5%91%bd%e4%bb%a4%e8%a1%8c%e8%ae%be%e7%bd%ae%e5%9b%bd%e5%86%85%e9%95%9c%e5%83%8f%e6%ba%90">1. 命令行设置国内镜像源</a></li>
+<li><a href="/post/skill/cloudnative/docker/#2-%e7%bc%96%e8%be%91%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e8%ae%be%e7%bd%ae%e9%95%9c%e5%83%8f%e5%8a%a0%e9%80%9f">2. 编辑配置文件设置镜像加速</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="/post/skill/cloudnative/docker/#%e4%b8%89%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">三、常用命令</a></li>
+<li><a href="/post/skill/cloudnative/docker/#%e5%9b%9bdocker%e8%bf%9b%e9%98%b6">四、Docker进阶</a>
+<ul>
+<li><a href="/post/skill/cloudnative/docker/#1-docker%e4%b8%ba%e4%bb%80%e4%b9%88%e6%8f%90%e4%be%9b%e7%bd%91%e7%bb%9c%e5%8a%9f%e8%83%bd">1. Docker为什么提供网络功能？</a></li>
+<li><a href="/post/skill/cloudnative/docker/#2-docker%e6%95%b0%e6%8d%ae%e5%8d%b7volume">2. docker数据卷（volume）</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/cloudnative/docker/#%e4%ba%94dockerfile">五、Dockerfile</a></li>
+<li><a href="/post/skill/cloudnative/docker/#%e5%85%addocker-compose">六、docker-compose</a>
+<ul>
+<li><a href="/post/skill/cloudnative/docker/#1-%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">1. 常用命令</a></li>
+<li><a href="/post/skill/cloudnative/docker/#2-docker-composeyml%e7%a4%ba%e4%be%8b">2. docker-compose.yml示例</a></li>
+<li><a href="/post/skill/cloudnative/docker/#3-%e4%bd%bf%e7%94%a8portainer%e5%8f%af%e8%a7%86%e5%8c%96%e5%b7%a5%e5%85%b7">3. 使用portainer可视化工具</a></li>
+<li><a href="/post/skill/cloudnative/docker/#4-%e5%8d%b8%e8%bd%bd-docker">4. 卸载 Docker</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="一docker入门">
+<a class="header-anchor" href="#%e4%b8%80docker%e5%85%a5%e9%97%a8"></a>
+一、Docker入门
+</h2><p>镜像与容器概念？</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

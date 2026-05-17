@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科普 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/%E7%A7%91%E6%99%AE/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/%E7%A7%91%E6%99%AE/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>解锁数字媒体：认识视频音频格式以及编解码</title>
+      <link>https://jhlzlove.github.io/post/skill/video-encoding/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/video-encoding/</guid>
+      <description>
+        <![CDATA[<h1>解锁数字媒体：认识视频音频格式以及编解码</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近使用了 <a href="https://obsproject.com/">OBS Studio</a> 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。</p>
+        
+        <hr><p>本文2023-10-17首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2023-10-17</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

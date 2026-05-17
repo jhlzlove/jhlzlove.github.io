@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/web/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/web/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>不知道起什么名字的 Web</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/web/web-other/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/web/web-other/</guid>
+      <description>
+        <![CDATA[<h1>不知道起什么名字的 Web</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>这里面的内容可能很杂乱，因为要记录使用过程中的一些问题。前端的框架不止是应用框架，也包含 UI 框架等等。</p>
+<blockquote>
+<p>EP：Element Plus</p>
+</blockquote>
+<h2 id="若依">
+<a class="header-anchor" href="#%e8%8b%a5%e4%be%9d"></a>
+若依
+</h2><h3 id="form-表单图片上传">
+<a class="header-anchor" href="#form-%e8%a1%a8%e5%8d%95%e5%9b%be%e7%89%87%e4%b8%8a%e4%bc%a0"></a>
+form 表单图片上传
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">el-form-item</span> <span class="na">label</span><span class="o">=</span><span class="s">&#34;图片上传&#34;</span> <span class="na">prop</span><span class="o">=</span><span class="s">&#34;img&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 限制只能上传一张 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">image-upload</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;form.img&#34;</span> <span class="na">:limit</span><span class="o">=</span><span class="s">&#34;1&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">el-form-item</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>预览时：</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Web</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Web</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/web/web/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/web/web/</guid>
+      <description>
+        <![CDATA[<h1>Web</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Web 发展到今天，涌现出的工具、框架五花八门，各种各样，所以有非常多的选择。但是怎么样都离不开 HTML、CSS、JavaScript，至少目前确实如此。Web 篇写的非常的潦草，浪子对前端只是了解，会用一点点儿，权当一个记录放在这里。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Web</category>
+      
+    </item>
+    
+  </channel>
+</rss>

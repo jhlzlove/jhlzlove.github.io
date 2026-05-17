@@ -1,0 +1,1146 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  【Linux】 Ubuntu 服务器配置 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="【Linux】 Ubuntu 服务器配置 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-05T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-05T00:00:00&#43;08:00" /><meta property="article:tag" content="linux, ubuntu" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="【Linux】 Ubuntu 服务器配置"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">【Linux】 Ubuntu 服务器配置</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一ubuntu-基本配置">一、Ubuntu 基本配置</a>
+      <ul>
+        <li><a href="#1-开启-root-用户远程登录">1. 开启 root 用户远程登录</a></li>
+        <li><a href="#2-apt-get">2. apt-get</a></li>
+        <li><a href="#3-禁止使用-snap">3. 禁止使用 snap</a></li>
+        <li><a href="#4-安装基础的开发编译工具">4. 安装基础的开发、编译工具</a></li>
+        <li><a href="#5-时区设置">5. 时区设置</a></li>
+        <li><a href="#6-语言设置">6. 语言设置</a></li>
+        <li><a href="#7-vim-配置">7. Vim 配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#二常用软件">二、常用软件</a>
+      <ul>
+        <li><a href="#1-redis">1. Redis</a></li>
+        <li><a href="#2-mysql">2. MySQL</a></li>
+        <li><a href="#3-docker">3. Docker</a></li>
+        <li><a href="#4-btop">4. btop++</a></li>
+        <li><a href="#5-nodejs">5. Nodejs</a></li>
+        <li><a href="#6-open-jdk">6. open-jdk</a></li>
+      </ul>
+    </li>
+    <li><a href="#三其它">三、其它</a>
+      <ul>
+        <li><a href="#1-查找apt安装的软件的路径">1. 查找apt安装的软件的路径</a></li>
+        <li><a href="#2-开放指定端口">2. 开放指定端口</a></li>
+        <li><a href="#3-ftp服务搭建">3. ftp服务搭建</a></li>
+      </ul>
+    </li>
+    <li><a href="#四一些问题">四、一些问题</a>
+      <ul>
+        <li><a href="#1-docker">1. Docker</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-05 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-05</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-05</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>Ubuntu Server 22.04 服务器配置。</p>
+<h2 id="一ubuntu-基本配置">
+<a class="header-anchor" href="#%e4%b8%80ubuntu-%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+一、Ubuntu 基本配置
+</h2><p>首先，掌握 apt 命令的基本使用：https://itsfoss.com/apt-command-guide/</p>
+<h3 id="1-开启-root-用户远程登录">
+<a class="header-anchor" href="#1-%e5%bc%80%e5%90%af-root-%e7%94%a8%e6%88%b7%e8%bf%9c%e7%a8%8b%e7%99%bb%e5%bd%95"></a>
+1. 开启 root 用户远程登录
+</h3><p>对于 <a href="https://cn.ubuntu.com/server">服务器版本</a> 来说，默认的 root 用户是禁止使用密码登录的（prohibit-password），这里修改允许使用密码进行远程登录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置 root 用户的密码</span>
+</span></span><span class="line"><span class="cl">sudo passwd root
+</span></span></code></pre></div><p>编辑文件 <code>sudo vim /etc/ssh/sshd_config</code>，找到 <code>#PermitRootLogin prohibit-password</code> 所在的行，去掉注释并修改 <code>prohibit-password</code> 为 <code>yes</code>，保存退出并重启 sshd 服务。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart sshd
+</span></span></code></pre></div><h3 id="2-apt-get">
+<a class="header-anchor" href="#2-apt-get"></a>
+2. <a href="https://www.computerhope.com/unix/apt-get.htm">apt-get</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有的安装软件</span>
+</span></span><span class="line"><span class="cl">dpkg --list
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装已经下载好的 deb 安装包</span>
+</span></span><span class="line"><span class="cl">dpkg -i 安装包
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新所有可更新的软件包</span>
+</span></span><span class="line"><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt upgrade
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 卸载指定软件并删除配置文件</span>
+</span></span><span class="line"><span class="cl">sudo apt --purge remove 包名
+</span></span><span class="line"><span class="cl"><span class="c1"># 清理不再使用的依赖和库文件</span>
+</span></span><span class="line"><span class="cl">sudo apt autoremove
+</span></span></code></pre></div><h3 id="3-禁止使用-snap">
+<a class="header-anchor" href="#3-%e7%a6%81%e6%ad%a2%e4%bd%bf%e7%94%a8-snap"></a>
+3. 禁止使用 snap
+</h3><p>snap 可以获取软件的最新版，Ubuntu 逐渐迁移很多软件包到 snap，这样会导致软件不稳定。当然优点也是显而易见的，不过只对开发人员友好。对于个人日常使用、生产环境等场景还是不需要的。</p>
+<p>卸载 snap 请参考：https://ubuntuhandbook.org/index.php/2022/04/remove-snap-block-ubuntu-2204/amp/</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看列表</span>
+</span></span><span class="line"><span class="cl">snap list
+</span></span><span class="line"><span class="cl"><span class="c1"># 卸载所有列表中的软件，有些软件依赖其它组件的，注意先后顺序</span>
+</span></span><span class="line"><span class="cl">sudo snap remove --purge <span class="o">[</span>soft<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最后卸载 snapd</span>
+</span></span><span class="line"><span class="cl">sudo apt remove --autoremove snapd
+</span></span></code></pre></div><p>然后编辑文件 <code>sudo vim /etc/apt/preferences.d/nosnap.pref</code> 添加下面的内容禁止 apt 使用 sanp 包。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># To prevent repository packages from triggering the installation of snap,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># this file forbids snapd from being installed by APT.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Package: snapd
+</span></span><span class="line"><span class="cl">Pin: release <span class="nv">a</span><span class="o">=</span>*
+</span></span><span class="line"><span class="cl">Pin-Priority: -10
+</span></span></code></pre></div><p>之后执行 <code>sudo apt update</code>，就不会使用 snap 下载了。</p>
+<h3 id="4-安装基础的开发编译工具">
+<a class="header-anchor" href="#4-%e5%ae%89%e8%a3%85%e5%9f%ba%e7%a1%80%e7%9a%84%e5%bc%80%e5%8f%91%e7%bc%96%e8%af%91%e5%b7%a5%e5%85%b7"></a>
+4. 安装基础的开发、编译工具
+</h3><p>由于最小化的服务器版安装有一些编译库默认是没有安装的，需要用户手动安装，所以这里记一下常用的基础库：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># gcc/g++/gdb/make 编译工具</span>
+</span></span><span class="line"><span class="cl">apt-get install build-essential
+</span></span><span class="line"><span class="cl"><span class="c1"># ssl-lib</span>
+</span></span><span class="line"><span class="cl">apt-get install openssl libssl-dev
+</span></span><span class="line"><span class="cl">apt-get install zlib1g-dev
+</span></span></code></pre></div><h3 id="5-时区设置">
+<a class="header-anchor" href="#5-%e6%97%b6%e5%8c%ba%e8%ae%be%e7%bd%ae"></a>
+5. 时区设置
+</h3><p>Ubuntu 可以使用内置的 timedatectl 设置系统的时区。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看当前的时区</span>
+</span></span><span class="line"><span class="cl">timedatectl
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看支持的时区列表</span>
+</span></span><span class="line"><span class="cl">timedatectl list-timezones
+</span></span><span class="line"><span class="cl"><span class="c1"># 是否含有中国时区</span>
+</span></span><span class="line"><span class="cl">timedatectl list-timezones <span class="p">|</span> grep Asia/Shanghai
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置中国时区</span>
+</span></span><span class="line"><span class="cl">timedatectl set-timezone Asia/Shanghai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 无需重启，再次查看</span>
+</span></span><span class="line"><span class="cl">timedatectl
+</span></span></code></pre></div><h3 id="6-语言设置">
+<a class="header-anchor" href="#6-%e8%af%ad%e8%a8%80%e8%ae%be%e7%bd%ae"></a>
+6. 语言设置
+</h3><h4 id="-ubuntu-2204-以上">
+<a class="header-anchor" href="#-ubuntu-2204-%e4%bb%a5%e4%b8%8a"></a>
+① Ubuntu 22.04 以上
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看当前系统的语言配置</span>
+</span></span><span class="line"><span class="cl">locale
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果使用的 Ubuntu 22.04 以上使用这个命令将更加简单容易，选择完成之后注销重启</span>
+</span></span><span class="line"><span class="cl">sudo dpkg-reconfigure locales
+</span></span><span class="line"><span class="cl"><span class="c1"># 再次查看配置</span>
+</span></span><span class="line"><span class="cl">locale
+</span></span></code></pre></div><h4 id="-ubuntu-2204-以下">
+<a class="header-anchor" href="#-ubuntu-2204-%e4%bb%a5%e4%b8%8b"></a>
+② Ubuntu 22.04 以下
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下面的适用旧版本 Ubuntu 22.04 以下</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 列出所有启用的区域设置</span>
+</span></span><span class="line"><span class="cl">locale -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 locale.gen 文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消 zh_CN.UTF-8 UTF-8 en_US.UTF-8 UTF-8 两行的注释</span>
+</span></span><span class="line"><span class="cl">vim /etc/locale.gen
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑保存后，执行以下命令</span>
+</span></span><span class="line"><span class="cl">locale-gen
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示正在使用的 Locale 和相关的环境变量</span>
+</span></span><span class="line"><span class="cl">locale
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置整个系统使用的区域设置</span>
+</span></span><span class="line"><span class="cl">localectl set-locale <span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+</span></span><span class="line"><span class="cl"><span class="c1"># 立即生效</span>
+</span></span><span class="line"><span class="cl"><span class="nb">unset</span> LANG
+</span></span></code></pre></div><blockquote>
+<p>如果使用上面的立即生效命令仍然有问题，没有生效，请重启计算机。</p>
+</blockquote>
+<h3 id="7-vim-配置">
+<a class="header-anchor" href="#7-vim-%e9%85%8d%e7%bd%ae"></a>
+7. Vim 配置
+</h3><p>Linux 中有很多编辑工具，像 Vim、Nano 等，都是非常不错的，可以使用自己喜欢的。Vim 的全局配置文件在 <code>/etc/vim/vimrc</code> 或者 <code>/etc/vimrc</code>，对所有用户生效；用户的配置文件一般在 <code>~/.vimrc</code> 中。</p>
+<p>这里修改全局的配置，编辑 {% mark /etc/vim/vimrc color:green %} 文件，没有的话可以手动创建一个。下面给了一些简单实用的配置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bashrc" data-lang="bashrc"><span class="line"><span class="cl"><span class="s2">&#34; 文件编码
+</span></span></span><span class="line"><span class="cl"><span class="s2">set encoding=utf-8
+</span></span></span><span class="line"><span class="cl"><span class="s2">set fileencoding=utf-8
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 自动缩进
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> autoindent
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 新行智能自动缩进
+</span></span></span><span class="line"><span class="cl"><span class="s2">set smartindent
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 状态栏标尺
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ruler
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 语法高亮 vim5 之后默认开启
+</span></span></span><span class="line"><span class="cl"><span class="s2">set syntax=on
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> Tab键的宽度
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 搜索忽略大小写
+</span></span></span><span class="line"><span class="cl"><span class="s2">set ignorecase
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 高亮显示匹配的括号
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> showmatch
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 总是显示行号
+</span></span></span><span class="line"><span class="cl"><span class="s2">set nu
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 侦测文件类型
+</span></span><span class="line"><span class="cl">filetype on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 状态行显示的内容（包括文件类型和解码）
+</span></span></span><span class="line"><span class="cl"><span class="s2">set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&#34;%d/%m/%y\ -\ %H:%M\&#34;)}
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 总是显示状态行
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">laststatus</span><span class="o">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 高亮搜索的文本
+</span></span></span><span class="line"><span class="cl"><span class="s2">set hlsearch
+</span></span></span></code></pre></div><h2 id="二常用软件">
+<a class="header-anchor" href="#%e4%ba%8c%e5%b8%b8%e7%94%a8%e8%bd%af%e4%bb%b6"></a>
+二、常用软件
+</h2><h3 id="1-redis">
+<a class="header-anchor" href="#1-redis"></a>
+1. Redis
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://download.redis.io/redis-stable.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf redis-stable.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> redis-stable
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl">redis-server <span class="p">&amp;</span>
+</span></span></code></pre></div><h3 id="2-mysql">
+<a class="header-anchor" href="#2-mysql"></a>
+2. MySQL
+</h3><p>apt-get安装：https://blog.lanluo.cn/8662</p>
+<h3 id="3-docker">
+<a class="header-anchor" href="#3-docker"></a>
+3. <a href="https://docs.docker.com/engine/install/ubuntu/">Docker</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 卸载旧版本</span>
+</span></span><span class="line"><span class="cl">sudo apt-get remove docker docker-engine docker.io containerd runc
+</span></span><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install <span class="se">\
+</span></span></span><span class="line"><span class="cl">    ca-certificates <span class="se">\
+</span></span></span><span class="line"><span class="cl">    curl <span class="se">\
+</span></span></span><span class="line"><span class="cl">    gnupg <span class="se">\
+</span></span></span><span class="line"><span class="cl">    lsb-release
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add Docker’s official GPG key:</span>
+</span></span><span class="line"><span class="cl">sudo mkdir -p /etc/apt/keyrings
+</span></span><span class="line"><span class="cl">curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置稳定版仓库</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+</span></span></span><span class="line"><span class="cl"><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新包索引</span>
+</span></span><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">####################### 下面二选一 #############################</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 安装最新版本的 Docker Engine-Community 和 containerd ，或者转到下一步安装特定版本：</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看版本</span>
+</span></span><span class="line"><span class="cl">apt-cache madison docker-ce
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择指定的版本安装</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install docker-ce<span class="o">=</span>&lt;VERSION_STRING&gt; docker-ce-cli<span class="o">=</span>&lt;VERSION_STRING&gt; containerd.io docker-compose-plugin
+</span></span></code></pre></div><h3 id="4-btop">
+<a class="header-anchor" href="#4-btop"></a>
+4. <a href="https://github.com/aristocratos/btop">btop++</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载解压安装</span>
+</span></span><span class="line"><span class="cl">wget https://github.com/aristocratos/btop/releases/download/v1.2.8/btop-x86_64-linux-musl.tbz
+</span></span><span class="line"><span class="cl">mkdir btop <span class="o">&amp;&amp;</span> tar xvf btop-x86_64-linux-musl.tbz -C btop
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> btop
+</span></span><span class="line"><span class="cl">./install.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行</span>
+</span></span><span class="line"><span class="cl">btop
+</span></span></code></pre></div><h3 id="5-nodejs">
+<a class="header-anchor" href="#5-nodejs"></a>
+5. <a href="https://github.com/nodesource/distributions/blob/master/README.md">Nodejs</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Using Ubuntu</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://deb.nodesource.com/setup_16.x <span class="p">|</span> sudo -E bash -
+</span></span><span class="line"><span class="cl">sudo apt-get install -y nodejs
+</span></span></code></pre></div><h3 id="6-open-jdk">
+<a class="header-anchor" href="#6-open-jdk"></a>
+6. <a href="https://openjdk.org/install/">open-jdk</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install openjdk-8-jdk
+</span></span></code></pre></div><h2 id="三其它">
+<a class="header-anchor" href="#%e4%b8%89%e5%85%b6%e5%ae%83"></a>
+三、其它
+</h2><h3 id="1-查找apt安装的软件的路径">
+<a class="header-anchor" href="#1-%e6%9f%a5%e6%89%beapt%e5%ae%89%e8%a3%85%e7%9a%84%e8%bd%af%e4%bb%b6%e7%9a%84%e8%b7%af%e5%be%84"></a>
+1. 查找apt安装的软件的路径
+</h3><p>这里以jdk为例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">which java
+</span></span><span class="line"><span class="cl"><span class="c1"># 多次执行，直到最后打印出一些系统信息</span>
+</span></span><span class="line"><span class="cl">file 上一条命令打印的路径
+</span></span></code></pre></div><h3 id="2-开放指定端口">
+<a class="header-anchor" href="#2-%e5%bc%80%e6%94%be%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3"></a>
+2. 开放指定端口
+</h3><p>随着 Ubuntu 的更新，它的各种软件也在更新，以前用 <code>firewall</code>，新版本（22.04）已经默认使用 <code>ufw</code>，相比较而言，<a href="https://help.ubuntu.com/community/UFW">UFW</a> command more easily，不过具体使用这里就不详细写了，可以参考官网的说明，很简单。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动防火墙</span>
+</span></span><span class="line"><span class="cl">systemctl start firewalld
+</span></span><span class="line"><span class="cl"><span class="c1"># --zone 作用域 --add-port 格式 端口/通讯协议 --permanent 永久生效</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>1935/tcp --permanent
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --reload
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前所有tcp端口</span>
+</span></span><span class="line"><span class="cl">netstat -ntlp
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有1935端口使用情况</span>
+</span></span><span class="line"><span class="cl">netstat -ntulp <span class="p">|</span> grep <span class="m">1935</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用 ufw</span>
+</span></span><span class="line"><span class="cl">ufw <span class="nb">enable</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用 ufw</span>
+</span></span><span class="line"><span class="cl">ufw disable
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看状态</span>
+</span></span><span class="line"><span class="cl">ufw status verbose
+</span></span><span class="line"><span class="cl"><span class="c1"># 放行端口</span>
+</span></span><span class="line"><span class="cl">ufw allow port/协议（TCP<span class="p">|</span>UDP）
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭端口</span>
+</span></span><span class="line"><span class="cl">ufw deny port/协议
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许特定 IP 访问</span>
+</span></span><span class="line"><span class="cl">ufw allow from IP
+</span></span></code></pre></div><h3 id="3-ftp服务搭建">
+<a class="header-anchor" href="#3-ftp%e6%9c%8d%e5%8a%a1%e6%90%ad%e5%bb%ba"></a>
+3. <a href="https://www.geeksforgeeks.org/how-to-setup-and-configure-an-ftp-server-in-linux/">ftp服务搭建</a>
+</h3><p><a href="https://pkgs.org/download/vsftpd">下载</a> 完成后上传至服务器，执行以下命令安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dpkg -i xxx.deb
+</span></span></code></pre></div><p>安装完成后编辑 <code>/etc/vsftpd.conf</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">listen</span><span class="o">=</span><span class="n">NO</span>
+</span></span><span class="line"><span class="cl"><span class="n">listen_ipv6</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">anonymous_enable</span><span class="o">=</span><span class="n">NO</span>
+</span></span><span class="line"><span class="cl"><span class="n">local_enable</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">write_enable</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">local_umask</span><span class="o">=</span><span class="mi">022</span>
+</span></span><span class="line"><span class="cl"><span class="n">dirmessage_enable</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">use_localtime</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">xferlog_enable</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">connect_from_port_20</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">chroot_local_user</span><span class="o">=</span><span class="n">YES</span>
+</span></span><span class="line"><span class="cl"><span class="n">secure_chroot_dir</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">vsftpd</span><span class="o">/</span><span class="n">empty</span>
+</span></span><span class="line"><span class="cl"><span class="n">pam_service_name</span><span class="o">=</span><span class="n">vsftpd</span>
+</span></span><span class="line"><span class="cl"><span class="n">rsa_cert_file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">ssl</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">snakeoil</span><span class="o">.</span><span class="n">pem</span>
+</span></span><span class="line"><span class="cl"><span class="n">rsa_private_key_file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">ssl</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">snakeoil</span><span class="o">.</span><span class="n">key</span>
+</span></span><span class="line"><span class="cl"><span class="n">ssl_enable</span><span class="o">=</span><span class="n">NO</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 新增</span>
+</span></span><span class="line"><span class="cl"><span class="n">pasv_enable</span><span class="o">=</span><span class="n">Yes</span>
+</span></span><span class="line"><span class="cl"><span class="n">pasv_min_port</span><span class="o">=</span><span class="mi">10000</span>
+</span></span><span class="line"><span class="cl"><span class="n">pasv_max_port</span><span class="o">=</span><span class="mi">10100</span>
+</span></span><span class="line"><span class="cl"><span class="n">allow_writeable_chroot</span><span class="o">=</span><span class="n">YES</span>
+</span></span></code></pre></div><p>更新防火墙：<code>sudo ufw allow from any to any port 20,21,10000:10100 proto tcp</code></p>
+<p>重启服务：<code>sudo systemctl restart vsftpd</code></p>
+<p>创建新用户并设置密码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo useradd -m ftptest
+</span></span><span class="line"><span class="cl">sudo passwd ftptest
+</span></span><span class="line"><span class="cl">New password:
+</span></span><span class="line"><span class="cl">Retype new password:
+</span></span><span class="line"><span class="cl">passwd: password updated successfully
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 出于安全考虑，限定用户ftpuser不能登录，只能ftp</span>
+</span></span><span class="line"><span class="cl">usermod -s /sbin/nologin ftpuser
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 出于安全考虑，我们将禁用此用户的 ssh 权限。输入</span>
+</span></span><span class="line"><span class="cl">sudo vim /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl"><span class="c1"># 在此文件中添加以下行，然后重启 SSH sudo systemctl restart sshd</span>
+</span></span><span class="line"><span class="cl">DenyUsers ftpuser
+</span></span></code></pre></div><p>添加文件(连接 ftp 时展示的目录为登录的用户的主目录，所以为了安全我们使用新建的用户)：</p>
+<p><code>sudo echo &quot;this is a simple file&quot; &gt; /home/ftptest/test.txt</code></p>
+<p>然后就可以连接测试了：<code>ftp://ip</code></p>
+<h2 id="四一些问题">
+<a class="header-anchor" href="#%e5%9b%9b%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98"></a>
+四、一些问题
+</h2><h3 id="1-docker">
+<a class="header-anchor" href="#1-docker"></a>
+1. Docker
+</h3><p>Ubuntu version 22.04
+Docker version 23.0.1
+Docker Compose version v2.16.0
+安装 Docker 工具：<a href="https://snapcraft.io/docs">snap</a>
+错误原因：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Cannot Connect to the Docker Daemon at ‘unix:///var/run/docker.sock’
+</span></span></code></pre></div><p>解决参考：https://appuals.com/cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock/</p>
+<p>如果不能解决，尝试下面的方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 停止 docker</span>
+</span></span><span class="line"><span class="cl">systemctl stop docker.socket
+</span></span><span class="line"><span class="cl">systemctl stop docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 snap 管理的 docker 状态</span>
+</span></span><span class="line"><span class="cl">snap services
+</span></span><span class="line"><span class="cl"><span class="c1"># 停止服务</span>
+</span></span><span class="line"><span class="cl">snap stop docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后重启</span>
+</span></span><span class="line"><span class="cl">systemctl start docker
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/&amp;title=%e3%80%90Linux%e3%80%91%20Ubuntu%20%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae&amp;desc=Ubuntu%20Server%2022.04%20%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="【Linux】 Ubuntu 服务器配置">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="【Linux】 Ubuntu 服务器配置">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/linux"
+      data-aos="zoom-in"
+      >Linux</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/linux"
+        rel="tag"
+        >linux</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/ubuntu"
+        rel="tag"
+        >ubuntu</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="【Linux】 Ubuntu安装Hadoop&#43;Hive"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/ubuntu-install-hadoop/"
+          aria-label="前一篇:【Linux】 Ubuntu安装Hadoop&#43;Hive"
+          title="前一篇:【Linux】 Ubuntu安装Hadoop&#43;Hive"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">【Linux】 Ubuntu安装Hadoop&#43;Hive</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="【Linux】 CentOS 服务器配置"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/centos/centos-server-config/"
+          aria-label="后一篇:【Linux】 CentOS 服务器配置"
+          title="后一篇:【Linux】 CentOS 服务器配置"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">【Linux】 CentOS 服务器配置</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一ubuntu-基本配置">一、Ubuntu 基本配置</a>
+      <ul>
+        <li><a href="#1-开启-root-用户远程登录">1. 开启 root 用户远程登录</a></li>
+        <li><a href="#2-apt-get">2. apt-get</a></li>
+        <li><a href="#3-禁止使用-snap">3. 禁止使用 snap</a></li>
+        <li><a href="#4-安装基础的开发编译工具">4. 安装基础的开发、编译工具</a></li>
+        <li><a href="#5-时区设置">5. 时区设置</a></li>
+        <li><a href="#6-语言设置">6. 语言设置</a></li>
+        <li><a href="#7-vim-配置">7. Vim 配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#二常用软件">二、常用软件</a>
+      <ul>
+        <li><a href="#1-redis">1. Redis</a></li>
+        <li><a href="#2-mysql">2. MySQL</a></li>
+        <li><a href="#3-docker">3. Docker</a></li>
+        <li><a href="#4-btop">4. btop++</a></li>
+        <li><a href="#5-nodejs">5. Nodejs</a></li>
+        <li><a href="#6-open-jdk">6. open-jdk</a></li>
+      </ul>
+    </li>
+    <li><a href="#三其它">三、其它</a>
+      <ul>
+        <li><a href="#1-查找apt安装的软件的路径">1. 查找apt安装的软件的路径</a></li>
+        <li><a href="#2-开放指定端口">2. 开放指定端口</a></li>
+        <li><a href="#3-ftp服务搭建">3. ftp服务搭建</a></li>
+      </ul>
+    </li>
+    <li><a href="#四一些问题">四、一些问题</a>
+      <ul>
+        <li><a href="#1-docker">1. Docker</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "【Linux】 Ubuntu 服务器配置",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/linux\/ubuntu-server-config\/",
+          description: "Ubuntu Server 22.04 服务器配置。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

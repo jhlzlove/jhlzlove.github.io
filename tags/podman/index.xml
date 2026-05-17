@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Podman on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/podman/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/podman/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>初识 Podman</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/podman/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/podman/</guid>
+      <description>
+        <![CDATA[<h1>初识 Podman</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p><a href="https://podman.io/">Podman</a> 和 Docker 一样，也是一个容器化技术的一种实现。它是全开源的。但是它们的底层架构是不同的，Podman 不需要使用 <code>root</code> 用户创建容器，也没有 <code>deamon</code> 进程，所以 Podman 不支持<code>--restart</code> 策略。但是为了迁移方便，Podman 团队采用了和 Docker 类似的命令。</p>
+<p>以下内容摘自 <a href="https://docs.podman.io/en/latest/">官网文档</a>：</p>
+<blockquote>
+<p>Podman 是一个无守护进程、开源的 Linux 原生工具，旨在使用开放容器倡议 （OCI） 容器和容器映像轻松查找、运行、构建、共享和部署应用程序。Podman 提供了一个命令行界面 （CLI），任何使用过 Docker 容器引擎的人都很熟悉。大多数用户可以简单地将Docker别名化为Podman（别名docker=podman），没有任何问题。与其他常见的容器引擎（Docker，CRI-O，containerd）类似，Podman依赖于符合OCI的容器运行时（runc，crun，runv等）与操作系统接口并创建正在运行的容器。这使得 Podman 创建的正在运行的容器与任何其他常见容器引擎创建的容器几乎没有区别。</p>
+<p>Podman 控制下的容器可以由 root 或非特权用户运行。Podman 使用 libpod 库管理整个容器生态系统，包括 pod、容器、容器镜像和容器卷。Podman 专注于帮助您维护和修改 OCI 容器映像的所有命令和功能，例如拉取和标记。它允许您在生产环境中创建、运行和维护这些容器和容器映像。</p>
+</blockquote>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Docker/Podman 部署常用服务</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/deploy-container-server/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/deploy-container-server/</guid>
+      <description>
+        <![CDATA[<h1>Docker/Podman 部署常用服务</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>常用的中间件服务使用 docker/ podman 进行部署。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

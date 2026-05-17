@@ -1,0 +1,1101 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Rust | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Rust | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/rust/rust/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/cover/rust.jpg" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="rust, 编程语言" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/cover/rust.jpg" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img  fetchpriority="high" src="/images/cover/rust.jpg" alt="Rust"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Rust</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一安装">一、安装</a>
+      <ul>
+        <li><a href="#linux">Linux</a></li>
+        <li><a href="#window">Window</a></li>
+        <li><a href="#rust-一些命令">Rust 一些命令</a></li>
+        <li><a href="#rust-的依赖管理">Rust 的依赖管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#二rust-命名规则">二、Rust 命名规则</a></li>
+    <li><a href="#三初步认识">三、初步认识</a>
+      <ul>
+        <li><a href="#rust-智能指针">Rust 智能指针</a></li>
+      </ul>
+    </li>
+    <li><a href="#四rust-流行库">四、Rust 流行库</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><div class="post-link-card-wrap">
+  <div class="post-link-card">
+    <a href="https://doc.rust-lang.org/stable/book/" title="Rust 官方文档" rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+      <div class="post-link-card-title">Rust 官方文档</div>
+      <div class="post-link-card-excerpt">
+        <span class="icon-link"></span>https://doc.rust-lang.org/stable/book/
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="一安装">
+<a class="header-anchor" href="#%e4%b8%80%e5%ae%89%e8%a3%85"></a>
+一、安装
+</h2><h3 id="linux">
+<a class="header-anchor" href="#linux"></a>
+Linux
+</h3><p>Linux 安装非常简单，只需要一行命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.rustup.rs <span class="p">|</span> sh
+</span></span></code></pre></div><h3 id="window">
+<a class="header-anchor" href="#window"></a>
+Window
+</h3><blockquote>
+<p>也可以不按照下面的步骤，直接使用 <a href="https://www.rust-lang.org/learn/get-started">RUST-INIT</a> 安装的时候它也会让你先安装这个环境（根据提示选对吼），并且已经自动帮你勾选、添加环境变量等操作，你需要做的只是 waiting。</p>
+</blockquote>
+<p>下载 <a href="https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>，勾选 C++ 环境和自己的操作系统的 SDK，如下图所示。</p>
+<p><img src="/images/doc/20230911165747.webp" alt="rust-install"></p>
+<p>安装的文件比较大，建议手动选择安装位置，避免占用过多系统盘。等待安装完成后，然后找到程序安装的位置：<code>%Visual Studio 安装位置%\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\%version%\bin\Hostx64\x64</code>，把该值添加到环境变量中。</p>
+<p><code>%Visual Studio 安装位置%</code>、<code>%version%</code> 需要替换自己的安装路径和对应的版本号。</p>
+<p>以上工作完成后就可以下载 <a href="https://www.rust-lang.org/learn/get-started">RUST-INIT</a> 并双击运行，默认回车等待安装完毕。</p>
+<h4 id="crates-国内下载源">
+<a class="header-anchor" href="#crates-%e5%9b%bd%e5%86%85%e4%b8%8b%e8%bd%bd%e6%ba%90"></a>
+crates 国内下载源
+</h4><p>由于 <code>crates.io</code> 的下载速度较慢，我们需要使用国内的源来下载第三方库。编辑文件 <code>$HOME/.cargo/config.toml</code>(Rust 版本 &lt;= 1.38 时使用 <strong>config</strong> 文件)，如果没有该文件，手动创建即可。</p>
+<p>Rust 1.68 之后推荐使用稀疏索引，避免完整 clone，加快下载更新速度。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">crates-io</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">replace-with</span> <span class="p">=</span> <span class="s1">&#39;ustc&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">ustc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">registry</span> <span class="p">=</span> <span class="s2">&#34;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&#34;</span>
+</span></span></code></pre></div><h3 id="rust-一些命令">
+<a class="header-anchor" href="#rust-%e4%b8%80%e4%ba%9b%e5%91%bd%e4%bb%a4"></a>
+Rust 一些命令
+</h3><p>Rust 自带了非常完善的工具链：Cargo，Cargo 是 Rust 的构建系统和包管理器。</p>
+<p>虽然 Cargo 的部分命令可以使用 <code>rustc</code> 来代替（你可以把 cargo 看作是 rustc 的高级封装），但是一旦涉及到依赖管理或者其它高级使用的问题，<code>rustc</code> 就相形见绌了，本文不详细介绍 rustc 的相关命令，这里放一个链接：<a href="https://doc.rust-lang.org/rustc/what-is-rustc.html">https://doc.rust-lang.org/rustc/what-is-rustc.html</a>，有需要自行查看。</p>
+<h4 id="cargo-命令">
+<a class="header-anchor" href="#cargo-%e5%91%bd%e4%bb%a4"></a>
+Cargo 命令
+</h4><p><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://doc.rust-lang.org/cargo/index.html"
+			title="Cargo 官方文档"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">Cargo 官方文档</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://doc.rust-lang.org/cargo/index.html</div>
+		</div>
+	</div>
+</div>
+
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.rustwiki.org.cn/zh-CN/cargo"
+			title="Cargo中文教程"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">Cargo中文教程</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.rustwiki.org.cn/zh-CN/cargo</div>
+		</div>
+	</div>
+</div>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># cargo 帮助</span>
+</span></span><span class="line"><span class="cl">cargo --help
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 Rust 版本</span>
+</span></span><span class="line"><span class="cl">cargo --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建新的 hello_cargo 项目</span>
+</span></span><span class="line"><span class="cl">cargo new hello_cargo
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化当前的目录为 Rust 项目</span>
+</span></span><span class="line"><span class="cl">cargo init
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建项目</span>
+</span></span><span class="line"><span class="cl">cargo build
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建并运行项目</span>
+</span></span><span class="line"><span class="cl">cargo run
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查代码，确保其可编译但不生成可执行文件（速度快）</span>
+</span></span><span class="line"><span class="cl">cargo check
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行项目中的测试</span>
+</span></span><span class="line"><span class="cl">cargo <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建项目文档，并直接打开文档</span>
+</span></span><span class="line"><span class="cl">cargo doc --open
+</span></span></code></pre></div><blockquote>
+<p>cargo 将构建的二进制执行文件放在 <code>target/debug</code> 目录中，与项目同名.
+当你的项目准备发布时，建议使用 <code>cargo build --release</code> 进行优化，这些优化使你的 Rust 代码运行得更快，但会延长程序编译所需的时间。此命令将在 <code>target/release</code> 中创建可执行文件.
+如果要对代码的运行时间进行基准测试，请务必运行 <code>cargo build --release</code> 并使用 <code>target/release</code> 中的可执行文件进行基准测试.</p>
+</blockquote>
+<p>执行命令时，cargo 会检查代码中未使用的变量和方法并输出警告。如果这些变量和方法需要临时保留，同时不想让编译器给出警告，可以在未使用的变量和方法上加入 <code>_</code> 前缀。另外还有一些注解辅助禁止警告。</p>
+<ul>
+<li><code>#[warn(dead_code)]</code> 标注可以消除编译器对于没有用到的代码的警告；</li>
+<li><code>#[warn(unused_imports)]</code> 标注可以消除对已经导入但未使用包的警告；</li>
+</ul>
+<h4 id="版本更新">
+<a class="header-anchor" href="#%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0"></a>
+版本更新
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 更新 Rust 版本</span>
+</span></span><span class="line"><span class="cl">rustup update
+</span></span></code></pre></div><h3 id="rust-的依赖管理">
+<a class="header-anchor" href="#rust-%e7%9a%84%e4%be%9d%e8%b5%96%e7%ae%a1%e7%90%86"></a>
+Rust 的依赖管理
+</h3><p>Rust 项目的文件管理清单都在 <code>Cargo.toml</code> 中，该清单包括项目基本信息（例如作者、仓库地址、rust版本等）、依赖（包括构建依赖、开发依赖等）等信息。如果你还不熟悉 <a href="https://toml.io/">Toml</a> 的配置方式，可以学习一下，比较简单。</p>
+<p>Rust 的依赖搜索可以去 crates.io 中查询，类似与 Maven 的中央仓库。</p>
+<p>截至目前，新建的 Rust 项目中的 <code>Cargo.toml</code> 中默认包含以下信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># 项目的描述信息</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">package</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;hello_cargo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.1.0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">edition</span> <span class="p">=</span> <span class="s2">&#34;2021&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 依赖</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span></code></pre></div><h4 id="初步简单认识-cargo-workspace">
+<a class="header-anchor" href="#%e5%88%9d%e6%ad%a5%e7%ae%80%e5%8d%95%e8%ae%a4%e8%af%86-cargo-workspace"></a>
+初步简单认识 cargo workspace
+</h4><p>如果所构建的项目较大，那么可以使用 <a href="https://doc.rust-lang.org/stable/book/ch14-03-cargo-workspaces.html">cargo workspace</a>。和多模块有点儿类似。</p>
+<p>以 <code>rust_parent</code> 为例，作为顶级目录，父母录中的 <code>Cargo.toml</code> 配置子包的目录名称即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo new rust_parent <span class="o">&amp;&amp;</span> <span class="nb">cd</span> rust_parent
+</span></span></code></pre></div><p>然后打开 <code>Cargo.toml</code> 文件，删除所有内容，添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">workspace</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 子包目录名称</span>
+</span></span><span class="line"><span class="cl"><span class="nx">members</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;sub1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;....&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>然后我们创建子包：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo new sub1
+</span></span></code></pre></div><p>之后运行 <code>cargo build</code> 目录应如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">── rust_parent
+</span></span><span class="line"><span class="cl">    ├── Cargo.lock
+</span></span><span class="line"><span class="cl">    ├── Cargo.toml
+</span></span><span class="line"><span class="cl">    ├── sub1
+</span></span><span class="line"><span class="cl">    │   ├── Cargo.toml
+</span></span><span class="line"><span class="cl">    │   └── src
+</span></span><span class="line"><span class="cl">    │       └── main.rs
+</span></span><span class="line"><span class="cl">    └── target
+</span></span></code></pre></div><blockquote>
+<p>无论有多少 crate，都只会在顶层目录的 <code>target</code> 中输出二进制文件。
+如果要单独运行某个包中的程序，使用 <code>cargo run -p [package]</code>，例如 <code>cargo run -p sub1</code>。</p>
+</blockquote>
+<h2 id="二rust-命名规则">
+<a class="header-anchor" href="#%e4%ba%8crust-%e5%91%bd%e5%90%8d%e8%a7%84%e5%88%99"></a>
+二、Rust 命名规则
+</h2><p>任何一门编程语言，都有对应的命名规范，开发时遵守规范利于他人阅读、维护。Rust 也不例外。命名规则参考 Rust 语言圣经：https://course.rs/practice/naming.html</p>
+<h2 id="三初步认识">
+<a class="header-anchor" href="#%e4%b8%89%e5%88%9d%e6%ad%a5%e8%ae%a4%e8%af%86"></a>
+三、初步认识
+</h2><ul>
+<li>
+<p>Rust 的标准库小而稳定，只提供语法特性，扩展较强，所以大部分时候都要使用 <code>cargo</code> 引入并管理依赖，cargo 也支持自定义扩展命令也是因此。</p>
+</li>
+<li>
+<p>Rust 的生态很多内容都是通过社区提供支持的。</p>
+</li>
+<li>
+<p>Rust 中，只有实现了 <code>std::fmt::Display</code> trait 的自定义 struct 才可以自定义输出格式并且可以使用 <code>{}</code> 进行占位。如果使用 <code>#[derive(Debug)]</code> 进行标注，则使用 <code>{:?}</code> 或者 <code>{:#?}</code> 美化输出。</p>
+</li>
+<li>
+<p>Rust 中的属性定义和方法是分离的，方法或者函数放置在 impl 块中，便于维护、格式清晰。如下代码：</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 自定义结构体，实现 Debug trait 以便于使用 {:?} 进行打印输出
+</span></span></span><span class="line"><span class="cl"><span class="cp">#[derive(Debug)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">age</span>: <span class="kt">i32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">address</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">hobby</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 自定义类型结构体的方法
+</span></span></span><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">say</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">todo!</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 这种定义在 impl 中且没有 self 的函数被称之为关联函数
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">dance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">todo!</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>self 是当前的类型实例，Self 指代当前的类型，这是一种简单的编写方式。</p>
+</blockquote>
+<p>在 Rust 中，如果方法返回类型不是 Self，并且没有包含泛型，使用这样的特征创建的对象被称为 <strong>安全的特征对象</strong>。
+Rust 函数的每一个引用参数都有自己的生命周期；如果函数只有一个引用类型的参数，那么该生命周期会同步作用到输出生命周期；若存在多个输入生命周期，且其中一个是 <code>&amp;self</code> 或 <code>&amp;mut self</code>，则 <code>&amp;self</code> 的生命周期被赋给所有的输出生命周期。</p>
+<blockquote>
+<p>函数或者方法中，参数的生命周期被称为 <strong>输入生命周期</strong>，返回值的生命周期被称为 <strong>输出生命周期</strong></p>
+</blockquote>
+<h3 id="rust-智能指针">
+<a class="header-anchor" href="#rust-%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88"></a>
+Rust 智能指针
+</h3><table>
+  <thead>
+      <tr>
+          <th>名称</th>
+          <th>简介</th>
+          <th>强项</th>
+          <th>弱项</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Raw Point</td>
+          <td><code>*mut T</code> 和 <code>*const T</code>，自由基，闪电般快，极其 unsafe</td>
+          <td>速度、与外界交互</td>
+          <td>Unsafe</td>
+      </tr>
+      <tr>
+          <td>Box&lt;T&gt;</td>
+          <td>可以把任何东西都放在 Box 中。可接受几乎任何类型的长期存储。新的安全编程时代的主力军</td>
+          <td>将值存在 Heap</td>
+          <td>大小增加</td>
+      </tr>
+      <tr>
+          <td>Rc&lt;T&gt;</td>
+          <td>是 Rust 的能干而吝啬的簿记员。他知道谁借了什么，何时借了什么</td>
+          <td>对值的共享访问</td>
+          <td>大小增加；<!-- raw HTML omitted -->运行时不安全；<!-- raw HTML omitted -->线程不安全</td>
+      </tr>
+      <tr>
+          <td>Arc&lt;T&gt;</td>
+          <td>是 Rust 的大使。它可以跨线程共享值，保证这些值不会相互干扰。</td>
+          <td>对值的共享访问；线程安全</td>
+          <td>大小增加；<!-- raw HTML omitted -->运行时成本；</td>
+      </tr>
+      <tr>
+          <td>Cell&lt;T&gt;</td>
+          <td>变态专家，具有改变不可变值的能力</td>
+          <td>内部可变性；</td>
+          <td>大小增加；<!-- raw HTML omitted -->性能；</td>
+      </tr>
+      <tr>
+          <td>RefCell&lt;T&gt;</td>
+          <td>对不可变引用执行改变，但有代价</td>
+          <td>内部可变性；可与仅接受不可变引用的 Rc、Arc 嵌套使用；</td>
+          <td>大小增加；<!-- raw HTML omitted -->运行时成本；<!-- raw HTML omitted -->缺乏编译时保障；</td>
+      </tr>
+      <tr>
+          <td>Cow<!-- raw HTML omitted --> （Copy on write）</td>
+          <td>封闭并提供对借用数据的不可变访问，并在需要修改或所有权时 <strong>延迟克隆数据</strong></td>
+          <td>当只是只读访问时避免写入；</td>
+          <td>大小可能会增大；</td>
+      </tr>
+      <tr>
+          <td>String</td>
+          <td>处理可变长度的文本，展示了如何构建安全的抽象</td>
+          <td>动态按需增长；<!-- raw HTML omitted -->在运行时保证正确编码；</td>
+          <td>过度分配内存大小；</td>
+      </tr>
+      <tr>
+          <td>Vec&lt;T&gt;</td>
+          <td>程序中最常用的存储系统，它在创建和销毁值时保持数据有序</td>
+          <td>动态按需增长；</td>
+          <td>过度分配内存大小；</td>
+      </tr>
+      <tr>
+          <td>RawVec&lt;T&gt;</td>
+          <td>是 Vec<!-- raw HTML omitted --> 和其它动态大小类型的基石，知道如何按需给你的数据提供一个家</td>
+          <td>动态按需增长；<!-- raw HTML omitted -->与内存分配器一起配合寻找空间；</td>
+          <td>不直接适用于您的代码；</td>
+      </tr>
+      <tr>
+          <td>Unique&lt;T&gt;</td>
+          <td>作为值的唯一所有者，可保证拥有完全控制权</td>
+          <td>需要独占值的类型（如 String）的基础</td>
+          <td>不适合直接用于应用程序代码；</td>
+      </tr>
+      <tr>
+          <td>Shared&lt;T&gt;</td>
+          <td>分享所有权很难，但它使生活更轻松。</td>
+          <td>共享所有权；<!-- raw HTML omitted -->可以将内存与 T 的宽度对齐，即使为空的时候；</td>
+          <td>不适合直接用于应用程序代码；</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Drop Trait，智能指针的必备特征之一。</p>
+</blockquote>
+<h2 id="四rust-流行库">
+<a class="header-anchor" href="#%e5%9b%9brust-%e6%b5%81%e8%a1%8c%e5%ba%93"></a>
+四、Rust 流行库
+</h2><ul>
+<li><a href="https://crates.io/crates/serde">serde</a> 序列化库；</li>
+<li><a href="https://crates.io/crates/reqwest">reqwest</a> 网络请求库；</li>
+<li><a href="https://crates.io/crates/tokio">tokio</a> 异步运行时；</li>
+</ul>
+</div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/rust/rust/&amp;title=Rust&amp;desc=%20Rust%20%e5%ae%98%e6%96%b9%e6%96%87%e6%a1%a3%20https://doc.rust-lang.org/stable/book/%20%e4%b8%80%e3%80%81%e5%ae%89%e8%a3%85%20Linux%20Linux%20%e5%ae%89%e8%a3%85%e9%9d%9e%e5%b8%b8%e7%ae%80%e5%8d%95%ef%bc%8c%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b8%80%e8%a1%8c%e5%91%bd%e4%bb%a4%ef%bc%9a%0acurl%20--proto%20&amp;#39;=https&amp;#39;%20--tlsv1.2%20-sSf%20https://sh.rustup.rs%20%7c%20sh%20Window%20%e4%b9%9f%e5%8f%af%e4%bb%a5%e4%b8%8d%e6%8c%89%e7%85%a7%e4%b8%8b%e9%9d%a2%e7%9a%84%e6%ad%a5%e9%aa%a4%ef%bc%8c%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8%20RUST-INIT%20%e5%ae%89%e8%a3%85%e7%9a%84%e6%97%b6%e5%80%99%e5%ae%83%e4%b9%9f%e4%bc%9a%e8%ae%a9%e4%bd%a0%e5%85%88%e5%ae%89%e8%a3%85%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%ef%bc%88%e6%a0%b9%e6%8d%ae%e6%8f%90%e7%a4%ba%e9%80%89%e5%af%b9%e5%90%bc%ef%bc%89%ef%bc%8c%e5%b9%b6%e4%b8%94%e5%b7%b2%e7%bb%8f%e8%87%aa%e5%8a%a8%e5%b8%ae%e4%bd%a0%e5%8b%be%e9%80%89%e3%80%81%e6%b7%bb%e5%8a%a0%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e7%ad%89%e6%93%8d%e4%bd%9c%ef%bc%8c%e4%bd%a0%e9%9c%80%e8%a6%81%e5%81%9a%e7%9a%84%e5%8f%aa%e6%98%af%20waiting%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Rust">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Rust">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/rust"
+      data-aos="zoom-in"
+      >Rust</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/rust"
+        rel="tag"
+        >rust</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80"
+        rel="tag"
+        >编程语言</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="Rust 异步编程"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/rust/rust-async/"
+          aria-label="前一篇:Rust 异步编程"
+          title="前一篇:Rust 异步编程"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Rust 异步编程</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="RESTful API"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/restful/"
+          aria-label="后一篇:RESTful API"
+          title="后一篇:RESTful API"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">RESTful API</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一安装">一、安装</a>
+      <ul>
+        <li><a href="#linux">Linux</a></li>
+        <li><a href="#window">Window</a></li>
+        <li><a href="#rust-一些命令">Rust 一些命令</a></li>
+        <li><a href="#rust-的依赖管理">Rust 的依赖管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#二rust-命名规则">二、Rust 命名规则</a></li>
+    <li><a href="#三初步认识">三、初步认识</a>
+      <ul>
+        <li><a href="#rust-智能指针">Rust 智能指针</a></li>
+      </ul>
+    </li>
+    <li><a href="#四rust-流行库">四、Rust 流行库</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Rust",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/rust\/rust\/",
+          description: " Rust 官方文档 https:\/\/doc.rust-lang.org\/stable\/book\/ 一、安装 Linux Linux 安装非常简单，只需要一行命令：\ncurl --proto \u0026#39;=https\u0026#39; --tlsv1.2 -sSf https:\/\/sh.rustup.rs | sh Window 也可以不按照下面的步骤，直接使用 RUST-INIT 安装的时候它也会让你先安装这个环境（根据提示选对吼），并且已经自动帮你勾选、添加环境变量等操作，你需要做的只是 waiting。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/cover\/rust.jpg",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

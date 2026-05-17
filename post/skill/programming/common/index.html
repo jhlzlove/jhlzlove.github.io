@@ -1,0 +1,1017 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  编程小知识 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="编程小知识 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/common/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="programming" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="编程小知识"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">编程小知识</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#编程语言">编程语言</a>
+      <ul>
+        <li><a href="#编程语言的其它分类静态动态强类型弱类型">编程语言的其它分类：静态、动态、强类型、弱类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络协议">网络协议</a></li>
+    <li><a href="#硬件相关">硬件相关</a>
+      <ul>
+        <li><a href="#中央处理器架构">中央处理器架构</a></li>
+        <li><a href="#内存堆栈">内存堆栈</a></li>
+      </ul>
+    </li>
+    <li><a href="#元编程">元编程</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h2 id="编程语言">
+<a class="header-anchor" href="#%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80"></a>
+编程语言
+</h2><p>我们都知道，计算机中的执行者 CPU 只认识二进制的 0 和 1 组成的序列，使用 0 和 1 组成的序列我们称之为 <strong>机器码</strong>。<strong>机器码</strong> 是计算机可以直接执行的。但是直接使用机器码编写 CPU 指令不仅费时费力，还特别容易出错，于是后来有了 <strong>汇编语言</strong>。简单概括的话，汇编语言类似于一种助记符，直接面对指令，将二进制指令替换成人类便于记忆的字符串，并给定特殊的格式。每一条汇编指令对应一条二进制指令。根据内核架构的不同，不同的指令有不同的长度和格式。</p>
+<p>汇编语言是一种 <strong>低级</strong> 编程语言，它更接近机器代码或二进制。因此，它们对人类来说更难阅读（尽管它们仍然比 1 和 0 更容易理解）。低级语言的好处是它们速度快，并且可以精确控制计算机的运行方式。
+高级编程语言则更接近人类的交流方式。高级语言使用的单词（如对象、顺序、运行、类、请求等）更接近我们在日常生活中使用的单词。这意味着它们比低级编程语言更容易编程，尽管它们确实需要更多时间才能翻译成计算机的机器代码。随着计算机变得越来越强大，低级和高级编程语言之间的运行时间差异通常只有几毫秒。因此，高级语言在大多数情况下都可以解决问题。</p>
+<p>现在我们学的 C/C++、Rust、Python、Java、Go 等都是高级语言，编写起来要简单很多。不过这些高级语言中人们又将其分类细化：编译型语言和解释型语言。</p>
+<ul>
+<li>编译语言的示例：C、C++、C#、CLEO、COBOL 等。</li>
+<li>解释语言的示例：JavaScript，Perl，Python，BASIC 等。</li>
+</ul>
+<p>编译型语言顾名思义就是需要经过编译器的编译之后才能执行，只要程序通过编译，便可以由目标机器（Windows、Linux等）直接执行；而解释型语言是通过解释器直接运行的，读取一行内容便解释一行，指令不是由目标机器直接执行的。</p>
+<p>一般而言，编译型语言通常更快，更节省内存，编译时会进行优化；而解释型语言通常较慢，且由于解释开销，内存使用较大。不过有的解释型语言的解释器实现、优化非常好，加上如今硬件的升级，性能与编译型语言不相上下。</p>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>编译型语言</th>
+          <th>解释型语言</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>编译过程</td>
+          <td>需要编译步骤来生成可执行文件</td>
+          <td>无需编译，代码由解释器执行</td>
+      </tr>
+      <tr>
+          <td>编译时间</td>
+          <td>编译大型项目可能耗时较多</td>
+          <td>及时反馈，无需编译</td>
+      </tr>
+      <tr>
+          <td>依赖性</td>
+          <td>只需二进制文件和必要的库即可执行</td>
+          <td>需要安装解释器才能执行代码</td>
+      </tr>
+      <tr>
+          <td>可移植性</td>
+          <td>需要为不同平台重新编译</td>
+          <td>任何有解释器的平台都可以运行</td>
+      </tr>
+      <tr>
+          <td>执行速度</td>
+          <td>通常更快</td>
+          <td>通常较慢</td>
+      </tr>
+      <tr>
+          <td>内存使用</td>
+          <td>通常更节省内存，编译时会进行优化</td>
+          <td>由于解释开销，可能会占用更多内存</td>
+      </tr>
+      <tr>
+          <td>修改和测试</td>
+          <td>修改后需要重新编译，迭代较慢</td>
+          <td>修改后可直接测试，无需重新编译，迭代较快</td>
+      </tr>
+      <tr>
+          <td>示例</td>
+          <td>C，C++，Rust，Go</td>
+          <td>Python、JavaScript、Ruby</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>上面的表格（以及下面的类型）来自：https://www.bilibili.com/video/BV1Y227YtETA</p>
+</blockquote>
+<p>说起编译型语言就不得不提到编译器，传统的编译器通常分为三个部分，前端（frontEnd），优化器（Optimizer）和后端（backEnd）。在编译过程中，前端主要负责词法和语法分析，将源代码转化为抽象语法树；优化器则是在前端的基础上，对得到的中间代码进行优化，使代码更加高效；后端则是将已经优化的中间代码转化为针对各自平台的机器代码。常见的编译器有 GCC（GNU组织开发）、Clang、MSVC/Mingw 等。对了，要说明的是 Clang 的后端部分就是 <a href="https://llvm.org/">LLVM</a>。</p>
+<p>MinGW 和 MSVC 为 Windows C/C++ 语言编译支持。</p>
+<h3 id="编程语言的其它分类静态动态强类型弱类型">
+<a class="header-anchor" href="#%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80%e7%9a%84%e5%85%b6%e5%ae%83%e5%88%86%e7%b1%bb%e9%9d%99%e6%80%81%e5%8a%a8%e6%80%81%e5%bc%ba%e7%b1%bb%e5%9e%8b%e5%bc%b1%e7%b1%bb%e5%9e%8b"></a>
+编程语言的其它分类：静态、动态、强类型、弱类型
+</h3><p>静态类型的语言：编译时就知道所有数据的类型，如果声明类型和赋予的值不匹配，IDE 便会报错。例如 C/C++、Rust、Java、Scala 等。</p>
+<p>动态类型的语言：在运行程序的时候才知道数据的类型。例如 JavaScript、Python、PHP、Ruby 等。</p>
+<p>强类型语言：对数据类型的赋值进行规则约束，通常使用强制转换。例如 Python、Rust、Java、 Ruby 等。</p>
+<p>弱类型语言：对数据类型的赋值约束少/无约束，通常是隐式转换。例如 JavaScript、PHP、VB 等。</p>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>静态</th>
+          <th>动态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>类型检查</td>
+          <td>编译时</td>
+          <td>运行时</td>
+      </tr>
+      <tr>
+          <td>错误检测</td>
+          <td>早（执行前）</td>
+          <td>晚（执行期间）</td>
+      </tr>
+      <tr>
+          <td>代码灵活性</td>
+          <td>低</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>性能</td>
+          <td>通常更快</td>
+          <td>可能会更慢</td>
+      </tr>
+      <tr>
+          <td>示例</td>
+          <td>Rust、Java、C#</td>
+          <td>Python、JavaScript</td>
+      </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>强类型</th>
+          <th>弱类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据类型声明</td>
+          <td>显式、隐式</td>
+          <td>隐式</td>
+      </tr>
+      <tr>
+          <td>类型约束</td>
+          <td>严格</td>
+          <td>宽松</td>
+      </tr>
+      <tr>
+          <td>类型转换</td>
+          <td>需要显式进行</td>
+          <td>隐式进行</td>
+      </tr>
+      <tr>
+          <td>隐式转换</td>
+          <td>少见/罕见</td>
+          <td>常见</td>
+      </tr>
+      <tr>
+          <td>错误检查</td>
+          <td>多在编译时</td>
+          <td>多在运行时</td>
+      </tr>
+      <tr>
+          <td>类型安全性</td>
+          <td>高：较少出现意外行为</td>
+          <td>低：更容易出现不可预期的结果</td>
+      </tr>
+      <tr>
+          <td>示例</td>
+          <td>Rust、Java、Python</td>
+          <td>PHP、JavaScript</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="网络协议">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e5%8d%8f%e8%ae%ae"></a>
+网络协议
+</h2><p>网络协议就是为计算机网络中进行数据交换而建立的规则、标准或约定的集合。例如，Linux 约定使用 UTF-8 字符集编码。</p>
+<p>其它还有 tcp、udp、http、https、ssh、ftp、dhcp 等等等等。协议是一种大家共同遵守的规范，只要遵守了该规范就可以实现跨系统、跨主机、跨平台访问、传输，如果你一套、我一套，调用的时候层层套，甚至根本就不能通信！那么网络也不会发展为如今这样。</p>
+<p>可以读读这篇文章：https://www.cnblogs.com/fzz9/p/8964513.html</p>
+<h2 id="硬件相关">
+<a class="header-anchor" href="#%e7%a1%ac%e4%bb%b6%e7%9b%b8%e5%85%b3"></a>
+硬件相关
+</h2><h3 id="中央处理器架构">
+<a class="header-anchor" href="#%e4%b8%ad%e5%a4%ae%e5%a4%84%e7%90%86%e5%99%a8%e6%9e%b6%e6%9e%84"></a>
+中央处理器架构
+</h3><p>比较常见是 x86、x86_64/x64/amd64、aarch/arm、risc-v、mips</p>
+<table>
+  <thead>
+      <tr>
+          <th>架构</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>x86</td>
+          <td>intel32 位处理器(其实更像是指令集)</td>
+      </tr>
+      <tr>
+          <td>ia32</td>
+          <td>Intel Architecture, 32-bit，缩写为IA-32，现在，IA-32一般又能引喻成所有的支持32位计算的 x86 架构。</td>
+      </tr>
+      <tr>
+          <td>x86_64/x64</td>
+          <td>intel64 位处理器，兼容 intel32 位处理器</td>
+      </tr>
+      <tr>
+          <td>amd64</td>
+          <td>AMD64 位处理器，和 intel64 位处理器相同，下载软件的时候看到 amd64 或者 x86_64 就是可以在 64 位处理器上运行的程序了</td>
+      </tr>
+      <tr>
+          <td>arm</td>
+          <td>ARMv3 至 ARMv7 支持 32 位寻址空间，ARMv8-A开始支持 64 位寻址空间。aarch64 和 ARM64 都是指 64 位的 ARM 架构。</td>
+      </tr>
+      <tr>
+          <td>aarch</td>
+          <td>同上</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>1999年，AMD 公司首先在 IA-32 基础上，增加了 64 位寄存器，兼容早期的16位和32位软件系统，后来命名为 amd64。之后 intel 公司因为自身 IA-64（先于 amd64 研发，但是不兼容 IA-32，也不能直接运行在 x64 上，相当于是新的产品）的失败也接受了该方案，叫做 x86_64（Intel 的产品怎么能给 AMD 打广告呢）。操作系统厂商通常用 AMD64 或者 Intel64。
+目前家用 PC 一般都是 x64，IA-64 价格昂贵，多用于服务器。</p>
+</blockquote>
+<p>CISC（Complex Instruction Set Computer）：复杂指令集计算机，使用包含微码的相对高级或复杂硬件来实现相对大量指令的计算机。每条指令可执行若干低级操作，如内存访问、算术运算或地址计算。在第一代 RISC 处理器设计出来之前，许多计算机架构师都在试图弥合 &ldquo;语义鸿沟&rdquo;&ndash;通过提供 &ldquo;高级 &ldquo;指令（如存储过程调用和返回）、循环指令（如 &ldquo;递减和非零则分支&rdquo;）和复杂寻址模式（允许将数据结构和数组访问编译成单条指令）来设计支持高级语言的指令集。</p>
+<p>虽然这些架构达到了允许用更少的指令来表达高级语言结构的目的，但据观察，它们并不总是能提高性能。例如，在一种处理器上，人们发现不使用过程调用指令，而使用一系列更简单的指令，就有可能提高性能。此外，指令集越复杂，指令解码的开销就越大，包括执行时间和硅片面积。对于使用微码来解码（宏）指令的处理器来说，情况尤其如此。用微码实现的复杂指令集比用硅片 &ldquo;硬连接 &ldquo;解码的指令集更容易调试。CISC 处理器的例子是摩托罗拉 680x0 家族和英特尔 80186 到英特尔 486 和奔腾。</p>
+<p>RISC（Reduced Instruction Set Computer）：精简指令集计算机，其设计基于简单指令序列的快速执行，而不是基于提供大量复杂指令。</p>
+<p>RISC设计中通常具有的特征是统一的指令编码（例如，操作码始终位于每个指令的相同位位置，该指令始终为一个字长），这允许更快的解码;非同构寄存器集，允许在任何上下文中使用任何寄存器，简化编译器设计;以及具有更复杂模式的简单寻址模式，被简单的算术指令序列所取代。
+使用 RISC 处理器（或多或少）的例子有 Berkeley RISC、HP-PA、Clipper、i960、AMD 29000、MIPS R2000 和 DEC Alpha。IBM 的第一台 RISC 计算机是 RT/PC (IBM 801)，现在他们生产基于 RISC 的 RISC System/6000 和 SP/2 系列。</p>
+<h3 id="内存堆栈">
+<a class="header-anchor" href="#%e5%86%85%e5%ad%98%e5%a0%86%e6%a0%88"></a>
+内存堆栈
+</h3><p>栈：存储局部变量，大小在编译时已知，具有良好的内存局部性；
+堆：存储动态分配的对象，大小在运行时确定，具有较高的灵活性；</p>
+<blockquote>
+<p>所有分配在堆上的数据，都是通过一个在栈上的引用来访问的。</p>
+</blockquote>
+<p>我们编写的程序都是需要占用内存来运行的。</p>
+<h2 id="元编程">
+<a class="header-anchor" href="#%e5%85%83%e7%bc%96%e7%a8%8b"></a>
+元编程
+</h2><p>元编程这个词看似很新，比较陌生，其实日常开发中经常使用，编程语言也都提供了元编程的一些 API。</p>
+<p>比如 C/C++ 的宏，Java 的反射啊、注解啊以及 Java 的日常项目中使用的 Lombok 等类似的东西。这些东西极大的提高了程序员的效率并且简化了开发，非常的好用。例如 Java/Kotlin 大多使用以下方式进行元编程中的符号处理。</p>
+<ul>
+<li>Java: Annotation Processing Tool(APT)</li>
+<li>Kotlin: Kotlin Symbol Processing(KSP)</li>
+</ul>
+<blockquote>
+<p>在 Java 中，如果你使用过 SPI，那么就知道 APT 和 KSP 的处理器都是通过 ServiceLoader 加载的。浪子在之前的 Java API 一文中提过 ServiceLoader，好像是获取某个接口的所有实现类。在 Java 的许多框架中都使用了 ServiceLoader。Java 说的有点儿多了，哈哈哈，毕竟是老本行。</p>
+</blockquote>
+</div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/common/&amp;title=%e7%bc%96%e7%a8%8b%e5%b0%8f%e7%9f%a5%e8%af%86&amp;desc=%20%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80%20%e6%88%91%e4%bb%ac%e9%83%bd%e7%9f%a5%e9%81%93%ef%bc%8c%e8%ae%a1%e7%ae%97%e6%9c%ba%e4%b8%ad%e7%9a%84%e6%89%a7%e8%a1%8c%e8%80%85%20CPU%20%e5%8f%aa%e8%ae%a4%e8%af%86%e4%ba%8c%e8%bf%9b%e5%88%b6%e7%9a%84%200%20%e5%92%8c%201%20%e7%bb%84%e6%88%90%e7%9a%84%e5%ba%8f%e5%88%97%ef%bc%8c%e4%bd%bf%e7%94%a8%200%20%e5%92%8c%201%20%e7%bb%84%e6%88%90%e7%9a%84%e5%ba%8f%e5%88%97%e6%88%91%e4%bb%ac%e7%a7%b0%e4%b9%8b%e4%b8%ba%20%e6%9c%ba%e5%99%a8%e7%a0%81%e3%80%82%e6%9c%ba%e5%99%a8%e7%a0%81%20%e6%98%af%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%8f%af%e4%bb%a5%e7%9b%b4%e6%8e%a5%e6%89%a7%e8%a1%8c%e7%9a%84%e3%80%82%e4%bd%86%e6%98%af%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8%e6%9c%ba%e5%99%a8%e7%a0%81%e7%bc%96%e5%86%99%20CPU%20%e6%8c%87%e4%bb%a4%e4%b8%8d%e4%bb%85%e8%b4%b9%e6%97%b6%e8%b4%b9%e5%8a%9b%ef%bc%8c%e8%bf%98%e7%89%b9%e5%88%ab%e5%ae%b9%e6%98%93%e5%87%ba%e9%94%99%ef%bc%8c%e4%ba%8e%e6%98%af%e5%90%8e%e6%9d%a5%e6%9c%89%e4%ba%86%20%e6%b1%87%e7%bc%96%e8%af%ad%e8%a8%80%e3%80%82%e7%ae%80%e5%8d%95%e6%a6%82%e6%8b%ac%e7%9a%84%e8%af%9d%ef%bc%8c%e6%b1%87%e7%bc%96%e8%af%ad%e8%a8%80%e7%b1%bb%e4%bc%bc%e4%ba%8e%e4%b8%80%e7%a7%8d%e5%8a%a9%e8%ae%b0%e7%ac%a6%ef%bc%8c%e7%9b%b4%e6%8e%a5%e9%9d%a2%e5%af%b9%e6%8c%87%e4%bb%a4%ef%bc%8c%e5%b0%86%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%8c%87%e4%bb%a4%e6%9b%bf%e6%8d%a2%e6%88%90%e4%ba%ba%e7%b1%bb%e4%be%bf%e4%ba%8e%e8%ae%b0%e5%bf%86%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%ef%bc%8c%e5%b9%b6%e7%bb%99%e5%ae%9a%e7%89%b9%e6%ae%8a%e7%9a%84%e6%a0%bc%e5%bc%8f%e3%80%82%e6%af%8f%e4%b8%80%e6%9d%a1%e6%b1%87%e7%bc%96%e6%8c%87%e4%bb%a4%e5%af%b9%e5%ba%94%e4%b8%80%e6%9d%a1%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%8c%87%e4%bb%a4%e3%80%82%e6%a0%b9%e6%8d%ae%e5%86%85%e6%a0%b8%e6%9e%b6%e6%9e%84%e7%9a%84%e4%b8%8d%e5%90%8c%ef%bc%8c%e4%b8%8d%e5%90%8c%e7%9a%84%e6%8c%87%e4%bb%a4%e6%9c%89%e4%b8%8d%e5%90%8c%e7%9a%84%e9%95%bf%e5%ba%a6%e5%92%8c%e6%a0%bc%e5%bc%8f%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="编程小知识">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="编程小知识">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/programming"
+        rel="tag"
+        >programming</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="/images/cover/web.webp"
+            data-sizes="auto"
+            alt="不知道起什么名字的 Web"
+            class="lazyload"
+          /><a
+          href="/post/skill/programming/web/web-other/"
+          aria-label="前一篇:不知道起什么名字的 Web"
+          title="前一篇:不知道起什么名字的 Web"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">不知道起什么名字的 Web</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="本是青灯不归客"
+              class="lazyload"
+            /><a
+          href="/post/life/%E6%9C%88%E7%AB%A0%E6%98%9F%E5%8F%A5/%E6%9C%AC%E6%98%AF%E9%9D%92%E7%81%AF%E4%B8%8D%E5%BD%92%E5%AE%A2/"
+          aria-label="后一篇:本是青灯不归客"
+          title="后一篇:本是青灯不归客"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">本是青灯不归客</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#编程语言">编程语言</a>
+      <ul>
+        <li><a href="#编程语言的其它分类静态动态强类型弱类型">编程语言的其它分类：静态、动态、强类型、弱类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络协议">网络协议</a></li>
+    <li><a href="#硬件相关">硬件相关</a>
+      <ul>
+        <li><a href="#中央处理器架构">中央处理器架构</a></li>
+        <li><a href="#内存堆栈">内存堆栈</a></li>
+      </ul>
+    </li>
+    <li><a href="#元编程">元编程</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "编程小知识",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/common\/",
+          description: " 编程语言 我们都知道，计算机中的执行者 CPU 只认识二进制的 0 和 1 组成的序列，使用 0 和 1 组成的序列我们称之为 机器码。机器码 是计算机可以直接执行的。但是直接使用机器码编写 CPU 指令不仅费时费力，还特别容易出错，于是后来有了 汇编语言。简单概括的话，汇编语言类似于一种助记符，直接面对指令，将二进制指令替换成人类便于记忆的字符串，并给定特殊的格式。每一条汇编指令对应一条二进制指令。根据内核架构的不同，不同的指令有不同的长度和格式。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

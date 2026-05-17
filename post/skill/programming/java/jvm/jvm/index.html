@@ -1,0 +1,1077 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  JVM | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="JVM | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/java/jvm/jvm/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="java, programming, jvm" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="JVM"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">JVM</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一jvm内存模型">一、JVM内存模型</a>
+      <ul>
+        <li><a href="#jnijava-native-interface">JNI（Java Native Interface）</a></li>
+        <li><a href="#常量池">常量池</a></li>
+      </ul>
+    </li>
+    <li><a href="#二调优异常查找工具">二、调优/异常查找工具</a>
+      <ul>
+        <li><a href="#内置工具">内置工具</a></li>
+        <li><a href="#第三方工具">第三方工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#三jvm-垃圾收集收集器garbage-collector">三、JVM 垃圾收集收集器（garbage collector）</a>
+      <ul>
+        <li><a href="#不同-open-jdk-版本的默认-gc从-java8-开始">不同 open JDK 版本的默认 GC（从 Java8 开始）</a></li>
+      </ul>
+    </li>
+    <li><a href="#四gc-算法">四、GC 算法</a>
+      <ul>
+        <li><a href="#标记清除">标记清除</a></li>
+        <li><a href="#标记压缩">标记压缩</a></li>
+        <li><a href="#标记复制">标记复制</a></li>
+        <li><a href="#分代回收">分代回收</a></li>
+        <li><a href="#引用计数">引用计数</a></li>
+      </ul>
+    </li>
+    <li><a href="#五jvm经典优化技术">五、JVM经典优化技术</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>JVM 简单理解就是运行 Java 等语言的“操作系统”，没有 JVM，Java 程序就无法运行，JVM 自己“设计”了一套适合自己使用的内存结构。本篇文章就来整理一下，没有用到的就不写进来了，用过的或者学习的整理进来。</p>
+<h2 id="一jvm内存模型">
+<a class="header-anchor" href="#%e4%b8%80jvm%e5%86%85%e5%ad%98%e6%a8%a1%e5%9e%8b"></a>
+一、JVM内存模型
+</h2><p>{% image <a href="https://www.fatalerrors.org/images/blog/e4d03797b85cc36b28b6570d010b9b42.jpg">https://www.fatalerrors.org/images/blog/e4d03797b85cc36b28b6570d010b9b42.jpg</a> JVM内存模型图 %}</p>
+<p>方法区和堆是所有线程共享的内存区域；而Java虚拟机栈、本地方法栈和程序计数器是运行是线程私有的内存区域。</p>
+<ul>
+<li>Java堆（Heap）是Java虚拟机所管理的内存中最大的一块。Java堆是被所有 <strong>线程共享</strong> 的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</li>
+<li>元空间（Meta Space）/方法区（Method Area），方法区（Method Area）与Java堆一样，是各个 <strong>线程共享</strong> 的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</li>
+<li>程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。当线程发生切换时，记录上次线程挂起的位置，之后线程切换回来的时候，继续从上次记录的位置开始执行。</li>
+<li>虚拟机栈（JVM Stacks）,与程序计数器一样，Java虚拟机栈（Java Virtual Machine Stacks）也是线程私有的，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法被执行的时候都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作栈、动态链接、方法出口等信息。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</li>
+<li>本地方法栈（Native Method Stacks），本地方法栈（Native Method Stacks）与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而本地方法栈则是为虚拟机使用到的Native方法服务。</li>
+</ul>
+<blockquote>
+<p>说到方法区，不得不提一下“永久代”这个概念，尤其是在JDK8以前，许多Java程序员都习惯在HotSpot虚拟机上开发、部署程序，很多人都更愿意把方法区称呼为“永久代”（Permanent Generation），或将两者混为一谈。本质上这两者并不是等价的，因为仅仅是当时的HotSpot虚拟机设计团队选择把收集器的分代设计扩展至方法区，或者说使用永久代来实现方法区而已，这样使得 HotSpot的垃圾收集器能够像管理Java堆一样管理这部分内存，省去专门为方法区编写内存管理代码的工作。</p>
+<p>但现在回头来看，当年使用永久代来实现方法区的决定并不是一个好主意，这种设计导致了Java应用更容易遇到内存溢出的问题（永久代有-XX：MaxPermSize的上限，即使不设置也有默认大小，而J9和JRockit只要没有触碰到进程可用内存的上限，例如32位系统中的4GB限制，就不会出问题），而且有极少数方法 （例如String::intern()）会因永久代的原因而导致不同虚拟机下有不同的表现。当Oracle收购BEA获得了JRockit的所有权后，准备把JRockit中的优秀功能，譬如Java Mission Control管理工具，移植到HotSpot虚拟机时，但因为两者对方法区实现的差异而面临诸多困难。</p>
+<p><strong>考虑到HotSpot未来的发展，在JDK 6的时候HotSpot开发团队就有放弃永久代，逐步改为采用本地内存（Native Memory）来实现方法区的计划了，到了JDK 7的HotSpot，已经把原本放在永久代的字符串常量池、静态变量等移出，而到了JDK 8，终于完全废弃了永久代的概念，改用与JRockit、J9一样在本地内存中实现的元空间（Meta-space）来代替，把JDK 7中永久代还剩余的内容（主要是类型信息）全部移到元空间中</strong>。</p>
+<p>以上内容摘自 <em><strong>《深入理解Java虚拟机第二版》 周志明</strong></em></p>
+</blockquote>
+<h3 id="jnijava-native-interface">
+<a class="header-anchor" href="#jnijava-native-interface"></a>
+JNI（Java Native Interface）
+</h3><p>JNI 是 Java Native Interface 的缩写，它提供了若干的API实现了Java和其他语言的通信（主要是C和C++）。</p>
+<p>JNI 的适用场景：当我们有一些旧的库，已经使用C语言编写好了，如果要移植到Java上来，非常浪费时间，而JNI可以支持Java程序与C语言编写的库进行交互，这样就不必要进行移植了。或者是与硬件、操作系统进行交互、提高程序的性能等，都可以使用JNI。需要注意的一点是需要保证本地代码能工作在任何Java虚拟机环境。</p>
+<p>一旦使用 JNI，Java 程序将丢失了 Java 平台的两个优点：</p>
+<p>1、程序不再跨平台，要想跨平台，必须在不同的系统环境下程序编译配置本地语言部分。</p>
+<p>2、程序不再是绝对安全的，本地代码的使用不当可能会导致整个程序崩溃。一个通用规则是，调用本地方法应该集中在少数的几个类当中，这样就降低了 Java 和其他语言之间的耦合。</p>
+<h3 id="常量池">
+<a class="header-anchor" href="#%e5%b8%b8%e9%87%8f%e6%b1%a0"></a>
+常量池
+</h3><p>要理解常量池，首先要知道，常量池分3种类型：</p>
+<ol>
+<li>Class文件内容里的常量池</li>
+<li>运行时常量池（Runtime Constant Pool）</li>
+<li>各个包装类型里实现的常量池，例如 String 类里面的字符串常量池（String Pool）</li>
+</ol>
+<h4 id="class-常量池">
+<a class="header-anchor" href="#class-%e5%b8%b8%e9%87%8f%e6%b1%a0"></a>
+Class 常量池
+</h4><p>Java 代码在经过编译器后，会生成一个 Class 文件，这个常量池就是Class文件里的一大段内容（通常是最大的一段内容），它主要存放着 字面量、符号引用 等信息，在 JVM 把 Class 文件加载完成后，Class 常量池里的数据会存放到运行时常量池中。</p>
+<h4 id="运行时常量池runtime-constant-pool">
+<a class="header-anchor" href="#%e8%bf%90%e8%a1%8c%e6%97%b6%e5%b8%b8%e9%87%8f%e6%b1%a0runtime-constant-pool"></a>
+运行时常量池（Runtime Constant Pool）
+</h4><p>运行时常量池是元空间/方法区（Method Area）的一部分，运行时常量池中存储的，是 <strong>基本类型的数据</strong> 和 <strong>对象的引用</strong>，注意是对象的引用而不是对象实例本身哦。</p>
+<p>Java 虚拟机在加载 Class 文件时，Class 文件内容里常量池的数据会放入运行时常量池。每一个加载好的 Class 对象里都会有一个运行时常量池。</p>
+<h4 id="字符串常量池string-constant-pool-其他包装类型里实现的常量池">
+<a class="header-anchor" href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%b8%b8%e9%87%8f%e6%b1%a0string-constant-pool-%e5%85%b6%e4%bb%96%e5%8c%85%e8%a3%85%e7%b1%bb%e5%9e%8b%e9%87%8c%e5%ae%9e%e7%8e%b0%e7%9a%84%e5%b8%b8%e9%87%8f%e6%b1%a0"></a>
+字符串常量池（String Constant Pool）&amp; 其他包装类型里实现的常量池
+</h4><p>字符串由一个char[]构成（Java9 之后使用 byte[]），当我们的Java程序里频繁出现相同字面量的代码时，重复的创建和销毁对象是一件很浪费资源的事情，所以Java实现了一个字符串常量池。</p>
+<p>JDK7 之后，字符串常量池从方法区迁移到了堆区，它的底层实现可以理解为是一个 HashTable。Java 虚拟机中只会存在一份字符串常量池。字符串常量池里，存放的数据可以是引用也可以是对象实例本身。</p>
+<p>字符串常量池也具备运行时常量池动态性的特征，它支持运行期间将新的常量放入池中，这种特性被开发人员利用比较多的就是 String.intern() 方法。</p>
+<p>上面的一堆都不重要，重要的是只要记住在 Java 中，字符串字面量都是存储在 <strong>字符串常量池</strong> 中的。例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 此种赋值方式称为字符串字面量，如果你学过 Rust 语言，很好理解</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;abcd&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h4 id="基本类型的包装类和常量池">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%8c%85%e8%a3%85%e7%b1%bb%e5%92%8c%e5%b8%b8%e9%87%8f%e6%b1%a0"></a>
+基本类型的包装类和常量池
+</h4><p>Byte、Short、Integer、Long、Character、Boolean 这 6 种包装类和 String 都各自实现了自己的常量池。Float 和 Double 这两个浮点类型没有实现常量池。</p>
+<p>字符串常量池（String pool）的实例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jhlz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>当以上代码运行时，JVM会到字符串常量池查找 &ldquo;jhlz&rdquo; 这个字面量对象是否存在：</p>
+<ul>
+<li>存在：则返回该对象的引用给变量 str1 。</li>
+<li>不存在：则创建一个对象，同时将引用返回给变量 str1 。（JDK8之后，对象实例直接存储在字符串常量池里）</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jhlz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jhlz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str2</span><span class="p">);</span><span class="c1">//str1 和 str2 都指向同一个对象，返回TRUE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 使用 new 关键字创建 String 对象时，不管字符串常量池中是否有相同内容的对象的引用，新的字符串对象都会创建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;jhlz&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str3</span><span class="p">);</span><span class="w"> </span><span class="c1">//返回FALSE</span><span class="w">
+</span></span></span></code></pre></div><p>对于使用了 new 创建的字符串对象，如果想要将这个对象添加到字符串常量池，可以使用 intern() 方法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jhlz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jhlz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;jhlz&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str3</span><span class="p">.</span><span class="na">intern</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">str4</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str1</span><span class="p">);</span><span class="c1">//返回TRUE</span><span class="w">
+</span></span></span></code></pre></div><p>intern() 方法会检查字符串常量池中是否有与之匹配的对象，并做如下操作：</p>
+<ul>
+<li>存在：直接返回对象引用给interns变量。</li>
+<li>不存在：将这个对象引用加入到常量池，再返回对象引用给interns变量。</li>
+</ul>
+<h2 id="二调优异常查找工具">
+<a class="header-anchor" href="#%e4%ba%8c%e8%b0%83%e4%bc%98%e5%bc%82%e5%b8%b8%e6%9f%a5%e6%89%be%e5%b7%a5%e5%85%b7"></a>
+二、调优/异常查找工具
+</h2><h3 id="内置工具">
+<a class="header-anchor" href="#%e5%86%85%e7%bd%ae%e5%b7%a5%e5%85%b7"></a>
+内置工具
+</h3><p>jps、jmap、jstack、jstat、jinfo、jhat、jconsole 和 jvisualvm 等；</p>
+<ul>
+<li>jps：JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。</li>
+<li>jstat：JVM statistics Monitoring是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。</li>
+<li>jmap：JVM Memory Map命令用于生成heap dump文件。</li>
+<li>jhat：JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看jstack，用于生成java虚拟机当前时刻的线程快照。</li>
+<li>jinfo：JVM Configuration info 这个命令作用是实时查看和调整虚拟机运行参数。</li>
+<li>jstack：查找死锁。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jmap ‐dump:format<span class="o">=</span>b,file<span class="o">=</span>eureka.hprof <span class="m">14660</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># jstack pid -A 后面数字为显示的线程所在行的后面10行，最后的参数是线程id的16进制表示。</span>
+</span></span><span class="line"><span class="cl">jstack 19663<span class="p">|</span>grep -A <span class="m">10</span> 4cd0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">jstat -gc pid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印GC日志方法 %t：时间</span>
+</span></span><span class="line"><span class="cl">java ‐jar ‐Xloggc:./gc‐%t.log ‐XX:+PrintGCDetails ‐XX:+PrintGCDateStamps ‐XX:+PrintGCTimeStamps ‐XX:+PrintGCCause ‐XX:+UseGCLogFileRotation ‐XX:NumberOfGCLogFiles<span class="o">=</span><span class="m">10</span> ‐XX:GCLogFileSize<span class="o">=</span>100M xxxx.jar
+</span></span></code></pre></div><h3 id="第三方工具">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%89%e6%96%b9%e5%b7%a5%e5%85%b7"></a>
+第三方工具
+</h3><ul>
+<li>NetBeans Profiler</li>
+<li>JProfiler</li>
+<li>GC Viewer</li>
+<li><a href="https://arthas.aliyun.com/doc/">Arthas</a></li>
+<li>MAT，Memory Analyzer Tool，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的Java heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗</li>
+<li>GChisto，一款专业分析gc日志的工具</li>
+</ul>
+<h2 id="三jvm-垃圾收集收集器garbage-collector">
+<a class="header-anchor" href="#%e4%b8%89jvm-%e5%9e%83%e5%9c%be%e6%94%b6%e9%9b%86%e6%94%b6%e9%9b%86%e5%99%a8garbage-collector"></a>
+三、JVM 垃圾收集收集器（garbage collector）
+</h2><p>垃圾回收是 Java 中用于取消分配的未使用内存的机制，它主要是清除未使用对象占用的空间。为了释放未使用的内存，垃圾回收器会跟踪所有在使用的对象，并将对象的其余部分标记为垃圾。</p>
+<p>JVM 附带了各种垃圾回收选项，以支持各种部署选项。这样，我们可以灵活地选择要用于应用程序的垃圾回收器。随着新的 Java 版本的出现，支持的 GC 算法和默认收集器通常会发生变化。</p>
+<p>{% image <a href="https://s2.loli.net/2024/11/10/o4I8J9mYSGObDPM.webp">https://s2.loli.net/2024/11/10/o4I8J9mYSGObDPM.webp</a> GC ratio:1630/772 %}</p>
+<h3 id="不同-open-jdk-版本的默认-gc从-java8-开始">
+<a class="header-anchor" href="#%e4%b8%8d%e5%90%8c-open-jdk-%e7%89%88%e6%9c%ac%e7%9a%84%e9%bb%98%e8%ae%a4-gc%e4%bb%8e-java8-%e5%bc%80%e5%a7%8b"></a>
+不同 open JDK 版本的默认 GC（从 Java8 开始）
+</h3><p>注意，不同的 JDK 采用的 GC 和实现算法都不同，例如 C4 GC 就是 Azul JVM 的。open jdk 中没有，本文所说的都是 open-jdk 中支持的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用命令查看默认使用的 GC</span>
+</span></span><span class="line"><span class="cl">java -XX:+PrintCommandLineFlags -version
+</span></span></code></pre></div><p>Java 8：默认使用并行 GC(Parallel Garbage Collector)，引入了 G1，通过参数 <code>-XX:+UseG1GC</code> 显示调用；Java5 到 Java8 都是默认使用的这个，适用于多核和小堆。</p>
+<p>Java 9 - 21：默认使用 G1；自 Java 11 起引入实验状态的 ZGC，Java 15 生产就绪；</p>
+<ul>
+<li>
+<p>Serial GC(串行 GC)：串行回收器使用单个线程执行所有垃圾回收工作。默认情况下，在某些小型硬件和操作系统配置上会使用它，也可以使用选项 <code>-XX:+UseSerialGC</code> 显式启用它。</p>
+</li>
+<li>
+<p>Parallel/Throughput GC(并行/吞吐量 GC)：此收集器使用多个线程来加速垃圾回收。在 Java 版本 8 及更早版本中，它是服务器类计算机的默认值。我们可以使用 <code>-XX:+UseParallelGC</code> 选项显示启用。</p>
+</li>
+<li>
+<p>Concurrent Mark Sweep (CMS) GC(并发标记扫描 GC)：CMS 也是并发收集器。这意味着它与应用程序同时执行一些昂贵的工作。它旨在通过消除与并行和串行收集器的完整 GC 相关的长时间暂停来实现低延迟。
+我们可以使用选项 <code>-XX:+UseConcMarkSweepGC</code> 来启用 CMS 收集器。Java 团队从 Java 9 开始弃用了它，并在 Java 14 中完全删除了它。</p>
+</li>
+<li>
+<p>G1 GC：G1 使用多个后台 GC 线程来扫描和清除堆，就像 CMS 一样。实际上，Java 核心团队将 G1 设计为对 CMS 的改进，通过额外的策略修补了它的一些弱点。G1 最适合具有非常严格的暂停时间目标和适度总体吞吐量的应用程序，例如交易平台或交互式图形程序等实时应用程序。
+除了增量和并发收集之外，它还跟踪以前的应用程序行为和 GC 暂停以实现可预测性。它更专注于在最高效的区域（大部分充满垃圾的区域）回收空间。因此，我们称其为 Garbage-First。自 Java7 update4 引入，从 Java 9 开始，G1 是服务器级机器的默认收集器。我们可以通过在命令行上提供 <code>-XX:+UseG1GC</code> 来显式启用它。</p>
+</li>
+<li>
+<p>Z Garbage Collector (ZGC)：ZGC 是一种可扩展的低延迟垃圾回收器。它甚至能在多 TB 堆上保持较低的暂停时间。它使用的技术包括参考着色、重定位、负载屏障和重映射。它非常适合服务器应用程序，因为在服务器应用程序中，大型堆很常见，而且需要快速的应用程序响应时间。它是在 Java 11 中作为实验性 GC 实现引入的。在 Java 15 中成为生产状态（非分代）。使用 <code>-XX:+UseZGC</code> 显示开启。到 Java21 引入分代版本，可以切换到分代版本。从 Java23 开始只有分代版本(默认)，非分代版本已被弃用，后续会被移除。</p>
+</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>GC 类型</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Serial GC</td>
+          <td>没有线程间通信开销，相对高效。<!-- raw HTML omitted -->它适用于客户端级机器和嵌入式系统。<!-- raw HTML omitted -->适用于数据集较小的应用程序。<!-- raw HTML omitted -->即使在多处理器硬件上，如果数据集很小（最大 100 MB），它仍然是最有效的。</td>
+          <td>对于具有大型数据集的应用程序，它的效率不高。<!-- raw HTML omitted -->不能利用多处理器硬件。</td>
+      </tr>
+      <tr>
+          <td>Parallel/Throughput GC</td>
+          <td>可以利用多处理器硬件<!-- raw HTML omitted -->对于较大的数据集，它比串行 GC 更有效。<!-- raw HTML omitted -->提供高总体吞吐量。<!-- raw HTML omitted -->它尝试最小化内存占用。</td>
+          <td>应用程序在 stop-the-world 操作期间会导致较长的暂停时间。<!-- raw HTML omitted -->它不能很好地扩展堆大小。</td>
+      </tr>
+      <tr>
+          <td>Concurrent Mark Sweep (CMS) GC</td>
+          <td>它非常适合低延迟应用程序，因为它可以最大限度地减少暂停时间。<!-- raw HTML omitted -->它随堆大小扩展相对较好。<!-- raw HTML omitted -->它可以利用多处理器计算机。</td>
+          <td>当数据集达到巨大大小或收集大量堆时，它变得相对低效。<!-- raw HTML omitted -->它要求应用程序在并发阶段与 GC 共享资源。<!-- raw HTML omitted -->可能存在吞吐量问题，因为总体上花费在 GC 操作上的时间更多。<!-- raw HTML omitted -->总体而言，由于其大部分并发性质，它使用更多的 CPU 时间。</td>
+      </tr>
+      <tr>
+          <td>G1 GC(并行、并发、分代)</td>
+          <td>对于巨大的数据集，它非常有效。<!-- raw HTML omitted -->它充分利用了多处理器计算机。<!-- raw HTML omitted -->这是实现最低暂停时间目标的最有效方法。</td>
+          <td>当有严格的吞吐量目标时，这并不是最好的。<!-- raw HTML omitted -->它要求应用程序在并发回收期间与 GC 共享资源。</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.baeldung.com/java-choosing-gc-algorithm">https://www.baeldung.com/java-choosing-gc-algorithm</a></li>
+<li><a href="https://www.baeldung.com/jvm-garbage-collectors">https://www.baeldung.com/jvm-garbage-collectors</a></li>
+<li><a href="https://www.baeldung.com/jvm-zgc-garbage-collector">https://www.baeldung.com/jvm-zgc-garbage-collector</a></li>
+</ul>
+</blockquote>
+<h2 id="四gc-算法">
+<a class="header-anchor" href="#%e5%9b%9bgc-%e7%ae%97%e6%b3%95"></a>
+四、GC 算法
+</h2><h3 id="标记清除">
+<a class="header-anchor" href="#%e6%a0%87%e8%ae%b0%e6%b8%85%e9%99%a4"></a>
+标记清除
+</h3><p>最简单的一种，对所有的内存区域使用不同的标记，例如，灰色 未引用；蓝色引用；紫色死亡。然后在堆内存用尽的情况下，使用垃圾收集器回收标记的内存（例如已经死亡的的色块内存区域）。</p>
+<p>标记（mark）：从根对象开始，标记所有可达的对象。
+清除（sweep）：遍历堆，释放未被标记的对象。</p>
+<h3 id="标记压缩">
+<a class="header-anchor" href="#%e6%a0%87%e8%ae%b0%e5%8e%8b%e7%bc%a9"></a>
+标记压缩
+</h3><p>标记清除非常简单，但是有一个副作用：会有很多的内存碎片。标记压缩就是为了解决这个问题。一旦堆内存空间用尽后，就会把死亡对象删除，<strong>同时更新活着的对象引用，移动存活的对象以压缩堆，使用的内存被压缩到同一片区域，看起来就像是连续的，减少内存碎片化。</strong> 这样，剩下的未使用区域变成了连续的，会加快内存分配的效率。不过另一方面，更新引用时可能需要耗费一些时间。</p>
+<h3 id="标记复制">
+<a class="header-anchor" href="#%e6%a0%87%e8%ae%b0%e5%a4%8d%e5%88%b6"></a>
+标记复制
+</h3><p>标记压缩虽然提升了分配效率，但由于更新引用时停顿时间较多，因此采用“空间换时间”的思想，把堆内存分为了两块，使用时只使用其中一块，另一块作为交换空间。在一块内存用尽的情况下，把使用的内存(活着的对象等)复制到另一块交换区域并清除原来的内存区。新区域空间用尽的情况下，再把使用的内存移动到另一区域。如此循环往复。</p>
+<p>这样看的话标记复制算是综合了 标记压缩 和 标记清除 的优点，缺点就是内存占用空间较大。</p>
+<h3 id="分代回收">
+<a class="header-anchor" href="#%e5%88%86%e4%bb%a3%e5%9b%9e%e6%94%b6"></a>
+分代回收
+</h3><p>根据对象存活的时间不同分多块区域存放对象，就像人类活着的经历，有的人天生夭折，有的人风华正茂时遭遇意外，有的人纵享天伦。</p>
+<p>JVM 中活着时间最短的对象首先放到 Eden 区，使用该区内存，这个区域较小，经过第一轮天灾（垃圾回收）还活着的话就复制到 survivor(幸存者) 区域，如果是经历的多轮天灾还活着的老怪物，则把他们放到老年代空间。eden 区 和 survivor 区合称新生代。</p>
+<p>在内存使用完毕的情况下，程序停止、标记、压缩、复制、清除，循环进行，GC频率根据代的不同而不同。</p>
+<h3 id="引用计数">
+<a class="header-anchor" href="#%e5%bc%95%e7%94%a8%e8%ae%a1%e6%95%b0"></a>
+引用计数
+</h3><p>该算法为每个对象维护一个引用计数，当对象被引用时，计数加一，当引用失效时，计数减一。当计数为零时，对象被释放。</p>
+<h2 id="五jvm经典优化技术">
+<a class="header-anchor" href="#%e4%ba%94jvm%e7%bb%8f%e5%85%b8%e4%bc%98%e5%8c%96%e6%8a%80%e6%9c%af"></a>
+五、JVM经典优化技术
+</h2><ul>
+<li>方法内联：</li>
+</ul>
+<p>方法内联就是把目标方法的代码原封不动地 “复制” 到发起调用的方法之中，避免发生真实的方法调用而已。但实际上Java虚拟机中的内联过程却远没 有想象中容易，甚至如果不是即时编译器做了一些特殊的努力，按照经典编译原理的优化理论，大多 数的Java方法都无法进行内联。
+除了消除方法调用的成本之外，它更重要的意义是为其他优化手段建立良好的基础。</p>
+<p>只有使用 invokespecial指令调用的私有方法、实例构造器、父类方法和使用invokestatic指令调用的静态方法才会 在编译期进行解析。除了上述四种方法之外（最多再除去被final修饰的方法这种特殊情况，尽管它使 用invokevirtual指令调用，但也是非虚方法，《Java语言规范》中明确说明了这点），其他的Java方法 调用都必须在运行时进行方法接收者的多态选择，它们都有可能存在多于一个版本的方法接收者，简 而言之，Java语言中默认的实例方法是虚方法。</p>
+<ul>
+<li>逃逸分析：</li>
+</ul>
+<p>逃逸分析（Escape Analysis）是目前Java虚拟机中比较前沿的优化技术，它与类型继承关系分析一样，并不是直接优化代码的手段，而是为其他优化措施提供依据的分析技术。
+逃逸分析的基本原理是：分析对象动态作用域，当一个对象在方法里面被定义后，它可能被外部方法所引用，例如作为调用参数传递到其他方法中，这种称为方法逃逸；甚至还有可能被外部线程访问到，譬如赋值给可以在其他线程中访问的实例变量，这种称为线程逃逸；从不逃逸、方法逃逸到线 程逃逸，称为对象由低到高的不同逃逸程度。如果能证明一个对象不会逃逸到方法或线程之外（换句话说是别的方法或线程无法通过任何途径 访问到这个对象），或者逃逸程度比较低（只逃逸出方法而不会逃逸出线程），则可能为这个对象实 例采取不同程度的优化
+比如栈上分配、标量替换、同步消除都是以此为基。</p>
+<ul>
+<li>公共子表达式消除</li>
+</ul>
+<p>公共子表达式消除是一项非常经典的、普遍应用于各种编译器的优化技术，它的含义是：如果一个表达式E之前已经被计算过了，并且从先前的计算到现在E中所有变量的值都没有发生变化，那么 E 的这次出现就称为公共子表达式。对于这种表达式，没有必要花时间再对它重新进行计算，只需要直 接用前面计算过的表达式结果代替E。
+如果这种优化仅限于程序基本块内，便可称为局部公共子表达式消除（Local Common Subexpression Elimination），如果这种优化的范围涵盖了多个基本块，那就称为全局公共子表达式消除（Global Common Subexpression Elimination）。</p>
+<ul>
+<li>数组边界检查消除</li>
+</ul>
+<p>Java 程序每次访问数组，都会隐式做一次范围判断。数组边界检查消除优化就是指 JIT 编译器在确定访问一定安全时，自动移除这些检查代码。</p>
+<p>简单例子如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>上面的代码每次循环都会检查 <code>i &gt;= 0 &amp;&amp; i &lt; arr.length</code>，但 JVM 能推断出 i 从 0 开始，i &lt; arr.length 且 i 单调递增，于是 JIT 会把循环里的边界检查全部移除。</p>
+<p>数组边界检查消除通常配合：循环展开、循环不变量外提、Escape Analysis、自动向量化</p></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/java/jvm/jvm/&amp;title=JVM&amp;desc=JVM%20%e7%ae%80%e5%8d%95%e7%90%86%e8%a7%a3%e5%b0%b1%e6%98%af%e8%bf%90%e8%a1%8c%20Java%20%e7%ad%89%e8%af%ad%e8%a8%80%e7%9a%84%e2%80%9c%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e2%80%9d%ef%bc%8c%e6%b2%a1%e6%9c%89%20JVM%ef%bc%8cJava%20%e7%a8%8b%e5%ba%8f%e5%b0%b1%e6%97%a0%e6%b3%95%e8%bf%90%e8%a1%8c%ef%bc%8cJVM%20%e8%87%aa%e5%b7%b1%e2%80%9c%e8%ae%be%e8%ae%a1%e2%80%9d%e4%ba%86%e4%b8%80%e5%a5%97%e9%80%82%e5%90%88%e8%87%aa%e5%b7%b1%e4%bd%bf%e7%94%a8%e7%9a%84%e5%86%85%e5%ad%98%e7%bb%93%e6%9e%84%e3%80%82%e6%9c%ac%e7%af%87%e6%96%87%e7%ab%a0%e5%b0%b1%e6%9d%a5%e6%95%b4%e7%90%86%e4%b8%80%e4%b8%8b%ef%bc%8c%e6%b2%a1%e6%9c%89%e7%94%a8%e5%88%b0%e7%9a%84%e5%b0%b1%e4%b8%8d%e5%86%99%e8%bf%9b%e6%9d%a5%e4%ba%86%ef%bc%8c%e7%94%a8%e8%bf%87%e7%9a%84%e6%88%96%e8%80%85%e5%ad%a6%e4%b9%a0%e7%9a%84%e6%95%b4%e7%90%86%e8%bf%9b%e6%9d%a5%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="JVM">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="JVM">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/java"
+      data-aos="zoom-in"
+      >Java</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/java"
+        rel="tag"
+        >java</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/programming"
+        rel="tag"
+        >programming</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/jvm"
+        rel="tag"
+        >jvm</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="liquibase 简单教程"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/liquibase/"
+          aria-label="前一篇:liquibase 简单教程"
+          title="前一篇:liquibase 简单教程"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">liquibase 简单教程</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="JTA 分布式事务"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/jta/"
+          aria-label="后一篇:JTA 分布式事务"
+          title="后一篇:JTA 分布式事务"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">JTA 分布式事务</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一jvm内存模型">一、JVM内存模型</a>
+      <ul>
+        <li><a href="#jnijava-native-interface">JNI（Java Native Interface）</a></li>
+        <li><a href="#常量池">常量池</a></li>
+      </ul>
+    </li>
+    <li><a href="#二调优异常查找工具">二、调优/异常查找工具</a>
+      <ul>
+        <li><a href="#内置工具">内置工具</a></li>
+        <li><a href="#第三方工具">第三方工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#三jvm-垃圾收集收集器garbage-collector">三、JVM 垃圾收集收集器（garbage collector）</a>
+      <ul>
+        <li><a href="#不同-open-jdk-版本的默认-gc从-java8-开始">不同 open JDK 版本的默认 GC（从 Java8 开始）</a></li>
+      </ul>
+    </li>
+    <li><a href="#四gc-算法">四、GC 算法</a>
+      <ul>
+        <li><a href="#标记清除">标记清除</a></li>
+        <li><a href="#标记压缩">标记压缩</a></li>
+        <li><a href="#标记复制">标记复制</a></li>
+        <li><a href="#分代回收">分代回收</a></li>
+        <li><a href="#引用计数">引用计数</a></li>
+      </ul>
+    </li>
+    <li><a href="#五jvm经典优化技术">五、JVM经典优化技术</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "JVM",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/java\/jvm\/jvm\/",
+          description: "JVM 简单理解就是运行 Java 等语言的“操作系统”，没有 JVM，Java 程序就无法运行，JVM 自己“设计”了一套适合自己使用的内存结构。本篇文章就来整理一下，没有用到的就不写进来了，用过的或者学习的整理进来。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

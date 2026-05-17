@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Async on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/async/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/async/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Rust 异步编程</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/rust/rust-async/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/rust/rust-async/</guid>
+      <description>
+        <![CDATA[<h1>Rust 异步编程</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <a href="https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html" title="Async 官方文档" target="_blank">Async 官方文档</a>
+<p>Rust 中的 Async</p>
+<ul>
+<li>Future是惰性的。只有 poll 时才能取得进展；被丢弃的 future 就无法取得进展了</li>
+<li>Async 是零成本的。可以无需堆内存分配（heap allocation）和动态调度（dynamic dispatch），对性能较好，且允许在受限环境使用 async</li>
+<li>不提供内置运行时，运行时由社区提供</li>
+<li>单线程、多线程均支持，但优缺点不同</li>
+</ul>
+<p>Rust 中的 async 和 thread</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Rust</category>
+      
+    </item>
+    
+  </channel>
+</rss>

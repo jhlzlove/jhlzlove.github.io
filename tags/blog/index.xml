@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/blog/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Hexo 博客迁移 Hugo 的一些感想</title>
+      <link>https://jhlzlove.github.io/post/life/blog-migration-reflections/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/life/blog-migration-reflections/</guid>
+      <description>
+        <![CDATA[<h1>Hexo 博客迁移 Hugo 的一些感想</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近迁移了博客，从心爱的 <a href="https://github.com/xaoxuu/hexo-theme-stellar" title="Stellar">Stellar</a> 主题(Hexo)切换到了 <a href="https://github.com/tom2almighty/hugo-narrow" title="Narrow">Narrow</a> 主题(Hugo)，后来又发现了 <a href="https://github.com/D-Sketon/hugo-theme-reimu" title="Reimu">Reimu</a> 主题(Hugo)。一方面是我的 wiki 页无法编译了，后面全是空白，另一方面是想着正好借此机会重构一下的我的博客内容和写法，清理一些遗留的 “垃圾”。在迁移和重构中我发现了一些关于写法上的问题，这里总结一下。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>人生图书馆</category>
+      
+    </item>
+    
+  </channel>
+</rss>

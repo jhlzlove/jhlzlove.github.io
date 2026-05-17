@@ -1,0 +1,1465 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Windows 开发环境配置 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Windows 开发环境配置 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/windows/windows-config/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/cover/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B.jpg" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2023-06-24T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2023-06-24T00:00:00&#43;08:00" /><meta property="article:tag" content="配置, win" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/cover/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B.jpg" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img  fetchpriority="high" src="/images/cover/%e5%b7%a5%e6%ac%b2%e5%96%84%e5%85%b6%e4%ba%8b.jpg" alt="Windows 开发环境配置"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Windows 开发环境配置</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一环境配置">一、环境配置</a>
+      <ul>
+        <li><a href="#1-jdk">1. JDK</a></li>
+        <li><a href="#2-maven">2. Maven</a></li>
+        <li><a href="#3-gradle">3. Gradle</a></li>
+        <li><a href="#4-mysql8">4. MySQL8</a></li>
+        <li><a href="#5-mariadb">5. MariaDB</a></li>
+        <li><a href="#6-postgresql">6. PostgreSQL</a></li>
+        <li><a href="#7-tomcat">7. Tomcat</a></li>
+        <li><a href="#8-nodejs">8. NodeJs</a></li>
+        <li><a href="#9-jetty">9. Jetty</a></li>
+        <li><a href="#10-rust">10. Rust</a></li>
+        <li><a href="#11-python">11. Python</a></li>
+        <li><a href="#12-go">12. Go</a></li>
+      </ul>
+    </li>
+    <li><a href="#二软件">二、软件</a>
+      <ul>
+        <li><a href="#1-vscode">1. VsCode</a></li>
+        <li><a href="#2-vivaldi">2. Vivaldi</a></li>
+      </ul>
+    </li>
+    <li><a href="#三插件">三、插件</a>
+      <ul>
+        <li><a href="#1-油猴插件">1. 油猴插件</a></li>
+        <li><a href="#2-edge">2. Edge</a></li>
+        <li><a href="#3-firefoxzen">3. Firefox/Zen</a></li>
+        <li><a href="#4-idea-community">4. IDEA Community</a></li>
+      </ul>
+    </li>
+    <li><a href="#四其它">四、其它</a>
+      <ul>
+        <li><a href="#1-删除开机多余启动项">1. 删除开机多余启动项</a></li>
+        <li><a href="#2-powershell-运行脚本报错">2. PowerShell 运行脚本报错</a></li>
+        <li><a href="#windows-7-开发工具兼容性">Windows 7 开发工具兼容性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2023-06-24 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2023-06-24</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2023-06-24</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>Windows 开发环境配置 + 软件配置。</p>
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><p>随着换机的折腾还有开发的经验，Windows 下推荐使用 <a href="https://vfox.dev/zh-hans/">vfox</a>/<a href="https://mise.jdx.dev/">mise</a> 和 <a href="https://learn.microsoft.com/zh-cn/windows/wsl">wsl</a> 配置开发环境。这是非常好用的组合方式。如果喜欢远程开发，那么这种方式绝对值得一试！</p></p>
+  </blockquote>
+
+<div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="/post/skill/windows/windows-wsl2/"
+			title="甩掉 Vmware 重型机 —— WSL 攻略"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">甩掉 Vmware 重型机 —— WSL 攻略</div>
+			<div class="post-link-card-excerpt">Windows 上的 wsl 还是挺好用的。不过只推荐安装中间件，极不推荐使用 WSL 进行 remote develop，占用资源较多。
+</div>
+		</div>
+	</div>
+</div>
+
+<h2 id="一环境配置">
+<a class="header-anchor" href="#%e4%b8%80%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae"></a>
+一、环境配置
+</h2><p>什么是环境变量？
+环境变量是操作系统（如 Windows、Linux、macOS）中用来存储系统运行环境配置信息的一种动态的键值对（key-value）数据。它告诉系统或应用程序在运行时应该去哪里找文件。环境变量主要是方便命令行使用，也方便和其它软件集成（很多软件安装时会查找环境变量，例如 Java 中的 <code>JAVA_HOME</code>）。</p>
+<p>Windows 中的变量分隔符是分号 <code>;</code>，Linux 和 MacOS 是冒号 <code>:</code>。但无论什么操作系统，都有两种变量：用户变量和系统变量。</p>
+<ul>
+<li>用户变量：只有当前登录用户能可以使用的变量，类似于 Linux 系统中用户目录下的 <code>.bashrc</code> 文件；</li>
+<li>系统变量：对所有用户生效、所有用户均可使用的变量，类似于 Linux 系统中的 <code>/etc/profile</code> 文件；</li>
+</ul>
+<p>本文均以 <strong>系统变量</strong> 为例，但是配置方式不限，配置的 <code>value</code> 路径要替换自己本机的安装路径。Windows 配置变量一般有两种方式：</p>
+<ol>
+<li>直接在 <strong>Path</strong> 里编辑添加软件的执行文件所在的目录（一般是软件的 bin 目录）。</li>
+<li>新建一个变量，设置变量名称（一般随便起，部分有约定，比如 <code>JAVA_HOME</code>，很多需要 java 环境的软件默认查询 <code>JAVA_HOME</code> 变量名）和路径（安装软件的根目录）的 key-value，然后在 <strong>Path</strong> 中引用 <code>%key%</code>。</li>
+</ol>
+<p>如何打开环境变量：</p>
+<ul>
+<li>Windows 10 以上可以按下 ⌘ 键（Windows 徽标，四个小方框），然后输入 “环境变量” 找到对应项回车打开。</li>
+<li>按下 win + r，输入 <code>sysdm.cpl</code> 回车，点击 “高级”，点击右下方 “环境变量” 进入。</li>
+</ul>
+<blockquote>
+<p>本文使用命令行测试时，工具可以是 PowerShell(PS)、cmd、Git Bash(推荐)、cmder 等。为了防止出错，最好使用 <strong>管理员身份</strong> 运行这些工具。</p>
+</blockquote>
+<h3 id="1-jdk">
+<a class="header-anchor" href="#1-jdk"></a>
+1. JDK
+</h3><p>第一个配置附带了截图，后面的就不带了 :wink:，只是帮助理解一下上面的第二种配置说明。第一种是比较简单的，直接把软件执行程序路径添加在 <strong>Path</strong> 中。</p>
+<table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>JAVA_HOME</td>
+          <td>D:\software\java</td>
+      </tr>
+      <tr>
+          <td>CLASSPATH</td>
+          <td>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar</td>
+      </tr>
+  </tbody>
+</table>
+<p>Path 配置 <code>%JAVA_HOME%\bin</code></p>
+<p>命令行测试：<code>java -version</code></p>
+<blockquote>
+<p><strong>Tip：</strong> jdk1.5 以后 CLASSPATH 可以不用再进行设置;</p>
+</blockquote>
+<p><img src="/images/doc/%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE1.png" alt="1">
+<img src="/images/doc/%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE2.png" alt="2"></p>
+<h3 id="2-maven">
+<a class="header-anchor" href="#2-maven"></a>
+2. Maven
+</h3><p>Maven 官网下载特别慢，甚至打不开，可以在 <a href="https://archive.apache.org/dist/maven/maven-3/">https://archive.apache.org/dist/maven/maven-3/</a> 下载。</p>
+<table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>M2_HOME</td>
+          <td>D:\develop\software\maven-3.9.9</td>
+      </tr>
+  </tbody>
+</table>
+<p>Path: <code>%M2_HOME%\bin</code></p>
+<p>命令行测试：<code>mvn -version</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mirror&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>aliyunmaven<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mirrorOf&gt;</span>*<span class="nt">&lt;/mirrorOf&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>阿里云公共仓库<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url&gt;</span>https://maven.aliyun.com/repository/public<span class="nt">&lt;/url&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mirror&gt;</span>
+</span></span></code></pre></div><blockquote>
+<ul>
+<li><a href="https://mirrors.cloud.tencent.com/help/maven.html">腾讯 maven 镜像源</a></li>
+<li><a href="https://developer.aliyun.com/mirror/maven">阿里 maven 镜像源</a></li>
+<li>阿里云提供的镜像搜索：https://developer.aliyun.com/mvn/search</li>
+</ul>
+</blockquote>
+<h3 id="3-gradle">
+<a class="header-anchor" href="#3-gradle"></a>
+3. <a href="https://gradle.org/">Gradle</a>
+</h3><p>Gradle 推荐使用最新版的 IDEA(2023.3.x+)，能够使得本地的 Gradle 的作用发挥出来。否则还是推荐配置 <code>GRADLE_USER_HOME</code> 环境变量来定义 Gradle 下载依赖和不同版本的路径，避免使用默认 C 盘的目录。</p>
+<p><a href="https://mirrors.cloud.tencent.com/gradle/">下载</a> 或者 <a href="https://mirrors.aliyun.com/gradle/">https://mirrors.aliyun.com/gradle/</a> 后解压。配置环境变量：</p>
+<table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GRADLE_HOME</td>
+          <td>D:\develop\software\gradle-8.8</td>
+      </tr>
+  </tbody>
+</table>
+<p>PATH: <code>%GRADLE_HOME%\bin</code></p>
+<p>命令行测试：<code>gradle -V</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">allprojects</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repositories</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">maven</span><span class="p">(</span><span class="s2">&#34;https://maven.aliyun.com/repository/public&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mavenCentral</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>gradle 下载源查找顺序</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 排列顺序即加载顺序 * 代表可以为任意名称</span>
+</span></span><span class="line"><span class="cl">~/.gradle/init.gradle
+</span></span><span class="line"><span class="cl">~/.gradle/init.d/*.gradle
+</span></span><span class="line"><span class="cl">GRADLE_HOME/init.d/*.gradle
+</span></span><span class="line"><span class="cl">GRADLE_USER_HOME/init.gradle
+</span></span><span class="line"><span class="cl">GRADLE_USER_HOME/init.d/*.gradle
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Gradle 查找依赖的顺序</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># M2_HOME 是 Maven 的配置</span>
+</span></span><span class="line"><span class="cl">~/.m2/settings.xml
+</span></span><span class="line"><span class="cl">M2_HOME/conf/settings.xml
+</span></span><span class="line"><span class="cl">~/.m2/repository
+</span></span></code></pre></div><blockquote>
+<p><code>GRADLE_HOME</code> 环境变量是配置的本地安装的 Gradle 软件目录。
+若不配置 <code>GRADLE_USER_HOME</code>，默认位置为 <strong>~/.gradle</strong>。</p>
+</blockquote>
+<h3 id="4-mysql8">
+<a class="header-anchor" href="#4-mysql8"></a>
+4. MySQL8
+</h3><p>使用安装文件（exe 或者 msi）安装一般没有什么问题，安装过程中会提示将安装路径加入环境变量。</p>
+<p>这里只介绍使用 {% mark 压缩包 color:green %} 的方式。</p>
+<table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MYSQL_HOME</td>
+          <td>D:\software\MySQL8.0.36</td>
+      </tr>
+  </tbody>
+</table>
+<p>Path: <code>%MYSQL_HOME%\bin</code></p>
+<p>命令行运行以下命令完成初始化：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># service-name 自己命名，如果不写默认为 mysql，只安装一个版本使用的话可以不指定</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在安装多个不同版本 MySQL 的时候很有用</span>
+</span></span><span class="line"><span class="cl">mysqld --install <span class="o">[</span>service-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除 MySQL 服务</span>
+</span></span><span class="line"><span class="cl">mysqld --remove <span class="o">[</span>service-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下面的命令二选一：分别是 无密码版 和 带密码版</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用不安全的初始化（即不生成初始密码）</span>
+</span></span><span class="line"><span class="cl">mysqld --initialize-insecure --console
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果需要生成初始化密码，则使用以下命令。--console 选项把生成的密码打印到控制台（需要查看密码保存便于第一次登录）</span>
+</span></span><span class="line"><span class="cl">mysqld --initialize --console
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动 MySQL 服务</span>
+</span></span><span class="line"><span class="cl">net start <span class="o">[</span>service-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启远程访问</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入 MySQL bash</span>
+</span></span><span class="line"><span class="cl">mysql -u root -p
+</span></span><span class="line"><span class="cl">use mysql<span class="p">;</span>
+</span></span><span class="line"><span class="cl">update user <span class="nb">set</span> <span class="nv">host</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span> where <span class="nv">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span> and <span class="nv">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">grant all privileges on *.* to <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span> with grant option<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新缓存</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>TIP</strong>：安装多个不同 MySQL 版本的时候，需要先 <strong>新建/编辑</strong> <code>my.ini</code> 文件先修改端口号再初始化（即生成 data 目录），避免端口冲突。</p>
+</blockquote>
+<h4 id="忘记密码">
+<a class="header-anchor" href="#%e5%bf%98%e8%ae%b0%e5%af%86%e7%a0%81"></a>
+忘记密码
+</h4><p>如果忘记了 root 用户的密码，尝试使用以下方式：</p>
+<p>修改 MySQL <code>/etc/my.cnf</code> 配置文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>mysqld<span class="o">]</span>
+</span></span><span class="line"><span class="cl">skip-grant-tables
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>进入 MySQL bash：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -uroot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">UPDATE mysql.user SET <span class="nv">authentication_string</span><span class="o">=</span>null WHERE <span class="nv">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
+</span></span><span class="line"><span class="cl">exit<span class="p">;</span>
+</span></span></code></pre></div><p>然后再次进入 MySQL 终端：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -u root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ALTER USER <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED WITH caching_sha2_password BY <span class="s1">&#39;yourpasswd&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><p>修改完成后打开 <code>/etc/my.cnf</code> 文件移除 <code>skip-grant-tables</code> 配置，尝试使用新密码登录。</p>
+<h3 id="5-mariadb">
+<a class="header-anchor" href="#5-mariadb"></a>
+5. <a href="https://mariadb.org/download/?t=mariadb&amp;p=mariadb&amp;r=10.9.3&amp;os=windows&amp;cpu=x86_64&amp;pkg=zip&amp;m=blendbyte">MariaDB</a>
+</h3><table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MARIA_HOME</td>
+          <td>D:\software\mariadb-11.0.2</td>
+      </tr>
+  </tbody>
+</table>
+<p>Path: <code>%MARIA_HOME%\bin</code></p>
+<p>命令行运行以下命令完成初始化：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 名称自己起</span>
+</span></span><span class="line"><span class="cl">mysqld.exe --install <span class="o">[</span>service-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化数据库，生成 data 文件夹以及配置信息</span>
+</span></span><span class="line"><span class="cl">mysql_install_db
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">net start <span class="o">[</span>service-name<span class="o">](</span>上面安装时起的名称<span class="o">)</span>
+</span></span></code></pre></div><p>配置文件（如果本机安装之前还有 MySQL 数据库，推荐解压后先修改配置文件，更改默认端口）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 文件目录</span>
+</span></span><span class="line"><span class="cl"><span class="na">datadir</span><span class="o">=</span><span class="s">D:/software/mariadb-11.0.2/data</span>
+</span></span><span class="line"><span class="cl"><span class="na">port</span> <span class="o">=</span> <span class="s">3333</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 字符集设置</span>
+</span></span><span class="line"><span class="cl"><span class="na">character-set-server</span> <span class="o">=</span> <span class="s">utf8mb4</span>
+</span></span><span class="line"><span class="cl"><span class="na">collation-server</span> <span class="o">=</span> <span class="s">utf8mb4_general_ci</span>
+</span></span><span class="line"><span class="cl"><span class="na">skip-character-set-client-handshake</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[client]</span>
+</span></span><span class="line"><span class="cl"><span class="na">plugin-dir</span><span class="o">=</span><span class="s">D:/software/mariadb-11.0.2/lib/plugin</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 客户端连接端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">port</span><span class="o">=</span><span class="s">3333</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[mariadb]</span>
+</span></span><span class="line"><span class="cl"><span class="na">feedback</span><span class="o">=</span><span class="s">off</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 指定端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">port</span> <span class="o">=</span> <span class="s">3333</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 默认创建数据库的类型</span>
+</span></span><span class="line"><span class="cl"><span class="na">default-storage-engine</span> <span class="o">=</span> <span class="s">InnoDB</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 最大连接数</span>
+</span></span><span class="line"><span class="cl"><span class="na">max_connections</span> <span class="o">=</span> <span class="s">100</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 慢查询</span>
+</span></span><span class="line"><span class="cl"><span class="na">slow_query_log_file</span> <span class="o">=</span> <span class="s">slow.log</span>
+</span></span><span class="line"><span class="cl"><span class="na">slow_query_log</span>  <span class="o">=</span> <span class="s">0</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_queries_not_using_indexes</span>  <span class="o">=</span> <span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">long_query_time</span> <span class="o">=</span> <span class="s">0.5</span>
+</span></span><span class="line"><span class="cl"><span class="na">min_examined_row_limit</span> <span class="o">=</span> <span class="s">100</span>
+</span></span></code></pre></div><blockquote>
+<ul>
+<li>如果本机已经安装了 MySQL 数据库，那么使用这种方式安装需要在初始化数据库后，先修改 <code>my.ini</code> 文件，修改端口号避免端口占用导致启动失败，然后启动服务。</li>
+<li>FEEDBACK 启动成功但是连接失败官方说明：https://mariadb.com/kb/en/feedback-plugin/</li>
+<li>官方配置文档：https://mariadb.com/kb/en/configuring-mariadb-with-option-files/</li>
+<li>Unicode 排序规则：https://www.monolune.com/articles/mysql-utf8-charsets-and-collations-explained/</li>
+</ul>
+</blockquote>
+<h3 id="6-postgresql">
+<a class="header-anchor" href="#6-postgresql"></a>
+6. <a href="https://www.enterprisedb.com/download-postgresql-binaries">PostgreSQL</a>
+</h3><p>Path：<code>D:\software\pgsql\bin</code></p>
+<p>命令行运行以下命令完成初始化(先创建 data 目录)：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 初始化 initdb --help 查看帮助信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -D data         指定初始化的数据库目录(此处为当前目录的data文件夹)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -E utf8         数据库编码格式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -U postgres     超级管理员名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -A              使用密码授权</span>
+</span></span><span class="line"><span class="cl">initdb.exe -D <span class="s2">&#34;D:\software\develop\pgsql\data&#34;</span> -E UTF8 -U postgres -W
+</span></span><span class="line"><span class="cl"><span class="c1"># 注册服务 -N 指定服务名称</span>
+</span></span><span class="line"><span class="cl">pg_ctl register -N <span class="s2">&#34;postgresql&#34;</span> -D <span class="s2">&#34;D:\software\develop\pgsql\data&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">pg_ctl -D <span class="s2">&#34;D:\software\develop\pgsql\data&#34;</span> -l logfile start
+</span></span></code></pre></div><blockquote>
+<ul>
+<li>推荐连接使用 Dbeaver、Dbgate 等开源数据库管理工具；</li>
+<li>pgsql 的配置文件在 data 文件夹中 <code>postgres.conf</code>。</li>
+</ul>
+</blockquote>
+<h3 id="7-tomcat">
+<a class="header-anchor" href="#7-tomcat"></a>
+7. Tomcat
+</h3><p>Tomcat 有安装版和压缩包两种，如果是安装版，需要先配置好jdk。</p>
+<table>
+  <thead>
+      <tr>
+          <th>key</th>
+          <th>value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CATALINA_HOME</td>
+          <td>D:\software\tomcat8.5</td>
+      </tr>
+  </tbody>
+</table>
+<p>Path：<code>%CATALINA_HOME%\bin</code>。</p>
+<blockquote>
+<ul>
+<li>Tomcat启动的日志输出的默认字符集编码是 utf-8，但是 window 的 shell 是 gbk 编码，所以如果想要在 window 下正常输出，就要修改 Tomcat 的日志打印编码。</li>
+<li>编辑tomcat安装路径下的 <code>conf/logging.properties</code> 文件，设置 <code>java.util.logging.ConsoleHandler.encoding = GBK</code>，保存重启即可。</li>
+</ul>
+</blockquote>
+<h3 id="8-nodejs">
+<a class="header-anchor" href="#8-nodejs"></a>
+8. <a href="https://nodejs.org/en">NodeJs</a>
+</h3><p>Windows 中安装的 <code>nodejs.msi</code> 中自带了 <code>npm</code>，而 Linux 需要单独安装（使用包管理器的时候）。另外，Windows 中安装后需要修改安装目录的权限，不然只有管理员才能操作该目录，对于当前用户是非常不方便的。</p>
+<p>在安装目录即 <code>nodejs</code> 文件夹，单击右键，选择属性，点击 “安全” 标签，选择 “User” 用户，点击编辑，把权限都勾上，保存退出。</p>
+<p>命令行做一些配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置镜像源</span>
+</span></span><span class="line"><span class="cl">npm config <span class="nb">set</span> registry https://registry.npmmirror.com
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置全局安装目录（需要先手动创建）</span>
+</span></span><span class="line"><span class="cl">npm config <span class="nb">set</span> prefix <span class="s2">&#34;D:\software\develop\nodejs\node_global&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置全局缓存目录（需要先手动创建）</span>
+</span></span><span class="line"><span class="cl">npm config <span class="nb">set</span> cache <span class="s2">&#34;D:\software\develop\nodejs\node_cache&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看修改是否成功</span>
+</span></span><span class="line"><span class="cl">npm config list
+</span></span></code></pre></div><p>Path：<code>D:\software\develop\nodejs\node_global</code></p>
+<blockquote>
+<ul>
+<li>配置 Path 是为了使用 <strong>全局安装</strong> 的工具（例如 yarn、pnpm 等）。</li>
+<li>临时使用阿里镜像源：<code>npm install --registry=https://registry.npmmirror.com</code>。
+NodeJs &hellip;建议套层 fnm 使用，fnm 控制真是完美。</li>
+</ul>
+</blockquote>
+<h3 id="9-jetty">
+<a class="header-anchor" href="#9-jetty"></a>
+9. Jetty
+</h3><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html"
+			title="官方文档"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">官方文档</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.eclipse.org/jetty/documentation/jetty-11/operations-guide/index.html</div>
+		</div>
+	</div>
+</div>
+
+<p>下载后解压，之后进入 jetty 的安装目录。运行以下命令(<code>$JETTY_HOME</code> 是安装目录)：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 为当前基目录添加标准文件及文件夹</span>
+</span></span><span class="line"><span class="cl">java -jar <span class="nv">$JETTY_HOME</span>/start.jar --add-to-startd<span class="o">=</span>http,deploy
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建demo演示，不然启动后是404页面</span>
+</span></span><span class="line"><span class="cl">java -jar <span class="nv">$JETTY_HOME</span>/start.jar --add-module<span class="o">=</span>demo
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动jetty服务</span>
+</span></span><span class="line"><span class="cl">java -jar <span class="nv">$JETTY_HOME</span>/start.jar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果不想用8080，可以使用以下命令在启动时动态修改</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 也可以修改配置文件，使其永久生效</span>
+</span></span><span class="line"><span class="cl">java -jar <span class="nv">$JETTY_HOME</span>/start.jar jetty.http.port<span class="o">=</span><span class="m">9999</span>
+</span></span></code></pre></div><p>之后就可以在浏览器使用 <code>localhost:9999</code> 进行访问了。</p>
+<h3 id="10-rust">
+<a class="header-anchor" href="#10-rust"></a>
+10. <a href="https://www.rust-lang.org/">Rust</a>
+</h3><p>创建 <code>~/.cargo/config.toml</code> 文件，编辑填写以下内容，保存。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">crates-io</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">replace-with</span> <span class="p">=</span> <span class="s1">&#39;ustc&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">ustc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">registry</span> <span class="p">=</span> <span class="s2">&#34;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># [source.crates-io]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># replace-with = &#39;mirror&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">bfsu</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">registry</span> <span class="p">=</span> <span class="s2">&#34;sparse+https://mirrors.bfsu.edu.cn/crates.io-index/&#34;</span>
+</span></span></code></pre></div><blockquote>
+<ul>
+<li>Rust 的很多源只负责更新索引，实际下载 crates 的时候还是很慢，实测使用 <a href="https://mirrors.ustc.edu.cn/">中科大</a> 的镜像源无论是更新索引还是下载 crates 都很快。</li>
+<li>如果正在使用的 Rust 版本低于 1.38，则需要修改的文件为 <strong>config</strong> 文件，而不是 <strong>config.toml</strong> 文件。</li>
+</ul>
+</blockquote>
+<h3 id="11-python">
+<a class="header-anchor" href="#11-python"></a>
+11. <a href="https://www.python.org/downloads/">Python</a>
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置镜像源</span>
+</span></span><span class="line"><span class="cl">python -m pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
+</span></span><span class="line"><span class="cl">pip config <span class="nb">set</span> global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+</span></span></code></pre></div><h3 id="12-go">
+<a class="header-anchor" href="#12-go"></a>
+12. <a href="https://golang.google.cn/">Go</a>
+</h3><p>Go 的安装包/依赖都是在 Github 上，国内比较慢，最好设置代理。<a href="https://goproxy.cn/">代理配置</a>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ go env -w <span class="nv">GO111MODULE</span><span class="o">=</span>on
+</span></span><span class="line"><span class="cl">$ go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.cn,direct
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># goctl</span>
+</span></span><span class="line"><span class="cl">go install github.com/zeromicro/go-zero/tools/goctl@latest
+</span></span></code></pre></div><h2 id="二软件">
+<a class="header-anchor" href="#%e4%ba%8c%e8%bd%af%e4%bb%b6"></a>
+二、软件
+</h2><h3 id="1-vscode">
+<a class="header-anchor" href="#1-vscode"></a>
+1. VsCode
+</h3><p><strong>自 VsCode 1.7x 版本之后 exe 安装文件也可以选择安装路径了，并且国内下载速度也很快，但是插件默认依然在 C 盘中，当然你可以打一个软连接映射，或者使用便携版本来自定义插件的安装位置。</strong></p>
+<h3 id="2-vivaldi">
+<a class="header-anchor" href="#2-vivaldi"></a>
+2. Vivaldi
+</h3><p>Vivaldi 官网在国内是访问不到的，可以在 <code>hosts</code> 文件中添加以下内容再次访问：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">172.67</span><span class="o">.</span><span class="mf">21.227</span> <span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span> <span class="n">www</span><span class="o">.</span><span class="n">vivialdi</span><span class="o">.</span><span class="n">com</span> <span class="n">update</span><span class="o">.</span><span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span> <span class="n">downloads</span><span class="o">.</span><span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span> <span class="n">help</span><span class="o">.</span><span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span> <span class="n">bifrost</span><span class="o">.</span><span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span> <span class="n">mimir</span><span class="o">.</span><span class="n">vivaldi</span><span class="o">.</span><span class="n">com</span>
+</span></span></code></pre></div><h2 id="三插件">
+<a class="header-anchor" href="#%e4%b8%89%e6%8f%92%e4%bb%b6"></a>
+三、插件
+</h2><p>插件在精不在多。</p>
+<h3 id="1-油猴插件">
+<a class="header-anchor" href="#1-%e6%b2%b9%e7%8c%b4%e6%8f%92%e4%bb%b6"></a>
+1. 油猴插件
+</h3><ol>
+<li><a href="https://greasyfork.org/zh-CN/scripts/494821">网盘有效性检查</a></li>
+<li><a href="https://greasyfork.org/en/scripts/449291">网盘直链下载助手</a>（需要关注公众号，目前好用的不多了）</li>
+<li><a href="https://greasyfork.org/zh-CN/scripts/412245">Github 增强 - 高速下载</a></li>
+<li><a href="https://greasyfork.org/zh-CN/scripts/482865">CSDN、知乎、简书浏览体验优化脚本</a></li>
+</ol>
+<h3 id="2-edge">
+<a class="header-anchor" href="#2-edge"></a>
+2. Edge
+</h3><ol>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/%E5%8F%AF%E5%8F%AF%E7%BF%BB%E8%AF%91/ebkimaahhkeiplegpghijhgmlcdkeppf">可可翻译</a></li>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/json-beautifier-editor/kpfjmbnldfjpgbglcdcmlkekajbcjlem">JSON Beautifier &amp; Editor</a></li>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/adguard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8/pdffkfellgipmhklpdmokmckkkfcopbh">AdGuard</a></li>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey-beta/fcmfnpggmnlmfebfghbfnillijihnkoh">Tampermonkey BETA</a></li>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/%E7%AE%80%E7%BA%A6%E7%BF%BB%E8%AF%91/jemckldkclkinpjighnoilpbldbdmmlh?hl=zh-CN">简约翻译</a></li>
+</ol>
+<h3 id="3-firefoxzen">
+<a class="header-anchor" href="#3-firefoxzen"></a>
+3. Firefox/Zen
+</h3><ol>
+<li><a href="https://addons.mozilla.org/zh-CN/firefox/addon/sctranslator">可可翻译</a></li>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/read-frog-open-ai-translator/">陪读蛙</a></li>
+</ol>
+<h3 id="4-idea-community">
+<a class="header-anchor" href="#4-idea-community"></a>
+4. IDEA Community
+</h3><ul>
+<li><a href="https://plugins.jetbrains.com/plugin/6317-lombok">Lombok</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/9417-log-support-2">Log Support 2</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/8579-translation">Translation</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/21800-quick-request">Quick Request</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/23555-cool-request-rest-client-">Cool Request(和 Quick Request 二选一即可)</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/26352-httprequest">HttpRequest</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/26622-jimmer-buddy">Jimmer Buddy</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/22618-jimmerdto">JimmerDTO</a></li>
+</ul>
+<h2 id="四其它">
+<a class="header-anchor" href="#%e5%9b%9b%e5%85%b6%e5%ae%83"></a>
+四、其它
+</h2><h3 id="1-删除开机多余启动项">
+<a class="header-anchor" href="#1-%e5%88%a0%e9%99%a4%e5%bc%80%e6%9c%ba%e5%a4%9a%e4%bd%99%e5%90%af%e5%8a%a8%e9%a1%b9"></a>
+1. 删除开机多余启动项
+</h3><p>⌘ + R，输入 <code>msconfig</code>，点击确定，选择 “引导” 标签，选择 <strong>非当前OS</strong> 记录，点击删除并应用，按照提示重启即可。</p>
+<p>管理员身份命令行运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看启动项</span>
+</span></span><span class="line"><span class="cl">efibootmgr
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除对应的项</span>
+</span></span><span class="line"><span class="cl">efibootmgr -b 0001<span class="o">(</span>序号<span class="o">)</span> -B
+</span></span></code></pre></div><h3 id="2-powershell-运行脚本报错">
+<a class="header-anchor" href="#2-powershell-%e8%bf%90%e8%a1%8c%e8%84%9a%e6%9c%ac%e6%8a%a5%e9%94%99"></a>
+2. PowerShell 运行脚本报错
+</h3><p>管理员身份命令行运行</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 输入以下命令，选择 Y</span>
+</span></span><span class="line"><span class="cl">set-executionpolicy RemoteSigned
+</span></span></code></pre></div><p>PS 有四种策略：</p>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Restricted</td>
+          <td>禁止运行任何脚本配置文件（默认）</td>
+      </tr>
+      <tr>
+          <td>AllSigned</td>
+          <td>可以运行发布签名的脚本和配置文件，包括本地计算机上编写的脚本</td>
+      </tr>
+      <tr>
+          <td>RemoteSigned</td>
+          <td>要求从网络上下载的脚本和配置文件由可信者发布签名，不要求本地计算机上编写的脚本进行签名</td>
+      </tr>
+      <tr>
+          <td>Unrestricted</td>
+          <td>可以运行未签名的脚本</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="其它问题">
+<a class="header-anchor" href="#%e5%85%b6%e5%ae%83%e9%97%ae%e9%a2%98"></a>
+其它问题
+</h4><p>使用 VMWare 虚拟机时，如果本机开启着 VPN 时，使用其它远程工具是无法连接到本地虚拟机的，必须退出 VPN 的登录后才可以再次连接新的会话。</p>
+<h3 id="windows-7-开发工具兼容性">
+<a class="header-anchor" href="#windows-7-%e5%bc%80%e5%8f%91%e5%b7%a5%e5%85%b7%e5%85%bc%e5%ae%b9%e6%80%a7"></a>
+Windows 7 开发工具兼容性
+</h3><table>
+  <thead>
+      <tr>
+          <th>工具名称</th>
+          <th>兼容版本</th>
+          <th>相关链接</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>jetbrains IDEA</td>
+          <td>23.1.7</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>vscode</td>
+          <td>1.70.2</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>listary</td>
+          <td>5.x</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>git</td>
+          <td>2.46.2</td>
+          <td><a href="https://gitforwindows.org/32-bit.html">https://gitforwindows.org/32-bit.html</a></td>
+      </tr>
+      <tr>
+          <td>dbeaver</td>
+          <td>24.0.4、25.1.1</td>
+          <td><a href="https://github.com/dbeaver/dbeaver/issues/34315">https://github.com/dbeaver/dbeaver/issues/34315</a> <a href="https://github.com/dbeaver/dbeaver/issues/34197">https://github.com/dbeaver/dbeaver/issues/34197</a> <a href="https://github.com/orgs/dbeaver/discussions/18956">https://github.com/orgs/dbeaver/discussions/18956</a></td>
+      </tr>
+      <tr>
+          <td>redis客户端</td>
+          <td>Another-Redis-Desktop-Manager-win-1.7.1</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>redis客户端</td>
+          <td>RedisDesktopManager2022.5.0.0(需要 net4.5 环境)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>gitea</td>
+          <td>1.21.1</td>
+          <td><a href="https://github.com/go-gitea/gitea/issues/29586">https://github.com/go-gitea/gitea/issues/29586</a></td>
+      </tr>
+      <tr>
+          <td>peazip</td>
+          <td>10.9.0~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>pixin</td>
+          <td>2.0.0.3~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>winscp</td>
+          <td>6.5.5~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>cmder</td>
+          <td>1.3.25~</td>
+          <td><a href="https://github.com/cmderdev/cmder/releases/tag/v1.3.25">https://github.com/cmderdev/cmder/releases/tag/v1.3.25</a></td>
+      </tr>
+      <tr>
+          <td>rime</td>
+          <td>0.14.3</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>手心输入法</td>
+          <td>3.2.8.1040~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Notepad4_zh-Hans_x64_v</td>
+          <td>25.06r56968~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>MacTypeInstaller</td>
+          <td>2025.6.9~</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>minio</td>
+          <td>2025.4.22</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>brave</td>
+          <td>1.47.186</td>
+          <td><a href="https://github.com/brave/brave-browser/releases/tag/v1.47.186">https://github.com/brave/brave-browser/releases/tag/v1.47.186</a> <a href="https://github.com/brave/brave-browser/issues/27649">https://github.com/brave/brave-browser/issues/27649</a></td>
+      </tr>
+      <tr>
+          <td>fastfetch</td>
+          <td>-</td>
+          <td><a href="https://github.com/fastfetch-cli/fastfetch/releases/tag/2.57.0">https://github.com/fastfetch-cli/fastfetch/releases/tag/2.57.0</a></td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>带 <code>~</code> 后缀的表示可以自行尝试本文声明版本之后的新版本(未验证)</p>
+</blockquote></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/windows/windows-config/&amp;title=Windows%20%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae&amp;desc=Windows%20%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae%20&#43;%20%e8%bd%af%e4%bb%b6%e9%85%8d%e7%bd%ae%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Windows 开发环境配置">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Windows 开发环境配置">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/windows"
+      data-aos="zoom-in"
+      >Windows</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/%e9%85%8d%e7%bd%ae"
+        rel="tag"
+        >配置</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/win"
+        rel="tag"
+        >win</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="zola 主题"
+              class="lazyload"
+            /><a
+          href="/post/skill/zola-theme/"
+          aria-label="前一篇:zola 主题"
+          title="前一篇:zola 主题"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">zola 主题</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="Hexo 博客迁移 Hugo 的一些感想"
+              class="lazyload"
+            /><a
+          href="/post/life/blog-migration-reflections/"
+          aria-label="后一篇:Hexo 博客迁移 Hugo 的一些感想"
+          title="后一篇:Hexo 博客迁移 Hugo 的一些感想"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Hexo 博客迁移 Hugo 的一些感想</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一环境配置">一、环境配置</a>
+      <ul>
+        <li><a href="#1-jdk">1. JDK</a></li>
+        <li><a href="#2-maven">2. Maven</a></li>
+        <li><a href="#3-gradle">3. Gradle</a></li>
+        <li><a href="#4-mysql8">4. MySQL8</a></li>
+        <li><a href="#5-mariadb">5. MariaDB</a></li>
+        <li><a href="#6-postgresql">6. PostgreSQL</a></li>
+        <li><a href="#7-tomcat">7. Tomcat</a></li>
+        <li><a href="#8-nodejs">8. NodeJs</a></li>
+        <li><a href="#9-jetty">9. Jetty</a></li>
+        <li><a href="#10-rust">10. Rust</a></li>
+        <li><a href="#11-python">11. Python</a></li>
+        <li><a href="#12-go">12. Go</a></li>
+      </ul>
+    </li>
+    <li><a href="#二软件">二、软件</a>
+      <ul>
+        <li><a href="#1-vscode">1. VsCode</a></li>
+        <li><a href="#2-vivaldi">2. Vivaldi</a></li>
+      </ul>
+    </li>
+    <li><a href="#三插件">三、插件</a>
+      <ul>
+        <li><a href="#1-油猴插件">1. 油猴插件</a></li>
+        <li><a href="#2-edge">2. Edge</a></li>
+        <li><a href="#3-firefoxzen">3. Firefox/Zen</a></li>
+        <li><a href="#4-idea-community">4. IDEA Community</a></li>
+      </ul>
+    </li>
+    <li><a href="#四其它">四、其它</a>
+      <ul>
+        <li><a href="#1-删除开机多余启动项">1. 删除开机多余启动项</a></li>
+        <li><a href="#2-powershell-运行脚本报错">2. PowerShell 运行脚本报错</a></li>
+        <li><a href="#windows-7-开发工具兼容性">Windows 7 开发工具兼容性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Windows 开发环境配置",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/windows\/windows-config\/",
+          description: "Windows 开发环境配置 \u002b 软件配置。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/cover\/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B.jpg",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

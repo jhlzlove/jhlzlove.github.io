@@ -1,0 +1,944 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Windows 下 Git Bash 配置 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Windows 下 Git Bash 配置 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/git/git-bash-config/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/cover/git.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="git, git bash, completion, commitizen" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/cover/git.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img  fetchpriority="high" src="/images/cover/git.webp" alt="Windows 下 Git Bash 配置"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Windows 下 Git Bash 配置</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-bash">Git Bash</a></li>
+    <li><a href="#git-bash-读取的配置文件">Git Bash 读取的配置文件</a>
+      <ul>
+        <li><a href="#git-bash-使用-starship">Git Bash 使用 starship</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它配置">其它配置</a>
+      <ul>
+        <li><a href="#1-字符集别名配置">1. 字符集/别名配置</a></li>
+        <li><a href="#2-二进制可执行文件">2. 二进制可执行文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-completion">bash completion</a></li>
+    <li><a href="#git-规范提交">Git 规范提交</a>
+      <ul>
+        <li><a href="#czg">czg</a></li>
+        <li><a href="#单一二进制工具-cocogitto">单一二进制工具 cocogitto</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>如何让 Windows 中的 Git Bash 更好用呢？🤔</p>
+<h2 id="git-bash">
+<a class="header-anchor" href="#git-bash"></a>
+Git Bash
+</h2><p>我们可以使用 <a href="https://starship.rs/zh-CN/">starship</a> 进行美化，然后在诸如 wezterm、cmder、vscode、JetBrains IDEA、Windows Terminal、zed 中配置默认打开的 shell 类型为 Git Bash。这样能够和 Linux 的操作基本保持一致。浪子强烈推荐使用。<a href="https://github.com/wezterm/wezterm">wezterm</a> 挺好用的，内存占用稳定，而 Windows Terminal 打开一个 tab 占用内存就会增加一些。</p>
+<h2 id="git-bash-读取的配置文件">
+<a class="header-anchor" href="#git-bash-%e8%af%bb%e5%8f%96%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6"></a>
+Git Bash 读取的配置文件
+</h2><p>Windows 安装 Git 后，默认使用的配置文件是 <code>/etc/bash.bashrc</code>。在 Windows 中，Git Bash 下使用 <code>/</code> 表示 Git 的安装目录。鉴于 Git 升级时都会覆盖掉 <code>/etc/bash.bashrc</code> 文件，所以推荐使用 <code>~/.bashrc</code>（如果没有此文件可以新建），Git Bash terminal 启动时会加载此配置。</p>
+<p><code>~/.bash_profile</code> 文件在 bash login 模式下才会被加载，可以打开 terminal 使用 <code>shopt login_shell</code> 命令查看，on 为登录模式，off 为非登录模式。在 Windows 上常表现为 shell 参数添加 <code>--login</code> 选项。</p>
+<p>Git Bash 启动时如果只有 <code>~/.bashrc</code>，将会自动生成 <code>~/.bash_profile</code> 文件，且默认有以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># generated by Git for Windows</span>
+</span></span><span class="line"><span class="cl"><span class="nb">test</span> -f ~/.profile <span class="o">&amp;&amp;</span> . ~/.profile
+</span></span><span class="line"><span class="cl"><span class="nb">test</span> -f ~/.bashrc <span class="o">&amp;&amp;</span> . ~/.bashrc
+</span></span></code></pre></div><h3 id="git-bash-使用-starship">
+<a class="header-anchor" href="#git-bash-%e4%bd%bf%e7%94%a8-starship"></a>
+Git Bash 使用 starship
+</h3><ol>
+<li><a href="https://github.com/starship/starship/releases">Starship Release</a> 页面下载最新版的 <code>msi</code> 安装程序进行安装(这会自动添加环境变量，绿色版安装包解压后需要自行添加)。编辑 <code>~/.bashrc</code> 文件，添加以下内容：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>starship init bash<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><ol start="2">
+<li>
+<p>安装一款你喜欢的 <a href="https://www.nerdfonts.com/font-downloads">Nerd Font</a> 字体，并在 <code>C:\Users\yourname\.minttyrc</code> 文件中配置以便在 Git Bash 可以更好的显示。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">Font</span><span class="o">=</span>JetBrainsMono Nerd Font
+</span></span></code></pre></div></li>
+</ol>
+
+  <blockquote class="alert-blockquote warning">
+    <p class="alert-heading">
+      Warning
+    </p>
+    <p><p>这里只是修改原生 Git Bash 中的字体。如果使用了其它工具集成了 Git Bash(例如 windows terminal、vscode、idea 等)，则此配置不会生效,需要在这些工具中自行配置。</p></p>
+  </blockquote>
+
+<ol start="3">
+<li>重启/打开新的 Git Bash 就可以看到效果啦！可以参考 <a href="https://starship.rs/zh-CN/config/">Starship 官方配置文档</a> 或 <a href="https://starship.rs/zh-CN/presets/">社区</a> 中定制自己的主题。</li>
+</ol>
+<blockquote>
+<ul>
+<li>Nerd Font 字体是在原有字体的基础上上添加了一些图标、emoji 和一些额外的“扩展”，可以显示特殊字符以及一些 icon。</li>
+<li>Git Bash 没有根据输入 <em><strong>自动显示建议</strong></em> 的功能(参考 <a href="https://starship.rs/zh-CN/">Starship 官网主页的建议效果图</a>)，这和使用的 bash 有关。想要同样的效果，请考虑使用 zsh、fish 等其它 shell。</li>
+<li>VsCode 如果是 <strong>1.70.x ~ 1.90.0</strong> 版本(建议使用最新版)，在 Git Bash 集成 starship 时，，需要在 <strong>settings.json</strong> 中设置 <strong>&ldquo;terminal.integrated.shellIntegration.enabled&rdquo;: false,</strong> 禁用 vscode 自动注入的终端集成。否则，在 vscode 中打开终端和执行命令后都需要等待较长时间。</li>
+</ul>
+</blockquote>
+<h2 id="其它配置">
+<a class="header-anchor" href="#%e5%85%b6%e5%ae%83%e9%85%8d%e7%bd%ae"></a>
+其它配置
+</h2><h3 id="1-字符集别名配置">
+<a class="header-anchor" href="#1-%e5%ad%97%e7%ac%a6%e9%9b%86%e5%88%ab%e5%90%8d%e9%85%8d%e7%bd%ae"></a>
+1. 字符集/别名配置
+</h3><p>编辑 <code>~/.bashrc</code> 文件，加入以下内容，保存退出并重启 Git Bash。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置别名命令</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s2">&#34;ls -al&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># git-bash 终端使用 utf-8 编码</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+</span></span></code></pre></div><h3 id="2-二进制可执行文件">
+<a class="header-anchor" href="#2-%e4%ba%8c%e8%bf%9b%e5%88%b6%e5%8f%af%e6%89%a7%e8%a1%8c%e6%96%87%e4%bb%b6"></a>
+2. 二进制可执行文件
+</h3><p>Windows 中有很多的简易二进制可执行文件，例如：shellcheck、jq、yq、nc、xh 等等，这些工具可以统一放置在一个目录下，配一个环境变量，然后全局都可以使用；如果经常使用 Git Bash，那么也可以直接放在 <code>/usr/bin</code> 目录下，此时不需要添加环境变量，但仅限 Git Bash 使用，PS 中就读取不到了。</p>
+<p>二进制工具：</p>
+<ul>
+<li><a href="https://github.com/lsd-rs/lsd">lsd</a> 颜值高，开箱即用，不支持 local 语言</li>
+<li><a href="https://github.com/eza-community/eza">eza</a> 比 <a href="https://github.com/lsd-rs/lsd">lsd</a> 更复杂，支持 local 语言</li>
+<li><a href="https://sourceforge.net/projects/gnuwin32/files/tree">Windows tree 二进制文件</a> 这是旧的 tree 工具（不推荐）</li>
+<li><a href="https://github.com/jqlang/jq">jq</a> 解压后名称改为 jq.exe 放入 <code>/usr/bin</code></li>
+<li><a href="https://github.com/mikefarah/yq">yq</a> 解压后名称改为 yq.exe 放入 <code>/usr/bin</code></li>
+<li><a href="https://eternallybored.org/misc/netcat/">nc（netcat）</a> Windows 容易误杀，关闭防火墙</li>
+<li><a href="https://github.com/koalaman/shellcheck">shellcheck</a></li>
+<li><a href="https://github.com/ducaale/xh">xh</a></li>
+</ul>
+<p>上面的工具都可以把 <code>xx.exe</code> 改名后直接移动到 <code>/usr/bin</code> 目录中，重新打开 Git Bash 就可以使用了。如果不改名，jq 的 exe 可能是 <code>jq-windows-amd64.exe</code>，使用时需要敲击键盘比较多（虽然可以使用 tab，但还是啰唆）</p>
+<blockquote>
+<p>Git For Windows 2.51 版本由于修改了 Windows 的路径分隔符，建议使用 cli 工具时不要添加 <code>.exe</code> 后缀，否则自动补全会出现语法解析错误的问题。</p>
+</blockquote>
+<h4 id="tree">
+<a class="header-anchor" href="#tree"></a>
+tree
+</h4><p>Windows 中自带的 tree 命令太拉胯，功能极其简单，推荐使用 <a href="https://github.com/lsd-rs/lsd">lsd</a> 或者 <a href="https://github.com/eza-community/eza">eza</a>。</p>
+<h2 id="bash-completion">
+<a class="header-anchor" href="#bash-completion"></a>
+bash completion
+</h2><p>completion （自动完成）是指在命令行中输入命令后，双击 tab 后显示命令选项提示列表的功能，Linux 中经常使用。其实大部分的命令行 cli 都支持 completion，有些可以直接生成（例如 deno），有些是随包分发（例如 xh）。你可能已经知道并使用过 <a href="https://github.com/scop/bash-completion">bash-completion</a>，它是一个 bash 自动补全框架，提供了许多 <a href="https://github.com/scop/bash-completion/tree/main/completions">常用命令</a> 的自动补全脚本，使用非常方便。</p>
+<p>Windows 下 Git Bash 默认读取 <code>~/bash_completion.d/</code> 目录中以 <code>.bash</code> 后缀结尾的 completion 脚本。这个不是很方便，因为 bash 类型的 completion 有些是带有 <code>.bash</code> 的，有些是没有后缀的。</p>
+<blockquote>
+<p>fish completion 以 <code>.fish</code> 结尾；zsh completion 以 <code>_</code> 开始，不带任何后缀；bash completion 可以没有任何后缀，也可以有 <code>.bash</code> 后缀。</p>
+</blockquote>
+<p>所以我们换个目录，推荐和 <a href="https://github.com/scop/bash-completion">bash-completion</a> 相同的目录然后让 Git Bash 加载即可。打开 Git Bash，新建 <code>~/.local/share/bash-completion/completions</code> 目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p ~/.local/share/bash-completion/completions
+</span></span></code></pre></div><p>编辑 <code>~/.bashrc</code> 文件，添加以下内容后执行 <code>source ~/.bashrc</code>，然后把 completion 脚本都放到此目录中就可以啦~：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 脚本基础路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPLETION_BASE_DIR</span><span class="o">=</span>~/.local/share/bash-completion/completions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -d <span class="s2">&#34;</span><span class="nv">$COMPLETION_BASE_DIR</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> file in <span class="s2">&#34;</span><span class="nv">$COMPLETION_BASE_DIR</span><span class="s2">&#34;</span>/*<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span> -f <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><h2 id="git-规范提交">
+<a class="header-anchor" href="#git-%e8%a7%84%e8%8c%83%e6%8f%90%e4%ba%a4"></a>
+Git 规范提交
+</h2><p>Git 提交信息规范化有助于查错（<del>甩锅</del>），这样团队合作的时候，如果出问题可以先看 git log。但是如果提交的信息不明确那就……所以我们可以使用工具辅助在提交的时候必须填写相关内容。</p>
+<p>如果你去观察 Github 上的多数项目提交记录，很多都以固定的几个单词开头，其后跟范围：feat(xxx)、fix(xxx)、docs(xxx) 等，这是如何实现的呢？首先，肯定不是每次提交输入的，毕竟最优秀的程序员都是追求懒的；如果借助的现代编辑器，那肯定是自身提供或有插件提供的，提交的时候填写就行了。</p>
+<p>对于前端项目，经常使用的是 commitizen core + 各种适配器。不同适配器有不同的交互风格，比如 emoji 位置、支持的功能什么的。</p>
+<p>commitizen：基于 Node.js 的 <code>git commit</code> 命令行工具，辅助生成标准化规范化的 commit message。</p>
+<p>cz-git、git-cz、cz-customizable、cz-conventional-changelog 等是 commitizen 的适配器(也可以理解为 gui 交互窗口，窗口的 UI 各具特色)：提交时选择的交互式页面，依赖于 commitizen 工作。你可以把这些适配器全部安装，然后一个一个体验一遍，找到自己喜欢的交互 UI 适配器使用。一个项目可以安装多个适配器，使用哪个适配器在 <code>package.json</code> 中配置即可。</p>
+<h3 id="czg">
+<a class="header-anchor" href="#czg"></a>
+<a href="https://cz-git.qbb.sh/zh/cli/">czg</a>
+</h3><p>这是浪子之前一直在用的，它的安装、使用都非常方便，省去了很多的麻烦，也可以进行自定义配置，具体内容可以查看 [官方文档]。</p>
+<ul>
+<li>无需前置配置，无需适配器，没有额外的步骤，你可以使用 <code>npx | npm 脚本 | 全局下载...</code> 在你的任何项目中快速启动。</li>
+<li>可定制化: 内部包含 cz-git 的核心，继承了 cz-git 的所有特性，具有相同的行为，配置加载&hellip; 你可以根据自己的需要配置的 CLI 的行为。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 全局安装</span>
+</span></span><span class="line"><span class="cl">npm i -g czg
+</span></span><span class="line"><span class="cl"><span class="c1"># 特性以及帮助文档</span>
+</span></span><span class="line"><span class="cl">czg --help
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 deno 全局安装</span>
+</span></span><span class="line"><span class="cl">deno install -A -g npm:czg
+</span></span></code></pre></div><h3 id="单一二进制工具-cocogitto">
+<a class="header-anchor" href="#%e5%8d%95%e4%b8%80%e4%ba%8c%e8%bf%9b%e5%88%b6%e5%b7%a5%e5%85%b7-cocogitto"></a>
+单一二进制工具 <a href="https://github.com/cocogitto/cocogitto">cocogitto</a>
+</h3><p>后来发现了一个工具：<a href="https://github.com/cocogitto/cocogitto">cocogitto</a>，只需要一个二进制文件即可。挺好用的，就换过来了：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cog generate-completions bash &gt; ~/.local/share/bash-completion/completions/cog.bash-completion
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/git/git-bash-config/&amp;title=Windows%20%e4%b8%8b%20Git%20Bash%20%e9%85%8d%e7%bd%ae&amp;desc=%e5%a6%82%e4%bd%95%e8%ae%a9%20Windows%20%e4%b8%ad%e7%9a%84%20Git%20Bash%20%e6%9b%b4%e5%a5%bd%e7%94%a8%e5%91%a2%ef%bc%9f%f0%9f%a4%94%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Windows 下 Git Bash 配置">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Windows 下 Git Bash 配置">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/git"
+        rel="tag"
+        >git</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/git-bash"
+        rel="tag"
+        >git bash</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/completion"
+        rel="tag"
+        >completion</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/commitizen"
+        rel="tag"
+        >commitizen</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="本是青灯不归客"
+              class="lazyload"
+            /><a
+          href="/post/life/%E6%9C%88%E7%AB%A0%E6%98%9F%E5%8F%A5/%E6%9C%AC%E6%98%AF%E9%9D%92%E7%81%AF%E4%B8%8D%E5%BD%92%E5%AE%A2/"
+          aria-label="前一篇:本是青灯不归客"
+          title="前一篇:本是青灯不归客"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">本是青灯不归客</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="/images/cover/web.webp"
+            data-sizes="auto"
+            alt="Web"
+            class="lazyload"
+          /><a
+          href="/post/skill/programming/web/web/"
+          aria-label="后一篇:Web"
+          title="后一篇:Web"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Web</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-bash">Git Bash</a></li>
+    <li><a href="#git-bash-读取的配置文件">Git Bash 读取的配置文件</a>
+      <ul>
+        <li><a href="#git-bash-使用-starship">Git Bash 使用 starship</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它配置">其它配置</a>
+      <ul>
+        <li><a href="#1-字符集别名配置">1. 字符集/别名配置</a></li>
+        <li><a href="#2-二进制可执行文件">2. 二进制可执行文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-completion">bash completion</a></li>
+    <li><a href="#git-规范提交">Git 规范提交</a>
+      <ul>
+        <li><a href="#czg">czg</a></li>
+        <li><a href="#单一二进制工具-cocogitto">单一二进制工具 cocogitto</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Windows 下 Git Bash 配置",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/git\/git-bash-config\/",
+          description: "如何让 Windows 中的 Git Bash 更好用呢？🤔\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/cover\/git.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

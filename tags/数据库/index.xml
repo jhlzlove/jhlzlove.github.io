@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>数据库杂谈</title>
+      <link>https://jhlzlove.github.io/post/skill/db/database/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/database/</guid>
+      <description>
+        <![CDATA[<h1>数据库杂谈</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="使用数据库">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%ba%93"></a>
+使用数据库
+</h2><ul>
+<li>关系型数据库一般分为 <code>catalog.schema.table</code>，catalog 的本质就是数据库(database)，包含多个 schema；一个 schema 下可以有多个对象，比如表、存储过程、触发器等。MySQL 没有 schema 的概念，但它的 schema 和 database 是等价的；</li>
+<li>建表时 <strong>不应使用</strong> 数据库 <strong>内置关键字</strong>，可能会造成一些隐藏的问题；</li>
+<li>真正的 ORM 框架更加重视建模的规范，前期的建模一旦做好，在业务开发和后期中将无往不利，所以 ORM 的选择对项目的影响蛮大的(前提是使用关系型数据库存储)；</li>
+<li>根据业务场景合理使用外键可以构建更健壮的系统；</li>
+</ul>
+<h2 id="数据库三范式">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%89%e8%8c%83%e5%bc%8f"></a>
+数据库三范式
+</h2><p>数据库三范式是关系型数据库设计的基础理论，用来保证数据的完整性和减少数据冗余。三范式层层递进，每个范式都是在前一个范式的基础上进行优化和改进。在实际的数据库设计中，应根据具体的需求和场景选择合适的范式来保证数据的完整性和减少数据冗余。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

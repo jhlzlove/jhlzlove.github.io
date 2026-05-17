@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Db on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/db/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/db/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>数据库杂谈</title>
+      <link>https://jhlzlove.github.io/post/skill/db/database/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/database/</guid>
+      <description>
+        <![CDATA[<h1>数据库杂谈</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="使用数据库">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%ba%93"></a>
+使用数据库
+</h2><ul>
+<li>关系型数据库一般分为 <code>catalog.schema.table</code>，catalog 的本质就是数据库(database)，包含多个 schema；一个 schema 下可以有多个对象，比如表、存储过程、触发器等。MySQL 没有 schema 的概念，但它的 schema 和 database 是等价的；</li>
+<li>建表时 <strong>不应使用</strong> 数据库 <strong>内置关键字</strong>，可能会造成一些隐藏的问题；</li>
+<li>真正的 ORM 框架更加重视建模的规范，前期的建模一旦做好，在业务开发和后期中将无往不利，所以 ORM 的选择对项目的影响蛮大的(前提是使用关系型数据库存储)；</li>
+<li>根据业务场景合理使用外键可以构建更健壮的系统；</li>
+</ul>
+<h2 id="数据库三范式">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%89%e8%8c%83%e5%bc%8f"></a>
+数据库三范式
+</h2><p>数据库三范式是关系型数据库设计的基础理论，用来保证数据的完整性和减少数据冗余。三范式层层递进，每个范式都是在前一个范式的基础上进行优化和改进。在实际的数据库设计中，应根据具体的需求和场景选择合适的范式来保证数据的完整性和减少数据冗余。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>达梦数据库</title>
+      <link>https://jhlzlove.github.io/post/skill/db/dameng/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/dameng/</guid>
+      <description>
+        <![CDATA[<h1>达梦数据库</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="常规安装">
+<a class="header-anchor" href="#%e5%b8%b8%e8%a7%84%e5%ae%89%e8%a3%85"></a>
+常规安装
+</h2><p>常规安装可以参照达梦自带的安装手册。为便于复制，这里再重复一次，安装的目录为 <code>/home/dmdba</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建用户和用户组，并设置密码</span>
+</span></span><span class="line"><span class="cl">groupadd -g <span class="m">12349</span> dinstall
+</span></span><span class="line"><span class="cl">useradd -u <span class="m">12345</span> -g dinstall -m -d /home/dmdba -s /bin/bash dmdba
+</span></span><span class="line"><span class="cl">passwd dmdba
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令行安装，按照提示进行选择即可</span>
+</span></span><span class="line"><span class="cl">./DMInstall.bin -i
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换用户初始化数据库</span>
+</span></span><span class="line"><span class="cl">su - dmdba
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/bin
+</span></span><span class="line"><span class="cl">./dminit <span class="nv">path</span><span class="o">=</span>/home/dmdba/dmdata <span class="nv">PAGE_SIZE</span><span class="o">=</span><span class="m">16</span> <span class="nv">CHARSET</span><span class="o">=</span><span class="m">1</span> <span class="nv">INSTANCE_NAME</span><span class="o">=</span>DM <span class="nv">SYSDBA_PWD</span><span class="o">=</span>yourpassword <span class="nv">SYSAUDITOR_PWD</span><span class="o">=</span>yourpassword
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su - root
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置系统服务</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/dmdba/dmdbms/script/root
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 选项为设置服务名后缀</span>
+</span></span><span class="line"><span class="cl">./dm_service_installer.sh -t dmserver -dm_ini /home/dmdba/dmdata/DAMENG/dm.ini -p dm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">systemctl start DmServicedm
+</span></span></code></pre></div><blockquote>
+<p>最新的版本需要设置 SYSDBA_PWD 和 SYSAUDITOR_PWD 的密码，如何不设置将会提醒你设置。
+生产模式中 PAGE_SIZE 可以设置 32，本文使用默认的大小写配置</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Redis</title>
+      <link>https://jhlzlove.github.io/post/skill/db/redis/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/redis/</guid>
+      <description>
+        <![CDATA[<h1>Redis</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一redis-简介">
+<a class="header-anchor" href="#%e4%b8%80redis-%e7%ae%80%e4%bb%8b"></a>
+一、Redis 简介
+</h2><p>Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动分区提供高可用性。
+你可以在这些类型上运行原子操作，如追加字符串；递增哈希值；向列表添加元素；计算集合的交集、联合和差值；或获取排序集合中排名最靠前的成员。
+为了达到最佳性能，Redis 使用内存数据集。根据使用情况，Redis 可以通过定期将数据集转储到磁盘或将每条命令附加到基于磁盘的日志来持久化数据。如果你只需要功能丰富的网络内存缓存，也可以禁用持久化功能。
+Redis 支持异步复制，具有快速无阻塞同步和自动重新连接功能，并可在网络拆分时进行部分重新同步。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://jhlzlove.github.io/post/skill/db/postgresql/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/postgresql/</guid>
+      <description>
+        <![CDATA[<h1>PostgreSQL</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一简介">
+<a class="header-anchor" href="#%e4%b8%80%e7%ae%80%e4%bb%8b"></a>
+一、简介
+</h2><p>PostgreSQL 是一个功能强大的开源对象关系数据库系统，它使用并扩展了 SQL 语言，并结合了许多可安全存储和扩展最复杂数据工作负载的特性。PostgreSQL 的起源可以追溯到 1986 年，作为 POSTGRES 项目的一部分，并在核心平台上进行了 30 多年的积极开发。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>MySQL</title>
+      <link>https://jhlzlove.github.io/post/skill/db/mysql/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/mysql/</guid>
+      <description>
+        <![CDATA[<h1>MySQL</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一mysql-配置">
+<a class="header-anchor" href="#%e4%b8%80mysql-%e9%85%8d%e7%bd%ae"></a>
+一、MySQL 配置
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>mysqld<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改等待时间，两个选项必须同时修改</span>
+</span></span><span class="line"><span class="cl"><span class="nv">wait_timeout</span><span class="o">=</span>28800<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">interactive_timeout</span><span class="o">=</span>28800<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整默认时区为东八区</span>
+</span></span><span class="line"><span class="cl">default-time-zone<span class="o">=</span><span class="s1">&#39;+08:00&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启 MySQL 事件定时任务（5.7 支持，8.0 默认开启）</span>
+</span></span><span class="line"><span class="cl"><span class="nv">event_scheduler</span> <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MySQL 表名默认区分大小写</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认为 0：区分大小写，1：不区分大小写</span>
+</span></span><span class="line"><span class="cl"><span class="nv">lower_case_table_names</span> <span class="o">=</span> <span class="m">1</span>
+</span></span></code></pre></div><h2 id="二查看配置的命令">
+<a class="header-anchor" href="#%e4%ba%8c%e6%9f%a5%e7%9c%8b%e9%85%8d%e7%bd%ae%e7%9a%84%e5%91%bd%e4%bb%a4"></a>
+二、查看配置的命令
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 查看事件是否开启。
+</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;event_scheduler&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 创建事件删除当天数据，每天凌晨 1 点执行
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="n">EVENT</span><span class="w"> </span><span class="n">every_day_delete_gantry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ON</span><span class="w"> </span><span class="n">SCHEDULE</span><span class="w"> </span><span class="k">EVERY</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">DAY</span><span class="w"> </span><span class="n">STARTS</span><span class="w"> </span><span class="s1">&#39;2023-08-20 01:00:00&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ON</span><span class="w"> </span><span class="k">COMPLETION</span><span class="w"> </span><span class="k">PRESERVE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">DO</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TO_DAYS</span><span class="p">(</span><span class="n">now_time</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">TO_DAYS</span><span class="p">(</span><span class="n">now</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示最大连接参数
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;max_connections&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示等待时间
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%wait_time%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 显示数据库时区
+</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s2">&#34;%time_zone%&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>PRESERVE 表示此次执行完不删除该事件，等到下次继续执行。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>MongoDB 基础操作</title>
+      <link>https://jhlzlove.github.io/post/skill/db/mongodb/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/mongodb/</guid>
+      <description>
+        <![CDATA[<h1>MongoDB 基础操作</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>MongoDB5.x版本基础操作整理，新版与之前的版本有些许变化。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>ElasticSearch &#43; Kibana</title>
+      <link>https://jhlzlove.github.io/post/skill/db/elasticsearch/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/elasticsearch/</guid>
+      <description>
+        <![CDATA[<h1>ElasticSearch + Kibana</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>es + kibana</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

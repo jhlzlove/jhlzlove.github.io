@@ -1,0 +1,1839 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  ElasticSearch &#43; Kibana | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="ElasticSearch &#43; Kibana | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/db/elasticsearch/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="database, db, es, elasticsearch, kibana" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="ElasticSearch &#43; Kibana"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">ElasticSearch &#43; Kibana</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#全文检索">全文检索</a></li>
+    <li><a href="#elasticsearch">ElasticSearch</a>
+      <ul>
+        <li><a href="#版本异同">版本异同</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装配置">安装配置</a>
+      <ul>
+        <li><a href="#1-es">1. ES</a></li>
+        <li><a href="#2-kibana">2. Kibana</a></li>
+        <li><a href="#3-podmandocker">3. podman/docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#es基本使用">ES基本使用</a>
+      <ul>
+        <li><a href="#1-核心概念">1. 核心概念</a></li>
+        <li><a href="#2-索引操作">2. 索引操作</a></li>
+        <li><a href="#3-映射操作">3. 映射操作</a></li>
+        <li><a href="#4-文档操作">4. 文档操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#es高级查询">ES高级查询</a>
+      <ul>
+        <li><a href="#1-查询所有">1. 查询所有</a></li>
+        <li><a href="#1-关键字查询term">1. 关键字查询&lt;term&gt;</a></li>
+        <li><a href="#2-范围查询range">2. 范围查询&lt;range&gt;</a></li>
+        <li><a href="#3-前缀查询prefix">3. 前缀查询&lt;prefix&gt;</a></li>
+        <li><a href="#4-通配符查询wildcard">4. 通配符查询&lt;wildcard&gt;</a></li>
+        <li><a href="#5-多id查询ids">5. 多id查询&lt;ids&gt;</a></li>
+        <li><a href="#6-模糊查询fuzzy">6. 模糊查询&lt;fuzzy&gt;</a></li>
+        <li><a href="#7-布尔查询bool">7. 布尔查询&lt;bool&gt;</a></li>
+        <li><a href="#8-多字段查询multi_match">8. 多字段查询&lt;multi_match&gt;</a></li>
+        <li><a href="#9-默认字段分词查询query_string">9. 默认字段分词查询&lt;query_string&gt;</a></li>
+        <li><a href="#10-高亮查询highlight">10. 高亮查询&lt;highlight&gt;</a></li>
+        <li><a href="#11-返回指定条数size">11. 返回指定条数&lt;size&gt;</a></li>
+        <li><a href="#12-分页查询from">12. 分页查询&lt;from&gt;</a></li>
+        <li><a href="#13-排序sort">13. 排序&lt;sort&gt;</a></li>
+        <li><a href="#14-返回指定字段_source">14. 返回指定字段&lt;_source&gt;</a></li>
+      </ul>
+    </li>
+    <li><a href="#分词器">分词器</a>
+      <ul>
+        <li><a href="#1-es-内置分词器">1. ES 内置分词器</a></li>
+        <li><a href="#2-中文分词器">2. 中文分词器</a></li>
+        <li><a href="#3-扩展词停用词配置">3. 扩展词、停用词配置</a></li>
+        <li><a href="#4-过滤查询">4. 过滤查询</a></li>
+      </ul>
+    </li>
+    <li><a href="#springboot整合es开发简单基本可以略过">SpringBoot整合ES开发（简单基本可以略过）</a>
+      <ul>
+        <li><a href="#1-elasticsearchoperations">1. ElasticsearchOperations</a></li>
+        <li><a href="#2-resthighlevelclient">2. RestHighLevelClient</a></li>
+      </ul>
+    </li>
+    <li><a href="#java-操作-es">Java 操作 ES</a>
+      <ul>
+        <li><a href="#基本代码实现基于-rhlc">基本代码实现（基于 RHLC）</a></li>
+        <li><a href="#新版-java-client-api">新版 Java Client API</a></li>
+      </ul>
+    </li>
+    <li><a href="#es-集群搭建">ES 集群搭建</a>
+      <ul>
+        <li><a href="#head插件查看es状态">Head插件查看ES状态</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>es + kibana</p>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2">全文检索</a></li>
+<li><a href="/post/skill/db/elasticsearch/#elasticsearch">ElasticSearch</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#%e7%89%88%e6%9c%ac%e5%bc%82%e5%90%8c">版本异同</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae">安装配置</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#1-es">1. ES</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#%e6%8f%92%e6%9b%b2es%e5%90%af%e5%8a%a8%e5%8f%af%e8%83%bd%e5%87%ba%e7%8e%b0%e7%9a%84%e9%97%ae%e9%a2%98">插曲：ES启动可能出现的问题</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#2-kibana">2. Kibana</a></li>
+<li><a href="/post/skill/db/elasticsearch/#3-podmandocker">3. podman/docker</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#es%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8">ES基本使用</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#1-%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5">1. 核心概念</a></li>
+<li><a href="/post/skill/db/elasticsearch/#2-%e7%b4%a2%e5%bc%95%e6%93%8d%e4%bd%9c">2. 索引操作</a></li>
+<li><a href="/post/skill/db/elasticsearch/#3-%e6%98%a0%e5%b0%84%e6%93%8d%e4%bd%9c">3. 映射操作</a></li>
+<li><a href="/post/skill/db/elasticsearch/#4-%e6%96%87%e6%a1%a3%e6%93%8d%e4%bd%9c">4. 文档操作</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#es%e9%ab%98%e7%ba%a7%e6%9f%a5%e8%af%a2">ES高级查询</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#1-%e6%9f%a5%e8%af%a2%e6%89%80%e6%9c%89">1. 查询所有</a></li>
+<li><a href="/post/skill/db/elasticsearch/#1-%e5%85%b3%e9%94%ae%e5%ad%97%e6%9f%a5%e8%af%a2term">1. 关键字查询&lt;term&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#2-%e8%8c%83%e5%9b%b4%e6%9f%a5%e8%af%a2range">2. 范围查询&lt;range&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#3-%e5%89%8d%e7%bc%80%e6%9f%a5%e8%af%a2prefix">3. 前缀查询&lt;prefix&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#4-%e9%80%9a%e9%85%8d%e7%ac%a6%e6%9f%a5%e8%af%a2wildcard">4. 通配符查询&lt;wildcard&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#5-%e5%a4%9aid%e6%9f%a5%e8%af%a2ids">5. 多id查询&lt;ids&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#6-%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2fuzzy">6. 模糊查询&lt;fuzzy&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#7-%e5%b8%83%e5%b0%94%e6%9f%a5%e8%af%a2bool">7. 布尔查询&lt;bool&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#8-%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%9f%a5%e8%af%a2multi_match">8. 多字段查询&lt;multi_match&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#9-%e9%bb%98%e8%ae%a4%e5%ad%97%e6%ae%b5%e5%88%86%e8%af%8d%e6%9f%a5%e8%af%a2query_string">9. 默认字段分词查询&lt;query_string&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#10-%e9%ab%98%e4%ba%ae%e6%9f%a5%e8%af%a2highlight">10. 高亮查询&lt;highlight&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#11-%e8%bf%94%e5%9b%9e%e6%8c%87%e5%ae%9a%e6%9d%a1%e6%95%b0size">11. 返回指定条数&lt;size&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#12-%e5%88%86%e9%a1%b5%e6%9f%a5%e8%af%a2from">12. 分页查询&lt;from&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#13-%e6%8e%92%e5%ba%8fsort">13. 排序&lt;sort&gt;</a></li>
+<li><a href="/post/skill/db/elasticsearch/#14-%e8%bf%94%e5%9b%9e%e6%8c%87%e5%ae%9a%e5%ad%97%e6%ae%b5_source">14. 返回指定字段&lt;_source&gt;</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#%e5%88%86%e8%af%8d%e5%99%a8">分词器</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#1-es-%e5%86%85%e7%bd%ae%e5%88%86%e8%af%8d%e5%99%a8">1. ES 内置分词器</a></li>
+<li><a href="/post/skill/db/elasticsearch/#2-%e4%b8%ad%e6%96%87%e5%88%86%e8%af%8d%e5%99%a8">2. 中文分词器</a></li>
+<li><a href="/post/skill/db/elasticsearch/#3-%e6%89%a9%e5%b1%95%e8%af%8d%e5%81%9c%e7%94%a8%e8%af%8d%e9%85%8d%e7%bd%ae">3. 扩展词、停用词配置</a></li>
+<li><a href="/post/skill/db/elasticsearch/#4-%e8%bf%87%e6%bb%a4%e6%9f%a5%e8%af%a2">4. 过滤查询</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#springboot%e6%95%b4%e5%90%88es%e5%bc%80%e5%8f%91%e7%ae%80%e5%8d%95%e5%9f%ba%e6%9c%ac%e5%8f%af%e4%bb%a5%e7%95%a5%e8%bf%87">SpringBoot整合ES开发（简单基本可以略过）</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#1-elasticsearchoperations">1. ElasticsearchOperations</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#%e7%9b%b8%e5%85%b3%e6%b3%a8%e8%a7%a3">相关注解</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#2-resthighlevelclient">2. RestHighLevelClient</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#java-%e6%93%8d%e4%bd%9c-es">Java 操作 ES</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#%e5%9f%ba%e6%9c%ac%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8e-rhlc">基本代码实现（基于 RHLC）</a></li>
+<li><a href="/post/skill/db/elasticsearch/#%e6%96%b0%e7%89%88-java-client-api">新版 Java Client API</a></li>
+</ul>
+</li>
+<li><a href="/post/skill/db/elasticsearch/#es-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">ES 集群搭建</a>
+<ul>
+<li><a href="/post/skill/db/elasticsearch/#head%e6%8f%92%e4%bb%b6%e6%9f%a5%e7%9c%8bes%e7%8a%b6%e6%80%81">Head插件查看ES状态</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="全文检索">
+<a class="header-anchor" href="#%e5%85%a8%e6%96%87%e6%a3%80%e7%b4%a2"></a>
+全文检索
+</h2><p>只处理文本，不处理语义
+搜索时英文不区分大小写
+结果列表有相关度排序</p>
+<h2 id="elasticsearch">
+<a class="header-anchor" href="#elasticsearch"></a>
+ElasticSearch
+</h2><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html"
+			title="ES官方文档"rel="noopener nofollow noreferrer" target="_blank"></a><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">ES官方文档</div>
+			<div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html</div>
+		</div>
+	</div>
+</div>
+
+<p>ES 是基于 <a href="https://lucene.apache.org/">Apache Lucene</a> 构建的开源搜索引擎，采用 Java 语言编写，提供了 Restful API 简化操作。</p>
+<p>ES 默认使用的是标准分词器(StandardAnalyzer)：中文使用单字分词；英文使用单词分词。
+ES 中只有 text 类型是分词的，剩下的 keyword、integer、date 等类型都是不分词的。</p>
+<h3 id="版本异同">
+<a class="header-anchor" href="#%e7%89%88%e6%9c%ac%e5%bc%82%e5%90%8c"></a>
+版本异同
+</h3><p>es5 一个索引可以创建多个类型，在es6中仍可以使用,但是已经不推荐。
+es6 之后一个索引只对应一个类型。
+es7 的默认分片(即备份)从之前的5调到了1,如果想用原来的可以自己设置；
+es7 使用 jdk11+，已经内置。不过可能会出现使用本地的jdk的情况，如果本地jdk版本低于11，需要配置。</p>
+<blockquote>
+<p>编辑环境变量：<code>vim /etc/profile</code>，添加变量 <code>export ES_JAVA_HOME=指定ES安装目录中的jdk</code>，然后 <code>source /etc/profile</code>
+类型已经在新版本中删除，es7 之后的版本不在有类型。</p>
+</blockquote>
+<h2 id="安装配置">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae"></a>
+安装配置
+</h2><p>注意，kibana 必须和 ES 同版本。这里以安装的 7.14 版本为例，安装方式都是解压 <code>.tar.gz</code> 包的方式，docker 方式安装比较简单。ES 默认 web 端口：9200；tcp端口：9300(集群通信)；kibana默认端口：5601。启动 Kibana 之前确保 ES 服务正常启动。</p>
+<h3 id="1-es">
+<a class="header-anchor" href="#1-es"></a>
+1. ES
+</h3><p>ES 不能以 root 用户启动，否则会报运行时异常，请使用普通用户启动 ES 服务；首先关闭防火墙。之后修改安装目录下的 config 文件夹内的 <code>elasticsearch.yml</code> 文件,修改以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 开启远程连接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">network.host</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 使用一个节点初始化集群</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">cluster.initial_master_nodes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;node-1&#34;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></div><p>设置完成以后可以启动服务；进入安装的 bin 目录，两个命令二选一，如果是直接启动的，操作时可以再打开一个会话窗口。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接启动</span>
+</span></span><span class="line"><span class="cl">./elasticsearch
+</span></span><span class="line"><span class="cl"><span class="c1"># 后台启动 以守护进程启动</span>
+</span></span><span class="line"><span class="cl">./elasticsearch -d
+</span></span></code></pre></div><h4 id="插曲es启动可能出现的问题">
+<a class="header-anchor" href="#%e6%8f%92%e6%9b%b2es%e5%90%af%e5%8a%a8%e5%8f%af%e8%83%bd%e5%87%ba%e7%8e%b0%e7%9a%84%e9%97%ae%e9%a2%98"></a>
+插曲：ES启动可能出现的问题
+</h4><p>另外，一般在启动会出现默认配置较小的错误，我们需要更改系统文件。启动失败时 es 服务会在终端给出建议的大小，我们去修改即可：</p>
+<ol>
+<li>
+<p>以 root 用户修改文件 <code>/etc/security/limits.conf</code> ，在最后加入以下内容（CentOS系统需要。其它的系统可跳过）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">*       soft	nofile      65536
+</span></span><span class="line"><span class="cl">*       hard	nofile      65536
+</span></span><span class="line"><span class="cl">*       soft	nproc       4096
+</span></span><span class="line"><span class="cl">*       hard	nproc       4096
+</span></span></code></pre></div></li>
+<li>
+<p>编辑文件 <code>sudo vim /etc/sysctl.conf</code>，如果没有该文件可以手动创建，加入内容：<code>vm.max_map_count=262144</code>。然后使用 <code>sysctl -p</code> 使其生效并查看输出内容是否和自己设置的一样。</p>
+</li>
+</ol>
+<h3 id="2-kibana">
+<a class="header-anchor" href="#2-kibana"></a>
+2. Kibana
+</h3><p>同样是修改 kibana 安装目录下的 <code>config/kibana.yml</code> 文件，修改以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 开启远程连接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">server.host</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 监控 ES 的地址信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">elasticsearch.hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">es的ip地址:端口号]</span><span class="w">
+</span></span></span></code></pre></div><h3 id="3-podmandocker">
+<a class="header-anchor" href="#3-podmandocker"></a>
+3. podman/docker
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">podman run -d <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --name es7 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 9200:9200 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 9300:9300 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v /home/server/podman/es7/plugins:/usr/share/elasticsearch/plugins <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -e <span class="s2">&#34;discovery.type=single-node&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -e <span class="s2">&#34;ES_JAVA_OPTS=-Xms512m -Xmx512m&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  docker.elastic.co/elasticsearch/elasticsearch:7.17.27
+</span></span></code></pre></div><blockquote>
+<p>docker 默认就开启了远程连接的权限。
+官方文档指导地址：https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html</p>
+</blockquote>
+<h2 id="es基本使用">
+<a class="header-anchor" href="#es%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8"></a>
+ES基本使用
+</h2><h3 id="1-核心概念">
+<a class="header-anchor" href="#1-%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5"></a>
+1. 核心概念
+</h3><ol>
+<li>索引（Index）：一个索引就是一个拥有几分相似特征的文档的集合，<strong>ES索引的名称必须是小写</strong>。</li>
+<li>映射（Mapping）：映射是定义一个文档和它所包含的字段如何被存储和索引的过程，原因是 mapping 中主要包括字段名、字段类型等信息。</li>
+<li>文档（Document）：文档是索引中存储的一条条数据。一条文档是一个可被索引的最小单元，采用轻量级的 JSON 格式数据来表示。</li>
+</ol>
+<h3 id="2-索引操作">
+<a class="header-anchor" href="#2-%e7%b4%a2%e5%bc%95%e6%93%8d%e4%bd%9c"></a>
+2. 索引操作
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// 查看es中的索引
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/_cat/indices?v</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建索引，指定不创建副本分片，health 为 green，默认是 yellow
+</span></span></span><span class="line"><span class="cl"><span class="err">PUT</span> <span class="err">/index_name</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;number_of_shards&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;number_of_replicas&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 删除索引
+</span></span></span><span class="line"><span class="cl"><span class="err">DELETE</span> <span class="err">/index_name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 谨慎操作，删除掉会导致服务无法正常访问，需要重启服务
+</span></span></span><span class="line"><span class="cl"><span class="err">DELETE</span> <span class="err">/*</span>
+</span></span></code></pre></div><blockquote>
+<ul>
+<li>索引没有修改操作。</li>
+<li>查看索引有 health 属性，包含三种颜色：yellow 代表可用，但是有危险（默认创建的索引健康值）；green 代表健康，可用；red 代表索引不可用。</li>
+</ul>
+</blockquote>
+<h3 id="3-映射操作">
+<a class="header-anchor" href="#3-%e6%98%a0%e5%b0%84%e6%93%8d%e4%bd%9c"></a>
+3. 映射操作
+</h3><p>一般都是在创建索引的时候创建映射，脱离了索引，映射也就没有意义了。创建映射时不需要指定类型的长度。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// 查看映射信息
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_mapping</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建映射，一般在创建索引时手动创建映射
+</span></span></span><span class="line"><span class="cl"><span class="err">PUT</span> <span class="err">/index_name</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指定分片信息，可以不写，使用默认
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;settings&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 分片为1
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;number_of_shards&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 副本为0
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;number_of_replicas&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mappings&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 默认字段，映射属性信息必须写在这里面
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;properties&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 属性名称及其类型
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;double&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;created_at&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;date&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;desc&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>映射信息不能删除和修改。只能删除索引重新创建。</p>
+</blockquote>
+<p>es 的类型：</p>
+<p>字符串类型：keyword（不分词）、text（分词）
+数字：integer、long
+小数：float、double
+布尔：boolean
+日期：date</p>
+<h3 id="4-文档操作">
+<a class="header-anchor" href="#4-%e6%96%87%e6%a1%a3%e6%93%8d%e4%bd%9c"></a>
+4. 文档操作
+</h3><p>文档操作，插入一条文档 put /索引/类型/id（指定Id用put，让系统自动创建用post）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// 添加文档 手动指定 id
+</span></span></span><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/index_name/_doc/</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉刀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;created_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2021-12-12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;天元轮魁&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 添加文档 自动创建文档id：取UUID的一部分
+</span></span></span><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/index_name/_doc/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;无情葬月&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;created_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2021-10-12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;血不染&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 文档查询 基于 id 查询
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_doc/document_id</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 删除文档 基于 id 删除
+</span></span></span><span class="line"><span class="cl"><span class="err">DELETE</span> <span class="err">/index_name/_doc/document_id</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 更新文档 先删除再添加，不保留其它数据
+</span></span></span><span class="line"><span class="cl"><span class="err">PUT</span> <span class="err">/index_name/_doc/document_id</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;修改值&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 更新文档 保留原始内容，先查询再修改
+</span></span></span><span class="line"><span class="cl"><span class="c1">// es8 简化了该命令
+</span></span></span><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/index_name/_doc/document_id/_update</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// doc为默认字段，必填
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;target_value&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>es 文档批量操作：_bulk</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/index_name/_doc/_bulk</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 手动添加id
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉刀&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nt">&#34;created_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2021-12-12&#34;</span><span class="p">,</span> <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;天元轮魁&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;玲珑雪霏&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nt">&#34;created_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2021-12-12&#34;</span><span class="p">,</span> <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;天元轮魁&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 文档批量操作 添加(index) 更新(update) 删除(delete)
+</span></span></span><span class="line"><span class="cl"><span class="err">POST</span> <span class="err">/index_name/_doc/_bulk</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉刀&#34;</span><span class="p">,</span><span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span><span class="nt">&#34;created_at&#34;</span><span class="p">:</span><span class="s2">&#34;2021-12-12&#34;</span><span class="p">,</span><span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;天元轮魁&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;update&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span><span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;荻花题叶&#34;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;delete&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}}</span>
+</span></span></code></pre></div><blockquote>
+<p>es 的批量操作不允许 json 结构体被格式化，只能放在同一行。使用 kibana 可以快速格式化。
+es 7 必须使用 _doc，es8 发生了改变。</p>
+</blockquote>
+<h2 id="es高级查询">
+<a class="header-anchor" href="#es%e9%ab%98%e7%ba%a7%e6%9f%a5%e8%af%a2"></a>
+ES高级查询
+</h2><p>ES 8 之后不需要添加 _doc 前缀，加了报错，而 ES7 中可加可不加（不加时在Kibana中会有语法提示）。推荐不要添加。</p>
+<h3 id="1-查询所有">
+<a class="header-anchor" href="#1-%e6%9f%a5%e8%af%a2%e6%89%80%e6%9c%89"></a>
+1. 查询所有
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// 高版本
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="1-关键字查询term">
+<a class="header-anchor" href="#1-%e5%85%b3%e9%94%ae%e5%ad%97%e6%9f%a5%e8%af%a2term"></a>
+1. 关键字查询&lt;term&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 根据哪个字段进行查询
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;filed_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 字段包含的值
+</span></span></span><span class="line"><span class="cl">                <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 关键词查询 term
+</span></span></span><span class="line"><span class="cl"><span class="c1">// keyword 类型需要输入全部内容搜索
+</span></span></span><span class="line"><span class="cl"><span class="c1">// text 类型需要输入单个词/字搜索
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;term&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 搜索 description 关键词
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 关键词包含的值
+</span></span></span><span class="line"><span class="cl">                <span class="nt">&#34;value&#34;</span><span class="p">:</span><span class="s2">&#34;天元&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 查询 keyword 类型，全部输入
+</span></span></span><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;term&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;title&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;value&#34;</span><span class="p">:</span><span class="s2">&#34;风中捉刀&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>由于ES默认使用的是标准分词器：英文单词分词，中文单字分词。所以 description 只能输入单字搜索。
+ES 中除了 text 类型之外的其它类型都不分词。不分词的字段必须输入全部内容才能精准查询。</p>
+</blockquote>
+<h3 id="2-范围查询range">
+<a class="header-anchor" href="#2-%e8%8c%83%e5%9b%b4%e6%9f%a5%e8%af%a2range"></a>
+2. 范围查询&lt;range&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;range&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 根据price查询范围在 0=&lt;price&lt;=5 的数据
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;gte&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;lte&#34;</span><span class="p">:</span><span class="mi">5</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="3-前缀查询prefix">
+<a class="header-anchor" href="#3-%e5%89%8d%e7%bc%80%e6%9f%a5%e8%af%a2prefix"></a>
+3. 前缀查询&lt;prefix&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;value&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="4-通配符查询wildcard">
+<a class="header-anchor" href="#4-%e9%80%9a%e9%85%8d%e7%ac%a6%e6%9f%a5%e8%af%a2wildcard"></a>
+4. 通配符查询&lt;wildcard&gt;
+</h3><p>?：匹配一个
+*：匹配多个</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;wildcard&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;value&#34;</span><span class="p">:</span><span class="s2">&#34;go*&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="5-多id查询ids">
+<a class="header-anchor" href="#5-%e5%a4%9aid%e6%9f%a5%e8%af%a2ids"></a>
+5. 多id查询&lt;ids&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ids&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 多个文档id
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="6-模糊查询fuzzy">
+<a class="header-anchor" href="#6-%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2fuzzy"></a>
+6. 模糊查询&lt;fuzzy&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;fuzzy&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 也可以搜索到 风中捉刀
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉枪&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 搜索不到 风中捉刀
+</span></span></span><span class="line"><span class="cl">            <span class="c1">// &#34;description&#34;: &#34;风中捉西瓜&#34;
+</span></span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>最多允许 0-2 次模糊错误(至多模糊匹配 0 ~ 2 个字符)
+搜索关键词小于等于 2，不允许模糊。
+搜索关键词长度为 3-5，只允许一次模糊。
+搜索关键词长度大于 5，最多允许2次模糊。</p>
+</blockquote>
+<h3 id="7-布尔查询bool">
+<a class="header-anchor" href="#7-%e5%b8%83%e5%b0%94%e6%9f%a5%e8%af%a2bool"></a>
+7. 布尔查询&lt;bool&gt;
+</h3><p>包含三种选项：must、should、must_not</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;bool&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 以下条件必须都满足才能查询到数据
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;ids&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;values&#34;</span><span class="p">:[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="err">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;term&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;title&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉刀&#34;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></div><blockquote>
+<p>must 必须全部满足才能查询，must_not 都不满足才能查询，should 满足一个就行。（与、非、或）</p>
+</blockquote>
+<h3 id="8-多字段查询multi_match">
+<a class="header-anchor" href="#8-%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%9f%a5%e8%af%a2multi_match"></a>
+8. 多字段查询&lt;multi_match&gt;
+</h3><p>该方式可以根据字段类型进行自动分词，将查询条件分词之后进行查询；如果不分词，就将查询条件作为整体进行查询。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;multi_match&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 查询的关键词或文本
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;风中捉刀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 哪些字段中的文本
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;fields&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="9-默认字段分词查询query_string">
+<a class="header-anchor" href="#9-%e9%bb%98%e8%ae%a4%e5%ad%97%e6%ae%b5%e5%88%86%e8%af%8d%e6%9f%a5%e8%af%a2query_string"></a>
+9. 默认字段分词查询&lt;query_string&gt;
+</h3><p>根据查询字段的类型进行分词或不分词查询。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;query_string&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 要查询的字段
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;default_field&#34;</span><span class="p">:</span> <span class="s2">&#34;description&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 该字段的值
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;可叹，落叶飘零&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="10-高亮查询highlight">
+<a class="header-anchor" href="#10-%e9%ab%98%e4%ba%ae%e6%9f%a5%e8%af%a2highlight"></a>
+10. 高亮查询&lt;highlight&gt;
+</h3><p>让符合条件的文档高亮显示。ES7 可高亮的内容必须要支持分词。</p>
+<p>默认情况下查询出来的文档的关键词，ES 会对其加入&lt;em&gt;标签标记，具体高亮样式可由我们自己定义。高亮并没有直接修改原始文档，而是放到了另一个标签。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;query_string&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;default_field&#34;</span><span class="p">:</span> <span class="s2">&#34;description&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;可叹，落叶飘零&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;highlight&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;fields&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;*&#34;</span><span class="p">:{}},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 自定义样式
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;pre_tags&#34;</span><span class="p">:[</span><span class="s2">&#34;&lt;span style=&#39;color:red;&#39;&gt;&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;post_tags&#34;</span><span class="p">:[</span><span class="s2">&#34;&lt;/span&gt;&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;require_field_match&#34;</span><span class="p">:</span> <span class="s2">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="11-返回指定条数size">
+<a class="header-anchor" href="#11-%e8%bf%94%e5%9b%9e%e6%8c%87%e5%ae%9a%e6%9d%a1%e6%95%b0size"></a>
+11. 返回指定条数&lt;size&gt;
+</h3><p>ES查询数据，默认只显示前10条内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;query_string&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;default_field&#34;</span><span class="p">:</span> <span class="s2">&#34;description&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="s2">&#34;可叹，落叶飘零&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;highlight&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;fields&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;*&#34;</span><span class="p">:{}},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 自定义样式
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;pre_tags&#34;</span><span class="p">:[</span><span class="s2">&#34;&lt;span style=&#39;color:red;&#39;&gt;&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;post_tags&#34;</span><span class="p">:[</span><span class="s2">&#34;&lt;/span&gt;&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;require_field_match&#34;</span><span class="p">:</span> <span class="s2">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指定返回条数
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="12-分页查询from">
+<a class="header-anchor" href="#12-%e5%88%86%e9%a1%b5%e6%9f%a5%e8%af%a2from"></a>
+12. 分页查询&lt;from&gt;
+</h3><p>from 指定起始的返回值，默认从 0 开始。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;match_all&#34;</span><span class="p">:{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="13-排序sort">
+<a class="header-anchor" href="#13-%e6%8e%92%e5%ba%8fsort"></a>
+13. 排序&lt;sort&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;match_all&#34;</span><span class="p">:{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sort&#34;</span><span class="p">:[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 排序的字段
+</span></span></span><span class="line"><span class="cl">            <span class="nt">&#34;price&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// order 指定升序还是降序
+</span></span></span><span class="line"><span class="cl">                <span class="nt">&#34;order&#34;</span><span class="p">:</span><span class="s2">&#34;desc&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>排序会干预 ES 的内部的规则。</p>
+</blockquote>
+<h3 id="14-返回指定字段_source">
+<a class="header-anchor" href="#14-%e8%bf%94%e5%9b%9e%e6%8c%87%e5%ae%9a%e5%ad%97%e6%ae%b5_source"></a>
+14. 返回指定字段&lt;_source&gt;
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;match_all&#34;</span><span class="p">:{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只获取需要的字段
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;_source&#34;</span><span class="p">:[</span><span class="s2">&#34;id&#34;</span><span class="p">,</span> <span class="s2">&#34;title&#34;</span><span class="p">,</span> <span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="分词器">
+<a class="header-anchor" href="#%e5%88%86%e8%af%8d%e5%99%a8"></a>
+分词器
+</h2><h3 id="1-es-内置分词器">
+<a class="header-anchor" href="#1-es-%e5%86%85%e7%bd%ae%e5%88%86%e8%af%8d%e5%99%a8"></a>
+1. ES 内置分词器
+</h3><p>Standard Analyzer：默认分词器，英文按单词拆分，统一小写处理。
+Simple Analyzer：按照单词切分，过滤符号，中文按照空格分词，统一小写处理。
+Stop Analyzer：统一小写处理，停用词过滤。
+Whitespace Analyzer：按照空格切分，不转小写。
+Keyword Analyzer：不分词，直接将输入当作输出。</p>
+<p>可以在创建索引的时候为映射字段指定分词器，默认的就是标准分词器（standard）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">PUT</span> <span class="err">/index_name</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mapping&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;properties&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;text&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard|simple|stop|whitespace|keyword&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="2-中文分词器">
+<a class="header-anchor" href="#2-%e4%b8%ad%e6%96%87%e5%88%86%e8%af%8d%e5%99%a8"></a>
+2. 中文分词器
+</h3><p>ES支持的中文分词器有IK、smartCN等，推荐的是 <a href="https://github.com/infinilabs/analysis-ik">IK分词器</a>，官方推荐去这个 <a href="https://release.infinilabs.com/analysis-ik/stable/">网站</a> 下载。</p>
+<p>IK分词器类型：ik_smart_word(组粒度拆分)、ik_max_word(细粒度拆分)</p>
+<blockquote>
+<p><strong>注意：</strong> IK 分词器的版本要和安装的 ES 版本一致。如果是容器安装，docker/podman 容器内插件所在的目录是 <code>/usr/share/elasticsearch/plugins</code>。</p>
+</blockquote>
+<h3 id="3-扩展词停用词配置">
+<a class="header-anchor" href="#3-%e6%89%a9%e5%b1%95%e8%af%8d%e5%81%9c%e7%94%a8%e8%af%8d%e9%85%8d%e7%bd%ae"></a>
+3. 扩展词、停用词配置
+</h3><p>定义扩展词典和停用词典可以修改IK分词器中 <code>config</code> 目录中 <code>IKAnalyzer.cfg.xml</code> 文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;comment&gt;</span>扩展词配置<span class="nt">&lt;/comment&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 扩展词典 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&#34;ext_dict&#34;</span><span class="nt">&gt;</span>ext_dict.dic<span class="nt">&lt;/entry&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 停用词典 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&#34;ext_stopwords&#34;</span><span class="nt">&gt;</span>ext_stopwords.dic<span class="nt">&lt;/entry&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/properties&gt;</span>
+</span></span></code></pre></div><p>在ik分词器目录下config目录中创建 <code>ext_dict.dic</code>、<code>ext_stopwords.dic</code> 文件，文件编码必须为 UTF-8，添加扩展词即可。</p>
+<h3 id="4-过滤查询">
+<a class="header-anchor" href="#4-%e8%bf%87%e6%bb%a4%e6%9f%a5%e8%af%a2"></a>
+4. 过滤查询
+</h3><p>在ES中，可以使用过滤查询获得更快的查询速度。使用过滤查询，就需要前面使用的布尔查询。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">GET</span> <span class="err">/index_name/_search</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;query&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;bool&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;must&#34;</span><span class="p">:[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;term&#34;</span><span class="err">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;description&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;value&#34;</span><span class="p">:</span><span class="s2">&#34;xxx&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;filter&#34;</span><span class="p">:[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">// 支持 term terms range exists ids 过滤
+</span></span></span><span class="line"><span class="cl">                    <span class="nt">&#34;term&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;description&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>会先执行过滤查询，再执行目标查询。一般用于大数据量的查询。
+过滤查询是ES中一种重要的优化手段。</p>
+</blockquote>
+<h2 id="springboot整合es开发简单基本可以略过">
+<a class="header-anchor" href="#springboot%e6%95%b4%e5%90%88es%e5%bc%80%e5%8f%91%e7%ae%80%e5%8d%95%e5%9f%ba%e6%9c%ac%e5%8f%af%e4%bb%a5%e7%95%a5%e8%bf%87"></a>
+SpringBoot整合ES开发（简单基本可以略过）
+</h2><blockquote>
+<p>2025.3.3 更新</p>
+</blockquote>
+<ol>
+<li>
+<p>导入es依赖</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 旧版 es 客户端（7.15 后标记为废弃）适用于 es 5.6 ～ 7.16 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.elasticsearch.client<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>elasticsearch-rest-high-level-client<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>${es.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 如果在 sb3 中使用：https://github.com/oshi/oshi/issues/2282 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- &lt;dependency&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;exclusions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">        &lt;exclusion&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">            &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">            &lt;artifactId&gt;jna&lt;/artifactId&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">        &lt;/exclusion&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;/exclusions&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">&lt;/dependency&gt; --&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>配置文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">rest</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">uris</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:9200</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">connection-timeout</span><span class="p">:</span><span class="w"> </span><span class="l">1s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">read-timeout</span><span class="p">:</span><span class="w"> </span><span class="l">30s</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>实际项目中直接注入 RestHighLevelClient 使用即可（具体代码见下）。</p>
+</li>
+</ol>
+<h3 id="1-elasticsearchoperations">
+<a class="header-anchor" href="#1-elasticsearchoperations"></a>
+1. ElasticsearchOperations
+</h3><p>特点：始终使用面向对象方式操作ES</p>
+<ul>
+<li>索引：用来存放相似文档集合</li>
+<li>映射：决定文档的每个字段以什么方式录入到ES中 字段类型 分词器</li>
+<li>文档：可以被索引的最小单元 json 数据格式</li>
+</ul>
+<h4 id="相关注解">
+<a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e6%b3%a8%e8%a7%a3"></a>
+相关注解
+</h4><table>
+  <thead>
+      <tr>
+          <th>注解名称</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>@Document(indexName = &ldquo;index_name&rdquo;, createIndex = true)</td>
+          <td>用于类，指定索引名,是否创建索引</td>
+      </tr>
+      <tr>
+          <td>@Id</td>
+          <td>将放入对象 id 值作为文档 _id 进行映射</td>
+      </tr>
+      <tr>
+          <td>@Field(type = FieldType.Keyword)</td>
+          <td>指定字段类型</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="2-resthighlevelclient">
+<a class="header-anchor" href="#2-resthighlevelclient"></a>
+2. RestHighLevelClient
+</h3><p>使用 RestHighLevelClient 非常简单，会使用 Kibana 就可以，它支持使用原生编写的 ES 语句。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SearchRequest</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SearchRequest</span><span class="p">(</span><span class="n">document</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">SearchSourceBuilder</span><span class="w"> </span><span class="n">sourceBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SearchSourceBuilder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">sourceBuilder</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="n">条件</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">search</span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="n">sourceBuilder</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">SearchResponse</span><span class="w"> </span><span class="n">searchResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restHignLevelClient</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="n">search</span><span class="p">,</span><span class="w"> </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>RestHighLevelClient 在 7.15 版本后被 <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html">标记弃用</a>，推荐使用新的 <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/7.17/usage.html">Java API Client</a>。</p>
+</blockquote>
+<h2 id="java-操作-es">
+<a class="header-anchor" href="#java-%e6%93%8d%e4%bd%9c-es"></a>
+Java 操作 ES
+</h2><p>引入依赖，目前官方推荐使用 <a href="https://www.elastic.co/guide/en/serverless/current/elasticsearch-java-client-getting-started.html">Java client</a>。该客户端可以和 HLRC 的 7.17 版本共存（一起使用），所以对于 es 是 7.17+ 的版本来说选择新的 Java client 是不二之选。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 新版 es 客户端 适用于 es 7.17+（推荐） --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>co.elastic.clients<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>elasticsearch-java<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>${es.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 旧版 es 客户端（7.15 后标记为废弃）适用于 es 5.6 ～ 7.16 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.elasticsearch.client<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>elasticsearch-rest-high-level-client<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>${es.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 如果用的 spring boot web，已经包含了这个，无需单独引入 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.17.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/7.17/installation.html --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>jakarta.json<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>jakarta.json-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.0.1<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/migrate-hlrc.html">https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/migrate-hlrc.html</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.2/java-rest-high.html">https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.2/java-rest-high.html</a></li>
+</ul>
+</blockquote>
+<h3 id="基本代码实现基于-rhlc">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0%e5%9f%ba%e4%ba%8e-rhlc"></a>
+基本代码实现（基于 RHLC）
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 如果使用 Spring 可以直接注入</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="n">RestHighLevelClient</span><span class="w"> </span><span class="nf">getClient</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestHighLevelClient</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">RestClient</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">HttpHost</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&#34;http://localhost:9200&#34;</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createIndex</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RestHighLevelClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getClient</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;....&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;text&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;filename&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;我的梦&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;uploadTime&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDateUtil</span><span class="p">.</span><span class="na">dateTime</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">IndexResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">index</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">IndexRequest</span><span class="p">(</span><span class="s">&#34;intro&#34;</span><span class="p">).</span><span class="na">source</span><span class="p">(</span><span class="n">JSON</span><span class="p">.</span><span class="na">toJSON</span><span class="p">(</span><span class="n">map</span><span class="p">),</span><span class="w"> </span><span class="n">XContentType</span><span class="p">.</span><span class="na">JSON</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">search</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RestHighLevelClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getClient</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 获取所有索引</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GetIndexResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">indices</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GetIndexRequest</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">),</span><span class="w"> </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">getIndices</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 查询指定索引下的文档</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SearchResponse</span><span class="w"> </span><span class="n">intro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SearchRequest</span><span class="p">(</span><span class="s">&#34;intro&#34;</span><span class="p">),</span><span class="w"> </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">intro</span><span class="p">.</span><span class="na">getHits</span><span class="p">().</span><span class="na">getHits</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 匹配查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SearchResponse</span><span class="w"> </span><span class="n">intro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">SearchRequest</span><span class="p">(</span><span class="s">&#34;intro&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SearchSourceBuilder</span><span class="p">().</span><span class="na">query</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">QueryBuilders</span><span class="p">.</span><span class="na">matchQuery</span><span class="p">(</span><span class="s">&#34;text&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;C++&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">)),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">intro</span><span class="p">.</span><span class="na">getHits</span><span class="p">().</span><span class="na">getHits</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RestHighLevelClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getClient</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;text&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;.....&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;filename&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;newname&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;uploadTime&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDateUtil</span><span class="p">.</span><span class="na">dateTime</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">UpdateResponse</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">UpdateRequest</span><span class="p">(</span><span class="s">&#34;intro&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;muXMWZUBQ9ldxnkuMl_R&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">.</span><span class="na">doc</span><span class="p">(</span><span class="n">JSON</span><span class="p">.</span><span class="na">toJSON</span><span class="p">(</span><span class="n">map</span><span class="p">),</span><span class="w"> </span><span class="n">XContentType</span><span class="p">.</span><span class="na">JSON</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">update</span><span class="p">.</span><span class="na">status</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 高亮搜索
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">highlightSearch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SearchResponse</span><span class="w"> </span><span class="n">resume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">SearchRequest</span><span class="p">(</span><span class="s">&#34;intro&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="k">new</span><span class="w"> </span><span class="n">SearchSourceBuilder</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                    </span><span class="p">.</span><span class="na">highlighter</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                            </span><span class="k">new</span><span class="w"> </span><span class="n">HighlightBuilder</span><span class="p">().</span><span class="na">field</span><span class="p">(</span><span class="s">&#34;filename&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                    </span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                            </span><span class="k">new</span><span class="w"> </span><span class="n">MatchQueryBuilder</span><span class="p">(</span><span class="s">&#34;filename&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;newname&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">RequestOptions</span><span class="p">.</span><span class="na">DEFAULT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">resume</span><span class="p">.</span><span class="na">getHits</span><span class="p">().</span><span class="na">getHits</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="新版-java-client-api">
+<a class="header-anchor" href="#%e6%96%b0%e7%89%88-java-client-api"></a>
+<a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html">新版 Java Client API</a>
+</h3><p>新版的就不写了，推荐去官网查看，远比本文更完善、清晰。</p>
+<h2 id="es-集群搭建">
+<a class="header-anchor" href="#es-%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba"></a>
+ES 集群搭建
+</h2><p>准备三个节点</p>
+<p>cluster-|node-1-|config/elasticsearch.yml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 集群名称，3个节点必须相同</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">cluster.name</span><span class="p">:</span><span class="w"> </span><span class="l">es-cluster</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定节点名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">node.name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 开放远程连接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">network.host</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定使用发布地址进行集群间通信</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">network.publish_host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.124.3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定 web 端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">http.port</span><span class="p">:</span><span class="w"> </span><span class="m">9201</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定 tcp 端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">transport.tcp.port</span><span class="p">:</span><span class="w"> </span><span class="m">9301</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定所有节点的 TCP 通信</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">discovery.seed_hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;192.168.10.1:9301&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;192.168.10.1:9302&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;192.168.10.1:9303&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 指定可以初始化集群的节点名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">cluster.initial_master_nodes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;node-1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;node-2&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;node-3&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 集群最少几个节点可用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">gateway.recover_after_nodes</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 解决跨域问题</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">http.cors.enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">http.cors.allow-origin</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>其它节点配置类似，只要修改对应的节点名称、IP以及对应的端口即可。</p>
+<p>查看集群状态：<code>http://任意集群节点ip:端口/_cat/health?v</code></p>
+<h3 id="head插件查看es状态">
+<a class="header-anchor" href="#head%e6%8f%92%e4%bb%b6%e6%9f%a5%e7%9c%8bes%e7%8a%b6%e6%80%81"></a>
+Head插件查看ES状态
+</h3><p>我们可以使用 Github 上的大佬开发的查看 ES 状态信息的插件监控服务，该插件基于 js 编写，需要 Node 环境。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/mobz/elasticsearch-head.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> elasticsearch-head
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装依赖</span>
+</span></span><span class="line"><span class="cl">npm install
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">npm run start
+</span></span><span class="line"><span class="cl">open http://localhost:9100/
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/db/elasticsearch/&amp;title=ElasticSearch%20&#43;%20Kibana&amp;desc=es%20&#43;%20kibana%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="ElasticSearch &#43; Kibana">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="ElasticSearch &#43; Kibana">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/database"
+        rel="tag"
+        >database</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/db"
+        rel="tag"
+        >db</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/es"
+        rel="tag"
+        >es</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/elasticsearch"
+        rel="tag"
+        >elasticsearch</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/kibana"
+        rel="tag"
+        >kibana</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="/images/cover/git.webp"
+            data-sizes="auto"
+            alt="Git 入门"
+            class="lazyload"
+          /><a
+          href="/post/skill/git/git/"
+          aria-label="前一篇:Git 入门"
+          title="前一篇:Git 入门"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Git 入门</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="Docker/Podman 部署常用服务"
+              class="lazyload"
+            /><a
+          href="/post/skill/cloudnative/deploy-container-server/"
+          aria-label="后一篇:Docker/Podman 部署常用服务"
+          title="后一篇:Docker/Podman 部署常用服务"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Docker/Podman 部署常用服务</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#全文检索">全文检索</a></li>
+    <li><a href="#elasticsearch">ElasticSearch</a>
+      <ul>
+        <li><a href="#版本异同">版本异同</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装配置">安装配置</a>
+      <ul>
+        <li><a href="#1-es">1. ES</a></li>
+        <li><a href="#2-kibana">2. Kibana</a></li>
+        <li><a href="#3-podmandocker">3. podman/docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#es基本使用">ES基本使用</a>
+      <ul>
+        <li><a href="#1-核心概念">1. 核心概念</a></li>
+        <li><a href="#2-索引操作">2. 索引操作</a></li>
+        <li><a href="#3-映射操作">3. 映射操作</a></li>
+        <li><a href="#4-文档操作">4. 文档操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#es高级查询">ES高级查询</a>
+      <ul>
+        <li><a href="#1-查询所有">1. 查询所有</a></li>
+        <li><a href="#1-关键字查询term">1. 关键字查询&lt;term&gt;</a></li>
+        <li><a href="#2-范围查询range">2. 范围查询&lt;range&gt;</a></li>
+        <li><a href="#3-前缀查询prefix">3. 前缀查询&lt;prefix&gt;</a></li>
+        <li><a href="#4-通配符查询wildcard">4. 通配符查询&lt;wildcard&gt;</a></li>
+        <li><a href="#5-多id查询ids">5. 多id查询&lt;ids&gt;</a></li>
+        <li><a href="#6-模糊查询fuzzy">6. 模糊查询&lt;fuzzy&gt;</a></li>
+        <li><a href="#7-布尔查询bool">7. 布尔查询&lt;bool&gt;</a></li>
+        <li><a href="#8-多字段查询multi_match">8. 多字段查询&lt;multi_match&gt;</a></li>
+        <li><a href="#9-默认字段分词查询query_string">9. 默认字段分词查询&lt;query_string&gt;</a></li>
+        <li><a href="#10-高亮查询highlight">10. 高亮查询&lt;highlight&gt;</a></li>
+        <li><a href="#11-返回指定条数size">11. 返回指定条数&lt;size&gt;</a></li>
+        <li><a href="#12-分页查询from">12. 分页查询&lt;from&gt;</a></li>
+        <li><a href="#13-排序sort">13. 排序&lt;sort&gt;</a></li>
+        <li><a href="#14-返回指定字段_source">14. 返回指定字段&lt;_source&gt;</a></li>
+      </ul>
+    </li>
+    <li><a href="#分词器">分词器</a>
+      <ul>
+        <li><a href="#1-es-内置分词器">1. ES 内置分词器</a></li>
+        <li><a href="#2-中文分词器">2. 中文分词器</a></li>
+        <li><a href="#3-扩展词停用词配置">3. 扩展词、停用词配置</a></li>
+        <li><a href="#4-过滤查询">4. 过滤查询</a></li>
+      </ul>
+    </li>
+    <li><a href="#springboot整合es开发简单基本可以略过">SpringBoot整合ES开发（简单基本可以略过）</a>
+      <ul>
+        <li><a href="#1-elasticsearchoperations">1. ElasticsearchOperations</a></li>
+        <li><a href="#2-resthighlevelclient">2. RestHighLevelClient</a></li>
+      </ul>
+    </li>
+    <li><a href="#java-操作-es">Java 操作 ES</a>
+      <ul>
+        <li><a href="#基本代码实现基于-rhlc">基本代码实现（基于 RHLC）</a></li>
+        <li><a href="#新版-java-client-api">新版 Java Client API</a></li>
+      </ul>
+    </li>
+    <li><a href="#es-集群搭建">ES 集群搭建</a>
+      <ul>
+        <li><a href="#head插件查看es状态">Head插件查看ES状态</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "ElasticSearch \u002b Kibana",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/db\/elasticsearch\/",
+          description: "es \u002b kibana\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

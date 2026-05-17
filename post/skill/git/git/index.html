@@ -1,0 +1,1153 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Git 入门 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Git 入门 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/git/git/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/cover/git.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="git" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/cover/git.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img  fetchpriority="high" src="/images/cover/git.webp" alt="Git 入门"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Git 入门</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-简单知识">Git 简单知识</a></li>
+    <li><a href="#git-配置基本信息">Git 配置基本信息</a></li>
+    <li><a href="#常用命令">常用命令</a>
+      <ul>
+        <li><a href="#upstream">upstream</a></li>
+        <li><a href="#remote">remote</a></li>
+        <li><a href="#branch">branch</a></li>
+        <li><a href="#log">log</a></li>
+        <li><a href="#reset">reset</a></li>
+        <li><a href="#stash">stash</a></li>
+        <li><a href="#submodule">submodule</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssh-key-配置">SSH-Key 配置</a>
+      <ul>
+        <li><a href="#1-生成github用的ssh-key">1. 生成Github用的SSH-Key</a></li>
+        <li><a href="#2-生成gitee使用的ssh-key">2. 生成gitee使用的SSH-Key</a></li>
+        <li><a href="#3-修改-config-文件">3. 修改 config 文件</a></li>
+        <li><a href="#4-测试是否配置成功">4. 测试是否配置成功</a></li>
+      </ul>
+    </li>
+    <li><a href="#加速访问-github">加速访问 Github</a></li>
+    <li><a href="#git-问题汇总">Git 问题汇总</a>
+      <ul>
+        <li><a href="#合并不相关的历史">合并不相关的历史</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>Git 简单知识</p>
+<h2 id="git-简单知识">
+<a class="header-anchor" href="#git-%e7%ae%80%e5%8d%95%e7%9f%a5%e8%af%86"></a>
+Git 简单知识
+</h2><p>工作目录（Working Directory）：在计算机文件系统中实际编辑和修改代码的地方(本机文件目录及文件)。在工作目录中，您可以对代码进行更改、新增文件或删除文件，但这些变更并不会立即被 Git 跟踪。</p>
+<p>暂存区（Staging Area）：也称为“索引（Index）”，是介于工作目录和版本库之间的中间区域。当您修改了工作目录中的文件后，您可以使用 <code>git add</code> 命令将这些更改添加到暂存区。暂存区中存储了您要在下一次提交中包含的更改快照。</p>
+<p>版本库（Repository）：也称为“Git 版本库”，它是保存所有项目历史记录的地方。版本库包含了您提交的快照，以及用于跟踪这些快照如何相互关联的元数据。每次使用 <code>git commit</code> 命令提交更改时，会在版本库中创建一个新的提交对象。</p>
+<p>除了上面的常用词汇外，可能您还听过远程库(Git 仓库)、上游仓库(upstream)，其中远程库泛指代码托管平台(可以自行搭建)：Github、Gitee 等代码托管平台，而上游仓库特指 fork 的仓库。</p>
+<h2 id="git-配置基本信息">
+<a class="header-anchor" href="#git-%e9%85%8d%e7%bd%ae%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af"></a>
+Git 配置基本信息
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置全局个人信息</span>
+</span></span><span class="line"><span class="cl">$ git config --global user.name <span class="s2">&#34;个人名称或昵称&#34;</span>
+</span></span><span class="line"><span class="cl">$ git config --global user.email <span class="s2">&#34;邮箱&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 列出所有配置信息：</span>
+</span></span><span class="line"><span class="cl">$ git config --list / git config -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消某一项全局配置</span>
+</span></span><span class="line"><span class="cl">$ git config --global --unset user.name
+</span></span></code></pre></div><p><strong>下面的内容在对 Git 不熟悉时不推荐设置</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># git 提交显示中文</span>
+</span></span><span class="line"><span class="cl">$ git config --global core.quotepath <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">$ git config --global i18n.commitencoding utf-8
+</span></span><span class="line"><span class="cl">$ git config --global i18n.logoutputencoding utf-8
+</span></span></code></pre></div><blockquote>
+<p>检入：提交，检出：下载</p>
+<p>在 Git 执行配置的时候有一些选项：</p>
+<blockquote>
+<ul>
+<li><code>--local</code> 仅指定当前本地 git 仓库</li>
+<li><code>--global</code> 指定所有当前用户的 git 仓库</li>
+<li><code>--system</code> 指定当前系统的所有 git 仓库（很少使用）</li>
+</ul>
+</blockquote>
+</blockquote>
+<h2 id="常用命令">
+<a class="header-anchor" href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"></a>
+常用命令
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将当前目录中所有文件文件改动添加到git暂存区，也可以一次提交多个指定文件，使用空格分开</span>
+</span></span><span class="line"><span class="cl">$ git add .
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交到本地版本库并备注提交信息</span>
+</span></span><span class="line"><span class="cl">$ git commit -m <span class="s2">&#34;my first commit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面两条命令可以合并成一条</span>
+</span></span><span class="line"><span class="cl">$ git commit -am <span class="s1">&#39;commit msg&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果第一次提交（commit但未push）的内容写的不好或者还有新的相关文件未提交，可以使用下面的命令覆盖之前一次的 commit</span>
+</span></span><span class="line"><span class="cl">$ git commit --amend -m <span class="s2">&#34;override first commit&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将本地分支推送到远程分支并建立映射，如果远程不存在将自动创建</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 推送到远程仓库,如果本地和远程的分支名称相同，可以写一个分支名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 第一个 master 是本地分支，后面的一个是远程分支</span>
+</span></span><span class="line"><span class="cl">$ git push -u origin <span class="o">[</span>local-branch<span class="o">]</span>:<span class="o">[</span>remote-branch<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除远程分支 --delete 简写为 -d</span>
+</span></span><span class="line"><span class="cl">$ git push origin -d <span class="o">[</span>branch-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从暂存区移除文件，会把工作区相应文件一并删除，回收站无法还原。如果该文件没有提交，则无法删除，可以使用 -f 选项强制删除。</span>
+</span></span><span class="line"><span class="cl">$ git rm <span class="o">[</span>file<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除 commit 的文件，保留工作区文件；如果不加 --cached，那么暂存区和本地的文件都会被删除</span>
+</span></span><span class="line"><span class="cl">$ git rm --cached <span class="o">[</span>file<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除 commit 的文件夹</span>
+</span></span><span class="line"><span class="cl">$ git rm --cached -r <span class="o">[</span>path<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 克隆远程库到本地</span>
+</span></span><span class="line"><span class="cl">$ git clone <span class="o">[</span>repo-url<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 克隆指定的分支</span>
+</span></span><span class="line"><span class="cl">$ git clone -b <span class="o">[</span>branch-name<span class="o">]</span> <span class="o">[</span>repo-url<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --depth 可以简写为 -d</span>
+</span></span><span class="line"><span class="cl">$ git clone --depth <span class="o">[</span>num<span class="o">]</span> https://github.com/user/repo.git
+</span></span></code></pre></div>
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p><code>--depth</code> 是 clone 命令的一个选项，用于指定克隆的历史记录的深度。num 是一个参数，由自己指定，表示只克隆最近的 num 次提交的历史记录，而不是整个仓库的完整历史记录。这可以节省时间和空间，尤其是在克隆大型仓库时非常有用。</p>
+<p>如果是为了学习就可以使用 <code>--depth</code> 选项只 clone 最近的一次提交，没有必要全部 clone，下载的速度会加快；如果是想要为项目添砖加瓦做贡献则推荐全部 clone。</p></p>
+  </blockquote>
+
+<h3 id="upstream">
+<a class="header-anchor" href="#upstream"></a>
+upstream
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 关联上游仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote add upstream <span class="o">[</span>upstream-repo-url<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消关联上游仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote remove upstream
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新上游仓库</span>
+</span></span><span class="line"><span class="cl">$ git pull upstream
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 与上游仓库建立分支映射</span>
+</span></span><span class="line"><span class="cl">$ git pull --track upstream <span class="o">[</span>branch-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果已经有一个本地分支，并且想要将其设置为跟踪上游的分支</span>
+</span></span><span class="line"><span class="cl">$ git branch -u upstream/<span class="o">[</span>branch-name<span class="o">]</span> <span class="o">[</span>branch-name<span class="o">]</span>
+</span></span></code></pre></div><h3 id="remote">
+<a class="header-anchor" href="#remote"></a>
+remote
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 关联远程仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote add origin https://github.com/user/repo.git
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消远程关联</span>
+</span></span><span class="line"><span class="cl">$ git remote remove origin
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新远程关联的仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote set-url origin <span class="o">[</span>repo-url<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除/清理本地分支存在，但远程仓库中不存在的分支</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 即：清理本地和远程没有跟踪关系的分支</span>
+</span></span><span class="line"><span class="cl">$ git remote prune origin
+</span></span></code></pre></div><h3 id="branch">
+<a class="header-anchor" href="#branch"></a>
+branch
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 新建分支</span>
+</span></span><span class="line"><span class="cl">$ git branch <span class="o">[</span>new-branch-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到指定分支并更新工作目录</span>
+</span></span><span class="line"><span class="cl">$ git switch -c <span class="o">[</span>branch<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地所有分支</span>
+</span></span><span class="line"><span class="cl">$ git branch -a
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看远程分支</span>
+</span></span><span class="line"><span class="cl">$ git branch -r
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地与远程分支的一映射关系</span>
+</span></span><span class="line"><span class="cl">$ git branch -vv
+</span></span><span class="line"><span class="cl"><span class="c1"># 重命名本地分支</span>
+</span></span><span class="line"><span class="cl">$ git branch -m <span class="o">[</span>old-branch<span class="o">]</span> <span class="o">[</span>new-branch<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除本地分支，如果要强制删除分支，使用 -D 选项</span>
+</span></span><span class="line"><span class="cl">$ git branch -d <span class="o">[</span>branch<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除远程分支</span>
+</span></span><span class="line"><span class="cl">$ git push -d origin <span class="o">[</span>branch-name<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 也可以使用以下命令</span>
+</span></span><span class="line"><span class="cl">$ git push origin :<span class="o">[</span>branch-name<span class="o">]</span>
+</span></span></code></pre></div><h3 id="log">
+<a class="header-anchor" href="#log"></a>
+log
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 提交历史</span>
+</span></span><span class="line"><span class="cl">$ git log
+</span></span><span class="line"><span class="cl"><span class="c1"># 图形化显示</span>
+</span></span><span class="line"><span class="cl">$ git log --graph
+</span></span><span class="line"><span class="cl"><span class="c1"># 单行显示、短格式、长格式 oneline, full</span>
+</span></span><span class="line"><span class="cl">$ git log --pretty<span class="o">=</span>oneline/full
+</span></span><span class="line"><span class="cl"><span class="c1"># 单行简写</span>
+</span></span><span class="line"><span class="cl">$ git log --oneline
+</span></span><span class="line"><span class="cl"><span class="c1"># 图形化输出 log</span>
+</span></span><span class="line"><span class="cl">$ git log --graph --oneline
+</span></span><span class="line"><span class="cl"><span class="c1"># 全格式图形化输出 log</span>
+</span></span><span class="line"><span class="cl">$ git log --graph --pretty<span class="o">=</span>full
+</span></span></code></pre></div><h3 id="reset">
+<a class="header-anchor" href="#reset"></a>
+reset
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到指定版本</span>
+</span></span><span class="line"><span class="cl">$ git reset --hard 版本ID
+</span></span><span class="line"><span class="cl"><span class="c1"># 回退到某个版本，但工作目录和暂存区不会受到影响</span>
+</span></span><span class="line"><span class="cl">$ git reset --soft 版本库ID
+</span></span></code></pre></div><h3 id="stash">
+<a class="header-anchor" href="#stash"></a>
+stash
+</h3><p>git stash 命令将当前未提交的修改(即，工作区的修改和暂存区的修改)先暂时储藏起来，这样当前的工作区就干净了。然后可以直接切换到其它分支进行修改。修改完成后重新切换到当前分支下通过 <code>git stash pop</code> 命令将之前储藏的修改取出来，继续进行新功能的开发工作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 贮藏当前的工作区文件的修改</span>
+</span></span><span class="line"><span class="cl">git stash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换其它分支进行开发，开发完成后再切换到当前分支</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取出最近一次的贮藏文件</span>
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span></code></pre></div><p>上面的只是简单的使用，此选项是支持多次使用的，并且可以查看列表。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 第一次修改文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 藏储文件时附加消息</span>
+</span></span><span class="line"><span class="cl">git stash save <span class="o">[</span>message<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第二次修改文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 藏储文件时附加消息</span>
+</span></span><span class="line"><span class="cl">git stash save <span class="o">[</span>message<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看列表</span>
+</span></span><span class="line"><span class="cl">git stash list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取出最近一次的文件</span>
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取出指定index的储藏的修改到工作区中</span>
+</span></span><span class="line"><span class="cl">git stash apply stash@<span class="o">{</span>index<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将指定index的储藏从储藏记录列表中删除</span>
+</span></span><span class="line"><span class="cl">git stash drop stash@<span class="o">{</span>index<span class="o">}</span>
+</span></span></code></pre></div><h3 id="submodule">
+<a class="header-anchor" href="#submodule"></a>
+submodule
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># clone 时直接 clone 子模块</span>
+</span></span><span class="line"><span class="cl">git clone --recurse-submodules <span class="o">[</span>repo-url<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加子模块</span>
+</span></span><span class="line"><span class="cl">$ git submodule add <span class="o">[</span>repository-url<span class="o">]</span> <span class="o">[</span>path<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化子模块，根据 .gitmodules 文件设置子模块的 url</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 常与 update 连用</span>
+</span></span><span class="line"><span class="cl">$ git submodule init --recursive
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新子模块，如果没有 clone 子模块则会 clone</span>
+</span></span><span class="line"><span class="cl">$ git submodule update --recursive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># init 和 update 也可以使用一个命令</span>
+</span></span><span class="line"><span class="cl">$ git submodule update --init --recursive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看子模块状态</span>
+</span></span><span class="line"><span class="cl">$ git submodule status
+</span></span></code></pre></div><blockquote>
+<p><strong>&ndash;recursive</strong> 为可选项，如果存在，会同时对嵌套的子模块进行相应的操作。</p>
+</blockquote>
+<h4 id="更新-submodule-为最新版本">
+<a class="header-anchor" href="#%e6%9b%b4%e6%96%b0-submodule-%e4%b8%ba%e6%9c%80%e6%96%b0%e7%89%88%e6%9c%ac"></a>
+更新 submodule 为最新版本
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git submodule update --remote
+</span></span></code></pre></div><h4 id="删除-submodule">
+<a class="header-anchor" href="#%e5%88%a0%e9%99%a4-submodule"></a>
+删除 submodule
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> <span class="o">[</span>repo<span class="o">]</span>
+</span></span><span class="line"><span class="cl">$ git submodule deinit <span class="o">[</span>submodule-path<span class="o">]</span>
+</span></span><span class="line"><span class="cl">$ rm -rf .git/modules/<span class="o">[</span>submodule-path<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 有需要的话可以使用 --force 移除</span>
+</span></span><span class="line"><span class="cl">$ git rm -rf <span class="o">[</span>submodule-path<span class="o">]</span>
+</span></span><span class="line"><span class="cl">$ git commit -m <span class="s2">&#34;delete submodule&#34;</span>
+</span></span><span class="line"><span class="cl">$ git push
+</span></span></code></pre></div><h4 id="重置-submodule-地址">
+<a class="header-anchor" href="#%e9%87%8d%e7%bd%ae-submodule-%e5%9c%b0%e5%9d%80"></a>
+重置 submodule 地址
+</h4><p>打开仓库下的 .gitmodules 文件，修改对应的 url 地址并保存，然后执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git submodule sync
+</span></span></code></pre></div><p>此时，submodule 的信息已经更新，可以删除旧的子模块再使用 git submodule update &ndash;init &ndash;recursive 进行子模块初始化。</p>
+<h4 id="同时对所有子模块进行操作">
+<a class="header-anchor" href="#%e5%90%8c%e6%97%b6%e5%af%b9%e6%89%80%e6%9c%89%e5%ad%90%e6%a8%a1%e5%9d%97%e8%bf%9b%e8%a1%8c%e6%93%8d%e4%bd%9c"></a>
+同时对所有子模块进行操作
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git submodule foreach <span class="o">[</span>git-cmd<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新所有子模块到最新版本</span>
+</span></span><span class="line"><span class="cl">$ git submodule foreach git pull origin main
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询所有子模块的状态</span>
+</span></span><span class="line"><span class="cl">$ git submodule foreach git status
+</span></span></code></pre></div><h2 id="ssh-key-配置">
+<a class="header-anchor" href="#ssh-key-%e9%85%8d%e7%bd%ae"></a>
+SSH-Key 配置
+</h2><p>使用此方式交互减少密码的传输，非常推荐，本文直接讲解如何配置多个平台的 ssh key。</p>
+<h3 id="1-生成github用的ssh-key">
+<a class="header-anchor" href="#1-%e7%94%9f%e6%88%90github%e7%94%a8%e7%9a%84ssh-key"></a>
+1. 生成Github用的SSH-Key
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux Mac</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -C <span class="s1">&#39;xxx@xx.com&#39;</span> -f ~/.ssh/github_id
+</span></span><span class="line"><span class="cl"><span class="c1"># Window</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -C <span class="s1">&#39;xxx@xx.com&#39;</span> -f C:/Users/用户名/.ssh/github_id
+</span></span></code></pre></div><h3 id="2-生成gitee使用的ssh-key">
+<a class="header-anchor" href="#2-%e7%94%9f%e6%88%90gitee%e4%bd%bf%e7%94%a8%e7%9a%84ssh-key"></a>
+2. 生成gitee使用的SSH-Key
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux Mac</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -C <span class="s1">&#39;xxx@xx.com&#39;</span> -f ~/.ssh/gitee_id
+</span></span><span class="line"><span class="cl"><span class="c1"># Window</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -C <span class="s1">&#39;xxx@xx.com&#39;</span> -f C:/Users/用户名/.ssh/gitee_id
+</span></span></code></pre></div><blockquote>
+<p>2022-08-22 修改为使用 ed25519 算法生成。</p>
+</blockquote>
+<p><code>ssh-keygen</code> 支持的部分选项说明：</p>
+<table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-b</td>
+          <td>该选项指定密钥的位数。管理 SSH 用例的算法可能要求使用特定的密钥长度。一般来说，RSA 密钥使用 2048 位就足够了。</td>
+      </tr>
+      <tr>
+          <td>-t</td>
+          <td>指定要创建的 key 的类型，常见的有 RSA、DSA、ECDSA 等</td>
+      </tr>
+      <tr>
+          <td>-f</td>
+          <td>指定存储创建密钥的文件名。</td>
+      </tr>
+      <tr>
+          <td>-C</td>
+          <td>描述密钥的作用/说明</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="3-修改-config-文件">
+<a class="header-anchor" href="#3-%e4%bf%ae%e6%94%b9-config-%e6%96%87%e4%bb%b6"></a>
+3. 修改 config 文件
+</h3><blockquote>
+<p>SSH 可选参数配置详见：<a href="https://www.ssh.com/academy/ssh/config">https://www.ssh.com/academy/ssh/config</a></p>
+</blockquote>
+<p>SSH 配置按照以下顺序读取文件：</p>
+<ul>
+<li>从命令行指定的选项。</li>
+<li><code>~/.ssh/config</code> 中定义的选项(用户配置)，一般都使用此配置方式。</li>
+<li><code>/etc/ssh/ssh_config</code> 中定义的选项(全局配置)。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># github1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Host 可以自己定义，在此文件中必须唯一，之后在 down 源码时需要使用这个自定义的 host</span>
+</span></span><span class="line"><span class="cl">Host github-repo1
+</span></span><span class="line"><span class="cl">    <span class="c1"># HostName 是代码托管平台的域名，例如：code.aliyun.com, github.com, gitee.com 等，也可以使用 IP</span>
+</span></span><span class="line"><span class="cl">    HostName github.com
+</span></span><span class="line"><span class="cl">    <span class="c1"># 认证方式：公钥</span>
+</span></span><span class="line"><span class="cl">    PreferredAuthentications publickey
+</span></span><span class="line"><span class="cl">    <span class="c1"># 与公钥配对的私钥路径</span>
+</span></span><span class="line"><span class="cl">    IdentityFile ~/.ssh/github1_id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># github2</span>
+</span></span><span class="line"><span class="cl">Host github-repo2
+</span></span><span class="line"><span class="cl">    HostName github.com
+</span></span><span class="line"><span class="cl">    PreferredAuthentications publickey
+</span></span><span class="line"><span class="cl">    IdentityFile ~/.ssh/github2_id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># gitee</span>
+</span></span><span class="line"><span class="cl">Host gitee.com
+</span></span><span class="line"><span class="cl">    HostName gitee.com
+</span></span><span class="line"><span class="cl">    PreferredAuthentications publickey
+</span></span><span class="line"><span class="cl">    IdentityFile ~/.ssh/gitee_id
+</span></span></code></pre></div><p>如果同一个平台配置了多个不同账号的SSH密钥，那么在进行 clone、remote 等操作时，地址需要做一些改变，否则会找不到而报错。例如 clone github2 账户的某个仓库：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git@github-repo2.com:user/repo.git
+</span></span></code></pre></div><h3 id="4-测试是否配置成功">
+<a class="header-anchor" href="#4-%e6%b5%8b%e8%af%95%e6%98%af%e5%90%a6%e9%85%8d%e7%bd%ae%e6%88%90%e5%8a%9f"></a>
+4. 测试是否配置成功
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 ssh -T 进行测试，成功的话会打印 Hi，username……</span>
+</span></span><span class="line"><span class="cl">$ ssh -T git@gitee.com
+</span></span><span class="line"><span class="cl">$ ssh -T git@github-repo1
+</span></span><span class="line"><span class="cl">$ ssh -T git@github-repo2
+</span></span></code></pre></div><h2 id="加速访问-github">
+<a class="header-anchor" href="#%e5%8a%a0%e9%80%9f%e8%ae%bf%e9%97%ae-github"></a>
+加速访问 Github
+</h2><p>在三、四、五、六线城市以及像浪子所在的偏远小山村中想要直接使用浏览器访问 GitHub 是有问题的，输入网址后按下回车键，这个页面都不带刷新的，会直接出现 “无法访问该网站” 的错误。解决办法之一就是修改 <code>hosts</code> 文件，加速访问这个体验并不明显，只是可以访问，偶尔抽风是正常的。推荐使用 302 或者 steam webkit</p>
+<ul>
+<li>Windows 系统，该文件在 <code>C:\Windows\System32\drivers\etc</code> 目录下；</li>
+<li>Linux 系统，则在 <code>/etc/hosts</code>。</li>
+</ul>
+<p>Windows 推荐火绒，修改 hosts 文件超级方便。建议先对 hosts 文件备份，修改错误后可以还原。</p>
+<p>访问 <a href="https://www.ipaddress.com/">IPAddress.com</a>，输入 <code>github.com</code> 回车查询。将获取到的 IP 与 Github 的域名写入到 hosts 文件中，例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">140.82.113.4 github.com
+</span></span></code></pre></div><h2 id="git-问题汇总">
+<a class="header-anchor" href="#git-%e9%97%ae%e9%a2%98%e6%b1%87%e6%80%bb"></a>
+Git 问题汇总
+</h2><h3 id="合并不相关的历史">
+<a class="header-anchor" href="#%e5%90%88%e5%b9%b6%e4%b8%8d%e7%9b%b8%e5%85%b3%e7%9a%84%e5%8e%86%e5%8f%b2"></a>
+合并不相关的历史
+</h3><p>有时候我们可能不会直接 clone 远程仓库，而是直接在本地创建新的 git 目录，然后在此目录中添加新的文件，最后再关联远程仓库。<strong>在这个前提下</strong>，如果远程仓库中 <strong>已经存在文件</strong>，直接 pull 的时候会报错：拒绝合并不相关的历史。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fatal: refusing to merge unrelated histories
+</span></span></code></pre></div><p>这时我们可以使用 <code>--allow-unrelated-histories</code> 选项进行强制合并(也可以按照 Git 的提示去做，应该有设置分支关联的方式。Git 的报错提示还是很不错的)。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git pull origin <span class="o">[</span>remote-branch<span class="o">]</span> --allow-unrelated-histories
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/git/git/&amp;title=Git%20%e5%85%a5%e9%97%a8&amp;desc=Git%20%e7%ae%80%e5%8d%95%e7%9f%a5%e8%af%86%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Git 入门">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Git 入门">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/git"
+        rel="tag"
+        >git</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="Gradle"
+              class="lazyload"
+            /><a
+          href="/post/skill/programming/java/other/gradle/"
+          aria-label="前一篇:Gradle"
+          title="前一篇:Gradle"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Gradle</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="ElasticSearch &#43; Kibana"
+              class="lazyload"
+            /><a
+          href="/post/skill/db/elasticsearch/"
+          aria-label="后一篇:ElasticSearch &#43; Kibana"
+          title="后一篇:ElasticSearch &#43; Kibana"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">ElasticSearch &#43; Kibana</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-简单知识">Git 简单知识</a></li>
+    <li><a href="#git-配置基本信息">Git 配置基本信息</a></li>
+    <li><a href="#常用命令">常用命令</a>
+      <ul>
+        <li><a href="#upstream">upstream</a></li>
+        <li><a href="#remote">remote</a></li>
+        <li><a href="#branch">branch</a></li>
+        <li><a href="#log">log</a></li>
+        <li><a href="#reset">reset</a></li>
+        <li><a href="#stash">stash</a></li>
+        <li><a href="#submodule">submodule</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssh-key-配置">SSH-Key 配置</a>
+      <ul>
+        <li><a href="#1-生成github用的ssh-key">1. 生成Github用的SSH-Key</a></li>
+        <li><a href="#2-生成gitee使用的ssh-key">2. 生成gitee使用的SSH-Key</a></li>
+        <li><a href="#3-修改-config-文件">3. 修改 config 文件</a></li>
+        <li><a href="#4-测试是否配置成功">4. 测试是否配置成功</a></li>
+      </ul>
+    </li>
+    <li><a href="#加速访问-github">加速访问 Github</a></li>
+    <li><a href="#git-问题汇总">Git 问题汇总</a>
+      <ul>
+        <li><a href="#合并不相关的历史">合并不相关的历史</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Git 入门",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/git\/git\/",
+          description: "Git 简单知识\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/cover\/git.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

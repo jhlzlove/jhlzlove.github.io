@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssh on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/ssh/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/ssh/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>使用 ssh key 连接 Linux 服务器</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/linux-ssh-key/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/linux-ssh-key/</guid>
+      <description>
+        <![CDATA[<h1>使用 ssh key 连接 Linux 服务器</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>如何更简单、安全的连接 Linux 服务器。</p>
+        
+        <hr><p>本文0001-01-01首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于0001-01-01</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+  </channel>
+</rss>

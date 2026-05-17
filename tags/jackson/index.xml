@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jackson on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/jackson/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/jackson/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Jackson</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/jackson/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/jackson/</guid>
+      <description>
+        <![CDATA[<h1>Jackson</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p><a href="https://github.com/FasterXML/jackson">Jackson</a> 包括三个核心包：streaming(core 基础), annotations(注解)，databind(数据绑定、序列化，依赖前两个包)</p>
+<p>除了上面三个包之外，还有其它官方维护的与其它框架集成的包。总之，jackson 的扩展性非常强，是 JVM 平台比较好用的包。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

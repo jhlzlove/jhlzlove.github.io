@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/redis/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/redis/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Redis</title>
+      <link>https://jhlzlove.github.io/post/skill/db/redis/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/db/redis/</guid>
+      <description>
+        <![CDATA[<h1>Redis</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一redis-简介">
+<a class="header-anchor" href="#%e4%b8%80redis-%e7%ae%80%e4%bb%8b"></a>
+一、Redis 简介
+</h2><p>Redis 是一个开源（BSD 许可）的内存数据结构存储库，可用作数据库、缓存、消息代理和流引擎。Redis 提供字符串、哈希值、列表、集合、带范围查询的排序集合、位图、hyperloglogs、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久性，并通过 Redis Sentinel 和 Redis Cluster 自动分区提供高可用性。
+你可以在这些类型上运行原子操作，如追加字符串；递增哈希值；向列表添加元素；计算集合的交集、联合和差值；或获取排序集合中排名最靠前的成员。
+为了达到最佳性能，Redis 使用内存数据集。根据使用情况，Redis 可以通过定期将数据集转储到磁盘或将每条命令附加到基于磁盘的日志来持久化数据。如果你只需要功能丰富的网络内存缓存，也可以禁用持久化功能。
+Redis 支持异步复制，具有快速无阻塞同步和自动重新连接功能，并可在网络拆分时进行部分重新同步。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

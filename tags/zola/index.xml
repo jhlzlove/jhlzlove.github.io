@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zola on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/zola/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/zola/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>zola 主题</title>
+      <link>https://jhlzlove.github.io/post/skill/zola-theme/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/zola-theme/</guid>
+      <description>
+        <![CDATA[<h1>zola 主题</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近花了两三天写了一个 <a href="https://jhlzlove.github.io/elysia-ztheme/">zola 主题</a>，全部由 AI 实现，我只是描述功能、效果。本文记录一些调研时的记录。</p>
+<h2 id="写在前面">
+<a class="header-anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2"></a>
+写在前面
+</h2><p>以动态博客优先。</p>
+<p>对于 <a href="https://jamstack.org/generators/">SSG</a>（Static Site Generators） 来说，没必要换的太勤，换的时候还得花时间找一个喜欢的主题，然后进行迁移。何况现在有了 AI + 知识库，博客的存在感更低了。浪子现在连搜索引擎都很少使用了，不会的、不懂的问 AI~ 现在网站的大部分都是以前的文章。</p>
+        
+        <hr><p>本文2026-04-19首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2026-04-19</p>]]>
+      </description>
+      
+        <category>zola</category>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/linux/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/linux/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>【Linux】 Ubuntu安装Hadoop&#43;Hive</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/ubuntu-install-hadoop/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/ubuntu-install-hadoop/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 Ubuntu安装Hadoop+Hive</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Ubuntu 搭建 Hadoop + Hive 环境实例。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 Ubuntu 服务器配置</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 Ubuntu 服务器配置</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Ubuntu Server 22.04 服务器配置。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 CentOS 服务器配置</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/centos/centos-server-config/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/centos/centos-server-config/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 CentOS 服务器配置</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>此篇文章以后随缘更新，这个系统的相关问题网上一般都有答案，浪子个人已不再使用 CentOS 系统。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 ArchLinux安装教程</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/archlinux-install/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/archlinux-install/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 ArchLinux安装教程</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>ArchLinux，很不错的一款 Linux 发行版，不过的它的安装可能让很多人望而却步，不过还有背靠 Arch 的另一个子系统，Manjaro，它的安装就和 Window 一样，简单容易。本篇文章仅作参考。</p>
+<a href="https://wiki.archlinux.org/title/Installation_guide#Boot_the_live_environment" title="官方文档" target="_blank">官方文档</a>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 ArchLinux 极其衍生版安装一些常用软件</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/archlinux-install-software/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/archlinux-install-software/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 ArchLinux 极其衍生版安装一些常用软件</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Arch Linux 的衍生版有<a href="https://itsfoss.com/arch-based-linux-distros/">很多</a>，只要支持 AUR，本文的安装软件的方式基本都可以使用。浪子更加推荐去 <a href="https://wiki.archlinux.org/">Arch Wiki</a> 查找文档或者安装包自行安装，在使用中遇到的问题也可以在 Wiki 中找到解决办法。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 CentOS7 磁盘扩容</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/centos/centos-disk-expansion/</link>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/centos/centos-disk-expansion/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 CentOS7 磁盘扩容</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>磁盘扩容</p>
+        
+        <hr><p>本文2025-02-19首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-02-19</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 CentOS7 离线安装 zabbix5</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/centos/centos-install-zabbix5/</link>
+      <pubDate>Sun, 03 Nov 2024 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/centos/centos-install-zabbix5/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 CentOS7 离线安装 zabbix5</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>先使用外网机器下载离线安装包，然后上传至内网服务器进行全内网安装。</p>
+        
+        <hr><p>本文2024-11-03首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2024-11-03</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 初次把玩Debian12</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/debian12-first-play/</link>
+      <pubDate>Sat, 22 Jul 2023 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/debian12-first-play/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 初次把玩Debian12</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>最近发现了 <a href="https://www.debian.org/index.zh-cn.html">Debian</a> Linux 系统，使用的也是 <a href="https://www.debian.org/index.zh-cn.html">deb</a> 格式的安装包和 apt 管理器。另外由于使用最新版的 Ubuntu 的时候发现默认下载的 Snap 源的软件，导致更新后一些软件会有问题，不能正常使用。虽然可以关闭，但是 emmmm，一言难尽。趁此机会，把玩一下，嘿嘿~本文基于 Debian12 版本。</p>
+        
+        <hr><p>本文2023-07-22首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2023-07-22</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 ssh key 连接 Linux 服务器</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/linux-ssh-key/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/linux-ssh-key/</guid>
+      <description>
+        <![CDATA[<h1>使用 ssh key 连接 Linux 服务器</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>如何更简单、安全的连接 Linux 服务器。</p>
+        
+        <hr><p>本文0001-01-01首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于0001-01-01</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】Linux 入门</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/linux-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/linux-intro/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】Linux 入门</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>简单了解 Linux 系统，另外推荐一个 Linux 的学习网站：https://www.linuxshelltips.com/。</p>
+        
+        <hr><p>本文0001-01-01首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于0001-01-01</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+  </channel>
+</rss>

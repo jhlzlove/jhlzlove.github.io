@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Record on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/record/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/record/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>使用 record 类读取 spring 的配置文件</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</guid>
+      <description>
+        <![CDATA[<h1>使用 record 类读取 spring 的配置文件</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Java14 中引入了 record 类型，一定程度上减轻了 class 的工作量，但是语言层面和框架层面更完备的支持还需要时间。</p>
+<p>不过幸好，Spring Boot3 对其响应速度还是可以的，在 Spring Boot 3 之后，我们可以使用 record 去读取 <code>application.yml</code> 中的值啦！太棒啦有木有！</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

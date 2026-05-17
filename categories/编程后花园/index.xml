@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程后花园 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/categories/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/categories/%E7%BC%96%E7%A8%8B%E5%90%8E%E8%8A%B1%E5%9B%AD/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>微信公众号模板消息测试推送</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF%E6%B5%8B%E8%AF%95%E6%8E%A8%E9%80%81/</guid>
+      <description>
+        <![CDATA[<h1>微信公众号模板消息测试推送</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微信公众号分为订阅号和服务号，订阅号不支持模板消息，但是每天可以群发消息；而服务号一个月可以群发四次消息。认证过的服务号是可以使用模板消息的，认证需要 money，而订阅号就需要有内测的权限，微信对订阅号正在启用模板消息灰度测试，所以很多是不能自己测试的。但是可以使用测试号。不过值得注意的是，测试号只能用于测试，不能用于向正是号推送消息等。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 record 类读取 spring 的配置文件</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-record/</guid>
+      <description>
+        <![CDATA[<h1>使用 record 类读取 spring 的配置文件</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Java14 中引入了 record 类型，一定程度上减轻了 class 的工作量，但是语言层面和框架层面更完备的支持还需要时间。</p>
+<p>不过幸好，Spring Boot3 对其响应速度还是可以的，在 Spring Boot 3 之后，我们可以使用 record 去读取 <code>application.yml</code> 中的值啦！太棒啦有木有！</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 Apache PDFBox 读取 pdf 内容</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/pdfbox/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/pdfbox/</guid>
+      <description>
+        <![CDATA[<h1>使用 Apache PDFBox 读取 pdf 内容</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>使用 Apache 的 PDFBox 解析 PDF 文档，目前已经发展到 3.0 版本，和 2.x 有很大的区别，迁移说明请参阅：https://pdfbox.apache.org/3.0/migration.html</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>工作流概述以及 flowable 与 spring 的集成</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/workflow/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/workflow/</guid>
+      <description>
+        <![CDATA[<h1>工作流概述以及 flowable 与 spring 的集成</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>BPMN 工作流的名词解释：https://www.flowable.com/open-source/docs/bpmn/ch02-GettingStarted。可以在线绘制流程图并下载的网站：</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>不知道起什么名字的 Web</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/web/web-other/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/web/web-other/</guid>
+      <description>
+        <![CDATA[<h1>不知道起什么名字的 Web</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>这里面的内容可能很杂乱，因为要记录使用过程中的一些问题。前端的框架不止是应用框架，也包含 UI 框架等等。</p>
+<blockquote>
+<p>EP：Element Plus</p>
+</blockquote>
+<h2 id="若依">
+<a class="header-anchor" href="#%e8%8b%a5%e4%be%9d"></a>
+若依
+</h2><h3 id="form-表单图片上传">
+<a class="header-anchor" href="#form-%e8%a1%a8%e5%8d%95%e5%9b%be%e7%89%87%e4%b8%8a%e4%bc%a0"></a>
+form 表单图片上传
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">el-form-item</span> <span class="na">label</span><span class="o">=</span><span class="s">&#34;图片上传&#34;</span> <span class="na">prop</span><span class="o">=</span><span class="s">&#34;img&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 限制只能上传一张 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">image-upload</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;form.img&#34;</span> <span class="na">:limit</span><span class="o">=</span><span class="s">&#34;1&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">el-form-item</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>预览时：</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Web</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>编程小知识</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/common/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/common/</guid>
+      <description>
+        <![CDATA[<h1>编程小知识</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="编程语言">
+<a class="header-anchor" href="#%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80"></a>
+编程语言
+</h2><p>我们都知道，计算机中的执行者 CPU 只认识二进制的 0 和 1 组成的序列，使用 0 和 1 组成的序列我们称之为 <strong>机器码</strong>。<strong>机器码</strong> 是计算机可以直接执行的。但是直接使用机器码编写 CPU 指令不仅费时费力，还特别容易出错，于是后来有了 <strong>汇编语言</strong>。简单概括的话，汇编语言类似于一种助记符，直接面对指令，将二进制指令替换成人类便于记忆的字符串，并给定特殊的格式。每一条汇编指令对应一条二进制指令。根据内核架构的不同，不同的指令有不同的长度和格式。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Web</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/web/web/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/web/web/</guid>
+      <description>
+        <![CDATA[<h1>Web</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Web 发展到今天，涌现出的工具、框架五花八门，各种各样，所以有非常多的选择。但是怎么样都离不开 HTML、CSS、JavaScript，至少目前确实如此。Web 篇写的非常的潦草，浪子对前端只是了解，会用一点点儿，权当一个记录放在这里。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Web</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>volatile 关键字</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/volatile/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/volatile/</guid>
+      <description>
+        <![CDATA[<h1>volatile 关键字</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>本篇文章需要掌握JMM（Java Memory Model）</p>
+<h2 id="介绍">
+<a class="header-anchor" href="#%e4%bb%8b%e7%bb%8d"></a>
+介绍
+</h2><p>volatile 在多线程环境下可以保证共享数据的可见性，但不保证数据操作的原子性（线程不安全）。要想保证线程安全，还是需要锁机制或者使用原子类（原子类内部已使用 volatile 保证了可见性）。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>SpringSecurity</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring-security/</guid>
+      <description>
+        <![CDATA[<h1>SpringSecurity</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>本文内容基于官方文档 + 其它资料 + 自己的使用经验整理。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Spring 事务失效的几种情况</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/spring/spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/spring/spring%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5/</guid>
+      <description>
+        <![CDATA[<h1>Spring 事务失效的几种情况</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Spring 声明式事务失效的几种原因</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java Api on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/java-api/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/java-api/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Java API 工具</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-api/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-api/</guid>
+      <description>
+        <![CDATA[<h1>Java API 工具</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="一java-api">
+<a class="header-anchor" href="#%e4%b8%80java-api"></a>
+一、Java Api
+</h2><h3 id="1-文件监听">
+<a class="header-anchor" href="#1-%e6%96%87%e4%bb%b6%e7%9b%91%e5%90%ac"></a>
+1. 文件监听
+</h3><p>背景：之前第三方系统使用 FTP 传输一些静态资源到服务器的指定文件夹中，包含图片、视频、txt 文本文件。其中需要读取 txt 的文本内容，并将其整理落库。本来想使用 js 脚本处理的，后来领导说尽量写在一起。于是使用该 API 实现。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

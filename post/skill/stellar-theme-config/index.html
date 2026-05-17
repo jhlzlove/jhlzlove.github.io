@@ -1,0 +1,1290 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Hexo 博客使用 Stellar | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="Hexo 博客使用 Stellar | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/stellar-theme-config/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2023-07-10T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2023-07-10T00:00:00&#43;08:00" /><meta property="article:tag" content="hexo" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="Hexo 博客使用 Stellar"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Hexo 博客使用 Stellar</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一hexo-创建博客">一、Hexo 创建博客</a>
+      <ul>
+        <li><a href="#1-创建新的博客">1. 创建新的博客</a></li>
+        <li><a href="#2-创建-github-仓库">2. 创建 Github 仓库</a></li>
+        <li><a href="#3-更改配置文件并部署">3. 更改配置文件并部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#二stellar-主题配置">二、Stellar 主题配置</a>
+      <ul>
+        <li><a href="#1-安装-stellar-主题">1. 安装 Stellar 主题</a></li>
+        <li><a href="#2-stellar-主题配置">2. Stellar 主题配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#三其它">三、其它</a>
+      <ul>
+        <li><a href="#1-错误处理">1. 错误处理</a></li>
+        <li><a href="#2-使用永久链接插件解决中文转义">2. 使用永久链接插件解决中文转义</a></li>
+        <li><a href="#3-引入mermaid流程图">3. 引入Mermaid流程图</a></li>
+        <li><a href="#4-大小写部署不生效">4. 大小写部署不生效</a></li>
+      </ul>
+    </li>
+    <li><a href="#四使用-github-action-自动部署">四、使用 Github Action 自动部署</a>
+      <ul>
+        <li><a href="#1-配置不同仓库的-ssh-密钥">1. 配置不同仓库的 SSH 密钥</a></li>
+        <li><a href="#2-action-脚本编写">2. Action 脚本编写</a></li>
+      </ul>
+    </li>
+    <li><a href="#五stellar-主题美化">五、Stellar 主题美化</a>
+      <ul>
+        <li><a href="#引入一言小组件">引入一言小组件</a></li>
+        <li><a href="#设置分类标签颜色">设置分类标签颜色</a></li>
+        <li><a href="#页脚添加运行时间">页脚添加运行时间</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2023-07-10 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2023-07-10</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2023-07-10</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote class="alert-blockquote warning">
+          <p class="alert-heading">WARNING</p>
+          <p>
+            
+            本文最后更新于 2023-07-10，请注意文中内容可能已不适用。
+          </p>
+        </blockquote><p>优雅~</p>
+<h2 id="一hexo-创建博客">
+<a class="header-anchor" href="#%e4%b8%80hexo-%e5%88%9b%e5%bb%ba%e5%8d%9a%e5%ae%a2"></a>
+一、Hexo 创建博客
+</h2><p>使用了很久的 <a href="https://volantis.js.org/v6/getting-started/">Volantis</a> 换成了 <a href="https://xaoxuu.com/wiki/stellar/">Stellar</a>。特别感谢开发这两个主题的各位佬！膜拜~</p>
+<p>本文基于 <a href="https://pages.github.com/">Github Pages</a> 进行搭建。开始之前，默认少侠的系统已安装如下环境，并掌握这些工具基本使用：</p>
+<ul>
+<li><a href="https://nodejs.org/en">NodeJs</a> 20+</li>
+<li><a href="https://registry.npmmirror.com/binary.html?path=git-for-windows/">Git</a></li>
+</ul>
+<p>本文难免有疏漏之处，如果少侠是第一次使用/听说，建议先通读一遍 Hexo <a href="https://hexo.io/zh-cn/docs/">官方文档</a>，不论是对于搭建博客还是更换主题配置亦或是后期解决问题等都有很大的帮助。</p>
+<h3 id="1-创建新的博客">
+<a class="header-anchor" href="#1-%e5%88%9b%e5%bb%ba%e6%96%b0%e7%9a%84%e5%8d%9a%e5%ae%a2"></a>
+1. 创建新的博客
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建博客文件夹</span>
+</span></span><span class="line"><span class="cl">mkdir myblog <span class="o">&amp;&amp;</span> <span class="nb">cd</span> myblog
+</span></span><span class="line"><span class="cl"><span class="c1"># 全局安装 hexo</span>
+</span></span><span class="line"><span class="cl">npm i -g hexo-cli
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化博客目录</span>
+</span></span><span class="line"><span class="cl">hexo init
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装一个插件，后面部署时需要使用（hexo d）</span>
+</span></span><span class="line"><span class="cl">npm install hexo-deployer-git
+</span></span></code></pre></div><blockquote>
+<p><strong>TIP:</strong> <code>hexo init</code> 进行初始化的博客目录必须是一个空文件夹。</p>
+</blockquote>
+<p>之后你会看到下面的目录结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">|</span>--.github
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--node_modules
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--scaffolds
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--source
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--themes
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--config.landscape.yml
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--_config.yml
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--package-lock.json
+</span></span><span class="line"><span class="cl"><span class="p">|</span>--package.json
+</span></span></code></pre></div><h3 id="2-创建-github-仓库">
+<a class="header-anchor" href="#2-%e5%88%9b%e5%bb%ba-github-%e4%bb%93%e5%ba%93"></a>
+2. 创建 Github 仓库
+</h3><p><a href="https://pages.github.com/">Github Pages</a> 中有相关说明：每个 GitHub 帐户和组织都有一个主站点和无限的项目站点。即 GitHub 支持用户创建静态的宣传网站，该站点使用固定的格式创建仓库：<code>username.github.io</code>。</p>
+<p><code>username</code> 是 GitHub 的用户名。比如浪子的用户名就是 <code>jhlzlove</code>，那么仓库的名称就是 <code>jhlzlove.github.io</code>。少侠可以参照 <a href="https://pages.github.com/">Github Pages</a> 中的方式创建(新手推荐)，也可以按照下面的方式创建，效果都是一样的，但是前者更加简单。</p>
+<blockquote>
+<p><strong>无限的项目站点</strong> 本文没有讲解，熟悉了这个之后可以自行了解，也是非常简单的。</p>
+</blockquote>
+<p>在 Github 上创建完 <code>yourusername.github.io</code> 仓库后再进行以下操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> myblog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl"><span class="c1"># 关联你的远程仓库</span>
+</span></span><span class="line"><span class="cl">git add origin git@github.com:yourname.github.io.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 浪子喜欢放到 main 分支上</span>
+</span></span><span class="line"><span class="cl">git checkout -b main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git add -A
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit my blog&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 推送到远程分支，并且建立分支间的追踪关系.</span>
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></div><h3 id="3-更改配置文件并部署">
+<a class="header-anchor" href="#3-%e6%9b%b4%e6%94%b9%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%b9%b6%e9%83%a8%e7%bd%b2"></a>
+3. 更改配置文件并部署
+</h3><p>修改 <code>myblog/_config.yml</code> 文件：</p>
+<p>{% image /images/doc/20230708151823.png %}</p>
+<p>{% image /images/doc/20230708152225.png %}</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># URL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">http://yourname.github.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="p">:</span><span class="l">year/:month/:day/:title/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">permalink_defaults</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">pretty_urls</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">trailing_index</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># Set to false to remove trailing &#39;index.html&#39; from permalinks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">trailing_html</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># Set to false to remove trailing &#39;.html&#39; from permalinks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 类型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 部署分支名称，按照自己喜欢的起名就可以。这里写完还需要在 GitHub 上进行分支创建并配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 仓库，这里使用的 SSH 方式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l">git@github.com:yourname/yourname.github.io.git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 如果你看了 hexo 的文档，这里就很清楚啦，部署的时候会使用这个消息作为提交的信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l">Automatic deploy by Github Action:{{ now(&#39;yyyy-MM-dd HH:mm:ss&#39;) }}</span><span class="w">
+</span></span></span></code></pre></div><p>上面的配置更改完成以后，还需要在 Github 中配置一下，否则部署之后访问 <code>https://yourname.github.io</code> 是访问不到的。</p>
+<p>{% image /images/doc/20230708153347.png %}</p>
+<p>等待部署成功，就可以访问 <code>https://yourname.github.io</code> 查看博客的效果啦！</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先推送备份，可以跳过这步直接进行 部署</span>
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;push config&#34;</span>
+</span></span><span class="line"><span class="cl">git push
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 部署（也可以直接使用 hexo s 本地预览）</span>
+</span></span><span class="line"><span class="cl">hexo cl <span class="o">&amp;&amp;</span> hexo g <span class="o">&amp;&amp;</span> hexo d
+</span></span></code></pre></div><h2 id="二stellar-主题配置">
+<a class="header-anchor" href="#%e4%ba%8cstellar-%e4%b8%bb%e9%a2%98%e9%85%8d%e7%bd%ae"></a>
+二、Stellar 主题配置
+</h2><p>上面部署使用的是 Hexo 的默认主题 landscape。Hexo 提供了上百种主题供用户选择，可以查看 Hexo <a href="https://hexo.io/themes/">主题商店</a> 进行选择，本文使用的是 <a href="https://xaoxuu.com/wiki/stellar/">Stellar</a> 主题，再次感谢作者提供这么好看、好用的主题!</p>
+<h3 id="1-安装-stellar-主题">
+<a class="header-anchor" href="#1-%e5%ae%89%e8%a3%85-stellar-%e4%b8%bb%e9%a2%98"></a>
+1. 安装 Stellar 主题
+</h3><p>推荐使用 submodule 的方式安装，如果动手能力较强的少侠或者想要自定义的大佬可以进行 fork 后换成自己的 GitHub 地址，方便自己修改和更新。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> myblog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/xaoxuu/hexo-theme-stellar.git themes/stellar
+</span></span></code></pre></div><p>编辑 <code>myblog/_config.yml</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 默认为 landscape</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 这里的名字是博客主题目录 myblog/themes/ 下的主题文件夹名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">stellar</span><span class="w">
+</span></span></span></code></pre></div><p>默认的主题配置文件为 <code>_config.landscape.yml</code>，修改该文件的名称为 <code>_config.stellar.yml</code> 并删除里面的所有内容。</p>
+<blockquote>
+<p>主题配置文件形如 <code>_config.xxxxx.yml</code>，其中 <code>xxxxx</code> 对应主题文件夹的名称，里面的内容需要参考对应的主题文档进行修改。</p>
+</blockquote>
+<h3 id="2-stellar-主题配置">
+<a class="header-anchor" href="#2-stellar-%e4%b8%bb%e9%a2%98%e9%85%8d%e7%bd%ae"></a>
+2. Stellar 主题配置
+</h3><p>Stellar 主题可以参考 <a href="https://xaoxuu.com/wiki/stellar/">Stellar</a> 文档进行配置，原作者大大写的很详细。但是第一次使用可能有些细节不懂，浪子也一样，过段时间回来再看就会恍然大悟！如果不会可以留言哦，相互学习一下！</p>
+<blockquote>
+<p>本文的 stellar wiki 为基于 <strong>1.28+</strong> 的配置方式。</p>
+</blockquote>
+<h4 id="21-stellar-的-wiki-文档配置">
+<a class="header-anchor" href="#21-stellar-%e7%9a%84-wiki-%e6%96%87%e6%a1%a3%e9%85%8d%e7%bd%ae"></a>
+2.1 Stellar 的 wiki 文档配置
+</h4><p>Stellar 中最令浪子惊喜的地方就是这个了，可以让我把某一类的文章全部扔在这里。这里的配置可能对于新手有些难度，所以本文主要讲了 wiki 文档配置。浪子当时也反复弄了好久，在这里记录一下。哦，对了，要注意的是 Stellar 1.20 之前和之后的版本 wiki 文档的配置方式发生了较大的变化，可以查看作者的 <a href="https://github.com/xaoxuu/hexo-theme-stellar/releases/tag/1.20.0">Github Release 1.20 wiki 配置说明</a>。</p>
+<p>wiki 同样支持 tags 分类，如果你需要分类的话可以参考浪子的分类方式：把 tags 的分类名称作为 <code>source/wiki/</code> 下的目录名称，然后在每个 tags 里写具体的项目，这样统一分类，便于管理。Stellar 主题会根据 wiki 项目 id 自动归类所有的文章，无论该路径下嵌套了多少层目录：</p>
+<p>{% image /images/doc/20231004150518.png %}</p>
+<p>浪子这里以 <code>cloudservice</code> 为例作为 wiki 项目 id，该项目的所有 md 文档都在 <code>source/wiki/技术加油站/云原生与微服务/</code> 目录下。</p>
+<p>{% timeline %}</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">layout: wiki
+</span></span><span class="line"><span class="cl">wiki: cloudservice # wiki 项目 id，下面创建的 source/_data/wiki/ 中的 yml 文件名称必须与此相同
+</span></span><span class="line"><span class="cl">title: xxxx
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></div><blockquote>
+<p>path 可为任意文件夹，因为同一个项目中的文章也可以分类放置</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># name title 为自定义文章名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># name 和 title 的区别在于 name 是内容页面显示的名称，title 是在 wiki 列表中显示的名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cloudservice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">云原生与微服务</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">描述，wiki 列表中显示在 title 下方的简单文字描述</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 分类标签</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="l">技术加油站</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 不显示封面，默认显示：true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">coverpage</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">cover</span><span class="p">:</span><span class="w"> </span><span class="l">https://oss.muzing.top/image/Nginx_%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.png</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># wiki 列表标题旁的 icon</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l">https://oss.muzing.top/image/Nginx_%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.png</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 搜索配置，在该 wiki 页中只能搜索指定路径的文章内容</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">search</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="l">/wiki/技术加油站/cloudservice/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">placeholder</span><span class="p">:</span><span class="w"> </span><span class="l">在 cloudservice 中搜索...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 覆盖侧边栏</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">sidebar</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">toc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">timeline_stellar_releases</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">related</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># wiki 页分类目录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># stellar 主题会自动查找并显示该目录的所有文章</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">base_dir</span><span class="p">:</span><span class="w"> </span><span class="l">/wiki/技术加油站/cloudservice/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 如果文章需要分组，则按照此格式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&#39;容器&#39;</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">index </span><span class="w"> </span><span class="c"># 实际文章路径：/wiki/技术加油站/cloudservice/index.md</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">path/Docker</span><span class="w"> </span><span class="c"># 实际文章路径：/wiki/技术加油站/cloudservice/Docker.md</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 若无需分组按照以下格式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># toc:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#   - index</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#   - path/Docker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#   - otherDoc</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl">- <span class="l">cloudservice</span><span class="w">
+</span></span></span></code></pre></div><p>{% endtimeline %}</p>
+<p>完成之后重新部署即可。想必有以上的示例就明白如何配置了，如果还不明白，建议再读一遍原作者的 <a href="https://xaoxuu.com/wiki/stellar/wiki-settings/">文档系统使用说明</a>。</p>
+<h2 id="三其它">
+<a class="header-anchor" href="#%e4%b8%89%e5%85%b6%e5%ae%83"></a>
+三、其它
+</h2><h3 id="1-错误处理">
+<a class="header-anchor" href="#1-%e9%94%99%e8%af%af%e5%a4%84%e7%90%86"></a>
+1. 错误处理
+</h3><p>如果遇到报错并且不知道错误原因的话，可以使用 <code>hexo g --debug</code> 命令查看 debug 输出信息。</p>
+<h3 id="2-使用永久链接插件解决中文转义">
+<a class="header-anchor" href="#2-%e4%bd%bf%e7%94%a8%e6%b0%b8%e4%b9%85%e9%93%be%e6%8e%a5%e6%8f%92%e4%bb%b6%e8%a7%a3%e5%86%b3%e4%b8%ad%e6%96%87%e8%bd%ac%e4%b9%89"></a>
+2. 使用永久链接插件解决中文转义
+</h3><p>如果我们写的文章标题是中文的话，那么在进行链接的分享时是会进行转义的，至于为什么要转义，请自行百度。我们可以安装一个插件，给链接 “化个美美的妆”，化妆后就是形如 <code>https://xxx.xxx.com/posts/8ddf18fb.html</code> 的漂亮女孩儿啦！</p>
+<p>安装插件：{% copy npm install hexo-abbrlink &ndash;save %}</p>
+<p>在 <code>myblog/_config.yml</code> 中找到对应 <code>permalink</code> 标签，进行修改即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># permalink: :year/:month/:day/:title/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l">p/:abbrlink/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">abbrlink</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">alg</span><span class="p">:</span><span class="w"> </span><span class="l">crc32 </span><span class="w"> </span><span class="c">#算法： crc16(default) and crc32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rep</span><span class="p">:</span><span class="w"> </span><span class="l">hex   </span><span class="w"> </span><span class="c">#进制： dec(default) and hex</span><span class="w">
+</span></span></span></code></pre></div><p>不同算法、进制生成的链接格式如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th>算法</th>
+          <th>进制</th>
+          <th>生成链接示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>crc16</td>
+          <td>hex</td>
+          <td><a href="https://yourname.github.io/p/66c8.html">https://yourname.github.io/p/66c8.html</a></td>
+      </tr>
+      <tr>
+          <td>crc16</td>
+          <td>dec</td>
+          <td><a href="https://yourname.github.io/p/65535.html">https://yourname.github.io/p/65535.html</a></td>
+      </tr>
+      <tr>
+          <td>crc32</td>
+          <td>hex</td>
+          <td><a href="https://yourname.github.io/p/8ddf18fb.html">https://yourname.github.io/p/8ddf18fb.html</a></td>
+      </tr>
+      <tr>
+          <td>crc32</td>
+          <td>dec</td>
+          <td><a href="https://yourname.github.io/p/1690090958.html">https://yourname.github.io/p/1690090958.html</a></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="3-引入mermaid流程图">
+<a class="header-anchor" href="#3-%e5%bc%95%e5%85%a5mermaid%e6%b5%81%e7%a8%8b%e5%9b%be"></a>
+3. 引入<a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams">Mermaid</a>流程图
+</h3><p>Hexo 默认的 markdown 解析器不支持 Mermaid 流程图，需要安装插件来支持：</p>
+<p>{% copy npm install &ndash;save hexo-filter-mermaid-diagrams %}</p>
+<p>Stellar 主题的作者大大已经做了集成，使用此主题只需要安装后在主题配置文件中找到 <code>mermaid</code> 的 enable 项设置为 true，在需要渲染的文章的 front-matter 里加入 <code>mermaid: true</code> 即可。</p>
+<p>如果使用的其它主题，可能需要自己做一些配置，具体的配置可以参考该插件的 <a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams">官网说明</a>。如果嫌弃配置麻烦或者实在不想配置，可以使用下面的方法。</p>
+<p>另一种解决方案：<a href="https://github.com/miao1007/hexo-filter-kroki">hexo-filter-kroki</a>，安装完成后，默认情况下，不需要进行任何配置，插件会将您的文本发送到 <a href="https://kroki.io/">Kroki.io</a> 进行渲染，并将 base64 编码的图像内联在 html 中。在插件作者的仓库中也有高级配置说明，可以自行查看配置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 懒人推荐</span>
+</span></span><span class="line"><span class="cl">npm install --save hexo-filter-kroki
+</span></span></code></pre></div><h3 id="4-大小写部署不生效">
+<a class="header-anchor" href="#4-%e5%a4%a7%e5%b0%8f%e5%86%99%e9%83%a8%e7%bd%b2%e4%b8%8d%e7%94%9f%e6%95%88"></a>
+4. 大小写部署不生效
+</h3><p>之前的文章英文命名是大写，但是改为小写后重新推送部署，访问时没有任何变化，wiki 页分类也乱了。排查问题：这是 Git 对大小写不敏感的原因，所以部署的时候没有检测到变化，解决这个问题也很简单，进入到博客目录中执行以下命令重新推送部署。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入博客目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> hexo-blog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git config core.ignorecase <span class="nb">false</span>
+</span></span></code></pre></div><h2 id="四使用-github-action-自动部署">
+<a class="header-anchor" href="#%e5%9b%9b%e4%bd%bf%e7%94%a8-github-action-%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2"></a>
+四、使用 <a href="https://docs.github.com/zh/actions/get-started/understand-github-actions">Github Action</a> 自动部署
+</h2><p>使用自动部署只是省了三个命令 <code>hexo cl &amp;&amp; hexo g &amp;&amp; hexo d</code>，但是可以作为 CI 的入门案例，自己写着玩玩，你也可以借助 <code>package.json</code> 脚本命令和 npm 等包管理器，一个命令解决。有很多方式都可以实现，看各位少侠的喜好喽~</p>
+<h3 id="1-配置不同仓库的-ssh-密钥">
+<a class="header-anchor" href="#1-%e9%85%8d%e7%bd%ae%e4%b8%8d%e5%90%8c%e4%bb%93%e5%ba%93%e7%9a%84-ssh-%e5%af%86%e9%92%a5"></a>
+1. 配置不同仓库的 SSH 密钥
+</h3><p>本文示例的 Github Action 为不同仓库之间的配置，部署的时候就像我们自己推送到 Github 平台类似，需要认证（permission）。为什么我要使用不同的仓库呢？因为 Github Pages 服务必须使用公开库（Public），但是我的源文件不想让其他人可见，因此我的 Hexo 博客是私有库，只有最终的 html 文件在 <code>username.github.io</code> 网站。</p>
+<blockquote>
+<p>如果少侠的博客源文件和 Pages 网站都在一个仓库，属于不同分支，按照此种方法也可以，但是较为麻烦。后面浪子会介绍另一种方式，不需要配置 SSH 密钥，简单便捷。</p>
+</blockquote>
+<h4 id="11-创建新的-ssh-密钥">
+<a class="header-anchor" href="#11-%e5%88%9b%e5%bb%ba%e6%96%b0%e7%9a%84-ssh-%e5%af%86%e9%92%a5"></a>
+1.1 创建新的 SSH 密钥：
+</h4><p><code>ssh-keygen -t ed25519 -C 'xxx@xx.com' -f ~/.ssh/github_action_key</code>，创建完成后会在 <code>~/.ssh/</code> 路径下生成两个文件：<strong>github_action_key</strong> 和 <strong>github_action_key.pub</strong>。</p>
+<h4 id="12-设置密钥">
+<a class="header-anchor" href="#12-%e8%ae%be%e7%bd%ae%e5%af%86%e9%92%a5"></a>
+1.2 设置密钥
+</h4><h5 id="公钥配置在-pages-服务仓库">
+<a class="header-anchor" href="#%e5%85%ac%e9%92%a5%e9%85%8d%e7%bd%ae%e5%9c%a8-pages-%e6%9c%8d%e5%8a%a1%e4%bb%93%e5%ba%93"></a>
+公钥配置在 Pages 服务仓库
+</h5><p>在 <code>yourname.github.io</code> 仓库，依次点击 settings -&gt; Deploy keys -&gt; Add deploy key。该 key 的作用主要是验证用户是否有权限进行仓库的操作。</p>
+<ol>
+<li>title 随便填写；</li>
+<li>key 的值填写上面生成的 <code>github_action_key.pub</code> 的全部内容；</li>
+<li>Allow write access 选项打勾。</li>
+</ol>
+<h5 id="私钥配置在源文件仓库私有仓库">
+<a class="header-anchor" href="#%e7%a7%81%e9%92%a5%e9%85%8d%e7%bd%ae%e5%9c%a8%e6%ba%90%e6%96%87%e4%bb%b6%e4%bb%93%e5%ba%93%e7%a7%81%e6%9c%89%e4%bb%93%e5%ba%93"></a>
+私钥配置在源文件仓库（私有仓库）
+</h5><p>在另一个仓库中，依次点击 settings -&gt; Secrets and Variables -&gt; Action，新建一个 secret：</p>
+<ol>
+<li>Name 随便填写，后面编写 Action 脚本时需要用到；</li>
+<li>Value 填写 <code>github_action_key</code> 私钥的全部内容。</li>
+</ol>
+<h3 id="2-action-脚本编写">
+<a class="header-anchor" href="#2-action-%e8%84%9a%e6%9c%ac%e7%bc%96%e5%86%99"></a>
+2. Action 脚本编写
+</h3><p>Github Action 的脚本文件是在 <code>.github/workflows/</code> 路径下，支持 <code>yml</code> 格式。脚本中我们还可以引用别人已经写好的脚本。</p>
+<p>需要明确的是，如果你使用的 Hexo 主题中有 <strong>自定义标签</strong>，并且在 markdown 文件中有所使用的话，Action 自动部署的时候会发生解析错误，找不到自定义标签的解析内容进而无法正常使用 Action。所以，还记得本文开始的时候推荐使用 <code>git submodule</code> 的方式？</p>
+<p>在 Hexo 博客仓库中使用 <code>git submodule add origin https://github.com/username/xxxx.git themes/xxx</code> 的方式去添加主题，然后在 <strong>yml</strong> 文件中 检出分支 时使用 <code>submodules: true</code> 选项开启子模块检出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Hexo Blog CI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># master branch on push, auto run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># check it to your workflow can access it</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># https://github.com/marketplace/actions/checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout Repository main branch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">submodules</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># Checkout private submodules(themes or something else)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># from: https://github.com/actions/setup-node</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Node.js</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-node@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hexo Dependencies</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        npm install &amp;&amp; npm install hexo-deployer-git
+</span></span></span><span class="line"><span class="cl"><span class="sd">        npm install -g hexo-cli</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Deploy Private Key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">HEXO_DEPLOY_PRIVATE_KEY</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.ACCESS_TOKEN }}   </span><span class="w"> </span><span class="c"># 仓库的私钥的 Name，需要改为自己的</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        mkdir -p ~/.ssh/
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;$HEXO_DEPLOY_PRIVATE_KEY&#34; &gt; ~/.ssh/id_rsa
+</span></span></span><span class="line"><span class="cl"><span class="sd">        chmod 600 ~/.ssh/id_rsa
+</span></span></span><span class="line"><span class="cl"><span class="sd">        ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Git Infomation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        git config --global user.name &#34;github-action&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        git config --global user.email &#34;github-action@no-reply.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy Hexo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        hexo clean
+</span></span></span><span class="line"><span class="cl"><span class="sd">        hexo generate
+</span></span></span><span class="line"><span class="cl"><span class="sd">        hexo deploy</span><span class="w">
+</span></span></span></code></pre></div><h4 id="博客源文件和-pages-网站文件在相同仓库的不同分支的简单方式">
+<a class="header-anchor" href="#%e5%8d%9a%e5%ae%a2%e6%ba%90%e6%96%87%e4%bb%b6%e5%92%8c-pages-%e7%bd%91%e7%ab%99%e6%96%87%e4%bb%b6%e5%9c%a8%e7%9b%b8%e5%90%8c%e4%bb%93%e5%ba%93%e7%9a%84%e4%b8%8d%e5%90%8c%e5%88%86%e6%94%af%e7%9a%84%e7%ae%80%e5%8d%95%e6%96%b9%e5%bc%8f"></a>
+博客源文件和 Pages 网站文件在相同仓库的不同分支的简单方式
+</h4><p>如果少侠的 Hexo 博客源文件和 Pages 网站文件是在相同的仓库中，可以按照类似上面一样的方式配置，无非就是公钥、私钥都设置在同一个仓库中，同样是没有问题的，但是较为麻烦。</p>
+<p>接下来介绍一种简单的方式，此方式 <strong>只适用于</strong> md 源文件和 Pages 网站文件都在 <strong>同一个仓库</strong>，只是属于不同分支。如果使用过 vuepress、vitepress 等，那么此方式和它们一样。</p>
+<p>Github Action 提供了 <code>${{ secrets.GITHUB_TOKEN }}</code> 变量，该变量会在 workflows 结束后立即过期。该变量具有不同权限，可以在 <code>yml</code> 中修改整个工作流或单个作业的 GITHUB_TOKEN 权限。具体内容请看 <a href="https://docs.github.com/zh/actions/security-guides/automatic-token-authentication">官网说明</a></p>
+<p>该方式无需配置 SSH 密钥，直接使用上面的变量即可，下面给一个脚本，少侠使用的时候修改部署的分支名称即可。如果需要指定其它变量，可以查看使用的脚本官网。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy Hexo Blog</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># master branch on push, auto run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># check it to your workflow can access it</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout Repository main branch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">submodules</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># Checkout private submodules(themes or something else)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># from: https://github.com/actions/setup-node</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Node.js</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-node@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 生成文档</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Generator docs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        npm i
+</span></span></span><span class="line"><span class="cl"><span class="sd">        npm install -g hexo-cli
+</span></span></span><span class="line"><span class="cl"><span class="sd">        hexo cl &amp;&amp; hexo g</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 使用已有的 action 进行部署</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># https://github.com/JamesIves/github-pages-deploy-action</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">JamesIves/github-pages-deploy-action@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># 使用 public 内的文件部署到 pages 分支</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># 部署分支</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># 默认使用 secrets.GITHUB_TOKEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># token: ${{ secrets.GITHUB_TOKEN }}</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>使用脚本之后，少侠只需写完文章后，把 md 源文件所在的仓库的内容推送到 Github 即可，等待一会儿再次访问 <code>yourname.github.io</code>，如果看到内容更新即代表成功。</p>
+</blockquote>
+<p>使用 Action 之后你会发现一个新的问题：部署之后访问博客，所有文章的 <strong>发布时间</strong>、<strong>更新时间</strong> 都是最近提交的时间，这就有问题了。分析原因也简单：Github Action 部署需要 clone 我们的库，clone 之后所有文件的日期都更新了，如果在 md 文件的 <code>front-matter</code> 中指定了 <strong>date</strong> 属性则正常，但是浪子之前所有的博客都没加！不过这个影响也不大。</p>
+<p>之后在浪子所在的一个群里某位大佬推荐了一个插件：<a href="https://github.com/xcatliu/hexo-filter-date-from-git">hexo-filter-date-from-git</a>，试了试，果然好使！不过注意，使用该插件需要脚本必须设置 <code>fetch-depth: 0</code> 项检出所有的 git 日志，若此项不设置，该插件只能根据最新的 git log 获取提交时间进行覆写，那么这样你就会发现，和原来没有使用插件一样了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> myblog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">npm install hexo-filter-date-from-git --save
+</span></span></code></pre></div><h2 id="五stellar-主题美化">
+<a class="header-anchor" href="#%e4%ba%94stellar-%e4%b8%bb%e9%a2%98%e7%be%8e%e5%8c%96"></a>
+五、Stellar 主题美化
+</h2><h3 id="引入一言小组件">
+<a class="header-anchor" href="#%e5%bc%95%e5%85%a5%e4%b8%80%e8%a8%80%e5%b0%8f%e7%bb%84%e4%bb%b6"></a>
+引入一言小组件
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">hitokoto</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">layout</span><span class="p">:</span><span class="w"> </span><span class="l">markdown</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">一言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="l">|</span><span class="w"> </span><span class="c"># support markdown</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;span class=&#34;hitokoto&#34;&gt;一言加载中...&lt;/span&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;script&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">document.addEventListener(&#39;DOMContentLoaded&#39;, async () =&gt; {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">try {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">const response = await fetch(&#39;https://v1.hitokoto.cn&#39;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">const data = await response.json();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">// 获取页面上用于显示一言的元素</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">const dom = document.querySelector(&#39;.hitokoto&#39;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">// 设置一言内容</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">if (dom &amp;&amp; typeof data.hitokoto === &#39;string&#39;) {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="l">let res = data.from ?? false ? &#34;—— 《&#34; + data.from + &#34;》&#34;:&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="l">dom.innerText = data.hitokoto +&#34; &#34;+ res;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>}<span class="w"> </span><span class="l">else {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">console.error(&#39;未能获取或解析一言数据，或者找不到目标 DOM 元素&#39;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w"> </span><span class="l">catch (error) {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="l">console.error(&#39;请求过程中发生错误：&#39;, error);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>}<span class="l">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;/script&gt;</span><span class="w">
+</span></span></span></code></pre></div><p>配置示例（在你需要显示的地方引入组件即可）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">site_tree</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># -- 列表类页面 -- #</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 主页配置 引入 hitokoto 一言组件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">home</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">leftbar</span><span class="p">:</span><span class="w"> </span><span class="l">hitokoto, recent</span><span class="w">
+</span></span></span></code></pre></div><h3 id="设置分类标签颜色">
+<a class="header-anchor" href="#%e8%ae%be%e7%bd%ae%e5%88%86%e7%b1%bb%e6%a0%87%e7%ad%be%e9%a2%9c%e8%89%b2"></a>
+设置分类标签颜色
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">article</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 添加分类的标签并设置对应的颜色</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">category_color</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;探索号&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;#f44336&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;编程后花园&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;#A505F0&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;技术加油站&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;#c0ea66&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;人生图书馆&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;#EDADFF&#39;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="页脚添加运行时间">
+<a class="header-anchor" href="#%e9%a1%b5%e8%84%9a%e6%b7%bb%e5%8a%a0%e8%bf%90%e8%a1%8c%e6%97%b6%e9%97%b4"></a>
+页脚添加运行时间
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">footer</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="l">|</span><span class="w"> </span><span class="c"># 支持 Markdown 格式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;uptime&gt;&lt;/uptime&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;script&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">setInterval(() =&gt; {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let startDate = new Date(&#34;2023-10-01&#34;)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let now = new Date();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">// 计算时间差（以毫秒为单位）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let differenceInMs = now.getTime() - startDate.getTime();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">// 转换为天数、小时数、分钟数和秒数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let days = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let hours = Math.floor((differenceInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let seconds = Math.floor((differenceInMs % (1000 * 60)) / 1000);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">let uptimeTags = Array.from(document.getElementsByTagName(&#34;uptime&#34;));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">uptimeTags.forEach(ele =&gt; { ele.textContent = `🌱 本站已活了 ${days} 天 | ${hours} 时 | ${minutes} 分 | ${seconds} 秒 🌱` });</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>}<span class="p">,</span><span class="w"> </span><span class="m">1000</span><span class="l">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">&lt;/script&gt;</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>不过这样需要手动把 <strong>new Date()</strong> 的时间换成站点开张的时间</p>
+</blockquote></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/stellar-theme-config/&amp;title=Hexo%20%e5%8d%9a%e5%ae%a2%e4%bd%bf%e7%94%a8%20Stellar&amp;desc=%e4%bc%98%e9%9b%85~%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="Hexo 博客使用 Stellar">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="Hexo 博客使用 Stellar">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/hexo"
+        rel="tag"
+        >hexo</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="【Linux】Linux Shell"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/linux-shell/"
+          aria-label="前一篇:【Linux】Linux Shell"
+          title="前一篇:【Linux】Linux Shell"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">【Linux】Linux Shell</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="【Linux】 初次把玩Debian12"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/debian12-first-play/"
+          aria-label="后一篇:【Linux】 初次把玩Debian12"
+          title="后一篇:【Linux】 初次把玩Debian12"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">【Linux】 初次把玩Debian12</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一hexo-创建博客">一、Hexo 创建博客</a>
+      <ul>
+        <li><a href="#1-创建新的博客">1. 创建新的博客</a></li>
+        <li><a href="#2-创建-github-仓库">2. 创建 Github 仓库</a></li>
+        <li><a href="#3-更改配置文件并部署">3. 更改配置文件并部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#二stellar-主题配置">二、Stellar 主题配置</a>
+      <ul>
+        <li><a href="#1-安装-stellar-主题">1. 安装 Stellar 主题</a></li>
+        <li><a href="#2-stellar-主题配置">2. Stellar 主题配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#三其它">三、其它</a>
+      <ul>
+        <li><a href="#1-错误处理">1. 错误处理</a></li>
+        <li><a href="#2-使用永久链接插件解决中文转义">2. 使用永久链接插件解决中文转义</a></li>
+        <li><a href="#3-引入mermaid流程图">3. 引入Mermaid流程图</a></li>
+        <li><a href="#4-大小写部署不生效">4. 大小写部署不生效</a></li>
+      </ul>
+    </li>
+    <li><a href="#四使用-github-action-自动部署">四、使用 Github Action 自动部署</a>
+      <ul>
+        <li><a href="#1-配置不同仓库的-ssh-密钥">1. 配置不同仓库的 SSH 密钥</a></li>
+        <li><a href="#2-action-脚本编写">2. Action 脚本编写</a></li>
+      </ul>
+    </li>
+    <li><a href="#五stellar-主题美化">五、Stellar 主题美化</a>
+      <ul>
+        <li><a href="#引入一言小组件">引入一言小组件</a></li>
+        <li><a href="#设置分类标签颜色">设置分类标签颜色</a></li>
+        <li><a href="#页脚添加运行时间">页脚添加运行时间</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "Hexo 博客使用 Stellar",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/stellar-theme-config\/",
+          description: "优雅~\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

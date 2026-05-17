@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/kubernetes/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>初识 Kubernetes</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</guid>
+      <description>
+        <![CDATA[<h1>初识 Kubernetes</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <a href="https://kubernetes.io/zh-cn/docs/home/" title="官方文档" target="_blank">官方文档</a>
+<h2 id="pod--container">
+<a class="header-anchor" href="#pod--container"></a>
+Pod &amp; Container
+</h2><p>Kubernetes 的最小调度单元是 Pod，在 Pod 中包含多个 Container。</p>
+<h3 id="pod-基本操作">
+<a class="header-anchor" href="#pod-%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"></a>
+Pod 基本操作
+</h3><h4 id="查看-pod">
+<a class="header-anchor" href="#%e6%9f%a5%e7%9c%8b-pod"></a>
+查看 Pod
+</h4><p>pod 默认有 <code>kube-default</code> 和 <code>kube-system</code> 两个命名空间。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询默认 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get po<span class="p">|</span>pod<span class="p">|</span>pods
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询指定命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询当前命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定 pod 的详细信息（不能查看 pod 中的具体容器，pod 为最小管理单元）</span>
+</span></span><span class="line"><span class="cl">kubectl describe pod <span class="o">[</span>pod-name<span class="o">]</span>
+</span></span></code></pre></div><h4 id="创建-pod">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba-pod"></a>
+<a href="https://kubernetes.io/zh-cn/docs/reference/kubernetes-api/workload-resources/pod-v1/">创建 Pod</a>
+</h4><p>先说一种不常用的方式，这种方式很 docker，该方式生产中一般不用。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+  </channel>
+</rss>

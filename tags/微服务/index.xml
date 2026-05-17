@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>云原生与微服务</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/cloudnative/</guid>
+      <description>
+        <![CDATA[<h1>云原生与微服务</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>微服务时代充满着自由的气息，微服务时代充斥着迷茫的选择。</p>
+<p>微服务（Microservices）是一种架构风格，它将一个大型的软件应用程序划分为一组小型、自治的服务，每个服务都运行在独立的进程中，并通过轻量级的通信机制（通常是HTTP API）相互协作。每个微服务都专注于一个特定的业务功能，可以独立开发、部署、扩展和更新。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>初识 Podman</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/podman/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/podman/</guid>
+      <description>
+        <![CDATA[<h1>初识 Podman</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p><a href="https://podman.io/">Podman</a> 和 Docker 一样，也是一个容器化技术的一种实现。它是全开源的。但是它们的底层架构是不同的，Podman 不需要使用 <code>root</code> 用户创建容器，也没有 <code>deamon</code> 进程，所以 Podman 不支持<code>--restart</code> 策略。但是为了迁移方便，Podman 团队采用了和 Docker 类似的命令。</p>
+<p>以下内容摘自 <a href="https://docs.podman.io/en/latest/">官网文档</a>：</p>
+<blockquote>
+<p>Podman 是一个无守护进程、开源的 Linux 原生工具，旨在使用开放容器倡议 （OCI） 容器和容器映像轻松查找、运行、构建、共享和部署应用程序。Podman 提供了一个命令行界面 （CLI），任何使用过 Docker 容器引擎的人都很熟悉。大多数用户可以简单地将Docker别名化为Podman（别名docker=podman），没有任何问题。与其他常见的容器引擎（Docker，CRI-O，containerd）类似，Podman依赖于符合OCI的容器运行时（runc，crun，runv等）与操作系统接口并创建正在运行的容器。这使得 Podman 创建的正在运行的容器与任何其他常见容器引擎创建的容器几乎没有区别。</p>
+<p>Podman 控制下的容器可以由 root 或非特权用户运行。Podman 使用 libpod 库管理整个容器生态系统，包括 pod、容器、容器镜像和容器卷。Podman 专注于帮助您维护和修改 OCI 容器映像的所有命令和功能，例如拉取和标记。它允许您在生产环境中创建、运行和维护这些容器和容器映像。</p>
+</blockquote>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>初识 Kubernetes</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/kubernetes/</guid>
+      <description>
+        <![CDATA[<h1>初识 Kubernetes</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <a href="https://kubernetes.io/zh-cn/docs/home/" title="官方文档" target="_blank">官方文档</a>
+<h2 id="pod--container">
+<a class="header-anchor" href="#pod--container"></a>
+Pod &amp; Container
+</h2><p>Kubernetes 的最小调度单元是 Pod，在 Pod 中包含多个 Container。</p>
+<h3 id="pod-基本操作">
+<a class="header-anchor" href="#pod-%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"></a>
+Pod 基本操作
+</h3><h4 id="查看-pod">
+<a class="header-anchor" href="#%e6%9f%a5%e7%9c%8b-pod"></a>
+查看 Pod
+</h4><p>pod 默认有 <code>kube-default</code> 和 <code>kube-system</code> 两个命名空间。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询默认 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get po<span class="p">|</span>pod<span class="p">|</span>pods
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询指定命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询当前命名空间的所有 pod</span>
+</span></span><span class="line"><span class="cl">kubectl get pods -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -n <span class="o">[</span>namspace<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有命名空间下 pod 的详细信息</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看指定 pod 的详细信息（不能查看 pod 中的具体容器，pod 为最小管理单元）</span>
+</span></span><span class="line"><span class="cl">kubectl describe pod <span class="o">[</span>pod-name<span class="o">]</span>
+</span></span></code></pre></div><h4 id="创建-pod">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba-pod"></a>
+<a href="https://kubernetes.io/zh-cn/docs/reference/kubernetes-api/workload-resources/pod-v1/">创建 Pod</a>
+</h4><p>先说一种不常用的方式，这种方式很 docker，该方式生产中一般不用。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Nginx 的安装与简单使用</title>
+      <link>https://jhlzlove.github.io/post/skill/cloudnative/nginx/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/cloudnative/nginx/</guid>
+      <description>
+        <![CDATA[<h1>Nginx 的安装与简单使用</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>nginx 的安装与使用</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>技术加油站</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Java 微服务框架概览</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/other/java-micro-service/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/other/java-micro-service/</guid>
+      <description>
+        <![CDATA[<h1>Java 微服务框架概览</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>目前 Java 中有两套成熟的微服务框架：</p>
+<ul>
+<li>Spring Cloud 整合的微服务工具集</li>
+<li>Spring Cloud Alibaba 微服务一站式解决方案</li>
+</ul>
+<blockquote>
+<ul>
+<li>当然也可以自行选择最适合业务需要的工具，因为上面的工具集也是使用单一的工具整合起来使用的。</li>
+<li>阿里系的微服务工具介绍和使用可以查看 <a href="https://github.com/alibaba/spring-cloud-alibaba">spring-cloud-alibaba</a> 的 github <a href="https://github.com/alibaba/spring-cloud-alibaba/blob/2023.x/README-zh.md">文章</a>，你也可以去 <a href="https://sca.aliyun.com/zh-cn/">官方中文网</a></li>
+<li>使用 Spring Cloud Alibaba 时，可以参考 <a href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">官方版本选择说明</a>。</li>
+<li>为什么上面只写了使用 ali 系工具注意的点，因为普通程序员都有大厂崇拜心里 <del>（包括我）</del>。随着经验的增加，逐渐认识到这是不可取的，要有自己的思考。</li>
+</ul>
+</blockquote>
+<h2 id="java-微服务组件">
+<a class="header-anchor" href="#java-%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%bb%84%e4%bb%b6"></a>
+Java 微服务组件
+</h2><p>得益于 Javaer 非常多，所以大佬们出品的微服务的组件也是多种多样，这就是 Java 生态带来的自信！可以选择的东西很多，啊？什么？你说你是选择困难症！</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>

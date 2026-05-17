@@ -1,0 +1,1576 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  【Linux】 CentOS7 离线安装 zabbix5 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="【Linux】 CentOS7 离线安装 zabbix5 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/linux/centos/centos-install-zabbix5/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2024-11-03T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2024-11-03T00:00:00&#43;08:00" /><meta property="article:tag" content="linux, centos" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="【Linux】 CentOS7 离线安装 zabbix5"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">【Linux】 CentOS7 离线安装 zabbix5</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#注意点">注意点</a></li>
+    <li><a href="#离线包下载">离线包下载</a>
+      <ul>
+        <li><a href="#前置准备及目标">前置准备及目标</a></li>
+        <li><a href="#关闭防火墙和-selinux">关闭防火墙和 selinux</a></li>
+        <li><a href="#文件配置和修改">文件配置和修改</a></li>
+        <li><a href="#提取两个-rpm-包">提取两个 rpm 包</a></li>
+        <li><a href="#下载-zabbix-的离线包">下载 zabbix 的离线包</a></li>
+        <li><a href="#打包">打包</a></li>
+      </ul>
+    </li>
+    <li><a href="#下载-pg9-离线包">下载 PG9 离线包</a></li>
+    <li><a href="#离线安装">离线安装</a>
+      <ul>
+        <li><a href="#创建本地-yum-源非必须">创建本地 yum 源（非必须）</a></li>
+        <li><a href="#zabixx-server-和前端">zabixx server 和前端</a></li>
+        <li><a href="#安装-pg-9">安装 PG 9</a></li>
+        <li><a href="#nginx">Nginx</a></li>
+        <li><a href="#php">PHP</a></li>
+        <li><a href="#启动服务">启动服务</a></li>
+        <li><a href="#文件位置">文件位置</a></li>
+        <li><a href="#zabbix-其它组件">zabbix 其它组件</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#server-端">server 端</a></li>
+        <li><a href="#agent-端">agent 端</a></li>
+      </ul>
+    </li>
+    <li><a href="#附">附</a>
+      <ul>
+        <li><a href="#一些问题记录">一些问题记录</a></li>
+        <li><a href="#mysql-版记录">MySQL 版记录</a></li>
+        <li><a href="#zabbix-api">Zabbix API</a></li>
+        <li><a href="#snmp-离线包制作与安装">snmp 离线包制作与安装</a></li>
+        <li><a href="#userparameter-小脚本">UserParameter 小脚本</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2024-11-03 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2024-11-03</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2024-11-03</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>先使用外网机器下载离线安装包，然后上传至内网服务器进行全内网安装。</p>
+<p>官网教程：https://www.zabbix.com/cn/download?zabbix=5.0&amp;os_distribution=centos&amp;os_version=7&amp;components=proxy&amp;db=pgsql&amp;ws=</p>
+<h2 id="注意点">
+<a class="header-anchor" href="#%e6%b3%a8%e6%84%8f%e7%82%b9"></a>
+注意点
+</h2><p>zabbix 的 agent 有两个版本，推荐使用 agent2，但是本文几乎全部以 agent 为例，因为实际部署内网的机器中部分机器不支持 V2，例如 windows server 2012，关于是否支持，请自行查阅 zabbix 官方文档。</p>
+<h2 id="离线包下载">
+<a class="header-anchor" href="#%e7%a6%bb%e7%ba%bf%e5%8c%85%e4%b8%8b%e8%bd%bd"></a>
+离线包下载
+</h2><h3 id="前置准备及目标">
+<a class="header-anchor" href="#%e5%89%8d%e7%bd%ae%e5%87%86%e5%a4%87%e5%8f%8a%e7%9b%ae%e6%a0%87"></a>
+前置准备及目标
+</h3><ul>
+<li>CentOS7 标准版镜像(DVD 版)</li>
+<li>网络连接正常</li>
+<li>基础工具(wget、vim)等常见工具不再赘述</li>
+<li>zabbix5.0.x、postgresql9.2.x、php 以及 nginx 使用 scl 提供的，zabbix 与它绑定。详情请查看官网。</li>
+<li>文末 MySQL 版本目前没有测试，只是做个记录。</li>
+</ul>
+<p>目标：下载的离线包需要在内网环境中最小化系统上进行安装。</p>
+<p>在 centos-release-scl 中的 PG 10 版本虽然可以离线抽取安装包并且可以安装到内网机器上，但是启动时依然缺少库，同时使用方式也和常规安装的用法有较大区别，目录位置也不同，还会出现其它未知问题。综合考量下，PG 数据库采用默认的版本。</p>
+<p>Nginx 和 PHP 都从 centos-release-scl 里面下载离线安装包。经实验，推荐使用该 Nginx，如果本机已安装有 Nginx，避免端口冲突可以直接启动两个 Nginx 服务。</p>
+<h3 id="关闭防火墙和-selinux">
+<a class="header-anchor" href="#%e5%85%b3%e9%97%ad%e9%98%b2%e7%81%ab%e5%a2%99%e5%92%8c-selinux"></a>
+关闭防火墙和 selinux
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 替换</span>
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用防火墙</span>
+</span></span><span class="line"><span class="cl">systemctl stop firewalld
+</span></span><span class="line"><span class="cl">systemctl disable firewalld
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></div><h3 id="文件配置和修改">
+<a class="header-anchor" href="#%e6%96%87%e4%bb%b6%e9%85%8d%e7%bd%ae%e5%92%8c%e4%bf%ae%e6%94%b9"></a>
+文件配置和修改
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置 阿里源</span>
+</span></span><span class="line"><span class="cl">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo <span class="o">&amp;&amp;</span> yum clean all <span class="o">&amp;&amp;</span> yum makecache
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新系统</span>
+</span></span><span class="line"><span class="cl">yum update
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 createrepo 打离线包使用</span>
+</span></span><span class="line"><span class="cl">yum install createrepo -y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 zabbix5 源</span>
+</span></span><span class="line"><span class="cl">rpm -Uvh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-latest.el7.noarch.rpm
+</span></span></code></pre></div><p>修改 <code> /etc/yum.repos.d/zabbix.repo</code> 文件把 <strong>enabled</strong> 的值改为 1：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>zabbix-frontend<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>Zabbix Official Repository frontend - <span class="nv">$basearch</span>
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/<span class="nv">$basearch</span>/frontend
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591
+</span></span></code></pre></div><blockquote>
+<p>若不修改该文件启用前端，后续下载 server web 的前端离线包时会报错误 <strong>Error: Nothing to do</strong>。</p>
+</blockquote>
+<h3 id="提取两个-rpm-包">
+<a class="header-anchor" href="#%e6%8f%90%e5%8f%96%e4%b8%a4%e4%b8%aa-rpm-%e5%8c%85"></a>
+提取两个 rpm 包
+</h3><p><strong>最小化的 CentOS7 镜像系统</strong> 中安装 zabbix5.0，需要这两个 rpm 安装包，这两个包可以通过挂载 <strong>标准版镜像</strong> 进行提取。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 挂载到 mnt 目录下</span>
+</span></span><span class="line"><span class="cl">sudo mount /dev/cdrom /mnt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 复制到一个目录中</span>
+</span></span><span class="line"><span class="cl">sudo cp /mnt/Packages/libxslt-1.1.28-5.el7.x86_64.rpm tmp/
+</span></span><span class="line"><span class="cl">sudo cp /mnt/Packages/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm tmp/
+</span></span></code></pre></div><p>把包中的文件备份出来，上传至需要的机器上进行安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install -y libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm libxslt-1.1.28-5.el7.x86_64.rpm
+</span></span></code></pre></div><h3 id="下载-zabbix-的离线包">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd-zabbix-%e7%9a%84%e7%a6%bb%e7%ba%bf%e5%8c%85"></a>
+下载 zabbix 的离线包
+</h3><p>为了方便，本文示例把 zabbix 的 server 端和其它各种组件全部下载到一个文件夹中，使用安装时按需下载使用。当然，你也可以自行分类后放在不同的目录中下载打包。</p>
+<p>先修改两个文件，<strong>如果没有这两个文件，那么先安装 <code>centos-release-scl</code>，然后再卸载，之后修改文件后进行离线包下载。该包在安装的情况下无法下载离线包，且 scl 的官方源已经关闭，不再开放和维护。</strong></p>
+<p>vim /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>centos-sclo-rh<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>CentOS-7 - SCLo rh
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>http://vault.centos.org/centos/7/sclo/<span class="nv">$basearch</span>/rh/
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+</span></span></code></pre></div><p>vim /etc/yum.repos.d/CentOS-SCLo-scl.repo</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>centos-sclo-sclo<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>CentOS-7 - SCLo sclo
+</span></span><span class="line"><span class="cl"><span class="c1"># baseurl=http://mirror.centos.org/centos/7/sclo/$basearch/sclo/</span>
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>http://vault.centos.org/centos/7/sclo/<span class="nv">$basearch</span>/rh/
+</span></span><span class="line"><span class="cl"><span class="c1">#mirrorlist=http://mirrorlist.centos.org?arch=$basearch&amp;release=7&amp;repo=sclo-sclo</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+</span></span></code></pre></div><blockquote>
+<p>也可以使用阿里的源：https://mirrors.aliyun.com/centos/7/sclo/x86_64/rh/</p>
+</blockquote>
+<h4 id="如果没有上面两个文件">
+<a class="header-anchor" href="#%e5%a6%82%e6%9e%9c%e6%b2%a1%e6%9c%89%e4%b8%8a%e9%9d%a2%e4%b8%a4%e4%b8%aa%e6%96%87%e4%bb%b6"></a>
+如果没有上面两个文件
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先安装 再卸载，修改配置文件</span>
+</span></span><span class="line"><span class="cl">yum install centos-release-scl
+</span></span><span class="line"><span class="cl">yum remove centos-release-scl
+</span></span></code></pre></div><h4 id="下载-zabbix-相关的包">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd-zabbix-%e7%9b%b8%e5%85%b3%e7%9a%84%e5%8c%85"></a>
+下载 zabbix 相关的包
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install zabbix-server-pgsql zabbix-agent centos-release-scl zabbix-web-pgsql-scl zabbix-nginx-conf-scl zabbix-proxy-pgsql zabbix-agent zabbix-agent2 zabbix-java-gateway zabbix-get zabbix-sender --downloadonly --downloaddir<span class="o">=</span>zabbix-all
+</span></span></code></pre></div><blockquote>
+<p>这里同时下载了 agent 的两个版本，实际使用时根据自己的需要安装。</p>
+</blockquote>
+<h3 id="打包">
+<a class="header-anchor" href="#%e6%89%93%e5%8c%85"></a>
+打包
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装打包工具</span>
+</span></span><span class="line"><span class="cl">yum install -y createrepo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打包</span>
+</span></span><span class="line"><span class="cl">createrepo zabbix-all
+</span></span><span class="line"><span class="cl"><span class="c1"># 传输到内网服务器</span>
+</span></span><span class="line"><span class="cl">scp -r zabbix-all/ user@ip:/path/to
+</span></span></code></pre></div><h2 id="下载-pg9-离线包">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd-pg9-%e7%a6%bb%e7%ba%bf%e5%8c%85"></a>
+下载 PG9 离线包
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install postgresql-server.x86_64 postgresql.x86_64 --downloadonly --downloaddir<span class="o">=</span>pg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建离线包</span>
+</span></span><span class="line"><span class="cl">createrepo pg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 传输到内网服务器</span>
+</span></span><span class="line"><span class="cl">scp pg/* user@ip:/path/to
+</span></span></code></pre></div><h2 id="离线安装">
+<a class="header-anchor" href="#%e7%a6%bb%e7%ba%bf%e5%ae%89%e8%a3%85"></a>
+离线安装
+</h2><p>把上面所有的软件包上传至内网服务器中。若是 <strong>内网最小化 CentOS7 系统</strong>，先安装开头提到的两个 rpm 包。然后进行一些前置准备。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install -y libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm libxslt-1.1.28-5.el7.x86_64.rpm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭 selinux</span>
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用防火墙</span>
+</span></span><span class="line"><span class="cl">systemctl stop firewalld
+</span></span><span class="line"><span class="cl">systemctl disable firewalld
+</span></span></code></pre></div><h3 id="创建本地-yum-源非必须">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e6%9c%ac%e5%9c%b0-yum-%e6%ba%90%e9%9d%9e%e5%bf%85%e9%a1%bb"></a>
+创建本地 yum 源（非必须）
+</h3><p>创建本地源的目的是，可以让 yum 解决先后安装的顺序，无需自己操心。除了 zabbix server、zabbix proxy 外，其他的一些组件例如 zabbix-agent、zabbix-get、zabbix-sender 等都是可以直接安装的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 备份原有文件</span>
+</span></span><span class="line"><span class="cl">mkdir /etc/yum.repos.d/bak
+</span></span><span class="line"><span class="cl">mv /etc/yum.repos.d/* /etc/yum.repos.d/bak
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zabbix，文件内容下面单独列出</span>
+</span></span><span class="line"><span class="cl">vi /etc/yum.repos.d/zabbix-all.repo
+</span></span><span class="line"><span class="cl"><span class="c1"># pg</span>
+</span></span><span class="line"><span class="cl">vi /etc/yum.repos.d/pg.repo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yum clean all
+</span></span></code></pre></div><p><strong>zabbix-all.repo</strong> 文件内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>zabbix<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>zabbix
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>file:///path/to/
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></div><p><strong>pg.repo</strong> 文件内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>pg<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>pg
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>file:///path/to/
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></div><h3 id="zabixx-server-和前端">
+<a class="header-anchor" href="#zabixx-server-%e5%92%8c%e5%89%8d%e7%ab%af"></a>
+zabixx server 和前端
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install -y zabbix-server-pgsql zabbix-agent zabbix-web-pgsql-scl zabbix-nginx-conf-scl
+</span></span></code></pre></div><p>编辑 <code>/etc/zabbix/zabbix_server.conf</code> 配置文件，填写 pg 数据库 zabbix 用户的密码。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DBPassword</span><span class="o">=</span>password
+</span></span></code></pre></div><p>编辑 <code>/etc/zabbix/zabbix_agent.conf</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">AllowRoot</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><blockquote>
+<p>agent2 没有该项，无须修改。</p>
+</blockquote>
+<p>编辑 <code>/usr/lib/systemd/system/zabbix-agent.service</code> 文件，修改该文件是因为使用 UserParameter 时部分命令需要 root 权限，否则会出错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 找到下面两项信息修改</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Uesr</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">Group</span><span class="o">=</span>root
+</span></span></code></pre></div><blockquote>
+<p>agent2 请编辑 <code>vi /usr/lib/systemd/system/zabbix-agent2.service</code>。</p>
+</blockquote>
+<h3 id="安装-pg-9">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85-pg-9"></a>
+安装 PG 9
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 pg</span>
+</span></span><span class="line"><span class="cl">yum install postgresql-server.x86_64 postgresql.x86_64
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化 pg</span>
+</span></span><span class="line"><span class="cl">postgresql-setup initdb
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">systemctl start postgresql
+</span></span></code></pre></div><h4 id="设置密码">
+<a class="header-anchor" href="#%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81"></a>
+设置密码
+</h4><p>由于 PG9 默认使用的 <strong>peer/ident</strong> 认证，使用的时候会出现一些认证问题，所以我们需要修改 <code>/var/lib/pgsql/data/pg_hba.conf</code> 文件，除了第一行之外全部改为 md5。不然无法进入 pg bash 修改 postgres 用户的密码。</p>
+<p>建议直接使用下面的内容替换原本的内容（下面有额外添加的一行，开启远程连接时需要添加）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># TYPE  DATABASE        USER            ADDRESS                 METHOD</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;local&#34; is for Unix domain socket connections only</span>
+</span></span><span class="line"><span class="cl"><span class="nb">local</span>   all             all                                     trust
+</span></span><span class="line"><span class="cl"><span class="c1"># IPv4 local connections:</span>
+</span></span><span class="line"><span class="cl">host    all             all             127.0.0.1/32            md5
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加这一行内容，允许所有 ip 访问，开启远程访问</span>
+</span></span><span class="line"><span class="cl">host    all             all             0.0.0.0/0            md5
+</span></span><span class="line"><span class="cl"><span class="c1"># IPv6 local connections:</span>
+</span></span><span class="line"><span class="cl">host    all             all             ::1/128                 md5
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow replication connections from localhost, by a user with the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># replication privilege.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">local</span>   replication     postgres                                md5
+</span></span><span class="line"><span class="cl">host    replication     postgres        127.0.0.1/32            md5
+</span></span><span class="line"><span class="cl">host    replication     postgres        ::1/128                 md5
+</span></span></code></pre></div><blockquote>
+<p>trust 不需要认证，可以临时使用，后续是否使用自行斟酌。</p>
+</blockquote>
+<p>如果需要远程连接，编辑文件：<code>vi /var/lib/pgsql/data/postgresql.conf</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">listen_addresses</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">systemctl restart postgresql
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入 pg bash</span>
+</span></span><span class="line"><span class="cl">psql -U postgres
+</span></span><span class="line"><span class="cl"><span class="c1"># pg bash 环境中设置密码，注意，密码需要输入两次</span>
+</span></span><span class="line"><span class="cl"><span class="se">\p</span>assword postgres
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改完毕退出 bash</span>
+</span></span><span class="line"><span class="cl"><span class="se">\q</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后 vi /var/lib/pgsql/data/pg_hba.conf 文件把刚刚修改的 trust 的一行也设置为 md5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">systemctl restart postgresql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 再次登录就可以使用密码啦</span>
+</span></span><span class="line"><span class="cl">psql -U postgres
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建初始数据库</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 前两次输入新创建用户 zabbix 密码，最后一次输入 postgres 用户的密码</span>
+</span></span><span class="line"><span class="cl">sudo -i -u postgres createuser --pwprompt zabbix
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 zabbix 数据库，使用 postgres 用户密码</span>
+</span></span><span class="line"><span class="cl">sudo -i -u postgres createdb -O zabbix zabbix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入初始架构和数据，系统将提示您输入新创建的密码。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># zabbix 用户的密码</span>
+</span></span><span class="line"><span class="cl">zcat /usr/share/doc/zabbix-server-pgsql-5.0.44/create.sql.gz <span class="p">|</span> sudo -u zabbix psql zabbix
+</span></span></code></pre></div><h4 id="更改-pg-的-data-挂载目录可选">
+<a class="header-anchor" href="#%e6%9b%b4%e6%94%b9-pg-%e7%9a%84-data-%e6%8c%82%e8%bd%bd%e7%9b%ae%e5%bd%95%e5%8f%af%e9%80%89"></a>
+更改 PG 的 data 挂载目录（可选）
+</h4><p>由于浪子公司的实际需要，需要更改挂载位置。记录一下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl stop postgresql
+</span></span><span class="line"><span class="cl">mkdir -p /home/workspace/pgsql
+</span></span><span class="line"><span class="cl">cp -R /var/lib/pgsql/* /home/workspace/pgsql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chown -R postgres:postgres /home/workspace/pgsql
+</span></span><span class="line"><span class="cl">chmod -R <span class="m">700</span> /home/workspace/pgsql
+</span></span></code></pre></div><p>修改 <code>/home/workspace/pgsql/data/postgresql.conf</code> 文件：<code>data_directory = '/home/workspace/pgsql/data'</code></p>
+<p>修改 <code>/usr/lib/systemd/system/postgresql.service</code> 文件：<code>Environment=PGDATA=/home/workspace/pgsql/data</code></p>
+<p>之后执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">sudo systemctl start postgresql
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证是否迁移至新目录，如果不成就停止再启动</span>
+</span></span><span class="line"><span class="cl">sudo -u postgres psql -c <span class="s2">&#34;SHOW data_directory;&#34;</span>
+</span></span></code></pre></div><h3 id="nginx">
+<a class="header-anchor" href="#nginx"></a>
+Nginx
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">listen 81<span class="p">;</span>
+</span></span><span class="line"><span class="cl">server_name ip<span class="p">;</span>
+</span></span></code></pre></div><blockquote>
+<p>这里推荐使用 ip，如果使用 localhost 可能会出现问题，自行尝试能用就行。</p>
+</blockquote>
+<h3 id="php">
+<a class="header-anchor" href="#php"></a>
+PHP
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">listen.acl_users <span class="o">=</span> apache,nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> php_value<span class="o">[</span>date.timezone<span class="o">]</span> <span class="o">=</span> Europe/Riga
+</span></span><span class="line"><span class="cl">php_value<span class="o">[</span>date.timezone<span class="o">]</span> <span class="o">=</span> Asia/Shanghai
+</span></span></code></pre></div><h3 id="启动服务">
+<a class="header-anchor" href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1"></a>
+启动服务
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">systemctl restart zabbix-server zabbix-agent rh-nginx116-nginx rh-php72-php-fpm
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置开机自启</span>
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> zabbix-server zabbix-agent rh-nginx116-nginx rh-php72-php-fpm
+</span></span></code></pre></div><h3 id="文件位置">
+<a class="header-anchor" href="#%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae"></a>
+文件位置
+</h3><ul>
+<li>配置文件位于 <code>/etc/zabbix</code> 目录下。</li>
+<li>前端文件在 <code>/usr/share/zabbix</code>。</li>
+<li>日志文件在 <code>/var/log/zabbix/</code>。</li>
+</ul>
+<p>查看 zabbix server 启动日志：<strong>cat /var/log/zabbix/zabbix_server.log</strong>
+查看 agent 日志：<strong>cat /var/log/zabbix/zabbix_agentd.log</strong>
+查看 agent2 日志：<strong>cat /var/log/zabbix/zabbix_agent2.log</strong>
+查看 nginx 日志：<strong>cat /var/opt/rh/rh-nginx116/log/nginx/error.log</strong>
+查看 php 日志：<strong>cat /var/opt/rh/rh-php72/log/php-fpm/error.log</strong></p>
+<p>清除文件内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">truncate -s <span class="m">0</span> file
+</span></span></code></pre></div><h3 id="zabbix-其它组件">
+<a class="header-anchor" href="#zabbix-%e5%85%b6%e5%ae%83%e7%bb%84%e4%bb%b6"></a>
+zabbix 其它组件
+</h3><p>zabbix 组件中 agent 是必装的，（agent 两个版本二选一，2 的性能更好），这里对 proxy、agent 配置加以说明。proxy 组件需要使用单独数据库(不要与 server 使用相同的库，有冲突)，proxy 一般是分布式监控，且单独部署在一台服务器。数据库参照上文进行数据库安装和配置，不再赘述。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 实际使用按需安装</span>
+</span></span><span class="line"><span class="cl">yum install -y zabbix-proxy zabbix-agent zabbix-agent2 zabbix-java-gateway zabbix-get zabbix-sender
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动服务并加入自启动</span>
+</span></span><span class="line"><span class="cl">systemctl start zabbix-proxy
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> zabbix-proxy
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl start zabbix-agent
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> zabbix-agent
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl start zabbix-agent2
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> zabbix-agent2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl start zabbix-java-gateway
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> zabbix-java-gateway
+</span></span></code></pre></div><h4 id="zabbix-proxy">
+<a class="header-anchor" href="#zabbix-proxy"></a>
+zabbix proxy
+</h4><p>创建数据库并初始化结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">yum install -y zabbix-proxy
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 前两次输入新创建用户 zabbix 密码，最后一次输入 postgres 用户的密码</span>
+</span></span><span class="line"><span class="cl">sudo -i -u postgres createuser --pwprompt zabbix
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 postgres 用户密码 创建 zabbix_proxy 数据库</span>
+</span></span><span class="line"><span class="cl">sudo -i -u postgres createdb -O zabbix zabbix_proxy
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入数据 使用 zabbix 用户的密码</span>
+</span></span><span class="line"><span class="cl">zcat /usr/share/doc/zabbix-proxy-pgsql-5.0.44/schema.sql.gz <span class="p">|</span> sudo -u zabbix psql zabbix_proxy
+</span></span></code></pre></div><p>编辑文件 <code>/etc/zabbix/zabbix_proxy.conf</code> 配置数据库的密码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DBPassword</span><span class="o">=</span>password
+</span></span></code></pre></div><h2 id="配置">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae"></a>
+配置
+</h2><ul>
+<li>监控项(items)：zabbix 监控的具体信息，由键值绑定识别，可以通过 zabbix_get 工具测试，是监控的最小单位。比如硬盘已使用空间、硬盘剩余空间等具体指标；</li>
+<li>应用集(applications)：可以简单理解为监控项的分类，例如硬盘有多种监控指标：使用率、剩余空间等，但他们都归到 硬盘(disk) 分类；</li>
+<li>触发器(triggers)：zabbix 监控的 item 达到一定阈值后自动触发其它操作，例如警报等，具有依赖关系</li>
+<li>图形(graphs)：对 item 的指标图形化展示，更加直观友好</li>
+<li>自动发现规则(Auto Discover Rules)：自动发现的时间间隔、使用接口（键值）、名称和分类等信息</li>
+<li>模板(Template)：就是上面一系列信息的组合，方便快速绑定具体主机。模板可以继承，若 A 模板继承 B 模板，那么 A 就会自动绑定 B 具有的监控项、应用集和触发器等。</li>
+</ul>
+<h3 id="server-端">
+<a class="header-anchor" href="#server-%e7%ab%af"></a>
+server 端
+</h3><h4 id="开启自动获取资产记录">
+<a class="header-anchor" href="#%e5%bc%80%e5%90%af%e8%87%aa%e5%8a%a8%e8%8e%b7%e5%8f%96%e8%b5%84%e4%ba%a7%e8%ae%b0%e5%bd%95"></a>
+开启自动获取资产记录
+</h4><p>管理(Administration) -&gt; 常规(General) -&gt; 左上角(GUI)点击切换到 其它(Other) -&gt; 默认主机资产记录模式(Default host inventory mode) 改为 自动(Automatic)，然后点击更新(Update)。</p>
+<h4 id="创建模板">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e6%a8%a1%e6%9d%bf"></a>
+创建模板
+</h4><p>点击配置 -&gt; 模板 -&gt; 右上角创建模板 -&gt; 填入相关信息 -&gt; 群组选择需要绑定的主机组(可选) -&gt; 点击添加</p>
+<p>创建模板时可以直接绑定主机群组，这样群组中的主机都会自动链接到该模板。由于模板之间可以继承，你也可以在 <strong>链接的模板</strong> 页面进行模板链接，使新创建的模板可以快速拥有监控项（不过这样不如直接全克隆的方式更快）。</p>
+<h4 id="创建监控项">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e7%9b%91%e6%8e%a7%e9%a1%b9"></a>
+创建监控项
+</h4><p>监控项是 zabbix 监控的各项指标信息，我们可以在这里添加 zabbix 内置的一些监控指标，也可以自定义 UserParameter 实现自己想要监控的服务，需要注意的是，键值必须唯一，不可冲突，<strong>重复的键值模板在链接时会报错。</strong></p>
+<p>单击监控项 -&gt; 输入名称 -&gt; 键值选择自己想要监控的项（后面有如何添加自定义监控键值） -&gt; 信息类型选则对应键值返回的类型，否则测试时会报错，根据错误提示修改即可（比如 hostname 的信息类型应是文本）-&gt; 更新间隔根据自己的需要设置。</p>
+<p>如果我们想要自定义监控的键值，比如使用 systemctl 简单的判断服务运行状态，就可以使用 UserParameter，以 postgresql 服务为例，可以编辑文件 <code>vi /etc/zabbix/zabbix_agentd.d/my.conf</code> 加入以下内容后重启 Agent 客户端。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>postgresql.status,systemctl is-active --quiet postgresql <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;OK&#34;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;ERROR&#34;</span>
+</span></span></code></pre></div><p>在 Web 端就可以创建新的监控项，键值为 <code>postgresql.status</code>，如果选择的类型不是主动式的，我们还可以直接对其进行测试。测试通过后，就可以调用 Zabbix API 获取对应键值的信息（前提是获取的主机已经配置该监控项或者链接到具有该监控项的模板）。</p>
+<p>应用集也是可选的，例如可以把 CPU、DISK、Memory 都归类为 硬件，在新建监控项的时候可以直接对其进行新建，也可以选择已有的应用集。</p>
+<h3 id="agent-端">
+<a class="header-anchor" href="#agent-%e7%ab%af"></a>
+agent 端
+</h3><p>Agent <a href="https://www.zabbix.com/documentation/5.0/zh/manual/config/items/itemtypes/zabbix_agent?hl=%E4%B8%BB%E5%8A%A8%E6%A8%A1%E5%BC%8F">客户端</a> 有两种模式，它们之间的区别可以参看：https://www.zabbix.com/documentation/5.0/zh/manual/appendix/items/activepassive</p>
+<p>首先，<strong>所有 agent 客户端的 hostname 必须要被 server 端识别</strong>，本机可以使用 <strong>hostnamectl set-hostname [name]</strong> 进行配置，然后编辑各个机器上的 <code>/etc/hosts</code> 文件进行添加修改，比较简单，不再赘述。</p>
+<p>主动模式和被动模式同时存在，可以让一部分主机监控项处于被动模式，另一部分处于主动模式。</p>
+<h4 id="主动模式自动注册">
+<a class="header-anchor" href="#%e4%b8%bb%e5%8a%a8%e6%a8%a1%e5%bc%8f%e8%87%aa%e5%8a%a8%e6%b3%a8%e5%86%8c"></a>
+主动模式(自动注册)
+</h4><p>zabbix agent 客户端周期性的从本机收集信息并主动向 server 端上报信息。编辑 <code>/etc/zabbix/zabbix_agentd.conf</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># port 如果不是 10051 需要添加</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ServerActive</span><span class="o">=</span>zabbix_server_ip:port
+</span></span><span class="line"><span class="cl"><span class="c1"># hostname</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Hostname</span><span class="o">=</span>hostname
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是 root 用户运行 agent 服务需要添加</span>
+</span></span><span class="line"><span class="cl"><span class="nv">AllowRoot</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 主动模式推荐配置下面的信息，自动注册动作时使用方便</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你也可以使用其它的，只要动作注册能识别就 OK</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HostMetadata</span><span class="o">=</span>system.uname
+</span></span><span class="line"><span class="cl"><span class="nv">HostMetadataItem</span><span class="o">=</span>system.uname
+</span></span></code></pre></div><p>重启服务：<code>systemct restart zabbix-agent</code></p>
+<blockquote>
+<p>如果按照网络其它资料配置了 <code>StartAgents=0</code>，那么就关闭了被动模式。不推荐关闭被动模式。
+若使用 agent2 ，则无须设置 <strong>AllowRoot=1</strong>，因为压根就没有 🤣。</p>
+</blockquote>
+<p>然后打开 server web 端，创建动作 -&gt; 自动注册动作 -&gt; 创建动作</p>
+<p>条件: 主机元数据 包含 Linux（这就是 HostMetadata、HostMetadataItem 给 server 的信息中包含）
+操作: 添加主机、添加到主机组（选择主机分类）、链接到模板（选择绑定的模板）</p>
+<p>上文已经说过，如果客户端配置了自定义的 UserParamter（后文有示例），可能会出现 <strong>Permission denied</strong> 的问题，此时我们需要设置 root 用户管理 zabbix-agent 服务。编辑文件：<code>vi /usr/lib/systemd/system/zabbix-agent.service</code> 修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 找到下面两项信息修改</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Uesr</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">Group</span><span class="o">=</span>root
+</span></span></code></pre></div><p>重启 Agent 服务</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl daemon-reload
+</span></span><span class="line"><span class="cl">systemctl restart zabbix-agent
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看启动用户</span>
+</span></span><span class="line"><span class="cl">ps -ef <span class="p">|</span> grep zabbix
+</span></span></code></pre></div><h4 id="被动模式自动发现">
+<a class="header-anchor" href="#%e8%a2%ab%e5%8a%a8%e6%a8%a1%e5%bc%8f%e8%87%aa%e5%8a%a8%e5%8f%91%e7%8e%b0"></a>
+被动模式(自动发现)
+</h4><p>zabbix server 向 agent 客户端索要信息，可能有一定的延迟。同样编辑 <code>/etc/zabbix/zabbix_agentd.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">Server</span><span class="o">=</span>127.0.0.1,zabbix_server_ip
+</span></span><span class="line"><span class="cl"><span class="nv">Hostname</span><span class="o">=</span>agent1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是 root 用户运行添加下面配置，agent2 无须设置</span>
+</span></span><span class="line"><span class="cl"><span class="nv">AllowRoot</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><p>重启服务：<code>systemct restart zabbix-agent</code></p>
+<blockquote>
+<p>推荐保留 127.0.0.1，可以直接在 agent 客户端使用 zabbix_get 工具进行 UserParameter 的测试：<code>zabbix_get -s 127.0.0.1 -k xxx.xxx</code>。</p>
+</blockquote>
+<h4 id="通过-userparameter-自定义监控项">
+<a class="header-anchor" href="#%e9%80%9a%e8%bf%87-userparameter-%e8%87%aa%e5%ae%9a%e4%b9%89%e7%9b%91%e6%8e%a7%e9%a1%b9"></a>
+通过 UserParameter 自定义监控项
+</h4><p>UserParameter 是一个比较好用的自定义检测扩展，可以让我们更方便的添加 zabbix 中没有的监控项。我们可以把所有的配置文件都放在 <code>/etc/zabbix/zabbix_agentd.d/</code> 目录下，这样不会干扰原有的配置文件，并且还可以被 agent 加载使用。</p>
+<p>编辑文件 <code>vi /etc/zabbix/zabbix_agentd.d/my.conf</code> 加入以下内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>postgresql.status,systemctl is-active --quiet postgresql <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;OK&#34;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;ERROR&#34;</span>
+</span></span></code></pre></div><p>重启 Agent 服务后就可以 zabbix_get 工具进行测试或者在 Web 端创建监控项，键值为 <code>postgresql.status</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zabbix_get -s 127.0.0.1 -k postgresql.status
+</span></span></code></pre></div><h2 id="附">
+<a class="header-anchor" href="#%e9%99%84"></a>
+附
+</h2><h3 id="一些问题记录">
+<a class="header-anchor" href="#%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98%e8%ae%b0%e5%bd%95"></a>
+一些问题记录
+</h3><p>访问前端页面，nginx 日志报错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">FastCGI sent in stderr: <span class="s2">&#34;PHP message: PHP Warning:  session_start(): open(/var/opt/rh/rh-php72/lib/php/session//sess_2dcabc26in3n1mthl06q7vls0a, O_RDWR) failed: Permission denied (13) in /usr/share/zabbix/include/classes/core/CSession.php on line 45
+</span></span></span><span class="line"><span class="cl"><span class="s2">PHP message: PHP Warning:  session_start(): Failed to read session data: files (path: /var/opt/rh/rh-php72/lib/php/session/) in /usr/share/zabbix/include/classes/core/CSession.php on line 45
+</span></span></span><span class="line"><span class="cl"><span class="s2">PHP message: PHP Fatal error:  Uncaught Exception: Cannot start session. in /usr/share/zabbix/include/classes/core/CSession.php:46
+</span></span></span><span class="line"><span class="cl"><span class="s2">Stack trace:
+</span></span></span><span class="line"><span class="cl"><span class="s2">#0 /usr/share/zabbix/setup.php(67): CSession::start()
+</span></span></span><span class="line"><span class="cl"><span class="s2">#1 {main}
+</span></span></span><span class="line"><span class="cl"><span class="s2">  thrown in /usr/share/zabbix/include/classes/core/CSession.php on line 46&#34;</span> <span class="k">while</span> reading response header from upstream, client: 192.168.164.1, server: 192.168.164.139, request: <span class="s2">&#34;GET /setup.php HTTP/1.1&#34;</span>, upstream: <span class="s2">&#34;fastcgi://unix:/var/opt/rh/rh-php72/run/php-fpm/zabbix.sock:&#34;</span>, host: <span class="s2">&#34;192.168.164.139:81&#34;</span>
+</span></span></code></pre></div><p>解决方式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 没有权限那就增加权限，如果组权限增加后还是不行就 o+w</span>
+</span></span><span class="line"><span class="cl">chmod g+w /var/opt/rh/rh-php72/lib/php/session/
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">systemctl restart rh-php72-php-fpm
+</span></span></code></pre></div><p>sock 文件权限不足，原因：selinux 阻止创建  sock 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">10201:20241016:230627.693 cannot start LLD manager service: Cannot <span class="nb">bind</span> socket to <span class="s2">&#34;/var/run/zabbix/zabbix_server_lld.sock&#34;</span>: <span class="o">[</span>13<span class="o">]</span> Permission denied.
+</span></span><span class="line"><span class="cl"> 10183:20241016:230627.693 One child process died <span class="o">(</span>PID:10201,exitcode/signal:1<span class="o">)</span>. Exiting ...
+</span></span><span class="line"><span class="cl">zabbix_server <span class="o">[</span>10183<span class="o">]</span>: Error waiting <span class="k">for</span> process with PID 10201: <span class="o">[</span>10<span class="o">]</span> No child processes
+</span></span><span class="line"><span class="cl"> 10183:20241016:230627.706 syncing trend data...
+</span></span><span class="line"><span class="cl"> 10183:20241016:230627.706 syncing trend data <span class="k">done</span>
+</span></span><span class="line"><span class="cl"> 10183:20241016:230627.706 Zabbix Server stopped. Zabbix 5.0.44 <span class="o">(</span>revision b786c42bc9a<span class="o">)</span>.
+</span></span></code></pre></div><p>解决方案：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></div><p>登录发生错误，这个错误大概率是创建用户的时候出错的，因为需要输入三次密码，前两次是新创建用户的密码，最后一次是 postgres 默认用户的密码。有时候根据错误提示可能新建的用户也使用的 postgres 的密码，输入三次一样的就 OK 了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">*31 FastCGI sent in stderr: <span class="s2">&#34;PHP message: PHP Fatal error:  Uncaught TypeError: Argument 2 passed to makeMessageBox() must be of the type array, null given, called in /usr/share/zabbix/include/classes/setup/CSetupWizard.php on line 322 and defined in /usr/share/zabbix/include/func.inc.php:1614
+</span></span></span><span class="line"><span class="cl"><span class="s2">Stack trace:
+</span></span></span><span class="line"><span class="cl"><span class="s2">#0 /usr/share/zabbix/include/classes/setup/CSetupWizard.php(322): makeMessageBox(&#39;msg-bad&#39;, NULL, &#39;Cannot connect ...&#39;, false, true)
+</span></span></span><span class="line"><span class="cl"><span class="s2">#1 /usr/share/zabbix/include/classes/setup/CSetupWizard.php(160): CSetupWizard-&gt;stage2()
+</span></span></span><span class="line"><span class="cl"><span class="s2">#2 /usr/share/zabbix/include/classes/setup/CSetupWizard.php(111): CSetupWizard-&gt;getStage()
+</span></span></span><span class="line"><span class="cl"><span class="s2">#3 /usr/share/zabbix/include/classes/html/CTag.php(67): CSetupWizard-&gt;bodyToString()
+</span></span></span><span class="line"><span class="cl"><span class="s2">#4 /usr/share/zabbix/include/classes/html/CObject.php(89): CTag-&gt;toString(false)
+</span></span></span><span class="line"><span class="cl"><span class="s2">#5 /usr/share/zabbix/include/classes/html/CObject.php(66): unpack_object(Object(CSetupWizard))
+</span></span></span><span class="line"><span class="cl"><span class="s2">#6 /usr/share/zabbix/include/classes/html/CTag.php(86): CObject-&gt;addItem(Object(CSetupWizard))
+</span></span></span><span class="line"><span class="cl"><span class="s2">#7 /usr/share/zabbix/include/classes/html/CObject.php(73): CTag-&gt;addItem&#34;</span> <span class="k">while</span> reading response header from upstream, client: 192.168.164.1, server: 192.168.164.141, request: <span class="s2">&#34;POST /setup.php HTTP/1.1&#34;</span>, upstream: <span class="s2">&#34;fastcgi://unix:/var/opt/rh/rh-php72/run/php-fpm/zabbix.sock:&#34;</span>, host: <span class="s2">&#34;192.168.164.141:81&#34;</span>, referrer: <span class="s2">&#34;http://192.168.164.141:81/setup.php&#34;</span>
+</span></span></code></pre></div><p>解决方式：直接使用 postgres 用户登录数据库。</p>
+<p>zabbix web 前端管理页面使用中文，部分页面出现乱码。解决方式，下载一款支持中英文的字体，备份 zabbix server web 的原有字体，字体位置：<code>/usr/share/fonts/dejavu/DejaVuSans.ttf</code>，然后覆盖 <code>DejaVuSans.ttf</code> 字体。</p>
+<h3 id="mysql-版记录">
+<a class="header-anchor" href="#mysql-%e7%89%88%e8%ae%b0%e5%bd%95"></a>
+MySQL 版记录
+</h3><p>MySQL 只是简单提一下。这里分的镜像更细了，上面只分了 zabbix 和 pg。<code>centos-release-scl</code> 的源和 zabbix server 前端需要自己进行配置后才可以正常使用 yum 安装，这些和上面步骤相同，不再赘述。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 注意 centos-release-scl 的源配置和上面一样</span>
+</span></span><span class="line"><span class="cl">yum install centos-release-scl --downloadonly --downloaddir<span class="o">=</span>zabbix-centos
+</span></span><span class="line"><span class="cl"><span class="c1"># server</span>
+</span></span><span class="line"><span class="cl">yum install zabbix-server-mysql zabbix-agent --downloadonly --downloaddir<span class="o">=</span>zabbix-mysql-server
+</span></span><span class="line"><span class="cl"><span class="c1"># server web 前端</span>
+</span></span><span class="line"><span class="cl">yum install zabbix-web-mysql-scl zabbix-nginx-conf-scl --downloadonly --downloaddir<span class="o">=</span>zabbix-mysql-frontend
+</span></span><span class="line"><span class="cl"><span class="c1"># proxy</span>
+</span></span><span class="line"><span class="cl">yum install zabbix-proxy-mysql --downloadonly --downloaddir<span class="o">=</span>zabbix-mysql-proxy
+</span></span><span class="line"><span class="cl"><span class="c1"># agent</span>
+</span></span><span class="line"><span class="cl">yum install zabbix-agent zabbix-agent2 --downloadonly --downloaddir<span class="o">=</span>zabbix-mysql-agent
+</span></span><span class="line"><span class="cl"><span class="c1"># Java 网关</span>
+</span></span><span class="line"><span class="cl">yum install zabbix-java-gateway --downloadonly --downloaddir<span class="o">=</span>zabbix-mysql-gateway
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打包</span>
+</span></span><span class="line"><span class="cl">createrepo zabbix-centos
+</span></span><span class="line"><span class="cl">createrepo zabbix-mysql-server
+</span></span><span class="line"><span class="cl">createrepo zabbix-mysql-frontend
+</span></span><span class="line"><span class="cl">createrepo zabbix-mysql-proxy
+</span></span><span class="line"><span class="cl">createrepo zabbix-mysql-agent
+</span></span><span class="line"><span class="cl">createrepo zabbix-mysql-gateway
+</span></span></code></pre></div><h4 id="server-配置">
+<a class="header-anchor" href="#server-%e9%85%8d%e7%bd%ae"></a>
+Server 配置
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -uroot -p
+</span></span><span class="line"><span class="cl">password
+</span></span><span class="line"><span class="cl">mysql&gt; create database zabbix character <span class="nb">set</span> utf8 collate utf8_bin<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; create user zabbix@localhost identified by <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; grant all privileges on zabbix.* to zabbix@localhost<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; <span class="nb">set</span> global <span class="nv">log_bin_trust_function_creators</span> <span class="o">=</span> 1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; quit<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入初始架构和数据，系统将提示您输入新创建的密码。</span>
+</span></span><span class="line"><span class="cl">zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz <span class="p">|</span> mysql -uzabbix -p zabbix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用 log_bin_trust_function_creators 全局选项</span>
+</span></span><span class="line"><span class="cl">mysql -uroot -p
+</span></span><span class="line"><span class="cl">password
+</span></span><span class="line"><span class="cl">mysql&gt; <span class="nb">set</span> global <span class="nv">log_bin_trust_function_creators</span> <span class="o">=</span> 0<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; quit<span class="p">;</span>
+</span></span></code></pre></div><p>编辑 <code>/etc/zabbix/zabbix_server.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DBPassword</span><span class="o">=</span>password
+</span></span></code></pre></div><p>编辑 <code>/etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">listen 80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">server_name ip<span class="p">;</span>
+</span></span></code></pre></div><p>编辑 <code>/etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">listen.acl_users <span class="o">=</span> apache,nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> php_value<span class="o">[</span>date.timezone<span class="o">]</span> <span class="o">=</span> Europe/Riga
+</span></span><span class="line"><span class="cl">php_value<span class="o">[</span>date.timezone<span class="o">]</span> <span class="o">=</span> Asia/Shanghai
+</span></span></code></pre></div><p>重启服务</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart zabbix-server zabbix-agent rh-nginx116-nginx rh-php72-php-fpm
+</span></span></code></pre></div><h4 id="proxy">
+<a class="header-anchor" href="#proxy"></a>
+proxy
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -uroot -p
+</span></span><span class="line"><span class="cl">password
+</span></span><span class="line"><span class="cl">mysql&gt; create database zabbix_proxy character <span class="nb">set</span> utf8 collate utf8_bin<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; create user zabbix@localhost identified by <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; grant all privileges on zabbix_proxy.* to zabbix@localhost<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; <span class="nb">set</span> global <span class="nv">log_bin_trust_function_creators</span> <span class="o">=</span> 1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; quit<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入初始架构和数据，系统将提示您输入新创建的密码。</span>
+</span></span><span class="line"><span class="cl">zcat /usr/share/doc/zabbix-server-mysql/schema.sql.gz <span class="p">|</span> mysql -uzabbix -p zabbix_proxy
+</span></span></code></pre></div><p>禁用 log_bin_trust_function_creators 选项</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -uroot -p
+</span></span><span class="line"><span class="cl">password
+</span></span><span class="line"><span class="cl">mysql&gt; <span class="nb">set</span> global <span class="nv">log_bin_trust_function_creators</span> <span class="o">=</span> 0<span class="p">;</span>
+</span></span><span class="line"><span class="cl">mysql&gt; quit<span class="p">;</span>
+</span></span></code></pre></div><p>编辑 <code>/etc/zabbix/zabbix_proxy.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DBPassword</span><span class="o">=</span>password
+</span></span></code></pre></div><p>重启</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart zabbix-proxy
+</span></span></code></pre></div><h3 id="zabbix-api">
+<a class="header-anchor" href="#zabbix-api"></a>
+<a href="https://www.zabbix.com/documentation/5.0/en/manual/api/reference_commentary">Zabbix API</a>
+</h3><p>zabbix 提供了 API 让外部应用系统进行调用，非常容易与其它系统集成。一般请求格式如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// zabbix 官网可以查找，一般为 xxx.xxx
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;zabbix method&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;token&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>复杂一些的请求：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// zabbix 官网可以查找，一般为 xxx.xxx
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;zabbix method&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 官网有相关示例
+</span></span></span><span class="line"><span class="cl">        <span class="c1">// extend 查询全部信息
+</span></span></span><span class="line"><span class="cl">        <span class="c1">// 可以使用 output: [&#34;xxx&#34;] 把想要获取的字段写入
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="s2">&#34;extend&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 查询指定 host 机器的监控项
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 查询指定 hostid 的机器的监控项
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 仅返回与给定过滤条件完全匹配的结果。
+</span></span></span><span class="line"><span class="cl">        <span class="c1">// 过滤条件是一个数组，其中键是属性名，值可以是单个值或要匹配的值数组。
+</span></span></span><span class="line"><span class="cl">        <span class="c1">// 不适用于 text 字段。
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 对指定 key 的 value 模糊查询
+</span></span></span><span class="line"><span class="cl">        <span class="nt">&#34;search&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 登录认证接口后返回的一个 token，默认不会过期
+</span></span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;token&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>查询服务器信息使用的 API：<code>host.get</code>
+查询服务器监控项使用的 API：<code>item.get</code></p>
+<h4 id="zabbix-agent-添加自定义键值获取硬件信息">
+<a class="header-anchor" href="#zabbix-agent-%e6%b7%bb%e5%8a%a0%e8%87%aa%e5%ae%9a%e4%b9%89%e9%94%ae%e5%80%bc%e8%8e%b7%e5%8f%96%e7%a1%ac%e4%bb%b6%e4%bf%a1%e6%81%af"></a>
+zabbix agent 添加自定义键值获取硬件信息
+</h4><p>Linux 下读取一些文件的信息必须使用 root 用户，所以对于某些 UserParamter 来说，会出现 Permission denied 的问题。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vi /usr/lib/systemd/system/zabbix-agent.service
+</span></span></code></pre></div><p>找到下面两项信息修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">Uesr</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">Group</span><span class="o">=</span>root
+</span></span></code></pre></div><p>然后重新启动</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl daemon-reload
+</span></span><span class="line"><span class="cl">systemctl restart zabbix-agent
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看启动用户</span>
+</span></span><span class="line"><span class="cl">ps -ef <span class="p">|</span> grep zabbix
+</span></span></code></pre></div><p>以获取系统 sn 和简单获取 pg 服务是否运行为例，编辑文件：<code>vi /etc/zabbix/zabbix_agentd.d/my.conf</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>get.sn.info,echo <span class="s2">&#34;`/usr/sbin/dmidecode |egrep -A4 &#39;System Information&#39;|egrep &#39;Serial Number&#39;|awk -F: &#39;{print </span><span class="nv">$NF</span><span class="s2">}&#39;`&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>postgresql.status,systemctl is-active --quiet postgresql <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">1</span> <span class="o">||</span> <span class="nb">echo</span> <span class="m">2</span>
+</span></span></code></pre></div><p>保存之后重启 agent 服务。然后在 server 端使用以下命令测试：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zabbix_get -s agent-ip -k get.sn.info
+</span></span><span class="line"><span class="cl">zabbix_get -s agent-ip -k postgresql.status
+</span></span></code></pre></div><p>在 web 页面的模板中添加自定义监控项，键值为上面定义的键值，不可出错！之后就可以调用 zabbix API 获取对应的信息啦！</p>
+<h3 id="snmp-离线包制作与安装">
+<a class="header-anchor" href="#snmp-%e7%a6%bb%e7%ba%bf%e5%8c%85%e5%88%b6%e4%bd%9c%e4%b8%8e%e5%ae%89%e8%a3%85"></a>
+snmp 离线包制作与安装
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载 perl 离线包</span>
+</span></span><span class="line"><span class="cl">yum install perl --downloadonly --downloaddir<span class="o">=</span>perl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载 snmp 离线包</span>
+</span></span><span class="line"><span class="cl">yum install net-snmp net-snmp-utils --downloadonly --downloaddir<span class="o">=</span>snmp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打包</span>
+</span></span><span class="line"><span class="cl">createrepo perl
+</span></span><span class="line"><span class="cl">createrepo snmp
+</span></span></code></pre></div><p>新建 <code>/etc/yum.repo.d/perl.repo</code> 和 <code>/etc/yum.repo.d/snmp.repo</code> 两个文件，内容如下，baseurl 需要替换为实际位置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>perl<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>perl
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>file:///root/perl/
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>snmp<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>snmp
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>file:///root/snmp/
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></div><p>安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum clean all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">yum install -y perl
+</span></span><span class="line"><span class="cl">yum install -y net-snmp net-snmp-utils
+</span></span></code></pre></div><p>启动</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl start snmpd
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> snmpd
+</span></span></code></pre></div><h4 id="配置文件">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6"></a>
+配置文件
+</h4><p>文件位置：<code>/etc/snmp/snmpd.conf</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#添加一个采集项.1，意味着可以采集到所有mib tree的信息</span>
+</span></span><span class="line"><span class="cl">view systemview included .1
+</span></span></code></pre></div><p>重启服务</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart snmpd.service
+</span></span><span class="line"><span class="cl">ss -nlp <span class="p">|</span> grep snmp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看具体信息</span>
+</span></span><span class="line"><span class="cl">snmpget -v 2c -c public 192.168.164.145 .1.3.6.1.2.1.1.1.0
+</span></span></code></pre></div><h3 id="userparameter-小脚本">
+<a class="header-anchor" href="#userparameter-%e5%b0%8f%e8%84%9a%e6%9c%ac"></a>
+UserParameter 小脚本
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 IP 地址和主机名</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ip</span><span class="o">=</span><span class="k">$(</span>hostname -I <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">hostname</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 CPU 使用率</span>
+</span></span><span class="line"><span class="cl"><span class="nv">cpu_usage</span><span class="o">=</span><span class="k">$(</span>top -bn1 <span class="p">|</span> grep <span class="s1">&#39;Cpu(s)&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2 + $4}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取内存使用率</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mem_usage</span><span class="o">=</span><span class="k">$(</span>free -m <span class="p">|</span> awk <span class="s1">&#39;NR==2{printf &#34;%.2f\n&#34;, $3*100/$2 }&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取磁盘使用率</span>
+</span></span><span class="line"><span class="cl"><span class="nv">disk_usage</span><span class="o">=</span><span class="k">$(</span>df -h <span class="p">|</span> awk <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> sort -rn <span class="p">|</span> head -1 <span class="p">|</span> tr -d <span class="s1">&#39;%&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 mac</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mac_address</span><span class="o">=</span><span class="k">$(</span>ip link show <span class="p">|</span> grep link/ether <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> head -n 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出 JSON 格式的数据</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;hardware&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;ip&#34;: &#34;&#39;</span><span class="nv">$ip</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;hostname&#34;: &#34;&#39;</span><span class="nv">$hostname</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;mac&#34;: &#34;&#39;</span><span class="nv">$mac_address</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;info&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">            {
+</span></span></span><span class="line"><span class="cl"><span class="s1">                &#34;cpu&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">                    &#34;total&#34;: &#34;&#39;</span><span class="nv">$cpu_usage</span><span class="s1">&#39;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">                },
+</span></span></span><span class="line"><span class="cl"><span class="s1">                &#34;memory&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">                    &#34;total&#34;: &#34;&#39;</span><span class="nv">$mem_usage</span><span class="s1">&#39;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">                },
+</span></span></span><span class="line"><span class="cl"><span class="s1">                &#34;disk&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">                    &#34;total&#34;: &#34;&#39;</span><span class="nv">$disk_usage</span><span class="s1">&#39;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">                }
+</span></span></span><span class="line"><span class="cl"><span class="s1">            }
+</span></span></span><span class="line"><span class="cl"><span class="s1">        ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义服务及其端口</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A <span class="nv">services</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">[</span>8080<span class="o">]=</span><span class="s2">&#34;mysql&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 IP 地址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ip</span><span class="o">=</span><span class="k">$(</span>hostname -I <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取主机名</span>
+</span></span><span class="line"><span class="cl"><span class="nv">hostname</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化 JSON 输出</span>
+</span></span><span class="line"><span class="cl"><span class="nv">json_output</span><span class="o">=</span><span class="s1">&#39;{&#34;software&#34;:{&#34;ip&#34;:&#34;&#39;</span><span class="s2">&#34;</span><span class="nv">$ip</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,&#34;hostname&#34;:&#34;&#39;</span><span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,&#34;info&#34;:[&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查每个服务的状态</span>
+</span></span><span class="line"><span class="cl"><span class="nv">first</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> port in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!services[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">services</span><span class="p">[</span><span class="nv">$port</span><span class="p">]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">state</span><span class="o">=</span><span class="k">$(</span>ss -tuln <span class="p">|</span> grep -w <span class="s2">&#34;:</span><span class="nv">$port</span><span class="s2"> &#34;</span> <span class="p">|</span> wc -l<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$state</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">state</span><span class="o">=</span><span class="s2">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">state</span><span class="o">=</span><span class="s2">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 构建 JSON 对象</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$first</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">json_output</span><span class="o">+=</span><span class="k">$(</span><span class="nb">printf</span> <span class="s1">&#39;{&#34;%d&#34;:{&#34;name&#34;:&#34;%s&#34;,&#34;port&#34;:%d,&#34;state&#34;:&#34;%s&#34;}}&#39;</span> <span class="s2">&#34;</span><span class="nv">$port</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$name</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$port</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$state</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">first</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">json_output</span><span class="o">+=</span><span class="k">$(</span><span class="nb">printf</span> <span class="s1">&#39;,{&#34;%d&#34;:{&#34;name&#34;:&#34;%s&#34;,&#34;port&#34;:%d,&#34;state&#34;:&#34;%s&#34;}}&#39;</span> <span class="s2">&#34;</span><span class="nv">$port</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$name</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$port</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$state</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 完成 JSON 输出</span>
+</span></span><span class="line"><span class="cl"><span class="nv">json_output</span><span class="o">+=</span><span class="s1">&#39;]}}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出 JSON</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$json_output</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>hardware.state,/etc/zabbix/scripts/hardware.sh
+</span></span><span class="line"><span class="cl"><span class="nv">UserParameter</span><span class="o">=</span>software.state,/etc/zabbix/scripts/software.sh
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/linux/centos/centos-install-zabbix5/&amp;title=%e3%80%90Linux%e3%80%91%20CentOS7%20%e7%a6%bb%e7%ba%bf%e5%ae%89%e8%a3%85%20zabbix5&amp;desc=%e5%85%88%e4%bd%bf%e7%94%a8%e5%a4%96%e7%bd%91%e6%9c%ba%e5%99%a8%e4%b8%8b%e8%bd%bd%e7%a6%bb%e7%ba%bf%e5%ae%89%e8%a3%85%e5%8c%85%ef%bc%8c%e7%84%b6%e5%90%8e%e4%b8%8a%e4%bc%a0%e8%87%b3%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%bf%9b%e8%a1%8c%e5%85%a8%e5%86%85%e7%bd%91%e5%ae%89%e8%a3%85%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="【Linux】 CentOS7 离线安装 zabbix5">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="【Linux】 CentOS7 离线安装 zabbix5">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/linux"
+      data-aos="zoom-in"
+      >Linux</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/linux"
+        rel="tag"
+        >linux</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/centos"
+        rel="tag"
+        >centos</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="九谱一琴"
+              class="lazyload"
+            /><a
+          href="/post/life/game/yuanqin/"
+          aria-label="前一篇:九谱一琴"
+          title="前一篇:九谱一琴"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">九谱一琴</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover02_0ed0f1e22d669.webp"
+              data-sizes="auto"
+              alt="小小的欢喜"
+              class="lazyload"
+            /><a
+          href="/post/life/romance/love/"
+          aria-label="后一篇:小小的欢喜"
+          title="后一篇:小小的欢喜"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">小小的欢喜</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#注意点">注意点</a></li>
+    <li><a href="#离线包下载">离线包下载</a>
+      <ul>
+        <li><a href="#前置准备及目标">前置准备及目标</a></li>
+        <li><a href="#关闭防火墙和-selinux">关闭防火墙和 selinux</a></li>
+        <li><a href="#文件配置和修改">文件配置和修改</a></li>
+        <li><a href="#提取两个-rpm-包">提取两个 rpm 包</a></li>
+        <li><a href="#下载-zabbix-的离线包">下载 zabbix 的离线包</a></li>
+        <li><a href="#打包">打包</a></li>
+      </ul>
+    </li>
+    <li><a href="#下载-pg9-离线包">下载 PG9 离线包</a></li>
+    <li><a href="#离线安装">离线安装</a>
+      <ul>
+        <li><a href="#创建本地-yum-源非必须">创建本地 yum 源（非必须）</a></li>
+        <li><a href="#zabixx-server-和前端">zabixx server 和前端</a></li>
+        <li><a href="#安装-pg-9">安装 PG 9</a></li>
+        <li><a href="#nginx">Nginx</a></li>
+        <li><a href="#php">PHP</a></li>
+        <li><a href="#启动服务">启动服务</a></li>
+        <li><a href="#文件位置">文件位置</a></li>
+        <li><a href="#zabbix-其它组件">zabbix 其它组件</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#server-端">server 端</a></li>
+        <li><a href="#agent-端">agent 端</a></li>
+      </ul>
+    </li>
+    <li><a href="#附">附</a>
+      <ul>
+        <li><a href="#一些问题记录">一些问题记录</a></li>
+        <li><a href="#mysql-版记录">MySQL 版记录</a></li>
+        <li><a href="#zabbix-api">Zabbix API</a></li>
+        <li><a href="#snmp-离线包制作与安装">snmp 离线包制作与安装</a></li>
+        <li><a href="#userparameter-小脚本">UserParameter 小脚本</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "【Linux】 CentOS7 离线安装 zabbix5",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/linux\/centos\/centos-install-zabbix5\/",
+          description: "先使用外网机器下载离线安装包，然后上传至内网服务器进行全内网安装。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

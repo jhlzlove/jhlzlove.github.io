@@ -1,0 +1,1134 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  工作流概述以及 flowable 与 spring 的集成 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="工作流概述以及 flowable 与 spring 的集成 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/programming/java/other/workflow/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2025-10-27T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2025-10-27T00:00:00&#43;08:00" /><meta property="article:tag" content="java, flowable" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="工作流概述以及 flowable 与 spring 的集成"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">工作流概述以及 flowable 与 spring 的集成</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#activitiflowablecamunda">Activiti、Flowable、Camunda</a></li>
+    <li><a href="#工作流基础知识">工作流基础知识</a>
+      <ul>
+        <li><a href="#bpmn-business-process-model-and-notation">BPMN (Business Process Model and Notation)</a></li>
+        <li><a href="#cmmn-case-management-model-and-notation">CMMN (Case Management Model and Notation)</a></li>
+        <li><a href="#dmn-decision-model-and-notation">DMN (Decision Model and Notation)</a></li>
+        <li><a href="#bpmn-中的一些概念">BPMN 中的一些概念</a></li>
+        <li><a href="#流程任务">流程、任务</a></li>
+        <li><a href="#网关">网关</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它-编码业务-概念">其它 编码/业务 概念</a>
+      <ul>
+        <li><a href="#在线表单和业务表单">在线表单和业务表单</a></li>
+      </ul>
+    </li>
+    <li><a href="#flowable">Flowable</a>
+      <ul>
+        <li><a href="#引入依赖">引入依赖</a></li>
+        <li><a href="#表结构说明">表结构说明</a></li>
+        <li><a href="#表达式">表达式</a></li>
+        <li><a href="#接入自己系统的组织架构和人员">接入自己系统的组织架构和人员</a></li>
+        <li><a href="#监听器">监听器</a></li>
+        <li><a href="#流程变量">流程变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码示例">代码示例</a>
+      <ul>
+        <li><a href="#flowable-starter-的操作-bean">flowable starter 的操作 bean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-27 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2025-10-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-10-27</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>BPMN 工作流的名词解释：https://www.flowable.com/open-source/docs/bpmn/ch02-GettingStarted。可以在线绘制流程图并下载的网站：</p>
+<ul>
+<li><a href="http://www.bpmnmodeler.com/flowable-modeler-online">http://www.bpmnmodeler.com/flowable-modeler-online</a></li>
+<li><a href="https://demo.bpmn.io/new">https://demo.bpmn.io/new</a></li>
+</ul>
+<h2 id="activitiflowablecamunda">
+<a class="header-anchor" href="#activitiflowablecamunda"></a>
+Activiti、Flowable、Camunda
+</h2><p>有关这三个工作流框架的渊源，网上有很多的资料可以参考。主要因开发者的理念、意见不合而先后建立，但都基于同一个祖先 JBPM，想要了解这段故事可以自行查找资料。这几个工作流都使用 BPMN 2.0 定义的一些符号来描述流程信息的，但其本质依然是 <code>xml</code> 文件。</p>
+<p>BPMN 2.0 是用于业务流程建模的图形化方法，它定义了一组符号和规则，用于描述整个业务流程的各部分内容，它的目的就是提供一种统一的、易于理解的格式来表示业务流程。</p>
+<p>目前，这几个工作流框架的最新版本基本都不提供内置的页面绘制工具了（流程设计器），需要额外下载官方提供的工具（Modeler）或者注册登录官方平台免费绘制下载使用。</p>
+<h2 id="工作流基础知识">
+<a class="header-anchor" href="#%e5%b7%a5%e4%bd%9c%e6%b5%81%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"></a>
+工作流基础知识
+</h2><h3 id="bpmn-business-process-model-and-notation">
+<a class="header-anchor" href="#bpmn-business-process-model-and-notation"></a>
+BPMN (Business Process Model and Notation)
+</h3><p>BPMN是一种业务流程建模语言，用于描述和定义业务流程的控制流、数据流和资源分配。它提供了一套标准化的符号和规则来描述业务流程，方便业务分析师和开发人员理解和实施业务流程。</p>
+<p>一般我们做的业务流程定义都是基于 BPMN，比如 审批工作流。所以查看官方文档时基本只需要看 bpmn 部分，其它的用到再看即可。本文重点也是这部分。</p>
+<h4 id="核心概念">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5"></a>
+核心概念
+</h4><p>流程（Process）：一个流程是指一系列的活动和事件，按照特定的顺序执行，以实现特定的业务目标。
+活动（Activity）：一个活动是指流程中的一项任务或操作，例如填写表格、审批等。
+事件（Event）：一个事件是指流程中发生的某件事情，例如接收到请求、完成任务等。
+网关（Gateway）：一个网关是指流程中用来控制流程流向的元素，例如分支、合并等。</p>
+<h3 id="cmmn-case-management-model-and-notation">
+<a class="header-anchor" href="#cmmn-case-management-model-and-notation"></a>
+CMMN (Case Management Model and Notation)
+</h3><p>CMMN 是一种案例管理建模语言，用于描述和定义非结构化或半结构化的业务过程。它提供了一套标准化的符号和规则来描述案例管理流程，方便业务分析师和开发人员理解和实施案例管理。</p>
+<p>案例管理是一种标准，它允许对可能以不可预测的顺序执行的不同类型的活动进行建模。在早期，我们通常试图通过拥有极其复杂的 BPMN 图来解决案例管理和 BPM 的问题，其中包含所有可能正确的事情和所有可能出错的事情。但实际上，这不是 BPMN 的工作：BPMN 的工作是有一条从头到尾的路径，这条路径非常清晰，能够被理解，并且每次都以相同的方式工作。</p>
+<p>案例管理使我们能够避免每次都以相同的方式工作。例如，可以将流程嵌入到案例中，但总的来说，这是一个非常有趣的新领域，它已经存在了一段时间，但采用速度相当快，现在案例管理也正在实现自动化。</p>
+<h4 id="核心概念-1">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5-1"></a>
+核心概念
+</h4><p>案例（Case）：一个案例是指一个特定的业务场景或问题，例如客户投诉、保险索赔等。
+阶段（Stage）：一个阶段是指案例管理流程中的一个阶段，例如接收、处理、关闭等。
+任务（Task）：一个任务是指案例管理流程中的一个具体任务，例如填写表格、审批等。
+决策（Decision）：一个决策是指案例管理流程中的一个决策点，例如是否批准、是否拒绝等。</p>
+<h3 id="dmn-decision-model-and-notation">
+<a class="header-anchor" href="#dmn-decision-model-and-notation"></a>
+DMN (Decision Model and Notation)
+</h3><p>DMN 是一种决策建模语言，用于描述和定义决策逻辑和规则。它提供了一套标准化的符号和规则来描述决策流程，方便业务分析师和开发人员理解和实施决策。</p>
+<p>它结合了决策表等的旧思想，具有许多高级和新的工具和思想，例如关系表、可重用的业务知识模块和知识源文档等。这些可以用作可堆肥应用程序中的服务组件的决策。我们看到的是，DMN 不仅连接到 BPMN 中的规则和决策任务，而且还取代了许多组织中专有的非标准（标准很重要）业务规则管理系统。</p>
+<h4 id="核心概念-2">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5-2"></a>
+核心概念
+</h4><p>决策（Decision）：一个决策是指一个特定的决策点，例如是否批准、是否拒绝等。
+决策表（Decision Table）：一个决策表是指一个表格，用于描述决策逻辑和规则。
+输入数据（Input Data）：输入数据是指决策流程中使用的数据，例如客户信息、订单信息等。
+输出数据（Output Data）：输出数据是指决策流程的结果，例如批准或拒绝等。</p>
+<h3 id="bpmn-中的一些概念">
+<a class="header-anchor" href="#bpmn-%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e6%a6%82%e5%bf%b5"></a>
+BPMN 中的一些概念
+</h3><h3 id="流程任务">
+<a class="header-anchor" href="#%e6%b5%81%e7%a8%8b%e4%bb%bb%e5%8a%a1"></a>
+流程、任务
+</h3><h4 id="流程定义和部署">
+<a class="header-anchor" href="#%e6%b5%81%e7%a8%8b%e5%ae%9a%e4%b9%89%e5%92%8c%e9%83%a8%e7%bd%b2"></a>
+流程定义和部署
+</h4><p>使用 bpmn 2.0 定义的符号绘制流程节点并按需添加审批人、网关、监听器等（或者直接撸 xml 文件），建立一个完整的审批流程，定义了流程如何流转以及各节点的任务，然后将其信息存入到相对应的表中。工作流引擎会默认生成一个流程图，当然，我们也可以自己上传对应的图片，后续通过工作流提供的 API 获取。</p>
+<p>在启动流程时可以根据流程 id 发起，也可以根据流程 key 发起。</p>
+<p>流程定义版本号：</p>
+<ul>
+<li>每次部署相同 key 的流程定义时，Flowable 会自动为该 key 生成递增的版本号（例如，第一次部署版本为 1，修改后重新部署版本为 2，以此类推）。</li>
+<li>同一 key 的多个版本会共存，但启动流程时流程引擎默认会使用最新 version 的启动实例。</li>
+</ul>
+<h4 id="流程实例">
+<a class="header-anchor" href="#%e6%b5%81%e7%a8%8b%e5%ae%9e%e4%be%8b"></a>
+流程实例
+</h4><p>启动以此流程生成一个实例。每个流程实例是一个流程定义的一次执行。</p>
+<h4 id="任务">
+<a class="header-anchor" href="#%e4%bb%bb%e5%8a%a1"></a>
+任务
+</h4><p>任务是工作流框架中的最小执行单位，对应 <strong>流程定义</strong> 中每个节点用户需要处理的操作；(例如每个审批节点就对应一个任务)。</p>
+<h4 id="流程分类">
+<a class="header-anchor" href="#%e6%b5%81%e7%a8%8b%e5%88%86%e7%b1%bb"></a>
+流程分类
+</h4><p>部署流程时可以通过流程引擎的 API 添加分类信息，只不过分类信息需要我们自己维护。、</p>
+<h3 id="网关">
+<a class="header-anchor" href="#%e7%bd%91%e5%85%b3"></a>
+网关
+</h3><p>排他网关（Exclusive Gateway）</p>
+<p>定义: 排他网关根据条件表达式来决定激活哪一条流程路径。它会评估离开网关的每个流的条件，如果条件为真，则激活该流。与包含网关不同，排他网关只会激活一个流。
+行为: 当流程到达排他网关时，网关会根据条件表达式来决定哪一条流程路径应该被激活。它只会激活一个离开它的流。
+使用场景: 需要根据条件选择执行多个任务或活动，但只能选择一个任务执行的场景。</p>
+<p>并行网关（Parallel Gateway）</p>
+<p>定义: 并行网关允许流程在同一时刻沿着多条路径同时继续执行。它不评估条件，即所有到达并行网关的流都会被激活，并且所有离开网关的流都会被激活。
+行为: 当流程到达并行网关时，网关会激活所有离开它的流，允许流程同时沿着这些路径继续执行。并行网关通常用于将单一流程分割成多个并行执行的分支，也可以合并多个并行执行的分支。
+使用场景: 需要同时执行多个任务或活动的场景。</p>
+<p>包含网关（Inclusive Gateway）</p>
+<p>定义: 包含网关根据条件表达式来决定激活哪些流程路径。它会评估离开网关的每个流的条件，如果条件为真，则激活该流。与并行网关不同，包含网关可能只激活一个或多个流。
+行为: 当流程到达包含网关时，网关会根据条件表达式来决定哪些流程路径应该被激活。它可以激活一个或多个离开它的流，但不保证所有离开它的流都会被激活。
+使用场景: 需要根据条件选择执行多个任务或活动，但不需要所有任务都必须被执行的场景。</p>
+<p>事件网关（Event Gateway）</p>
+<p>定义: 事件网关是基于事件的网关，它等待特定的事件发生后才会激活流程的下一步。事件网关不需要流程流到达它，而是等待特定事件的触发。
+行为: 事件网关在等待特定事件发生时处于等待状态。一旦事件发生，它会激活流程的下一步。事件网关通常用于处理外部事件或异步事件。
+使用场景: 需要等待外部事件或异步事件触发后才继续执行流程的场景。</p>
+<p>除了上面的几种网关分类之外，还有其它的网关，例如：信号网关、事件基于网关、并行网关的合并等。</p>
+<h2 id="其它-编码业务-概念">
+<a class="header-anchor" href="#%e5%85%b6%e5%ae%83-%e7%bc%96%e7%a0%81%e4%b8%9a%e5%8a%a1-%e6%a6%82%e5%bf%b5"></a>
+其它 编码/业务 概念
+</h2><p><strong>会签</strong>：一个节点有多个审批人，需要所有审批人都同意或者半数以上的人同意（这个比例在流程绘制时可以控制）才能进入下一个节点；
+<strong>或签/非会签</strong>：一个节点有多个审批人，任一审批人同意即可进入下一节点；
+<strong>加签</strong>：在节点中添加审批人；
+<strong>减签</strong>：在节点中去除审批人；</p>
+<p>抄送和退回(驳回)比较简单，不再解释。</p>
+<h3 id="在线表单和业务表单">
+<a class="header-anchor" href="#%e5%9c%a8%e7%ba%bf%e8%a1%a8%e5%8d%95%e5%92%8c%e4%b8%9a%e5%8a%a1%e8%a1%a8%e5%8d%95"></a>
+在线表单和业务表单
+</h3><p>在现流行的 ruoyi flowable 的免费衍生框架中，大部分都是使用的在线表单，一般分为两种：</p>
+<ul>
+<li>路由表单：自己编写的前端页面：vue 或者 html 使用 json 把整个页面存储在数据库中，使用流程变量存储相关信息，使用时需要按照模板编写，比较繁琐，和正常写前端页面相比不完美的地方很多；</li>
+<li>在线表单：使用一些绘制工具（vForm 等），在页面上使用拖拉拽方式编辑布局，使用表达式或者变量自行设计的表单；</li>
+</ul>
+<p>无一例外，都在数据库中存储了表单的结构，不说读取速度如何，单纯就复杂业务来讲，难以满足，只有非常简单的情况下才去使用（简单的审批自己实现就好，也不需要引入流程框架）。</p>
+<p>业务实现中一般使用外置表单/业务表单，该表单内容对应数据库中的一张/多张表，和平常业务页面相同。但是需要在业务表中增加两个与工作流相关的字段：流程实例id (processInstanceId) 和审批状态，这样我们就可以据此追溯流程的内容和结果，并且借助 flowable 的监听器去同步状态。如果需要双向绑定，可以在启动流程时，使用三个参数的重载版本，将记录 id 放进去，以供后续查询使用。</p>
+<h2 id="flowable">
+<a class="header-anchor" href="#flowable"></a>
+<a href="https://www.flowable.com/open-source">Flowable</a>
+</h2><p>Flowable 7.x 是目前最新的版本，专注于 Spring Boot 3、Spring 6 和 Java 17 的升级适配。从这个版本开始，删除了内置的 web ui 流程设计器，官方推荐注册一个 flowable 云平台的账号免费在上面进行流程绘制。</p>
+<h3 id="引入依赖">
+<a class="header-anchor" href="#%e5%bc%95%e5%85%a5%e4%be%9d%e8%b5%96"></a>
+引入依赖
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.flowable<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>flowable-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>7.1.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.mysql<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>配置文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="m">123456</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost:3308/flowable-demo?zeroDateTimeBehavior=convertToNull&amp;allowPublicKeyRetrieval=true&amp;useSSL=true&amp;nullCatalogMeansCurrent=true&amp;serverTimezone=Asia/Shanghai</span><span class="w">
+</span></span></span></code></pre></div><p>{% folding 如果是多数据源，且内部对数据源的重写程度较大（比如自定义了 sqlSessionFactory），那么 flowable 可能不会读取配置，程序启动时还是使用内置的 h2 数据库，如果有无法建表的错误，大概率是此原因。 child:codeblock open:false color:red %}</p>
+<p>配置文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">com.alibaba.druid.pool.DruidDataSource</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.cj.jdbc.Driver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://localhost:3306/tuyuan?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;allowPublicKeyRetrieval=true&amp;useSSL=true&amp;serverTimezone=Asia/Shanghai</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># flowable 配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">flowable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 关闭定时任务 JOB</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">async-executor-activate</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 当 flowable 发现库与数据库表结构不一致时，会自动将数据库表结构升级至新版本。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">database-schema-update</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>读取 flowable 的配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DatasourceConfigurator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">EngineConfigurator</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${spring.datasource.url}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${spring.datasource.type}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DataSource</span><span class="o">&gt;</span><span class="w"> </span><span class="n">type</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${spring.datasource.driverClassName}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${spring.datasource.username}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${spring.datasource.password}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">beforeInit</span><span class="p">(</span><span class="n">AbstractEngineConfiguration</span><span class="w"> </span><span class="n">engineConfiguration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DataSource</span><span class="w"> </span><span class="n">dataSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">type</span><span class="p">(</span><span class="n">type</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">driverClassName</span><span class="p">(</span><span class="n">driverClassName</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">username</span><span class="p">(</span><span class="n">username</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">password</span><span class="p">(</span><span class="n">password</span><span class="p">).</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">engineConfiguration</span><span class="p">.</span><span class="na">setDataSource</span><span class="p">(</span><span class="n">dataSource</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">AbstractEngineConfiguration</span><span class="w"> </span><span class="n">engineConfiguration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPriority</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">60000</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>设置数据源：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ProcessEngineConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">EngineConfigurationConfigurer</span><span class="o">&lt;</span><span class="n">SpringAppEngineConfiguration</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">DatasourceConfigurator</span><span class="w"> </span><span class="n">datasourceConfigurator</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ProcessEngineConfig</span><span class="p">(</span><span class="n">DatasourceConfigurator</span><span class="w"> </span><span class="n">datasourceConfigurator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">datasourceConfigurator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datasourceConfigurator</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">SpringAppEngineConfiguration</span><span class="w"> </span><span class="n">engineConfiguration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">engineConfiguration</span><span class="p">.</span><span class="na">addConfigurator</span><span class="p">(</span><span class="n">datasourceConfigurator</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>但是上面的解决办法可能会引入新的问题：数据源切换事务可能会出问题，不过由于目前没有用到多数据源（采用的框架支持），所以没有深入。
+{% endfolding %}</p>
+<h3 id="表结构说明">
+<a class="header-anchor" href="#%e8%a1%a8%e7%bb%93%e6%9e%84%e8%af%b4%e6%98%8e"></a>
+<a href="https://documentation.flowable.com/latest/develop/be/be-expressions">表结构说明</a>
+</h3><p>flowable 启动时如果数据库没有相关的表结构会自动创建，一共有 70 张表，根据表前缀分类大致如下：</p>
+<p><strong>ACT_RE_</strong>：RE 代表 repository（存储）。这些表包含静态信息，如流程定义和流程的资源（图片、规则等）。由 RepositoryService 接口操作。
+<strong>ACT_RU_</strong>：RU 代表 runtime。这些表存储运行时信息，如流程实例、用户任务、变量、作业等。Flowable 只在流程实例运行中保存运行时数据，并在流程实例结束时删除记录，以保证运行时表小且快。由 RuntimeService 接口操作。
+<strong>ACT_HI_</strong>：HI 代表 history。这些表存储历史数据，如已完成的流程实例、变量、任务等。由 HistoryService 接口操作。
+<strong>ACT_ID_</strong>：ID 表示 identity（组织机构）。这些表包含标识的信息，如用户、用户组等。由 IdentityService 接口操作。
+<strong>ACT_GE_</strong>：通用数据表，用于存储各种情况下都可能需要的数据。</p>
+<p>还有其它的表，但是使用的频率应该不高？</p>
+<p>核心表：</p>
+<p>ACT_GE_BYTEARRAY：xml 文件元数据；
+ACT_RE_DEPLOYMENT：绘制的 xml 文件信息保存在这里面，并且带着自定义的名称和分类等基础信息；
+ACT_RE_PROCDEF：流程定义表，一次部署可以部署多个流程，一个流程对应一条记录，key 默认是 xml 的 id；
+ACT_RU_ACTINST：流程实例表，对应申请用户发起的审批申请；
+ACT_RU_TASK：用户任务表，工作流执行的最小单位，该表存储每个流程实例当前运行到的那个节点信息，每个任务完成后自动删除（常用于查询人员或部门的待办任务）；
+ACT_RU_EXECUTION：执行分支表，记录运行中流程运行的各个分支节点信息，流程结束后删除；
+ACT_HI_PROCINST：历史流程实例表，存储流程实例历史数据（包含正在运行的流程实例）。每启动一个流程实例，ACT_HI_PROCINST 中就会维护一条记录；</p>
+<blockquote>
+<p>详细说明参考：https://documentation.flowable.com/latest/develop/dbs/overview</p>
+</blockquote>
+<h3 id="表达式">
+<a class="header-anchor" href="#%e8%a1%a8%e8%be%be%e5%bc%8f"></a>
+<a href="https://documentation.flowable.com/latest/develop/be/be-expressions">表达式</a>
+</h3><h3 id="接入自己系统的组织架构和人员">
+<a class="header-anchor" href="#%e6%8e%a5%e5%85%a5%e8%87%aa%e5%b7%b1%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bb%84%e7%bb%87%e6%9e%b6%e6%9e%84%e5%92%8c%e4%ba%ba%e5%91%98"></a>
+接入自己系统的组织架构和人员
+</h3><p>已存在的系统需要接入 flowable，我们基本不会使用内置的认证，而是需要接入自己系统的组织和人员。实现方式多种多样，一般会在流程绘制阶段在 userTask 中直接设置，因为审批人多数情况下不会变动。此时通过后端返回已有的用户以及组织列表（就像系统管理的用户管理），前端做一个弹窗进行展示以及选择，然后传给后端，无论是用户的 id 还是用户名，只要能据此查找到用户就行，后面就交给后端实现。</p>
+<p>在绘制的 xml 流程图阶段，userTask 标签中有一个 <code>assignee</code> 的属性，把能代表用户的标志传给后端，并且 flowable 会存储在自己的表中。主要是在前端页面设计接入，传递给后端即可。candidateUsers 是候选用户，candidateGroups 候选组，满足多种不同的需求。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 截取部分说明，flowable:assignee 的值为 3，这是数据库用户的 id --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;bpmn:userTask</span> <span class="na">id=</span><span class="s">&#34;Activity_090j4cu&#34;</span> <span class="na">name=</span><span class="s">&#34;审批人2&#34;</span> <span class="na">flowable:assignee=</span><span class="s">&#34;3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="na">flowable:candidateUsers=</span><span class="s">&#34;1&#34;</span> <span class="na">flowable:candidateGroups=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;bpmn:incoming&gt;</span>Flow_1yxxpg8<span class="nt">&lt;/bpmn:incoming&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;bpmn:outgoing&gt;</span>Flow_1tyhc3m<span class="nt">&lt;/bpmn:outgoing&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/bpmn:userTask&gt;</span>
+</span></span></code></pre></div><h3 id="监听器">
+<a class="header-anchor" href="#%e7%9b%91%e5%90%ac%e5%99%a8"></a>
+监听器
+</h3><h4 id="executionlistener-执行监听器">
+<a class="header-anchor" href="#executionlistener-%e6%89%a7%e8%a1%8c%e7%9b%91%e5%90%ac%e5%99%a8"></a>
+ExecutionListener 执行监听器
+</h4><p>执行监听器有三种触发类型：start 启动、end 结束、take 连线。执行监听器可以处理在流程过程中发生的特定事件，需要实现 ExecutionListener 接口。</p>
+<p>流程实例的启动和结束
+流程执行转移
+活动的启动和结束
+网关的启动和结束
+中间事件的启动和结束
+启动事件的结束，和结束事件的启动</p>
+<h4 id="tasklistener-任务监听器">
+<a class="header-anchor" href="#tasklistener-%e4%bb%bb%e5%8a%a1%e7%9b%91%e5%90%ac%e5%99%a8"></a>
+TaskListener 任务监听器
+</h4><p>任务监听器有六种触发类型：create 创建、assignment 委派、complete 完成、delete 删除、update 更新、timeout 超时事件。任务监听器主要处理用户的任务节点，实现 TaskListener 接口类。</p>
+<h3 id="流程变量">
+<a class="header-anchor" href="#%e6%b5%81%e7%a8%8b%e5%8f%98%e9%87%8f"></a>
+流程变量
+</h3><p>流程变量也是工作流提供的核心功能之一。主要分为两大类，全局变量（Process Variables）、局部变量（Local Variables）。</p>
+<p>全局变量与流程实例绑定，生命周期与流程实例一致，整个流程中都可以访问。</p>
+<p>局部变量与某个执行节点或任务绑定，生命周期仅限于该节点或任务，其他节点无法访问。</p>
+<p>变量都是 map 结构，所以如果定义了同名的变量，后面的会覆盖前面的。</p>
+<p>一个流程实例可以拥有任意数量的变量，每个变量都存储在 ACT_RU_VARIABLE 数据库表的一行中。可以在启动或创建流程实例时添加(startProcessInstanceXXX())，也可以在流程执行期间添加(RuntimeService)。</p>
+<p>变量经常在Java 委托、表达式、执行或任务监听器、脚本等中使用。由于历史原因(和向后兼容性),在执行获取流程变量的 API(getvariables()) 调用时,后台会从数据库中获取所有变量。这意味着如果你有 10 个变量，但只通过 getVariable(&ldquo;myVariable&rdquo;) 获取一个，后台会获取并缓存其他 9 个。这不一定是坏事，因为后续调用将不会再次访问数据库。当使用大量变量或者只是想要严格控制数据库查询和流量时，这种方式并不合适。为了对此进行更严格的控制，flowable 引入了额外的重载方法，通过添加具有可选参数的新方法，该参数告诉引擎是否获取和缓存所有变量。</p>
+<h2 id="代码示例">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b"></a>
+代码示例
+</h2><h3 id="flowable-starter-的操作-bean">
+<a class="header-anchor" href="#flowable-starter-%e7%9a%84%e6%93%8d%e4%bd%9c-bean"></a>
+flowable starter 的操作 bean
+</h3><p>使用 Flowable 的 starter，这些 bean 可以通过 IOC 注入直接使用，也可以使用 ProcessEngine#getXXX 的方式获取：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 第一种，通过 processEngine 获取</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">ProcessEngine</span><span class="w"> </span><span class="n">processEngine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ProcessEngines</span><span class="p">.</span><span class="na">getDefaultProcessEngine</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 前四种 bean 常用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">RuntimeService</span><span class="w"> </span><span class="n">runtimeService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getRuntimeService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">RepositoryService</span><span class="w"> </span><span class="n">repositoryService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getRepositoryService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">TaskService</span><span class="w"> </span><span class="n">taskService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getTaskService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">HistoryService</span><span class="w"> </span><span class="n">historyService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getHistoryService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 下面的几种不常用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">ManagementService</span><span class="w"> </span><span class="n">managementService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getManagementService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">IdentityService</span><span class="w"> </span><span class="n">identityService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getIdentityService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">FormService</span><span class="w"> </span><span class="n">formService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getFormService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">DynamicBpmnService</span><span class="w"> </span><span class="n">dynamicBpmnService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">processEngine</span><span class="p">.</span><span class="na">getDynamicBpmnService</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 第二种，直接注入 bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">ProcessEngine</span><span class="w"> </span><span class="n">processEngine</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">RuntimeService</span><span class="w"> </span><span class="n">runtimeService</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>{% image <a href="https://www.flowable.com/open-source/docs/assets/bpmn/api.services.png">https://www.flowable.com/open-source/docs/assets/bpmn/api.services.png</a> 来自官网的图 ratio:539/220 %}</p>
+<p>RepositoryService 主要处理静态数据，RuntimeService 则正好相反。</p>
+</div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/programming/java/other/workflow/&amp;title=%e5%b7%a5%e4%bd%9c%e6%b5%81%e6%a6%82%e8%bf%b0%e4%bb%a5%e5%8f%8a%20flowable%20%e4%b8%8e%20spring%20%e7%9a%84%e9%9b%86%e6%88%90&amp;desc=BPMN%20%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%9a%84%e5%90%8d%e8%af%8d%e8%a7%a3%e9%87%8a%ef%bc%9ahttps://www.flowable.com/open-source/docs/bpmn/ch02-GettingStarted%e3%80%82%e5%8f%af%e4%bb%a5%e5%9c%a8%e7%ba%bf%e7%bb%98%e5%88%b6%e6%b5%81%e7%a8%8b%e5%9b%be%e5%b9%b6%e4%b8%8b%e8%bd%bd%e7%9a%84%e7%bd%91%e7%ab%99%ef%bc%9a%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="工作流概述以及 flowable 与 spring 的集成">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="工作流概述以及 flowable 与 spring 的集成">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e7%bc%96%e7%a8%8b%e5%90%8e%e8%8a%b1%e5%9b%ad"
+      data-aos="zoom-in"
+      >编程后花园</a
+    >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/java"
+      data-aos="zoom-in"
+      >Java</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/java"
+        rel="tag"
+        >java</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/flowable"
+        rel="tag"
+        >flowable</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover04_b7adc84f68c82.webp"
+              data-sizes="auto"
+              alt="明"
+              class="lazyload"
+            /><a
+          href="/post/life/poetry/%E6%98%8E/"
+          aria-label="前一篇:明"
+          title="前一篇:明"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">明</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="工具配置备份"
+              class="lazyload"
+            /><a
+          href="/post/skill/editor-config/"
+          aria-label="后一篇:工具配置备份"
+          title="后一篇:工具配置备份"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">工具配置备份</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#activitiflowablecamunda">Activiti、Flowable、Camunda</a></li>
+    <li><a href="#工作流基础知识">工作流基础知识</a>
+      <ul>
+        <li><a href="#bpmn-business-process-model-and-notation">BPMN (Business Process Model and Notation)</a></li>
+        <li><a href="#cmmn-case-management-model-and-notation">CMMN (Case Management Model and Notation)</a></li>
+        <li><a href="#dmn-decision-model-and-notation">DMN (Decision Model and Notation)</a></li>
+        <li><a href="#bpmn-中的一些概念">BPMN 中的一些概念</a></li>
+        <li><a href="#流程任务">流程、任务</a></li>
+        <li><a href="#网关">网关</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它-编码业务-概念">其它 编码/业务 概念</a>
+      <ul>
+        <li><a href="#在线表单和业务表单">在线表单和业务表单</a></li>
+      </ul>
+    </li>
+    <li><a href="#flowable">Flowable</a>
+      <ul>
+        <li><a href="#引入依赖">引入依赖</a></li>
+        <li><a href="#表结构说明">表结构说明</a></li>
+        <li><a href="#表达式">表达式</a></li>
+        <li><a href="#接入自己系统的组织架构和人员">接入自己系统的组织架构和人员</a></li>
+        <li><a href="#监听器">监听器</a></li>
+        <li><a href="#流程变量">流程变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码示例">代码示例</a>
+      <ul>
+        <li><a href="#flowable-starter-的操作-bean">flowable starter 的操作 bean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "工作流概述以及 flowable 与 spring 的集成",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/programming\/java\/other\/workflow\/",
+          description: "BPMN 工作流的名词解释：https:\/\/www.flowable.com\/open-source\/docs\/bpmn\/ch02-GettingStarted。可以在线绘制流程图并下载的网站：\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

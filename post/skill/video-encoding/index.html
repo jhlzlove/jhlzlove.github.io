@@ -1,0 +1,1120 @@
+<!doctype html>
+<html
+  lang="zh-CN" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  解锁数字媒体：认识视频音频格式以及编解码 | jhlz
+</title>
+<meta name="description" content=""/><script>
+  window.siteConfig = JSON.parse("{\"anchor\":{\"auto\":{\"enable\":false,\"length\":60},\"explicit\":{\"enable\":false,\"marker\":\"{#anchor-\",\"prefix\":\"anchor-\"}},\"anchor_icon\":null,\"base\":\"https://jhlzlove.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_ex15nbittbh\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://chinese-fonts-cdn.konghayao.deno.net/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css"
+    onload="this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    crossorigin
+    href="https://unpkg.com/jetbrains-mono@latest/css/jetbrains-mono.css"
+    onload="this.rel='stylesheet'"
+  /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><meta property="og:type" content="website" />
+  <meta property="og:title" content="解锁数字媒体：认识视频音频格式以及编解码 | jhlz" />
+  <meta
+    property="og:description"
+    content=""
+  />
+  <meta property="og:url" content="https://jhlzlove.github.io/post/skill/video-encoding/" />
+  <meta
+    property="og:site_name"
+    content="浮生一梦"
+  />
+  <meta property="og:image" content="https://jhlzlove.github.io/images/banner.webp" />
+  <meta property="article:author" content="jhlz" />
+  <meta property="article:published_time" content="2023-10-17T00:00:00&#43;08:00" />
+  <meta property="article:modified_time" content="2023-10-17T00:00:00&#43;08:00" /><meta property="article:tag" content="科普" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://jhlzlove.github.io/images/banner.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.cd5700393b62b206feba5efaad00bb01663b7e79bb15e77e178caf133380c6b7.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '>&#xf5db;</div><span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/about"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/friend"><div class='main-nav-icon icon rotate'>&#xe62b;</div><span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/banner.webp" alt="解锁数字媒体：认识视频音频格式以及编解码"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">解锁数字媒体：认识视频音频格式以及编解码</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          
+          class="sidebar-right"  ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一视频">一、视频</a>
+      <ul>
+        <li><a href="#视频格式">视频格式</a></li>
+        <li><a href="#视频编解码器">视频编解码器</a></li>
+        <li><a href="#rate-control速率控制cbrvbrcqp">Rate Control（速率控制）：CBR、VBR、CQP</a></li>
+        <li><a href="#视频画面比例">视频画面比例</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#二音频">二、音频</a>
+      <ul>
+        <li><a href="#音频编解码器">音频编解码器</a></li>
+      </ul>
+    </li>
+    <li><a href="#三音视频格式与编解码器的兼容性">三、音/视频格式与编解码器的兼容性</a>
+      <ul>
+        <li><a href="#视频编解码器与音频编解码器的兼容性">视频编解码器与音频编解码器的兼容性</a></li>
+        <li><a href="#视频格式与其编解码器的支持">视频格式与其编解码器的支持</a></li>
+        <li><a href="#音频格式与编解码器的兼容性支持">音频格式与编解码器的兼容性支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#本文参考">本文参考</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2023-10-17 00:00:00 &#43;0800 CST" itemprop="datePublished"
+      >2023-10-17</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2023-10-17</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><p>最近使用了 <a href="https://obsproject.com/">OBS Studio</a> 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。</p>
+<h2 id="一视频">
+<a class="header-anchor" href="#%e4%b8%80%e8%a7%86%e9%a2%91"></a>
+一、视频
+</h2><h3 id="视频格式">
+<a class="header-anchor" href="#%e8%a7%86%e9%a2%91%e6%a0%bc%e5%bc%8f"></a>
+视频格式
+</h3><p>通常，判断一个文件类型最直观的方式就是看该文件的后缀，例如 exe、sh、png、md 等等。</p>
+<p>拿我们常见的 MP4, MOV, MKV, TS, FLV 以及微软的 WMV 来说，它们一般被称为 <strong>视频封装格式</strong>，或者说打包的格式。可以把它们理解成一个 container 或者说一个 <strong>压缩包</strong>，在这个容器或者包里可以放入视频帧、音频、元数据、字幕等信息。以下是一些常见的 container 介绍。</p>
+<p>MKV：MKV 是一种非常灵活的容器，兼容 OBS Studio 支持的所有音频和视频编码器。它具有故障保护功能，即由于断电或其他原因导致的未完成录制仍可播放和恢复。不过，它在编辑软件中的支持度不高，在编辑软件中使用时可能需要重新复用。编辑软件支持不佳。</p>
+<p>MP4/MOV：MP4 是互联网视频的事实标准。MOV 是其姊妹格式，在编解码器兼容性方面略有不同，主要用于 Mac 平台。MP4/MOV 需要对文件进行 &ldquo;最终处理 &ldquo;才能播放，如果写入过程因故中断，文件可能无法恢复。因此不建议直接录制成 MP4/MOV。编辑软件提供出色的支持。</p>
+<p>片段式/分片 MP4/MOV：片段化是一种将 MP4/MOV 文件写成独立块的方法，这样文件就不需要最终处理就能使用，使其具有比 MKV 更高的兼容性，同时具有类似的抗错能力。当使用无损或未压缩音频时，可能需要重新复用才能在某些编辑套件中正常工作。编辑软件有很好的支持。</p>
+<p>FLV：FLV 是 RTMP 中使用的容器。它对编解码器的支持非常有限（H.264/AAC），而且只支持单音轨。它的弹性与 MKV 相似，但很少得到编辑软件的支持。编辑软件支持不佳。</p>
+<p>MPEG-TS/HLS (M3U8)：MPEG-TS 用于各种流媒体协议，其恢复能力与 MKV 相似，但对编解码器的支持较少。在使用 HLS 时，视频是以单独的 <code>.ts</code> 文件加上播放列表的形式分段编写的，播放列表会指示播放器如何读取文件。这主要用于互联网流媒体。MPEG-TS 在编辑软件中得到了很好的支持，HLS 在编辑软件方面的支持很差甚至没有。</p>
+<h3 id="视频编解码器">
+<a class="header-anchor" href="#%e8%a7%86%e9%a2%91%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8"></a>
+视频编解码器
+</h3><p><strong>视频编码器</strong> 可以简单理解成专门用来压缩视频的，而 <strong>解码器</strong> 正好相反。通常，一个视频若不经过编码器处理的话，视频的体积往往比较大，由于互联网的带宽限制，视频体积当然要越小越好，越利于网络传输。所以封装为指定的视频格式时都会采用一些技术算法进行压缩。<strong>同一种</strong> 视频格式可以使用 <strong>不同</strong> 的编解码器进行编解码。</p>
+<p>常见的视频编解码器有以下几种：</p>
+<h4 id="avch264">
+<a class="header-anchor" href="#avch264"></a>
+AVC/H.264
+</h4><p>AVC（Advanced Video Coding）一种用于视频会议的低比特率可视通信标准。H.264 由 MPEG 和 ITU-T VCEG 共同开发。H.264 一种基于 MPEG-4 的国际电信联盟视频压缩标准。H.264 非常流行，尤其适用于蓝光等高清视频。利用当今芯片的优势，H.264 可以压缩更大的帧尺寸。此外，还支持分辨率较低的 MPEG-2 质量，但数据传输率大大降低。</p>
+<p>H.264 是 OBS 的默认编解码器。它的历史相当悠久（2004 年标准化），但在网络视频中无处不在，几乎可以在所有设备或软件上播放。对于大多数流媒体服务来说，它是目前唯一受支持的编解码器。同时大多数编辑软件都能提供出色的支持。</p>
+<h4 id="hevch265">
+<a class="header-anchor" href="#hevch265"></a>
+HEVC/H.265
+</h4><p>HEVC（High Efficiency Video Coding） 国际电信联盟（ITU）和国际标准化组织（ISO）联合开发的超高清视频压缩标准。HEVC 也称为 H.265，支持 8K 分辨率。根据视频内容的不同，HEVC 能以 H.264/AVC 编码一半的比特率提供相同的视频质量，从而能以更少的带宽传输高质量视频，或以相同的带宽传输更高质量的视频。</p>
+<p>H.264（2013 年标准化）的继承者，在相同比特率/文件大小的情况下提供更好的质量。不过，由于其许可协议限制较多，网络流媒体并未广泛支持或使用它。它仅通过 OBS Studio 中的硬件编码器（英伟达 NVENC、AMD AMF、英特尔 QSV、苹果 VT）支持。编辑软件有较好的支持。</p>
+<h4 id="h266">
+<a class="header-anchor" href="#h266"></a>
+H.266
+</h4><p>H.266，也称为 VVC（Versatile Video Coding），是最新一代的视频编码标准，由 Fraunhofer IIS、苹果、英特尔等公司联合开发。H.266 是 H.265（HEVC）的后继者，旨在提供更好的压缩效率和视频质量。具有以下优势：</p>
+<p>更好的压缩效率：H.266 提供比 H.265 更好的压缩效率，最高可达 50% 的压缩率。
+支持更高的分辨率：H.266 支持更高的分辨率，如 8K 和 16K。
+支持更高的帧率：H.266 支持更高的帧率，如 120 fps 和 240 fps。
+支持更多的编码工具：H.266 支持更多的编码工具，如改进的运动补偿和增强的帧内预测等。
+支持 HDR 和 WCG：H.266 支持 HDR（高动态范围）和 WCG（宽色域），提供更好的色彩表现和对比度。
+支持多视图和立体视频：H.266 支持多视图和立体视频编码，适合用于 VR 和 AR 应用。</p>
+<h4 id="vp9">
+<a class="header-anchor" href="#vp9"></a>
+VP9
+</h4><p>Google 开发的视频编解码器，主要用于网络浏览器。该编解码器是 HTML5 标准的一部分，可以与各种浏览器和设备兼容。</p>
+<h4 id="av1">
+<a class="header-anchor" href="#av1"></a>
+AV1
+</h4><p>AOM（Alliance for Open Media，开放媒体联盟）是 AV1 编码标准的开发者。联盟成立于 2015 年，AV1 于 2018 年首次发布。AV1 旨在取代 VP9 编解码器，成为 IETF 互联网视频编解码器（NETVC）标准。思科的 Thor 编解码器和 Xiph.Org 基金会的 Daala 编解码器的元素也包含在内。AV1 的主要竞争对手是 HEVC/H.265，与之相比，AV1 完全免收版权费，而且 AV1 的功能都经过仔细的专利侵权审查。</p>
+<p>OBS Studio 支持的最新编解码器（2019 年标准化），与 HEVC 相比，质量/文件大小均有改善。软件编码可使用 SVT-AV1/libaom-av1，但需要高端 CPU 进行实时压缩。也可通过 AMD（RX 7000 系列）、NVIDIA（RTX 40 系列）和英特尔（Arc）最新 GPU 上的硬件编码器进行编码。编辑软件尚不支持。</p>
+<p>AOM AV1 是 AV1 的开源参考实现，它是最原始的AV1编码器，实现了AV1标准的所有功能。</p>
+<p>优点：完全兼容AV1标准，支持所有AV1功能。
+缺点：编码速度相对较慢，尤其是在软件实现中。</p>
+<p>NVIDIA NVENC AV1 是基于 NVIDIA 的 GPU 架构，使用 CUDA 核心来加速编码过程。</p>
+<p>优点：编码速度非常快，尤其是在高端NVIDIA GPU上。
+缺点：需要NVIDIA GPU支持，可能不支持所有AV1功能。</p>
+<p>SVT-AV1 是 Intel 开源的 AV1 编解码器优化实现，使用英特尔的 SIMD 指令集来加速编码过程。英特尔和 Netflix 自2018年8月以来一直在就 SVT-AV1 编解码器框架进行合作。团队一直密切合作进行 SVT-AV1 的开发、交流架构决策；实施新工具并改善压缩效率。</p>
+<p>优点：编码速度快，支持所有AV1功能。
+缺点：可能不支持所有CPU架构，需要英特尔CPU支持。</p>
+<h4 id="prores">
+<a class="header-anchor" href="#prores"></a>
+ProRes
+</h4><p>Apple 的编解码器，适用于不需要考虑文件大小的专业用途，可根据质量需求提供各种配置文件。通过 Mac 上的硬件和软件编码器提供支持。编辑软件有较好的支持。</p>
+<h3 id="rate-control速率控制cbrvbrcqp">
+<a class="header-anchor" href="#rate-control%e9%80%9f%e7%8e%87%e6%8e%a7%e5%88%b6cbrvbrcqp"></a>
+Rate Control（速率控制）：CBR、VBR、CQP
+</h3><p>如果互联网是完美的，那么所有流媒体都可以使用 CQP（或者更好的：任何恒定质量模式，如 CRF 或 ICQ）。这些编码方法对每一帧都能产生相同的质量，与运动无关。在这种情况下，如果运动量大，则需要较高的比特率；如果运动量小，则需要较低的比特率。遗憾的是，比特率可变的数据流无法在互联网上完美传输。如果高动态场景的比特率升高，而接收方（用户）又有很多，发送方的连接可能会超载，每个接收方都会出现延迟或缓冲视频。每当一个接收器的带宽超过短时间的比特率峰值时，也会发生这种情况。</p>
+<p>对于录制而言，基于质量的编码方式（VBR）效果更好，因为高运动场景的编码质量比 CBR 模式更好。当然，也可以将 CBR 的比特率提高到最高级别，这样就不会再看到差异，但这样做会浪费磁盘空间，因为低运动场景可以用更少的带宽（或空间）保存，而不会影响质量。</p>
+<h4 id="速率控制详解">
+<a class="header-anchor" href="#%e9%80%9f%e7%8e%87%e6%8e%a7%e5%88%b6%e8%af%a6%e8%a7%a3"></a>
+速率控制详解
+</h4><ol>
+<li>
+<p>CBR：恒定码率控制算法，用以恒定比特率流式传输或录制。质量由比特率决定。比特率越高，质量越好。</p>
+</li>
+<li>
+<p>VBR：可变码率控制算法，用以实时、录制和可变比特率流式传输。根据 SDK 的描述，该算法符合 HRD 标准，可能可以很好地用于流式传输，尽管它不是严格的恒定比特率算法。质量由 2 比特率参数决定。比特率越高，质量越好。</p>
+</li>
+<li>
+<p>CQP：常量化参数算法，用以可变比特率录制。无论运动如何，视频都以恒定的质量编码。比特率由视频材料的复杂性决定。质量由 QPI，QPP 和 QPB 参数决定。QPI 确定帧内质量（称为关键帧），QPP 确定预测 （P-） 帧质量，QPB 确定 h.264 B 帧（P 帧的较弱版本）。您希望对所有 3 个参数使用相同的值。非常适合原始素材的本地录制，因为如果您将比特率设置得足够高，质量不限于比特率，同时不会在低复杂场景中浪费磁盘空间。质量由 3 个 QP 参数 （1..51） 决定。值越低，质量越好，最终视频占用空间较大。最佳点可能在 20-25 左右。我的选择是 22，最大比特率为 50000，这导致平均比特率约为 29000，同时保持最高质量的高复杂场景。低于 22 的值会大大增加比特率要求。并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>AVBR：平均可变比特率控制算法，用以可变比特率录制。质量由比特率决定。比特率越高，质量越好。允许高复杂度短场景的比特率消耗峰值，以保持质量。高复杂度场景的质量由精度和收敛参数决定。这对于像 VBR 算法（不符合 HRD 标准）这样的流媒体来说不够稳定。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>LA（VBR）：具有前瞻性的 VBR 算法（VBR 升级版），用以可变比特率录制。VBR 算法的更好版本。质量改进了 VBR。由于在实际编码之前对几十帧进行了大量分析，因此延迟巨大，内存消耗增加。质量由比特率和预视深度 （1..100） 决定。比特率越高，质量越好。LA 值为 0 时，SDK 为默认值。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>ICQ：智能恒定质量算法，用以可变比特率录制。CQP 模式的更好版本。以恒定的质量录制，类似于x.264的CRF模式，比CQP模式更好地使用带宽。质量由 ICQQuality 参数 （1..51） 确定，其中 1 对应于最佳质量。ICQQuality 的理智值可能在 20..25 左右，就像在 CQP 模式下一样。该算法并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>VCM：视频会议模式，用以视频会议。可能是低延迟、低比特率要求、低质量。我没有找到有关此模式的任何详细信息，但它可能不适合高质量的流媒体或录制，但专注于低带宽使用和数据流的稳健性。并非在每个高清显卡中都可用。</p>
+</li>
+<li>
+<p>LA ICQ：具有前瞻性的智能恒定质量算法，用以可变比特率录制。与 LA （VBR） 相同的质量改进和注意事项，但适用于 ICQ 算法。可能是最好的质量，同时消耗所有可用算法中最少的带宽 - 如果您的 CPU 支持它。质量由 ICQQuality 参数 （1..51） 和前瞻深度 （1..100） 确定，其中 1 对应于最佳质量。“前瞻”越大，质量越好，其中 0 表示 SDK 默认值。ICQQuality 的理智值可能在 20..25 左右，就像在 CQP 模式下一样。该算法并非在每个高清显卡中都可用。</p>
+</li>
+</ol>
+<p>OBS 论坛有大佬给出的推荐顺序是：</p>
+<p>LA ICQ -&gt; ICQ -&gt; CQP -&gt; LA （VBR） -&gt; AVBR -&gt; VBR -&gt; CBR</p>
+<h3 id="视频画面比例">
+<a class="header-anchor" href="#%e8%a7%86%e9%a2%91%e7%94%bb%e9%9d%a2%e6%af%94%e4%be%8b"></a>
+视频画面比例
+</h3><p>常见的竖屏画面比例为 4:3；横屏为 16:9、18:9、21:9，横向数字越大，上下的黑边越宽。还有其它各种稀奇古怪的比例，就不详细讲解了，可以观看视频：</p>
+<p>{% video bilibili:BV1Zo4y1Z7Y6 %}</p>
+<p>如果什么都不懂，建议导出竖屏时 4:3，横屏时 16:9，这些硬件支持较好。</p>
+<h3 id="总结">
+<a class="header-anchor" href="#%e6%80%bb%e7%bb%93"></a>
+总结
+</h3><p>直播推荐采用 VBR，录制视频推荐使用 CBR 10000 kbs（1080 ~ 2K），当然也可以考虑使用 VBR。如果对自己的硬件有信心，还可以适当上升码率。</p>
+<p>至于视频的编码，如果硬件支持 AV1 可以考虑使用 AV1，如果不支持就采用主流的 .H264 等，这个根据自己的硬件采取不同的方式。</p>
+<p>如果直播的是游戏，那么须配置独显，否则自己玩游戏都会卡。一般的核显可以直播教学等视频，选择 VBR 并保持 6000 kbs 的码率即可有不错的效果。</p>
+<blockquote>
+<p>视频最终的质量由 编码 + 码率 决定。一般互联网视频推荐 .H264 编码封装为 MP4 的格式，不过开源的 AV1 正在普及中，浪子更推荐使用。
+码率越大，视频体积越大。</p>
+</blockquote>
+<h2 id="二音频">
+<a class="header-anchor" href="#%e4%ba%8c%e9%9f%b3%e9%a2%91"></a>
+二、音频
+</h2><h3 id="音频编解码器">
+<a class="header-anchor" href="#%e9%9f%b3%e9%a2%91%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8"></a>
+音频编解码器
+</h3><p>AAC：与 H.264 一样，AAC 的历史也相当悠久（1997 年），但支持范围非常广泛，在典型比特率下仍能提供不错的质量。几乎所有流媒体服务都使用这种编解码器。编辑软件提供出色的支持。</p>
+<p>Opus：比 AAC（2012 年）的编解码器更新、质量更高，并且免费授权。它的质量更高，但兼容性更差。编辑软件提供一般支持。</p>
+<p>FLAC：无损编解码器，免费授权，广泛用于音乐，但不太支持视频文件。编辑软件提供一般支持。</p>
+<p>ALAC：苹果公司的无损音频编解码器，在 MOV/MP4 和编辑软件中得到很好的支持。编辑软件有较好的支持。</p>
+<p>PCM：无压缩音频，包括 32 位浮点录音支持，使编辑更加灵活。编辑软件提供出色的支持。</p>
+<h2 id="三音视频格式与编解码器的兼容性">
+<a class="header-anchor" href="#%e4%b8%89%e9%9f%b3%e8%a7%86%e9%a2%91%e6%a0%bc%e5%bc%8f%e4%b8%8e%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7"></a>
+三、<a href="https://obsproject.com/kb/audio-video-formats-guide">音/视频格式与编解码器的兼容性</a>
+</h2><h3 id="视频编解码器与音频编解码器的兼容性">
+<a class="header-anchor" href="#%e8%a7%86%e9%a2%91%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8%e4%b8%8e%e9%9f%b3%e9%a2%91%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7"></a>
+视频编解码器与音频编解码器的兼容性
+</h3><table>
+  <thead>
+      <tr>
+          <th>编解码器</th>
+          <th>H.264</th>
+          <th>HEVC</th>
+          <th>AV1</th>
+          <th>ProRes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AAC</td>
+          <td>Any</td>
+          <td>MP4, MOV, MKV, TS</td>
+          <td>MP4, MKV</td>
+          <td>MOV, MKV</td>
+      </tr>
+      <tr>
+          <td>ALAC</td>
+          <td>MP4, MOV, MKV</td>
+          <td>MP4, MOV, MKV</td>
+          <td>MP4, MKV</td>
+          <td>MOV, MKV</td>
+      </tr>
+      <tr>
+          <td>FLAC</td>
+          <td>MP4, MKV</td>
+          <td>MP4, MKV</td>
+          <td>MP4, MKV</td>
+          <td>MKV</td>
+      </tr>
+      <tr>
+          <td>Opus</td>
+          <td>MP4, MKV, TS</td>
+          <td>MP4, MKV, TS</td>
+          <td>MP4, MKV</td>
+          <td>MKV</td>
+      </tr>
+      <tr>
+          <td>PCM</td>
+          <td>MOV, MKV</td>
+          <td>MOV, MKV</td>
+          <td>MKV</td>
+          <td>MOV, MKV</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<ul>
+<li>表格横向为视频编解码器，纵向为音频编解码器；</li>
+<li>TS 包括 m3u8(HLS)；</li>
+</ul>
+</blockquote>
+<h3 id="视频格式与其编解码器的支持">
+<a class="header-anchor" href="#%e8%a7%86%e9%a2%91%e6%a0%bc%e5%bc%8f%e4%b8%8e%e5%85%b6%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8%e7%9a%84%e6%94%af%e6%8c%81"></a>
+视频格式与其编解码器的支持
+</h3><table>
+  <thead>
+      <tr>
+          <th>container</th>
+          <th>H.264</th>
+          <th>HEVC</th>
+          <th>AV1</th>
+          <th>ProRes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>FLV</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>MP4</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>MOV</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>MKV</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>M3U8 (HLS)</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>TS</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>MPEG-TS 中的 AV1 正在标准化，一旦最终确定，它将可用于 TS 和 HLS 输出。</p>
+</blockquote>
+<h3 id="音频格式与编解码器的兼容性支持">
+<a class="header-anchor" href="#%e9%9f%b3%e9%a2%91%e6%a0%bc%e5%bc%8f%e4%b8%8e%e7%bc%96%e8%a7%a3%e7%a0%81%e5%99%a8%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7%e6%94%af%e6%8c%81"></a>
+音频格式与编解码器的兼容性支持
+</h3><table>
+  <thead>
+      <tr>
+          <th>container</th>
+          <th>AAC</th>
+          <th>ALAC</th>
+          <th>FLAC</th>
+          <th>Opus</th>
+          <th>PCM</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>FLV</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>MP4</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>MOV</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>MKV</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>M3U8 (HLS)</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>TS</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>❌</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>MP4 中的 PCM 是标准化的，但 FFmpeg 和 OBS Studio 尚不支持。</p>
+</blockquote>
+<h2 id="本文参考">
+<a class="header-anchor" href="#%e6%9c%ac%e6%96%87%e5%8f%82%e8%80%83"></a>
+本文参考
+</h2><ol>
+<li><a href="https://streamlabs.com/content-hub/post/best-bitrate-settings-for-live-streaming">直播的最佳比特率设置</a></li>
+<li><a href="https://obsproject.com/forum/resources/custom-parameters-of-quicksync.104/">速率控制说明</a></li>
+<li><a href="https://slurptech.com/best-obs-settings-for-recording/">用于录制的最佳 OBS 设置</a></li>
+</ol></div>
+    <footer class="article-footer"><div class="share-wrapper"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://jhlzlove.github.io/post/skill/video-encoding/&amp;title=%e8%a7%a3%e9%94%81%e6%95%b0%e5%ad%97%e5%aa%92%e4%bd%93%ef%bc%9a%e8%ae%a4%e8%af%86%e8%a7%86%e9%a2%91%e9%9f%b3%e9%a2%91%e6%a0%bc%e5%bc%8f%e4%bb%a5%e5%8f%8a%e7%bc%96%e8%a7%a3%e7%a0%81&amp;desc=%e6%9c%80%e8%bf%91%e4%bd%bf%e7%94%a8%e4%ba%86%20OBS%20Studio%20%e5%bd%95%e5%88%b6%e4%ba%86%e8%a7%86%e9%a2%91%ef%bc%8c%e5%bf%bd%e7%84%b6%e5%8f%91%e7%8e%b0%e8%87%aa%e5%b7%b1%e6%98%af%e4%b8%aa%e8%8f%9c%e9%b8%a1%ef%bc%8c%e5%90%8e%e6%9d%a5%e4%ba%86%e8%a7%a3%e4%ba%86%e4%b8%80%e4%b8%8b%e6%b5%81%e5%aa%92%e4%bd%93%e8%a7%86%e9%a2%91%e7%9a%84%e7%9b%b8%e5%85%b3%e7%9f%a5%e8%af%86%e3%80%82%0a&amp;source=https://jhlzlove.github.io/" target="_blank" rel="noopener noreferrer" title="解锁数字媒体：认识视频音频格式以及编解码">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="解锁数字媒体：认识视频音频格式以及编解码">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+    <a
+      class="article-category-link"
+      href="/categories/%e6%8a%80%e6%9c%af%e5%8a%a0%e6%b2%b9%e7%ab%99"
+      data-aos="zoom-in"
+      >技术加油站</a
+    >
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/%e7%a7%91%e6%99%ae"
+        rel="tag"
+        >科普</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover03_37154c01e47ba.jpg"
+              data-sizes="auto"
+              alt="【Linux】 初次把玩Debian12"
+              class="lazyload"
+            /><a
+          href="/post/skill/linux/debian12-first-play/"
+          aria-label="前一篇:【Linux】 初次把玩Debian12"
+          title="前一篇:【Linux】 初次把玩Debian12"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">【Linux】 初次把玩Debian12</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://pic2.ziyuan.wang/user/jhlz/2026/05/cover01_11b4b370988cf.png"
+              data-sizes="auto"
+              alt="Word 论文选用字体格式参考"
+              class="lazyload"
+            /><a
+          href="/post/skill/word-font-selection-reference/"
+          aria-label="后一篇:Word 论文选用字体格式参考"
+          title="后一篇:Word 论文选用字体格式参考"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Word 论文选用字体格式参考</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">说些什么吧！</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+          <span>giscus</span>
+        </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>jhlz
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;224.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;08:11</span>
+      </div><div class="footer-beian">
+        <img
+          style="object-fit: contain;margin-right: 2px;"
+          src="https://icp.gov.moe/images/ico64.png"
+          alt=""
+          width="24"
+          height="24"
+        />
+        <a
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          href="https://icp.gov.moe/?keyword=20268080"
+          >萌ICP备20268080号</a
+        >
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一视频">一、视频</a>
+      <ul>
+        <li><a href="#视频格式">视频格式</a></li>
+        <li><a href="#视频编解码器">视频编解码器</a></li>
+        <li><a href="#rate-control速率控制cbrvbrcqp">Rate Control（速率控制）：CBR、VBR、CQP</a></li>
+        <li><a href="#视频画面比例">视频画面比例</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#二音频">二、音频</a>
+      <ul>
+        <li><a href="#音频编解码器">音频编解码器</a></li>
+      </ul>
+    </li>
+    <li><a href="#三音视频格式与编解码器的兼容性">三、音/视频格式与编解码器的兼容性</a>
+      <ul>
+        <li><a href="#视频编解码器与音频编解码器的兼容性">视频编解码器与音频编解码器的兼容性</a></li>
+        <li><a href="#视频格式与其编解码器的支持">视频格式与其编解码器的支持</a></li>
+        <li><a href="#音频格式与编解码器的兼容性支持">音频格式与编解码器的兼容性支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#本文参考">本文参考</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.jpeg"
+    data-sizes="auto"
+    alt="jhlz"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">jhlz</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">90</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      10
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">99</div>
+  </a>
+</div>
+<div class="sidebar-social" ></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '>&#xf5db;</div><div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class="sidebar-menu-link">友链</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "CCI6NCGAK0",
+        apiKey: "b2aa1cb7c425b70cd34bac3137a2156f",
+        indexName: "jhlzloveio",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    defer
+    
+    
+    
+    integrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    defer
+    
+    
+    
+    integrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous"  ></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "jhlz",
+          title: "解锁数字媒体：认识视频音频格式以及编解码",
+          url: "https:\/\/jhlzlove.github.io\/post\/skill\/video-encoding\/",
+          description: "最近使用了 OBS Studio 录制了视频，忽然发现自己是个菜鸡，后来了解了一下流媒体视频的相关知识。\n",
+          cover: "https:\/\/jhlzlove.github.io\/images\/banner.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'utterances', 'beaudar', 'disqus'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.ca232e641dba7f64782ccd71f375a131f1543c677eda43263a930ec9523264e5.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.aa29cd91cd52f6b867d866a06f11e625866953b2ee22cdb3670a85540236d7f7.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'jhlzlove\/jhlzlove.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOGiQvcQ');
+        giscusScript.setAttribute('data-category', 'DIC_kwDOGiQvcc4CN8Z2');
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      disqus: false,
+      utterances: false,
+      beaudar: false,
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

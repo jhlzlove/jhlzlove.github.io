@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/ubuntu/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>【Linux】 Ubuntu安装Hadoop&#43;Hive</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/ubuntu-install-hadoop/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/ubuntu-install-hadoop/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 Ubuntu安装Hadoop+Hive</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Ubuntu 搭建 Hadoop + Hive 环境实例。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>【Linux】 Ubuntu 服务器配置</title>
+      <link>https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/linux/ubuntu-server-config/</guid>
+      <description>
+        <![CDATA[<h1>【Linux】 Ubuntu 服务器配置</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <p>Ubuntu Server 22.04 服务器配置。</p>
+        
+        <hr><p>本文2025-10-05首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-05</p>]]>
+      </description>
+      
+        <category>Linux</category>
+      
+    </item>
+    
+  </channel>
+</rss>

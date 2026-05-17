@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jfr on 浮生一梦</title>
+    <link>https://jhlzlove.github.io/tags/jfr/</link>
+    <description>Recent content from 浮生一梦</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>xxx@example.com (jhlz)</managingEditor>
+    <webMaster>xxx@example.com (jhlz)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://jhlzlove.github.io/tags/jfr/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Java Flight Recording</title>
+      <link>https://jhlzlove.github.io/post/skill/programming/java/jvm/jfr/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 &#43;0800</pubDate>
+      <author>xxx@example.com (jhlz)</author>
+      <guid>https://jhlzlove.github.io/post/skill/programming/java/jvm/jfr/</guid>
+      <description>
+        <![CDATA[<h1>Java Flight Recording</h1><p>作者：jhlz（xxx@example.com）</p>
+        
+          <h2 id="jfr">
+<a class="header-anchor" href="#jfr"></a>
+<a href="https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/preface_jfrrt.htm#JFRUH165">JFR</a>
+</h2><p>JFR（Java Flight Recorder）是Java虚拟机（JVM）提供的一个性能监控和故障诊断工具。它的主要作用是收集、记录并分析Java应用程序在运行时的性能数据。JFR在Java 7 Update 40及更高版本中被引入，并在Java 11及以后的版本中成为开源项目。</p>
+        
+        <hr><p>本文2025-10-27首发于<a href='https://jhlzlove.github.io/'>浮生一梦</a>，最后修改于2025-10-27</p>]]>
+      </description>
+      
+        <category>编程后花园</category><category>Java</category>
+      
+    </item>
+    
+  </channel>
+</rss>
